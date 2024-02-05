@@ -5,6 +5,12 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
+            
+        }
+
+        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
