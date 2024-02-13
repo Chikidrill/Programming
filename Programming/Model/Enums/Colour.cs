@@ -1,6 +1,6 @@
 ﻿public enum Colour
 {
-    White,
+    White=1,
     Black,
     Yellow,
     Red,

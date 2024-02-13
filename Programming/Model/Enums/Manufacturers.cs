@@ -1,6 +1,6 @@
 ﻿public enum Manufacturers
 {
-    Xiaomi,
+    Xiaomi=1,
     Samsung,
     Sony,
     Apple,

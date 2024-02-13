@@ -1,6 +1,6 @@
 ﻿public enum Genre
 {
-    Comedy,
+    Comedy=1,
     Dram,
     Thriller,
     Action,

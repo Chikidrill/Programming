@@ -1,6 +1,6 @@
 ﻿public enum EducationForm
 {
-    Fulltime,
+    Fulltime = 1,
     Parttime,
     Evening,
     Remote

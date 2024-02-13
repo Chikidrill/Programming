@@ -13,7 +13,6 @@ namespace Programming
             {
                 SeasonCombobox.Items.Add(season);
             }
-
         }
         private readonly Type[] _typeModel = new Type[] { typeof(Colour), typeof(EducationForm), typeof(Genre), typeof(Manufacturers), typeof(Season), typeof(Weekday) };
 
@@ -21,9 +20,18 @@ namespace Programming
         {
             int selectedIndex = EnumsListBox.SelectedIndex;
             object[] values = Enum.GetValues(_typeModel[selectedIndex]).Cast<object>().ToArray();
-            intvaluetxtbox.Text = "";
             ValueListBox.Items.Clear();
             ValueListBox.Items.AddRange(values);
+        }
+
+        private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = ValueListBox.SelectedIndex;
+            object[] valueitem = Enum.GetValues(_typeModel[selectedIndex]).Cast<object>().ToArray();
+            foreach (Enum envalue in valueitem)
+            {
+                intvaluetxtbox.AppendText(envalue.ToString());
+            }
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
