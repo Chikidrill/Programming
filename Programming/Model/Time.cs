@@ -8,6 +8,8 @@
         }
         set
         {
+            if ((value < 0) || (value > 12))
+                throw new ArgumentException("Hour cannot be empty or <  0  and cannot be >12");
             Hour = value;
         }
     }
@@ -19,6 +21,8 @@
         }
         set
         {
+            if ((value < 0) || (value > 59))
+                throw new ArgumentException("Minutes cannot be empty or <  0 and cannot be >59");
             Minute = value;
         }
     }
@@ -30,6 +34,8 @@
         }
         set
         {
+            if ((value < 0) || (value > 59))
+                throw new ArgumentException("Seconds cannot be empty or <  0 and cannot be >59");
             Second = value;
         }
     }

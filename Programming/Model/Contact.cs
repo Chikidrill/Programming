@@ -28,13 +28,23 @@ class Contact
             PhoneNum = value;
         }
     }
+    private string Email
+    {
+        get
+        {
+            return Email;
+        }
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Email cannot be empty or null");
+            Email = value;
+        }
+    }
     public Contact(string name, string phoneNumber, string email)
     {
         Name = name;
         PhoneNum = phoneNumber;
-    }
-    public Contact()
-    {
-
+        Email = email;
     }
 }

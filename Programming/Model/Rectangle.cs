@@ -8,6 +8,8 @@
         }
         set
         {
+            if ((value == null) || (value < 0))
+                throw new ArgumentException("Width be empty or <  0");
             Width = value;
         }
     }
@@ -19,6 +21,8 @@
         }
         set
         {
+            if ((value == null) || (value < 0))
+                throw new ArgumentException("Height cannot be empty or <  0");
             Height = value;
         }
     }
@@ -29,7 +33,9 @@
             return Colour;
         }
         set 
-        { 
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Colour cannot be empty or null");
             Colour = value;
         }
     }

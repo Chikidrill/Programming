@@ -13,6 +13,7 @@ namespace Programming
             {
                 SeasonCombobox.Items.Add(season);
             }
+
         }
         private readonly Type[] _typeModel = new Type[] { typeof(Colour), typeof(EducationForm), typeof(Genre), typeof(Manufacturers), typeof(Season), typeof(Weekday) };
 
@@ -22,16 +23,6 @@ namespace Programming
             object[] values = Enum.GetValues(_typeModel[selectedIndex]).Cast<object>().ToArray();
             ValueListBox.Items.Clear();
             ValueListBox.Items.AddRange(values);
-        }
-
-        private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = ValueListBox.SelectedIndex;
-            object[] valueitem = Enum.GetValues(_typeModel[selectedIndex]).Cast<object>().ToArray();
-            foreach (Enum envalue in valueitem)
-            {
-                intvaluetxtbox.AppendText(envalue.ToString());
-            }
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
@@ -74,6 +65,12 @@ namespace Programming
                     MessageBox.Show("Я календарь, я календарь, я календарь....");
                     break;
             }
+        }
+
+        private void ValueListBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            // Отображение числового значения выбранного элемента перечисления
+            intvaluetxtbox.Text = ((int)ValueListBox.SelectedItem).ToString();
         }
     }
 }

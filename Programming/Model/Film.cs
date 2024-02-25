@@ -1,5 +1,6 @@
 ﻿class Film
 {
+
     private string Title
     {
         get
@@ -9,7 +10,7 @@
         set
         {
             if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException("Name cannot be empty or null");
+                throw new ArgumentException("Title cannot be empty or null");
             Title = value;
         }
     }
@@ -21,6 +22,8 @@
         }
         set
         {
+            if ((value == null) || (value < 0))
+                throw new ArgumentException("Duration cannot be empty or <  0");
             DurationMinutes = value;
         }
     }
@@ -32,6 +35,8 @@
         }
         set
         {
+            if ((value == null) || (value < 0) || (value > 2024))
+                throw new ArgumentException("Release year cannot be empty or <  0 or > 2024");
             ReleaseYear = value;
         }
     }
@@ -43,6 +48,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Genre cannot be empty or null");
             Genre = value;
         }
     }
@@ -54,6 +61,8 @@
         }
         set
         {
+            if ((value < 0) || (value >5.0))
+                throw new ArgumentException("Rating cannot be <0 and >5.0");
             Rating = value;
         }
     }

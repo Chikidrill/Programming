@@ -8,6 +8,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Subject name cannot be empty or null");
             SubjectName = value;
         }
     }
@@ -19,6 +21,8 @@
         }
         set
         {
+            if ((value == null) || (value < 0))
+                throw new ArgumentException("Number of lessons cannot be empty or <  0");
             NumOfLessonsWeek = value;
         }
     }
@@ -30,6 +34,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Teacher name cannot be empty or null");
             TeacherName = value;
         }
     }

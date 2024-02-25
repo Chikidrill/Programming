@@ -8,6 +8,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Name of song cannot be empty or null");
             SongName = value;
         }
     }
@@ -19,6 +21,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Artist name cannot be empty or null");
             ArtistName = value;
         }
     }
@@ -30,6 +34,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Label name cannot be empty or null");
             LabelName = value;
         }
     }
@@ -41,6 +47,8 @@
         }
         set
         {
+            if ((value == null) || (value < 0))
+                throw new ArgumentException("Duration cannot be empty or <  0");
             DurationSeconds = value;
         }
     }

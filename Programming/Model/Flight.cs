@@ -8,6 +8,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Departure point cannot be empty or null");
             DeparturePoint = value;
         }
     }
@@ -19,6 +21,8 @@
         }
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Destination point cannot be empty or null");
             DestinationPoint = value;
         }
     }
@@ -30,6 +34,8 @@
         }
         set
         {
+            if ((value <0))
+                throw new ArgumentException("Duration of flight cannot be < 0 ");
             FlightMinutes = value;
         }
     }

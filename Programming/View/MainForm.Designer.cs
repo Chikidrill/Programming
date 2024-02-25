@@ -46,12 +46,10 @@
             ValueListBox = new ListBox();
             EnumsListBox = new ListBox();
             EnumsGroupBox = new GroupBox();
-            intvallabel = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
             WDParsingGroupBox.SuspendLayout();
-            EnumsGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -212,6 +210,7 @@
             ValueListBox.Name = "ValueListBox";
             ValueListBox.Size = new Size(163, 264);
             ValueListBox.TabIndex = 1;
+            ValueListBox.SelectedIndexChanged += ValueListBox_SelectedIndexChanged_1;
             // 
             // EnumsListBox
             // 
@@ -226,22 +225,12 @@
             // 
             // EnumsGroupBox
             // 
-            EnumsGroupBox.Controls.Add(intvallabel);
             EnumsGroupBox.Location = new Point(8, 6);
             EnumsGroupBox.Name = "EnumsGroupBox";
             EnumsGroupBox.Size = new Size(776, 355);
             EnumsGroupBox.TabIndex = 1;
             EnumsGroupBox.TabStop = false;
             EnumsGroupBox.Text = "Enumerations";
-            // 
-            // intvallabel
-            // 
-            intvallabel.AutoSize = true;
-            intvallabel.Location = new Point(444, 100);
-            intvallabel.Name = "intvallabel";
-            intvallabel.Size = new Size(100, 20);
-            intvallabel.TabIndex = 7;
-            intvallabel.Text = "Choose value:";
             // 
             // MainForm
             // 
@@ -258,8 +247,6 @@
             SeasonGroupBox.PerformLayout();
             WDParsingGroupBox.ResumeLayout(false);
             WDParsingGroupBox.PerformLayout();
-            EnumsGroupBox.ResumeLayout(false);
-            EnumsGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -284,6 +271,5 @@
         private Label ChSeasonLabel;
         private Button seasonbtn;
         private ComboBox SeasonCombobox;
-        private Label intvallabel;
     }
 }
