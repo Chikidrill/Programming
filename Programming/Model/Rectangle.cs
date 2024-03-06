@@ -1,42 +1,40 @@
 ﻿class Rectangle
 {
-    private double Width
+    private double _width;
+    private double _length;
+    private string _color;
+    public double Width
     {
         get
         {
-            return Width;
+            return _width;
         }
         set
         {
             if ((value == null) || (value < 0))
                 throw new ArgumentException("Width be empty or <  0");
-            Width = value;
+            _width = value;
         }
     }
-    private double Height
+    public double Length
     {
         get
         {
-            return Height;
+            return _length;
         }
         set
         {
             if ((value == null) || (value < 0))
                 throw new ArgumentException("Height cannot be empty or <  0");
-            Height = value;
+            _length = value;
         }
     }
-    private string Colour
+    public Color Color { get; set; }
+    public Rectangle(double width, double length, Color color)
     {
-        get
-        {
-            return Colour;
-        }
-        set 
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException("Colour cannot be empty or null");
-            Colour = value;
-        }
+        Width = width;
+        Length = length;
+        Color = color;
     }
+    public Rectangle() { }
 }

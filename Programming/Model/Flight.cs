@@ -1,42 +1,48 @@
 ﻿class Flight
 {
-    private string DeparturePoint
+    private string _departurePoint
     {
         get
         {
-            return DeparturePoint;
+            return _departurePoint;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Departure point cannot be empty or null");
-            DeparturePoint = value;
+            _departurePoint = value;
         }
     }
-    private string DestinationPoint
+    private string _destinationPoint
     {
         get
         {
-            return DestinationPoint;
+            return _destinationPoint;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Destination point cannot be empty or null");
-            DestinationPoint = value;
+            _destinationPoint = value;
         }
     }
-    private int FlightMinutes
+    private int _flightMinutes
     {
         get
         {
-            return FlightMinutes;
+            return _flightMinutes;
         }
         set
         {
             if ((value <0))
                 throw new ArgumentException("Duration of flight cannot be < 0 ");
-            FlightMinutes = value;
+            _flightMinutes = value;
         }
+    }
+    public Flight(string DeparturePoint, string DestinationPoint, int FlightMinutes)
+    {
+        _departurePoint = DeparturePoint;
+        _destinationPoint = DestinationPoint;
+        _flightMinutes = FlightMinutes;
     }
 }

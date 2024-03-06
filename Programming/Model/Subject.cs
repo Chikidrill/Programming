@@ -1,42 +1,48 @@
 ﻿class Subject
 {
-    private string SubjectName
+    private string _subjectName
     {
         get
         {
-            return SubjectName;
+            return _subjectName;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Subject name cannot be empty or null");
-            SubjectName = value;
+            _subjectName = value;
         }
     }
-    private int NumOfLessonsWeek
+    private int _numOfLessonsWeek
     {
         get
         {
-            return NumOfLessonsWeek;
+            return _numOfLessonsWeek;
         }
         set
         {
             if ((value == null) || (value < 0))
                 throw new ArgumentException("Number of lessons cannot be empty or <  0");
-            NumOfLessonsWeek = value;
+            _numOfLessonsWeek = value;
         }
     }
-    private string TeacherName
+    private string _teacherName
     {
         get
         {
-            return TeacherName;
+            return _teacherName;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Teacher name cannot be empty or null");
-            TeacherName = value;
+            _teacherName = value;
         }
+    }
+    public Subject(string SubjectName, int NumOfLessonsWeek, string TeacherName)
+    {
+        _subjectName = SubjectName;
+        _numOfLessonsWeek = NumOfLessonsWeek;
+        _teacherName = TeacherName;
     }
 }

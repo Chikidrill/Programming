@@ -1,42 +1,48 @@
 ﻿class Time
 {
-    private int Hour
+    private int _hour
     {
         get
         {
-            return Hour;
+            return _hour;
         }
         set
         {
             if ((value < 0) || (value > 12))
                 throw new ArgumentException("Hour cannot be empty or <  0  and cannot be >12");
-            Hour = value;
+            _hour = value;
         }
     }
-    private int Minute
+    private int _minute
     {
         get
         {
-            return Minute;
+            return _minute;
         }
         set
         {
             if ((value < 0) || (value > 59))
                 throw new ArgumentException("Minutes cannot be empty or <  0 and cannot be >59");
-            Minute = value;
+            _minute = value;
         }
     }
-    private int Second
+    private int _second
     {
         get
         {
-            return Second;
+            return _second;
         }
         set
         {
             if ((value < 0) || (value > 59))
                 throw new ArgumentException("Seconds cannot be empty or <  0 and cannot be >59");
-            Second = value;
+            _second = value;
         }
+    }
+    public Time(int Hour, int Minute, int Second)
+    {
+        _hour = Hour;
+        _minute = Minute;
+        _second = Second;
     }
 }

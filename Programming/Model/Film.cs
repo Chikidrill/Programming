@@ -1,69 +1,67 @@
 ﻿class Film
 {
-
-    private string Title
+    private string _title;
+    private int _durationMinutes;
+    private int _releaseYear;
+    private double _rating;
+    public string Title
     {
         get
         {
-            return Title;
+            return _title;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Title cannot be empty or null");
-            Title = value;
+            _title = value;
         }
     }
-    private int DurationMinutes
+    public int DurationMinutes
     {
         get
         {
-            return DurationMinutes;
+            return _durationMinutes;
         }
         set
         {
             if ((value == null) || (value < 0))
                 throw new ArgumentException("Duration cannot be empty or <  0");
-            DurationMinutes = value;
+            _durationMinutes = value;
         }
     }
-    private int ReleaseYear
+    public int ReleaseYear
     {
         get
         {
-            return ReleaseYear;
+            return _releaseYear;
         }
         set
         {
             if ((value == null) || (value < 0) || (value > 2024))
                 throw new ArgumentException("Release year cannot be empty or <  0 or > 2024");
-            ReleaseYear = value;
+            _releaseYear = value;
         }
     }
-    private string Genre
+    public Genres Genre { get; set; }
+    public double Rating
     {
         get
         {
-            return Genre;
+            return _rating;
         }
         set
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException("Genre cannot be empty or null");
-            Genre = value;
+            _rating = value;
         }
     }
-    private double Rating
+    public Film(string title, int durationMinutes, int releaseYear, Genres genre, double rating)
     {
-        get
-        {
-            return Rating;
-        }
-        set
-        {
-            if ((value < 0) || (value >5.0))
-                throw new ArgumentException("Rating cannot be <0 and >5.0");
-            Rating = value;
-        }
+        Title = title;
+        DurationMinutes = durationMinutes;
+        ReleaseYear = releaseYear;
+        Genre = genre;
+        Rating = rating;
     }
+    public Film() { }
 }

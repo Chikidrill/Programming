@@ -1,55 +1,62 @@
 ﻿class Song
 {
-    private string SongName
+    private string _songName
     {
         get
         {
-            return SongName;
+            return _songName;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Name of song cannot be empty or null");
-            SongName = value;
+            _songName = value;
         }
     }
-    private string ArtistName
+    private string _artistName
     {
         get
         {
-            return ArtistName;
+            return _artistName;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Artist name cannot be empty or null");
-            ArtistName = value;
+            _artistName = value;
         }
     }
-    private string LabelName
+    private string _labelName
     {
         get
         {
-            return LabelName;
+            return _labelName;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Label name cannot be empty or null");
-            LabelName = value;
+            _labelName = value;
         }
     }
-    private int DurationSeconds
+    private int _durationSeconds
     {
         get
         {
-            return DurationSeconds;
+            return _durationSeconds;
         }
         set
         {
             if ((value == null) || (value < 0))
                 throw new ArgumentException("Duration cannot be empty or <  0");
-            DurationSeconds = value;
+            _durationSeconds = value;
         }
+    }
+    public Song(string SongName, string ArtistName, string LabelName, int DurationSeconds)
+    {
+        _songName = SongName;
+        _artistName = ArtistName;
+        _labelName = LabelName;
+        _durationSeconds = DurationSeconds;
     }
 }

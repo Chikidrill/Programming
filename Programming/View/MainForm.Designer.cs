@@ -46,15 +46,42 @@
             ValueListBox = new ListBox();
             EnumsListBox = new ListBox();
             EnumsGroupBox = new GroupBox();
+            classespage = new TabPage();
+            filmgroupbox = new GroupBox();
+            ratingtxtbox = new TextBox();
+            ratinglabel = new Label();
+            genrelabel = new Label();
+            genretxtbox = new TextBox();
+            buttonfilms = new Button();
+            films_listbox = new ListBox();
+            releaseyeartxtbox = new TextBox();
+            durationminutestxtbox = new TextBox();
+            titletxtbox = new TextBox();
+            titlelabel = new Label();
+            durationlabel = new Label();
+            yearlabel = new Label();
+            rectgroupbox = new GroupBox();
+            findbtn = new Button();
+            rectangle_listbox = new ListBox();
+            colortxtbox = new TextBox();
+            widthtxtbox = new TextBox();
+            lengthtxtbox = new TextBox();
+            lengthlabel = new Label();
+            widthlabel = new Label();
+            label1 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
             WDParsingGroupBox.SuspendLayout();
+            classespage.SuspendLayout();
+            filmgroupbox.SuspendLayout();
+            rectgroupbox.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(classespage);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -232,6 +259,231 @@
             EnumsGroupBox.TabStop = false;
             EnumsGroupBox.Text = "Enumerations";
             // 
+            // classespage
+            // 
+            classespage.Controls.Add(filmgroupbox);
+            classespage.Controls.Add(rectgroupbox);
+            classespage.Location = new Point(4, 29);
+            classespage.Name = "classespage";
+            classespage.Padding = new Padding(3);
+            classespage.Size = new Size(792, 551);
+            classespage.TabIndex = 1;
+            classespage.Text = "Classes";
+            classespage.UseVisualStyleBackColor = true;
+            // 
+            // filmgroupbox
+            // 
+            filmgroupbox.Controls.Add(ratingtxtbox);
+            filmgroupbox.Controls.Add(ratinglabel);
+            filmgroupbox.Controls.Add(genrelabel);
+            filmgroupbox.Controls.Add(genretxtbox);
+            filmgroupbox.Controls.Add(buttonfilms);
+            filmgroupbox.Controls.Add(films_listbox);
+            filmgroupbox.Controls.Add(releaseyeartxtbox);
+            filmgroupbox.Controls.Add(durationminutestxtbox);
+            filmgroupbox.Controls.Add(titletxtbox);
+            filmgroupbox.Controls.Add(titlelabel);
+            filmgroupbox.Controls.Add(durationlabel);
+            filmgroupbox.Controls.Add(yearlabel);
+            filmgroupbox.Location = new Point(402, 26);
+            filmgroupbox.Name = "filmgroupbox";
+            filmgroupbox.Size = new Size(364, 390);
+            filmgroupbox.TabIndex = 9;
+            filmgroupbox.TabStop = false;
+            filmgroupbox.Text = "Rectangle";
+            // 
+            // ratingtxtbox
+            // 
+            ratingtxtbox.Location = new Point(199, 266);
+            ratingtxtbox.Name = "ratingtxtbox";
+            ratingtxtbox.Size = new Size(125, 27);
+            ratingtxtbox.TabIndex = 12;
+            ratingtxtbox.TextChanged += ratingtxtbox_TextChanged_1;
+            // 
+            // ratinglabel
+            // 
+            ratinglabel.AutoSize = true;
+            ratinglabel.Location = new Point(199, 243);
+            ratinglabel.Name = "ratinglabel";
+            ratinglabel.Size = new Size(55, 20);
+            ratinglabel.TabIndex = 11;
+            ratinglabel.Text = "Rating:";
+            // 
+            // genrelabel
+            // 
+            genrelabel.AutoSize = true;
+            genrelabel.Location = new Point(199, 190);
+            genrelabel.Name = "genrelabel";
+            genrelabel.Size = new Size(51, 20);
+            genrelabel.TabIndex = 10;
+            genrelabel.Text = "Genre:";
+            // 
+            // genretxtbox
+            // 
+            genretxtbox.Location = new Point(199, 213);
+            genretxtbox.Name = "genretxtbox";
+            genretxtbox.Size = new Size(125, 27);
+            genretxtbox.TabIndex = 9;
+            genretxtbox.TextChanged += genretxtbox_TextChanged_1;
+            // 
+            // buttonfilms
+            // 
+            buttonfilms.Location = new Point(199, 346);
+            buttonfilms.Name = "buttonfilms";
+            buttonfilms.Size = new Size(125, 29);
+            buttonfilms.TabIndex = 8;
+            buttonfilms.Text = "Find";
+            buttonfilms.UseVisualStyleBackColor = true;
+            buttonfilms.Click += buttonfilms_Click_1;
+            // 
+            // films_listbox
+            // 
+            films_listbox.FormattingEnabled = true;
+            films_listbox.ItemHeight = 20;
+            films_listbox.Location = new Point(18, 31);
+            films_listbox.Name = "films_listbox";
+            films_listbox.Size = new Size(150, 344);
+            films_listbox.TabIndex = 7;
+            films_listbox.SelectedIndexChanged += films_listbox_SelectedIndexChanged;
+            // 
+            // releaseyeartxtbox
+            // 
+            releaseyeartxtbox.Location = new Point(199, 160);
+            releaseyeartxtbox.Name = "releaseyeartxtbox";
+            releaseyeartxtbox.Size = new Size(125, 27);
+            releaseyeartxtbox.TabIndex = 6;
+            releaseyeartxtbox.TextChanged += releaseyeartxtbox_TextChanged_1;
+            // 
+            // durationminutestxtbox
+            // 
+            durationminutestxtbox.Location = new Point(199, 107);
+            durationminutestxtbox.Name = "durationminutestxtbox";
+            durationminutestxtbox.Size = new Size(125, 27);
+            durationminutestxtbox.TabIndex = 5;
+            durationminutestxtbox.TextChanged += durationminutestxtbox_TextChanged_1;
+            // 
+            // titletxtbox
+            // 
+            titletxtbox.Location = new Point(199, 54);
+            titletxtbox.Name = "titletxtbox";
+            titletxtbox.Size = new Size(125, 27);
+            titletxtbox.TabIndex = 4;
+            titletxtbox.TextChanged += titletxtbox_TextChanged_1;
+            // 
+            // titlelabel
+            // 
+            titlelabel.AutoSize = true;
+            titlelabel.Location = new Point(199, 31);
+            titlelabel.Name = "titlelabel";
+            titlelabel.Size = new Size(41, 20);
+            titlelabel.TabIndex = 2;
+            titlelabel.Text = "Title:";
+            // 
+            // durationlabel
+            // 
+            durationlabel.AutoSize = true;
+            durationlabel.Location = new Point(199, 84);
+            durationlabel.Name = "durationlabel";
+            durationlabel.Size = new Size(142, 20);
+            durationlabel.TabIndex = 1;
+            durationlabel.Text = "Duration in minutes:";
+            // 
+            // yearlabel
+            // 
+            yearlabel.AutoSize = true;
+            yearlabel.Location = new Point(199, 137);
+            yearlabel.Name = "yearlabel";
+            yearlabel.Size = new Size(113, 20);
+            yearlabel.TabIndex = 0;
+            yearlabel.Text = "Year of Release:";
+            // 
+            // rectgroupbox
+            // 
+            rectgroupbox.Controls.Add(findbtn);
+            rectgroupbox.Controls.Add(rectangle_listbox);
+            rectgroupbox.Controls.Add(colortxtbox);
+            rectgroupbox.Controls.Add(widthtxtbox);
+            rectgroupbox.Controls.Add(lengthtxtbox);
+            rectgroupbox.Controls.Add(lengthlabel);
+            rectgroupbox.Controls.Add(widthlabel);
+            rectgroupbox.Controls.Add(label1);
+            rectgroupbox.Location = new Point(18, 26);
+            rectgroupbox.Name = "rectgroupbox";
+            rectgroupbox.Size = new Size(364, 390);
+            rectgroupbox.TabIndex = 0;
+            rectgroupbox.TabStop = false;
+            rectgroupbox.Text = "Rectangle";
+            // 
+            // findbtn
+            // 
+            findbtn.Location = new Point(199, 346);
+            findbtn.Name = "findbtn";
+            findbtn.Size = new Size(125, 29);
+            findbtn.TabIndex = 8;
+            findbtn.Text = "Find";
+            findbtn.UseVisualStyleBackColor = true;
+            findbtn.Click += findbtn_Click;
+            // 
+            // rectangle_listbox
+            // 
+            rectangle_listbox.FormattingEnabled = true;
+            rectangle_listbox.ItemHeight = 20;
+            rectangle_listbox.Location = new Point(18, 31);
+            rectangle_listbox.Name = "rectangle_listbox";
+            rectangle_listbox.Size = new Size(150, 344);
+            rectangle_listbox.TabIndex = 7;
+            rectangle_listbox.SelectedIndexChanged += rectangle_listbox_SelectedIndexChanged_1;
+            // 
+            // colortxtbox
+            // 
+            colortxtbox.Location = new Point(199, 160);
+            colortxtbox.Name = "colortxtbox";
+            colortxtbox.Size = new Size(125, 27);
+            colortxtbox.TabIndex = 6;
+            // 
+            // widthtxtbox
+            // 
+            widthtxtbox.Location = new Point(199, 107);
+            widthtxtbox.Name = "widthtxtbox";
+            widthtxtbox.Size = new Size(125, 27);
+            widthtxtbox.TabIndex = 5;
+            widthtxtbox.TextChanged += widthtxtbox_TextChanged_1;
+            // 
+            // lengthtxtbox
+            // 
+            lengthtxtbox.Location = new Point(199, 54);
+            lengthtxtbox.Name = "lengthtxtbox";
+            lengthtxtbox.Size = new Size(125, 27);
+            lengthtxtbox.TabIndex = 4;
+            lengthtxtbox.TextChanged += lengthtxtbox_TextChanged_1;
+            // 
+            // lengthlabel
+            // 
+            lengthlabel.AutoSize = true;
+            lengthlabel.Location = new Point(199, 31);
+            lengthlabel.Name = "lengthlabel";
+            lengthlabel.Size = new Size(57, 20);
+            lengthlabel.TabIndex = 2;
+            lengthlabel.Text = "Length:";
+            // 
+            // widthlabel
+            // 
+            widthlabel.AutoSize = true;
+            widthlabel.Location = new Point(199, 84);
+            widthlabel.Name = "widthlabel";
+            widthlabel.Size = new Size(52, 20);
+            widthlabel.TabIndex = 1;
+            widthlabel.Text = "Width:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(199, 137);
+            label1.Name = "label1";
+            label1.Size = new Size(48, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Color:";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -247,6 +499,11 @@
             SeasonGroupBox.PerformLayout();
             WDParsingGroupBox.ResumeLayout(false);
             WDParsingGroupBox.PerformLayout();
+            classespage.ResumeLayout(false);
+            filmgroupbox.ResumeLayout(false);
+            filmgroupbox.PerformLayout();
+            rectgroupbox.ResumeLayout(false);
+            rectgroupbox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -271,5 +528,28 @@
         private Label ChSeasonLabel;
         private Button seasonbtn;
         private ComboBox SeasonCombobox;
+        private TabPage classespage;
+        private GroupBox rectgroupbox;
+        private TextBox lengthtxtbox;
+        private Label lengthlabel;
+        private Label widthlabel;
+        private Label label1;
+        private TextBox colortxtbox;
+        private TextBox widthtxtbox;
+        private Button findbtn;
+        private ListBox rectangle_listbox;
+        private GroupBox filmgroupbox;
+        private Button buttonfilms;
+        private ListBox films_listbox;
+        private TextBox releaseyeartxtbox;
+        private TextBox durationminutestxtbox;
+        private TextBox titletxtbox;
+        private Label titlelabel;
+        private Label durationlabel;
+        private Label yearlabel;
+        private TextBox genretxtbox;
+        private Label genrelabel;
+        private Label ratinglabel;
+        private TextBox ratingtxtbox;
     }
 }

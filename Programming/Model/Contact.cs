@@ -2,49 +2,49 @@
 
 class Contact
 {
-    private string Name
+    private string _name
     {
         get
         {
-            return Name;
+            return _name;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Name cannot be empty or null");
-            Name = value;
+            _name = value;
         }
     }
-    private string PhoneNum
+    private string _phoneNum
     {
         get
         {
-            return PhoneNum;
+            return _phoneNum;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Phone number cannot be empty or null");
-            PhoneNum = value;
+            _phoneNum = value;
         }
     }
-    private string Email
+    private string _email
     {
         get
         {
-            return Email;
+            return _email;
         }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Email cannot be empty or null");
-            Email = value;
+            _email = value;
         }
     }
-    public Contact(string name, string phoneNumber, string email)
+    public Contact(string Name, string PhoneNumber, string Email)
     {
-        Name = name;
-        PhoneNum = phoneNumber;
-        Email = email;
+        _name = Name;
+        _phoneNum = PhoneNumber;
+        _email = Email;
     }
 }
