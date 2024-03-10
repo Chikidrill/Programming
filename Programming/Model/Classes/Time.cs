@@ -1,6 +1,10 @@
 ﻿class Time
 {
-    private int _hour
+    private int _hour;
+    private int _minute;
+    private int _second;
+
+    private int Hour
     {
         get
         {
@@ -13,7 +17,7 @@
             _hour = value;
         }
     }
-    private int _minute
+    private int Minute
     {
         get
         {
@@ -26,7 +30,7 @@
             _minute = value;
         }
     }
-    private int _second
+    private int Second
     {
         get
         {
@@ -39,10 +43,11 @@
             _second = value;
         }
     }
-    public Time(int Hour, int Minute, int Second)
+    public Time(int hour, int minute, int second)
     {
-        _hour = Hour;
-        _minute = Minute;
-        _second = Second;
+        Hour = hour;
+        Minute = minute;
+        Second = second;
     }
+    public Time () { }
 }

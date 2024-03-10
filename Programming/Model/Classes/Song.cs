@@ -1,6 +1,10 @@
 ﻿class Song
 {
-    private string _songName
+    private string _songName;
+    private string _artistName;
+    private string _labelName;
+    private int _durationSeconds;
+    public string SongName
     {
         get
         {
@@ -13,7 +17,7 @@
             _songName = value;
         }
     }
-    private string _artistName
+    public string ArtistName
     {
         get
         {
@@ -26,7 +30,7 @@
             _artistName = value;
         }
     }
-    private string _labelName
+    public string LabelName
     {
         get
         {
@@ -39,7 +43,7 @@
             _labelName = value;
         }
     }
-    private int _durationSeconds
+    public int DurationSeconds
     {
         get
         {
@@ -52,11 +56,12 @@
             _durationSeconds = value;
         }
     }
-    public Song(string SongName, string ArtistName, string LabelName, int DurationSeconds)
+    public Song(string songName, string artistName, string labelName, int durationSeconds)
     {
-        _songName = SongName;
-        _artistName = ArtistName;
-        _labelName = LabelName;
-        _durationSeconds = DurationSeconds;
+        SongName = songName;
+        ArtistName = artistName;
+        LabelName = labelName;
+        DurationSeconds = durationSeconds;
     }
+    public Song() { }
 }

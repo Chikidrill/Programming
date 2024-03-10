@@ -2,7 +2,10 @@
 
 class Contact
 {
-    private string _name
+    private string _name;
+    private string _phoneNum;
+    private string _email;
+    public string Name
     {
         get
         {
@@ -15,7 +18,7 @@ class Contact
             _name = value;
         }
     }
-    private string _phoneNum
+    public string PhoneNum
     {
         get
         {
@@ -28,7 +31,7 @@ class Contact
             _phoneNum = value;
         }
     }
-    private string _email
+    public string Email
     {
         get
         {
@@ -41,10 +44,11 @@ class Contact
             _email = value;
         }
     }
-    public Contact(string Name, string PhoneNumber, string Email)
+    public Contact(string name, string phoneNumber, string email)
     {
-        _name = Name;
-        _phoneNum = PhoneNumber;
-        _email = Email;
+        Name = name;
+        PhoneNum = phoneNumber;
+        Email = email;
     }
+    public Contact() { }
 }

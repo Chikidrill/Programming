@@ -2,7 +2,7 @@
 {
     private double _width;
     private double _length;
-    private string _color;
+    private System.Drawing.Color _color;
     public double Width
     {
         get

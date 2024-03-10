@@ -1,6 +1,9 @@
 ﻿class Flight
 {
-    private string _departurePoint
+    private string _departurePoint;
+    private string _destinationPoint;
+    private int _flightMinutes;
+    public string DeparturePoint
     {
         get
         {
@@ -13,7 +16,7 @@
             _departurePoint = value;
         }
     }
-    private string _destinationPoint
+    public string DestinationPoint
     {
         get
         {
@@ -26,7 +29,7 @@
             _destinationPoint = value;
         }
     }
-    private int _flightMinutes
+    public int FlightMinutes
     {
         get
         {
@@ -39,10 +42,11 @@
             _flightMinutes = value;
         }
     }
-    public Flight(string DeparturePoint, string DestinationPoint, int FlightMinutes)
+    public Flight(string departurePoint, string destinationPoint, int flightMinutes)
     {
-        _departurePoint = DeparturePoint;
-        _destinationPoint = DestinationPoint;
-        _flightMinutes = FlightMinutes;
+        DeparturePoint = departurePoint;
+        DestinationPoint = destinationPoint;
+        FlightMinutes = flightMinutes;
     }
+    public Flight() { }
 }

@@ -22,7 +22,8 @@ namespace Programming
             Random random = new Random();
             for (int i = 0; i < 5; i++)
             {
-                Rectangle rectangle = new Rectangle(random.Next(6, 51), random.Next(3, 58), Color.Green);
+                Color randcolor = (Color)random.Next(1, 7);
+                Rectangle rectangle = new Rectangle(random.Next(3, 118), random.Next(3, 320),randcolor);
                 _rectangles[i] = rectangle;
                 rectangle_listbox.Items.Add(rectangle);
             }
@@ -41,7 +42,7 @@ namespace Programming
             films_listbox.Items.AddRange(films_listboxItems);
         }
         // Laboratory work #1+#2
-        private readonly Type[] _typeModel = new Type[] { typeof(Colour), typeof(EducationForm), typeof(Genres), typeof(Manufacturers), typeof(Season), typeof(Weekday) };
+        private readonly Type[] _typeModel = new Type[] { typeof(Color), typeof(EducationForm), typeof(Genres), typeof(Manufacturers), typeof(Season), typeof(Weekday) };
         static private bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
             if (Enum.TryParse<T>(itemName, true, out value))
@@ -72,7 +73,7 @@ namespace Programming
                 OutputParseLabel.Text = "Нет такого дня недели";
             }
         }
-        private void SetTabBackColor(Color color)
+        private void SetTabBackColor(System.Drawing.Color color)
         {
             foreach (TabPage tabPage in tabControl1.TabPages)
             {
@@ -85,17 +86,17 @@ namespace Programming
             switch (selectedSeason)
             {
                 case "Winter":
-                    SetTabBackColor(Color.AliceBlue);
+                    SetTabBackColor(System.Drawing.Color.AliceBlue);
                     MessageBox.Show("Бррр... Холодно! Даже программа замерзла :/");
                     break;
                 case "Spring":
-                    SetTabBackColor(Color.Green);
+                    SetTabBackColor(System.Drawing.Color.Green);
                     break;
                 case "Summer":
                     MessageBox.Show("Ура! Каникулы :D !!!");
                     break;
                 case "Autumn":
-                    SetTabBackColor(Color.SandyBrown);
+                    SetTabBackColor(System.Drawing.Color.SandyBrown);
                     MessageBox.Show("Я календарь, я календарь, я календарь....");
                     break;
             }
@@ -184,7 +185,7 @@ namespace Programming
             }
             return MaxRateIndex;
         }
-        
+
         private void films_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (films_listbox.SelectedIndex == -1) return;

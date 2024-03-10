@@ -290,7 +290,7 @@
             filmgroupbox.Size = new Size(364, 390);
             filmgroupbox.TabIndex = 9;
             filmgroupbox.TabStop = false;
-            filmgroupbox.Text = "Rectangle";
+            filmgroupbox.Text = "Movie";
             // 
             // ratingtxtbox
             // 

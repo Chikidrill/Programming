@@ -1,6 +1,9 @@
 ﻿class Subject
 {
-    private string _subjectName
+    private string _subjectName;
+    private int _numOfLessonsWeek;
+    private string _teacherName;
+    public string SubjectName
     {
         get
         {
@@ -13,7 +16,7 @@
             _subjectName = value;
         }
     }
-    private int _numOfLessonsWeek
+    public int NumOfLessonsWeek
     {
         get
         {
@@ -26,7 +29,7 @@
             _numOfLessonsWeek = value;
         }
     }
-    private string _teacherName
+    public string TeacherName
     {
         get
         {
@@ -39,10 +42,11 @@
             _teacherName = value;
         }
     }
-    public Subject(string SubjectName, int NumOfLessonsWeek, string TeacherName)
+    public Subject(string subjectName, int numOfLessonsWeek, string teacherName)
     {
-        _subjectName = SubjectName;
-        _numOfLessonsWeek = NumOfLessonsWeek;
-        _teacherName = TeacherName;
+        SubjectName = subjectName;
+        NumOfLessonsWeek = numOfLessonsWeek;
+        TeacherName = teacherName;
     }
+    public Subject() { }
 }
