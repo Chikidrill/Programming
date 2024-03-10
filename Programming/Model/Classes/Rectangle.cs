@@ -1,8 +1,11 @@
 ﻿class Rectangle
 {
+
     private double _width;
     private double _length;
-    private System.Drawing.Color _color;
+    private Color _color;
+
+
     public double Width
     {
         get

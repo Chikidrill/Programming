@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.Devices;
 using System;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -20,20 +21,21 @@ namespace Programming
                 SeasonCombobox.Items.Add(season);
             }
             Random random = new Random();
+            string[] rectangle_listboxItems = new string[5];
             for (int i = 0; i < 5; i++)
             {
                 Color randcolor = (Color)random.Next(1, 7);
-                Rectangle rectangle = new Rectangle(random.Next(3, 118), random.Next(3, 320),randcolor);
+                Rectangle rectangle = new Rectangle(random.Next(3, 118), random.Next(3, 320), randcolor);
                 _rectangles[i] = rectangle;
-                rectangle_listbox.Items.Add(rectangle);
+                rectangle_listboxItems[i] =($"Rectangle {i + 1}");
             }
-
+            rectangle_listbox.Items.AddRange(rectangle_listboxItems);
             string[] films_listboxItems = new string[5];
             string[] filmsTitles = new string[5] { "Batman", "Avengers: Final", "The GodFather", "Joker", "Ghostbusters" };
             for (int i = 0; i < 5; i++)
             {
                 int durationMinutes = random.Next(20, 280);
-                int releaseYear = random.Next(1950, DateTime.Now.Year + 1);
+                int releaseYear = random.Next(1900, DateTime.Now.Year + 1);
                 double rating = Math.Round(random.NextDouble() * 10, 1);
                 Film film = new Film(filmsTitles[i], durationMinutes, releaseYear, Genres.Action, rating);
                 _films[i] = film;
@@ -132,16 +134,13 @@ namespace Programming
         {
             if (rectangle_listbox.SelectedIndex == -1) return;
             _currentRectangle = _rectangles[rectangle_listbox.SelectedIndex];
-            Rectangle rectangle = (Rectangle)rectangle_listbox.SelectedItem;
-            lengthtxtbox.Text = rectangle.Length.ToString();
-            widthtxtbox.Text = rectangle.Width.ToString();
-            colortxtbox.Text = rectangle.Color.ToString();
+            lengthtxtbox.Text = _currentRectangle.Length.ToString();
+            widthtxtbox.Text = _currentRectangle.Width.ToString();
+            colortxtbox.Text = _currentRectangle.Color.ToString();
         }
         private void lengthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
-            rectangle_listbox.Items.RemoveAt(index);
-            rectangle_listbox.Items.Insert(index, _currentRectangle);
             try
             {
                 lengthtxtbox.BackColor = System.Drawing.Color.White;
@@ -157,8 +156,6 @@ namespace Programming
         private void widthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
-            rectangle_listbox.Items.RemoveAt(index);
-            rectangle_listbox.Items.Insert(index, _currentRectangle);
             try
             {
                 widthtxtbox.BackColor = System.Drawing.Color.White;

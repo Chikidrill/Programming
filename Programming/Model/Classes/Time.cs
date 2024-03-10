@@ -4,7 +4,7 @@
     private int _minute;
     private int _second;
 
-    private int Hour
+    public int Hour
     {
         get
         {
@@ -17,7 +17,7 @@
             _hour = value;
         }
     }
-    private int Minute
+    public int Minute
     {
         get
         {
@@ -30,7 +30,7 @@
             _minute = value;
         }
     }
-    private int Second
+    public int Second
     {
         get
         {
