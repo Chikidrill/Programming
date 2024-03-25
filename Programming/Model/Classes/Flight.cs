@@ -1,4 +1,5 @@
-﻿class Flight
+﻿using Programming.Model.Classes;
+class Flight
 {
     private string _departurePoint;
     private string _destinationPoint;
@@ -37,8 +38,7 @@
         }
         set
         {
-            if ((value <0))
-                throw new ArgumentException("Duration of flight cannot be < 0 ");
+            Validator.AssertOnPositiveValue(value, nameof(FlightMinutes));
             _flightMinutes = value;
         }
     }

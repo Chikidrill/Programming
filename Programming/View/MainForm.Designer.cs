@@ -61,6 +61,12 @@
             durationlabel = new Label();
             yearlabel = new Label();
             rectgroupbox = new GroupBox();
+            idtxtbox = new TextBox();
+            idlabel = new Label();
+            label2 = new Label();
+            xcenterlabel = new Label();
+            ycentertxtbox = new TextBox();
+            xcentertxtbox = new TextBox();
             findbtn = new Button();
             rectangle_listbox = new ListBox();
             colortxtbox = new TextBox();
@@ -270,6 +276,7 @@
             classespage.TabIndex = 1;
             classespage.Text = "Classes";
             classespage.UseVisualStyleBackColor = true;
+            classespage.Click += classespage_Click;
             // 
             // filmgroupbox
             // 
@@ -287,7 +294,7 @@
             filmgroupbox.Controls.Add(yearlabel);
             filmgroupbox.Location = new Point(402, 26);
             filmgroupbox.Name = "filmgroupbox";
-            filmgroupbox.Size = new Size(364, 390);
+            filmgroupbox.Size = new Size(364, 459);
             filmgroupbox.TabIndex = 9;
             filmgroupbox.TabStop = false;
             filmgroupbox.Text = "Movie";
@@ -399,6 +406,12 @@
             // 
             // rectgroupbox
             // 
+            rectgroupbox.Controls.Add(idtxtbox);
+            rectgroupbox.Controls.Add(idlabel);
+            rectgroupbox.Controls.Add(label2);
+            rectgroupbox.Controls.Add(xcenterlabel);
+            rectgroupbox.Controls.Add(ycentertxtbox);
+            rectgroupbox.Controls.Add(xcentertxtbox);
             rectgroupbox.Controls.Add(findbtn);
             rectgroupbox.Controls.Add(rectangle_listbox);
             rectgroupbox.Controls.Add(colortxtbox);
@@ -409,14 +422,65 @@
             rectgroupbox.Controls.Add(label1);
             rectgroupbox.Location = new Point(18, 26);
             rectgroupbox.Name = "rectgroupbox";
-            rectgroupbox.Size = new Size(364, 390);
+            rectgroupbox.Size = new Size(364, 459);
             rectgroupbox.TabIndex = 0;
             rectgroupbox.TabStop = false;
             rectgroupbox.Text = "Rectangle";
             // 
+            // idtxtbox
+            // 
+            idtxtbox.Location = new Point(203, 54);
+            idtxtbox.Name = "idtxtbox";
+            idtxtbox.ReadOnly = true;
+            idtxtbox.Size = new Size(125, 27);
+            idtxtbox.TabIndex = 14;
+            // 
+            // idlabel
+            // 
+            idlabel.AutoSize = true;
+            idlabel.Location = new Point(203, 31);
+            idlabel.Name = "idlabel";
+            idlabel.Size = new Size(25, 20);
+            idlabel.TabIndex = 13;
+            idlabel.Text = "Id:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(203, 309);
+            label2.Name = "label2";
+            label2.Size = new Size(116, 20);
+            label2.TabIndex = 12;
+            label2.Text = "Y-cord of center";
+            // 
+            // xcenterlabel
+            // 
+            xcenterlabel.AutoSize = true;
+            xcenterlabel.Location = new Point(203, 256);
+            xcenterlabel.Name = "xcenterlabel";
+            xcenterlabel.Size = new Size(117, 20);
+            xcenterlabel.TabIndex = 11;
+            xcenterlabel.Text = "X-cord of center";
+            // 
+            // ycentertxtbox
+            // 
+            ycentertxtbox.Location = new Point(203, 332);
+            ycentertxtbox.Name = "ycentertxtbox";
+            ycentertxtbox.ReadOnly = true;
+            ycentertxtbox.Size = new Size(125, 27);
+            ycentertxtbox.TabIndex = 10;
+            // 
+            // xcentertxtbox
+            // 
+            xcentertxtbox.Location = new Point(203, 279);
+            xcentertxtbox.Name = "xcentertxtbox";
+            xcentertxtbox.ReadOnly = true;
+            xcentertxtbox.Size = new Size(125, 27);
+            xcentertxtbox.TabIndex = 9;
+            // 
             // findbtn
             // 
-            findbtn.Location = new Point(199, 346);
+            findbtn.Location = new Point(203, 378);
             findbtn.Name = "findbtn";
             findbtn.Size = new Size(125, 29);
             findbtn.TabIndex = 8;
@@ -436,14 +500,14 @@
             // 
             // colortxtbox
             // 
-            colortxtbox.Location = new Point(199, 160);
+            colortxtbox.Location = new Point(203, 216);
             colortxtbox.Name = "colortxtbox";
             colortxtbox.Size = new Size(125, 27);
             colortxtbox.TabIndex = 6;
             // 
             // widthtxtbox
             // 
-            widthtxtbox.Location = new Point(199, 107);
+            widthtxtbox.Location = new Point(203, 163);
             widthtxtbox.Name = "widthtxtbox";
             widthtxtbox.Size = new Size(125, 27);
             widthtxtbox.TabIndex = 5;
@@ -451,7 +515,7 @@
             // 
             // lengthtxtbox
             // 
-            lengthtxtbox.Location = new Point(199, 54);
+            lengthtxtbox.Location = new Point(203, 110);
             lengthtxtbox.Name = "lengthtxtbox";
             lengthtxtbox.Size = new Size(125, 27);
             lengthtxtbox.TabIndex = 4;
@@ -460,7 +524,7 @@
             // lengthlabel
             // 
             lengthlabel.AutoSize = true;
-            lengthlabel.Location = new Point(199, 31);
+            lengthlabel.Location = new Point(203, 87);
             lengthlabel.Name = "lengthlabel";
             lengthlabel.Size = new Size(57, 20);
             lengthlabel.TabIndex = 2;
@@ -469,7 +533,7 @@
             // widthlabel
             // 
             widthlabel.AutoSize = true;
-            widthlabel.Location = new Point(199, 84);
+            widthlabel.Location = new Point(203, 140);
             widthlabel.Name = "widthlabel";
             widthlabel.Size = new Size(52, 20);
             widthlabel.TabIndex = 1;
@@ -478,7 +542,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(199, 137);
+            label1.Location = new Point(203, 193);
             label1.Name = "label1";
             label1.Size = new Size(48, 20);
             label1.TabIndex = 0;
@@ -551,5 +615,11 @@
         private Label genrelabel;
         private Label ratinglabel;
         private TextBox ratingtxtbox;
+        private Label xcenterlabel;
+        private TextBox ycentertxtbox;
+        private TextBox xcentertxtbox;
+        private Label label2;
+        private TextBox idtxtbox;
+        private Label idlabel;
     }
 }

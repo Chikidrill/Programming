@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Programming
 {
@@ -27,7 +28,7 @@ namespace Programming
                 Color randcolor = (Color)random.Next(1, 7);
                 Rectangle rectangle = new Rectangle(random.Next(3, 118), random.Next(3, 320), randcolor);
                 _rectangles[i] = rectangle;
-                rectangle_listboxItems[i] =($"Rectangle {i + 1}");
+                rectangle_listboxItems[i] = ($"Rectangle {i + 1}");
             }
             rectangle_listbox.Items.AddRange(rectangle_listboxItems);
             string[] films_listboxItems = new string[5];
@@ -137,6 +138,9 @@ namespace Programming
             lengthtxtbox.Text = _currentRectangle.Length.ToString();
             widthtxtbox.Text = _currentRectangle.Width.ToString();
             colortxtbox.Text = _currentRectangle.Color.ToString();
+            xcentertxtbox.Text = _currentRectangle.Center.coord_X.ToString();
+            ycentertxtbox.Text = _currentRectangle.Center.coord_Y.ToString();
+            idtxtbox.Text = _currentRectangle.ID.ToString();
         }
         private void lengthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
@@ -267,6 +271,11 @@ namespace Programming
             {
                 ratingtxtbox.BackColor = System.Drawing.Color.LightPink;
             }
+        }
+
+        private void classespage_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

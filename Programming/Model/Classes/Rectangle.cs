@@ -1,11 +1,19 @@
-﻿class Rectangle
+﻿using Programming.Model.Classes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+
+class Rectangle
 {
 
     private double _width;
     private double _length;
     private Color _color;
+    private int _centerX;
+    private int _centerY;
+    private int _id;
+    private static int _allRectangelsCount = 0;
 
-
+    Random rand = new Random();
+    public Point2D Center { get; private set; }
     public double Width
     {
         get
@@ -14,8 +22,7 @@
         }
         set
         {
-            if ((value == null) || (value < 0))
-                throw new ArgumentException("Width be empty or <  0");
+            Validator.AssertOnPositiveValue(value, nameof(Width));
             _width = value;
         }
     }
@@ -27,17 +34,29 @@
         }
         set
         {
-            if ((value == null) || (value < 0))
-                throw new ArgumentException("Height cannot be empty or <  0");
+            Validator.AssertOnPositiveValue(value, nameof(Length));
             _length = value;
         }
     }
     public Color Color { get; set; }
+    public static int AllRectanglesCount()
+    {
+        return _allRectangelsCount;
+    }
+
+    public int ID { get => _id; }
     public Rectangle(double width, double length, Color color)
     {
         Width = width;
         Length = length;
         Color = color;
+
+        _centerX = rand.Next(50, 150);
+        _centerY = rand.Next(50, 150);
+        Center = new Point2D(_centerY, _centerX);
+
+        _allRectangelsCount++;
+        _id = _allRectangelsCount;
     }
     public Rectangle() { }
 }

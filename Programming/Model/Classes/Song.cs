@@ -1,4 +1,5 @@
-﻿class Song
+﻿using Programming.Model.Classes;
+class Song
 {
     private string _songName;
     private string _artistName;
@@ -51,8 +52,7 @@
         }
         set
         {
-            if ((value == null) || (value < 0))
-                throw new ArgumentException("Duration cannot be empty or <  0");
+            Validator.AssertOnPositiveValue(value, nameof(DurationSeconds));
             _durationSeconds = value;
         }
     }

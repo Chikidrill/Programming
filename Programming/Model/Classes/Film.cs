@@ -1,4 +1,5 @@
-﻿class Film
+﻿using Programming.Model.Classes;
+class Film
 {
     private string _title;
     private int _durationMinutes;
@@ -25,8 +26,7 @@
         }
         set
         {
-            if ((value == null) || (value < 0))
-                throw new ArgumentException("Duration cannot be empty or <  0");
+            Validator.AssertOnPositiveValue(value, nameof(DurationMinutes));
             _durationMinutes = value;
         }
     }
@@ -38,8 +38,8 @@
         }
         set
         {
-            if ((value == null) || (value < 0) || (value > 2024))
-                throw new ArgumentException("Release year cannot be empty or <  0 or > 2024");
+            Validator.AssertValueInRange(value,1900,2024, nameof(ReleaseYear));
+            Validator.AssertOnPositiveValue(value, nameof(ReleaseYear));
             _releaseYear = value;
         }
     }
@@ -52,6 +52,7 @@
         }
         set
         {
+            Validator.AssertOnPositiveValue(value, nameof(Rating));
             _rating = value;
         }
     }
