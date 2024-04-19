@@ -9,7 +9,7 @@ namespace Programming.Model.Classes
 {
     public static class CollissionManager
     {
-        private static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
+        public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
             bool result = false;
 

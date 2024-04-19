@@ -2,7 +2,7 @@
 
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
-class Rectangle
+public class Rectangle
 {
 
     private int _width;

@@ -20,16 +20,20 @@ namespace Programming
         private List<Panel> _rectanglesPanels = new List<Panel>();
         Film[] _films = new Film[5];
         Film _currentfilm = new Film();
+
+
         public MainForm()
         {
 
             InitializeComponent();
-            rectpanel.BorderStyle = BorderStyle.FixedSingle;
+            CanvaRectangleInitiaziation();
+            CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
             OutputParseLabel.Text = "";
             foreach (Season season in Enum.GetValues(typeof(Season)))
             {
                 SeasonCombobox.Items.Add(season);
             }
+
             Random random = new Random();
             string[] rectangle_listboxItems = new string[5];
             for (int i = 0; i < 5; i++)
@@ -39,13 +43,11 @@ namespace Programming
                 _rectangles[i] = rectangle;
                 rectangle_listboxItems[i] = ($"Rectangle {i + 1}");
             }
+
             rectangle_listbox.Items.AddRange(rectangle_listboxItems);
-            foreach (var rect in _rectangles)
-            {
-                secondRectListBox.Items.Add(rect.ToString());
-            }
             string[] films_listboxItems = new string[5];
-            string[] filmsTitles = new string[5] { "Batman", "Avengers: Final", "The GodFather", "Joker", "Ghostbusters" };
+            string[] filmsTitles = new string[5]
+                { "Batman", "Avengers: Final", "The GodFather", "Joker", "Ghostbusters" };
             for (int i = 0; i < 5; i++)
             {
                 int durationMinutes = random.Next(20, 280);
@@ -55,19 +57,28 @@ namespace Programming
                 _films[i] = film;
                 films_listboxItems[i] = ($"Movie {i + 1}");
             }
+
             films_listbox.Items.AddRange(films_listboxItems);
         }
+
         // Laboratory work #1+#2
-        private readonly Type[] _typeModel = new Type[] { typeof(Colour), typeof(EducationForm), typeof(Genres), typeof(Manufacturers), typeof(Season), typeof(Weekday) };
+        private readonly Type[] _typeModel = new Type[]
+        {
+            typeof(Colour), typeof(EducationForm), typeof(Genres), typeof(Manufacturers), typeof(Season),
+            typeof(Weekday)
+        };
+
         static private bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
             if (Enum.TryParse<T>(itemName, true, out value))
             {
                 return true;
             }
+
             value = default;
             return false;
         }
+
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = EnumsListBox.SelectedIndex;
@@ -89,6 +100,7 @@ namespace Programming
                 OutputParseLabel.Text = "Нет такого дня недели";
             }
         }
+
         private void SetTabBackColor(System.Drawing.Color color)
         {
             foreach (TabPage tabPage in tabControl1.TabPages)
@@ -96,6 +108,7 @@ namespace Programming
                 tabPage.BackColor = color;
             }
         }
+
         private void seasonbtn_Click(object sender, EventArgs e)
         {
             string selectedSeason = SeasonCombobox.SelectedItem.ToString();
@@ -123,6 +136,7 @@ namespace Programming
             // Отображение числового значения выбранного элемента перечисления
             intvaluetxtbox.Text = ((int)ValueListBox.SelectedItem).ToString();
         }
+
         // Laboratory work #3
         //Rectangles
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
@@ -137,13 +151,16 @@ namespace Programming
                     MaxWidthIndex = i;
                 }
             }
+
             return MaxWidthIndex;
         }
+
         private void findbtn_Click(object sender, EventArgs e)
         {
             int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
             rectangle_listbox.SelectedIndex = RectangleMaxWidthIndex;
         }
+
         private void rectangle_listbox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (rectangle_listbox.SelectedIndex == -1) return;
@@ -155,6 +172,7 @@ namespace Programming
             ycentertxtbox.Text = _currentRectangle.Center.coord_Y.ToString();
             idtxtbox.Text = _currentRectangle.ID.ToString();
         }
+
         private void lengthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
@@ -170,6 +188,7 @@ namespace Programming
                 lengthtxtbox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
         private void widthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
@@ -184,6 +203,7 @@ namespace Programming
                 widthtxtbox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
         //Films
         private int FindFilmMaxRate(Film[] _films)
         {
@@ -197,6 +217,7 @@ namespace Programming
                     MaxRateIndex = i;
                 }
             }
+
             return MaxRateIndex;
         }
 
@@ -244,6 +265,7 @@ namespace Programming
                 durationminutestxtbox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
         private void releaseyeartxtbox_TextChanged_1(object sender, EventArgs e)
         {
             try
@@ -257,6 +279,7 @@ namespace Programming
                 releaseyeartxtbox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
         private void genretxtbox_TextChanged_1(object sender, EventArgs e)
         {
             if (_currentfilm == null) return;
@@ -285,95 +308,96 @@ namespace Programming
                 ratingtxtbox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
         //Lab 5
-        private void secondRectListBox_SelectedIndexChanged(object sender, EventArgs e)
+        public void CanvaRectangleInitiaziation()
         {
-            if (secondRectListBox.SelectedIndex != -1)
+            for (int i = 0; i < 5; i++)
             {
-                _currentRectangle = _rectangles[secondRectListBox.SelectedIndex];
-                // Отображение данных выбранного прямоугольника
-                selectedIdTxtBox.Text = _currentRectangle.ID.ToString();
-                selectedXTxtBox.Text = _currentRectangle.Center.coord_X.ToString();
-                selectedYTxtBox.Text = _currentRectangle.Center.coord_Y.ToString();
-                selectedWidthTxtBox.Text = _currentRectangle.Width.ToString();
-                selectedLengthTxtBox.Text = _currentRectangle.Length.ToString();
+                _canvaRectangles.Add(RectangleFactory.Randomize());
+                CanvaRectanglesListBoxItems.Add(
+                    $"{i + 1})L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.coord_X};Y={_canvaRectangles[i].Center.coord_Y}");
+
+                Panel InitPanel = new Panel();
+                InitPanel.Location = new Point((int)_canvaRectangles[i].Center.coord_X - _canvaRectangles[i].Width / 2,
+                    (int)_canvaRectangles[i].Center.coord_Y - _canvaRectangles[i].Length / 2);
+                InitPanel.Height = _canvaRectangles[i].Length;
+                InitPanel.Width = _canvaRectangles[i].Width;
+                InitPanel.BackColor = System.Drawing.Color.LightGreen;
+                CanvaRectPanel.Controls.Add(InitPanel);
+                _rectanglesPanels.Add(InitPanel);
             }
-            else
+
+            foreach (string el in CanvaRectanglesListBoxItems)
             {
-                // Очистка текстовых полей
-                selectedIdTxtBox.Text = "";
-                selectedXTxtBox.Text = "";
-                selectedYTxtBox.Text = "";
-                selectedWidthTxtBox.Text = "";
-                selectedLengthTxtBox.Text = "";
-                _currentRectangle = null;
+                CanvaRectListBox.Items.Add(el);
             }
+
+            FindCollision();
         }
-        private int GiveRectangleOrder()
+
+        private int GiveRectangleID()
         {
             int RectangleOrder;
             if (CanvaRectanglesListBoxItems.Count != 0)
             {
 
-                RectangleOrder = Convert.ToInt16(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1].Substring(0, 2).Trim(')')) + 1;
+                RectangleOrder = Convert.ToInt16(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]
+                    .Substring(0, 2).Trim(')')) + 1;
             }
             else
             {
                 RectangleOrder = 1;
             }
+
             return RectangleOrder;
         }
-        private void addrecButton_Click(object sender, EventArgs e)
+
+        private void AddRecButton_Click(object sender, EventArgs e)
         {
             Rectangle NewRectangle = RectangleFactory.Randomize();
 
 
             _canvaRectangles.Add(NewRectangle);
-            CanvaRectanglesListBoxItems.Add($"{GiveRectangleOrder()})L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.coord_X} ;Y= {NewRectangle.Center.coord_Y}");
-            secondRectListBox.Items.Add(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]);
-            secondRectListBox.SelectedIndex = secondRectListBox.Items.Count - 1;
+            CanvaRectanglesListBoxItems.Add(
+                $"{GiveRectangleID()})L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.coord_X} ;Y= {NewRectangle.Center.coord_Y}");
+            CanvaRectListBox.Items.Add(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]);
+            CanvaRectListBox.SelectedIndex = CanvaRectListBox.Items.Count - 1;
 
             Panel NewPanel = new Panel();
-            NewPanel.Location = new Point((int)NewRectangle.Center.coord_X - NewRectangle.Width / 2, (int)NewRectangle.Center.coord_Y - NewRectangle.Length / 2);
+            NewPanel.Location = new Point((int)NewRectangle.Center.coord_X - NewRectangle.Width / 2,
+                (int)NewRectangle.Center.coord_Y - NewRectangle.Length / 2);
             NewPanel.Height = NewRectangle.Length;
             NewPanel.Width = NewRectangle.Width;
             NewPanel.BackColor = System.Drawing.Color.LightGreen;
 
             _rectanglesPanels.Add(NewPanel);
-            rectpanel.Controls.Add(NewPanel);
+            CanvaRectPanel.Controls.Add(NewPanel);
 
-            selectedLengthTxtBox.BackColor = System.Drawing.Color.White;
-            selectedWidthTxtBox.BackColor = System.Drawing.Color.White;
+            CanvaLengthTxtBox.BackColor = System.Drawing.Color.White;
+            CanvaWidthTxtBox.BackColor = System.Drawing.Color.White;
 
             FindCollision();
-            UpdateListBox();
+
         }
-        public void CanvaRectangleInitiaziation()
+        private void DelRecButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                //Ограничил до 200, но можно и больше
-                //int length = _random.Next(10,200);
-                //int widtht = _random.Next(10,200);
-                //_canvaRectangles.Add(new Rectangle(length, widtht, ""));
+            int selectedIndex = CanvaRectListBox.SelectedIndex;
 
-                _canvaRectangles.Add(RectangleFactory.Randomize());
-                CanvaRectanglesListBoxItems.Add($"{i + 1})L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.coord_X};Y={_canvaRectangles[i].Center.coord_Y}");
+            if (selectedIndex == -1) return;
 
-                Panel InitPanel = new Panel();
-                InitPanel.Location = new Point((int)_canvaRectangles[i].Center.coord_X - _canvaRectangles[i].Width / 2, (int)_canvaRectangles[i].Center.coord_Y- _canvaRectangles[i].Length / 2);
-                InitPanel.Height = _canvaRectangles[i].Length;
-                InitPanel.Width = _canvaRectangles[i].Width;
-                InitPanel.BackColor = System.Drawing.Color.LightGreen;
-                rectpanel.Controls.Add(InitPanel);
-                _rectanglesPanels.Add(InitPanel);
-            }
-            foreach (string el in CanvaRectanglesListBoxItems)
-            {
-                secondRectListBox.Items.Add(el);
-            }
+            _canvaRectangles.RemoveAt(selectedIndex);
+            CanvaRectanglesListBoxItems.RemoveAt(selectedIndex);
+            CanvaRectListBox.Items.RemoveAt(selectedIndex);
+
+            CanvaRectListBox.SelectedIndex = CanvaRectListBox.Items.Count - 1;
+
+            _rectanglesPanels.RemoveAt(selectedIndex);
+            CanvaRectPanel.Controls.RemoveAt(selectedIndex);
+
             FindCollision();
         }
+
         private void FindCollision()
         {
             foreach (var panel in _rectanglesPanels)
@@ -385,7 +409,8 @@ namespace Programming
             {
                 for (int j = 0; j < _canvaRectangles.Count; j++)
                 {
-                    if (!(_canvaRectangles[i] == _canvaRectangles[j]) && CollissionManager.IsCollision(_canvaRectangles[i], _canvaRectangles[j]))
+                    if (!(_canvaRectangles[i] == _canvaRectangles[j]) &&
+                        CollissionManager.IsCollision(_canvaRectangles[i], _canvaRectangles[j]))
                     {
                         _rectanglesPanels[i].BackColor = System.Drawing.Color.Red;
 
@@ -395,65 +420,115 @@ namespace Programming
                 }
             }
         }
-
-        public RectanglesCollisionControl()
+        public void RectanglesCollisionControl()
         {
             InitializeComponent();
 
-            CanvaRectangleInitiaziation();
         }
-        private void UpdateListBox()
+        private void CanvaWidthTxtBox_TextChanged(object sender, EventArgs e)
         {
-            secondRectListBox.Items.Clear();
-            foreach (var rectangle in _rectangles)
-            {
-                secondRectListBox.Items.Add(rectangle.ToString()); // Формат вывода строки
-            }
-        }
-
-        private void delrecButton_Click(object sender, EventArgs e)
-        {
-            _rectangles.RemoveAt(secondRectListBox.SelectedIndex);
-            UpdateListBox();
-        }
-
-        private void selectedWidthTxtBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
+            int selectedIndex = CanvaRectListBox.SelectedIndex;
             try
             {
-                selectedWidthTxtBox.BackColor = System.Drawing.Color.White;
-                int width = int.Parse(selectedWidthTxtBox.Text);
-                _currentRectangle.Width = width;
-                UpdateListBox();
+                if (CanvaRectListBox.Items.Count != 0)
+                {
 
+                    CanvaWidthTxtBox.BackColor = System.Drawing.Color.White;
+                    int width = int.Parse(CanvaWidthTxtBox.Text);
+                    _currentCanvaRectangle.Width = width;
+                    CanvaYTxtBox.Text = _currentCanvaRectangle.Center.coord_Y.ToString();
+
+                    CanvaRectanglesListBoxItems[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex].Substring(0, CanvaRectanglesListBoxItems[selectedIndex].IndexOf('L')) + ($"L={_currentCanvaRectangle.Length};W={_currentCanvaRectangle.Width};X={_currentCanvaRectangle.Center.coord_X};Y={_currentCanvaRectangle.Center.coord_Y}");
+                    CanvaRectListBox.Items[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex];
+
+                    _rectanglesPanels[selectedIndex].Width = width;
+
+                    _rectanglesPanels[selectedIndex].Location = new Point((int)_currentCanvaRectangle.Center.coord_X - _currentCanvaRectangle.Width / 2, (int)_currentCanvaRectangle.Center.coord_Y - _currentCanvaRectangle.Length / 2);
+                    _rectanglesPanels[selectedIndex].Width = _currentCanvaRectangle.Width;
+                    FindCollision();
+                }
             }
             catch (Exception)
             {
-                selectedWidthTxtBox.BackColor = System.Drawing.Color.LightPink;
+                CanvaWidthTxtBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
-        private void selectedLengthTxtBox_TextChanged(object sender, EventArgs e)
+        private void CanvaLengthTxtBox_TextChanged(object sender, EventArgs e)
         {
-            int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
+            int selectedIndex = CanvaRectListBox.SelectedIndex;
             try
             {
-                selectedLengthTxtBox.BackColor = System.Drawing.Color.White;
-                int length = int.Parse(selectedLengthTxtBox.Text);
-                _currentRectangle.Length = length;
-                UpdateListBox();
+                if (CanvaRectListBox.Items.Count != 0)
+                {
+
+                    CanvaLengthTxtBox.BackColor = System.Drawing.Color.White;
+                    int length = int.Parse(CanvaLengthTxtBox.Text);
+                    _currentCanvaRectangle.Length = length;
+                    CanvaXTxtBox.Text = _currentCanvaRectangle.Center.coord_X.ToString();
+
+                    double X = _currentCanvaRectangle.Center.coord_X;
+                    double Y = _currentCanvaRectangle.Center.coord_Y;
+
+                    CanvaRectanglesListBoxItems[selectedIndex] =
+                        CanvaRectanglesListBoxItems[selectedIndex]
+                            .Substring(0, CanvaRectanglesListBoxItems[selectedIndex].IndexOf('L')) +
+                        ($"L={_currentCanvaRectangle.Length};W={_currentCanvaRectangle.Width};X={X};Y={Y}");
+                    CanvaRectListBox.Items[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex];
+
+                    _rectanglesPanels[selectedIndex].Location = new Point(
+                        (int)_currentCanvaRectangle.Center.coord_X - _currentCanvaRectangle.Width / 2,
+                        (int)_currentCanvaRectangle.Center.coord_Y - _currentCanvaRectangle.Length / 2);
+                    _rectanglesPanels[selectedIndex].Height = _currentCanvaRectangle.Length;
+
+                    FindCollision();
+
+                }
             }
             catch (Exception)
             {
-                selectedLengthTxtBox.BackColor = System.Drawing.Color.LightPink;
+                CanvaLengthTxtBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
-        private void selectedXTxtBox_TextChanged(object sender, EventArgs e)
+        private void UpdateRectangleInfo()
         {
+
+            int selectedIndex = CanvaRectListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
+
+            _currentCanvaRectangle = _canvaRectangles[selectedIndex];
+
+            CanvaLengthTxtBox.Text = _currentCanvaRectangle.Length.ToString();
+            CanvaWidthTxtBox.Text = _currentCanvaRectangle.Width.ToString();
+
+            CanvaIdTxtBox.Text = (_currentCanvaRectangle.ID - 5).ToString();
 
         }
 
+        private void ClearRectangleInfo()
+        {
+            if (CanvaRectListBox.Items.Count == 0)
+            {
+                CanvaLengthTxtBox.Text = "";
+                CanvaLengthTxtBox.ReadOnly = true;
+
+                CanvaWidthTxtBox.Text = "";
+                CanvaWidthTxtBox.ReadOnly = true;
+
+                CanvaXTxtBox.Text = "";
+                CanvaYTxtBox.Text = "";
+
+                CanvaIdTxtBox.Text = "";
+            }
+            else
+            {
+                CanvaLengthTxtBox.ReadOnly = false;
+                CanvaWidthTxtBox.ReadOnly = false;
+            }
+        }
+        private void CanvaRectListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClearRectangleInfo();
+            UpdateRectangleInfo();
+        }
     }
 }
