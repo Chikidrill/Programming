@@ -40,8 +40,8 @@ namespace Programming.Model.Classes
         }
         public Point2D(int x, int y)
         {
-            _x = x;
-            _y = y;
+            coord_X = x;
+            coord_Y = y;
         }
     }
 }

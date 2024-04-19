@@ -75,6 +75,23 @@
             lengthlabel = new Label();
             widthlabel = new Label();
             label1 = new Label();
+            rectanglesTab = new TabPage();
+            selectedLengthTxtBox = new TextBox();
+            selectedWidthTxtBox = new TextBox();
+            selectedYTxtBox = new TextBox();
+            selectedXTxtBox = new TextBox();
+            selectedIdTxtBox = new TextBox();
+            selectedLengthLabel = new Label();
+            selectedWidthLabel = new Label();
+            selectedYLabel = new Label();
+            selectedXLabel = new Label();
+            selectedidLabel = new Label();
+            label3 = new Label();
+            delrecButton = new Button();
+            addrecButton = new Button();
+            secondRectListBox = new ListBox();
+            rectLabel = new Label();
+            rectpanel = new Panel();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
@@ -82,12 +99,14 @@
             classespage.SuspendLayout();
             filmgroupbox.SuspendLayout();
             rectgroupbox.SuspendLayout();
+            rectanglesTab.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(classespage);
+            tabControl1.Controls.Add(rectanglesTab);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -276,7 +295,6 @@
             classespage.TabIndex = 1;
             classespage.Text = "Classes";
             classespage.UseVisualStyleBackColor = true;
-            classespage.Click += classespage_Click;
             // 
             // filmgroupbox
             // 
@@ -548,6 +566,180 @@
             label1.TabIndex = 0;
             label1.Text = "Color:";
             // 
+            // rectanglesTab
+            // 
+            rectanglesTab.Controls.Add(selectedLengthTxtBox);
+            rectanglesTab.Controls.Add(selectedWidthTxtBox);
+            rectanglesTab.Controls.Add(selectedYTxtBox);
+            rectanglesTab.Controls.Add(selectedXTxtBox);
+            rectanglesTab.Controls.Add(selectedIdTxtBox);
+            rectanglesTab.Controls.Add(selectedLengthLabel);
+            rectanglesTab.Controls.Add(selectedWidthLabel);
+            rectanglesTab.Controls.Add(selectedYLabel);
+            rectanglesTab.Controls.Add(selectedXLabel);
+            rectanglesTab.Controls.Add(selectedidLabel);
+            rectanglesTab.Controls.Add(label3);
+            rectanglesTab.Controls.Add(delrecButton);
+            rectanglesTab.Controls.Add(addrecButton);
+            rectanglesTab.Controls.Add(secondRectListBox);
+            rectanglesTab.Controls.Add(rectLabel);
+            rectanglesTab.Controls.Add(rectpanel);
+            rectanglesTab.Location = new Point(4, 29);
+            rectanglesTab.Name = "rectanglesTab";
+            rectanglesTab.Padding = new Padding(3);
+            rectanglesTab.Size = new Size(792, 551);
+            rectanglesTab.TabIndex = 2;
+            rectanglesTab.Text = "Rectangles";
+            rectanglesTab.UseVisualStyleBackColor = true;
+            // 
+            // selectedLengthTxtBox
+            // 
+            selectedLengthTxtBox.Location = new Point(144, 479);
+            selectedLengthTxtBox.Name = "selectedLengthTxtBox";
+            selectedLengthTxtBox.Size = new Size(125, 27);
+            selectedLengthTxtBox.TabIndex = 15;
+            selectedLengthTxtBox.TextChanged += selectedLengthTxtBox_TextChanged;
+            // 
+            // selectedWidthTxtBox
+            // 
+            selectedWidthTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedWidthTxtBox.Location = new Point(144, 446);
+            selectedWidthTxtBox.Name = "selectedWidthTxtBox";
+            selectedWidthTxtBox.Size = new Size(125, 27);
+            selectedWidthTxtBox.TabIndex = 14;
+            selectedWidthTxtBox.TextChanged += selectedWidthTxtBox_TextChanged;
+            // 
+            // selectedYTxtBox
+            // 
+            selectedYTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedYTxtBox.Location = new Point(144, 413);
+            selectedYTxtBox.Name = "selectedYTxtBox";
+            selectedYTxtBox.Size = new Size(125, 27);
+            selectedYTxtBox.TabIndex = 13;
+            // 
+            // selectedXTxtBox
+            // 
+            selectedXTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedXTxtBox.Location = new Point(144, 380);
+            selectedXTxtBox.Name = "selectedXTxtBox";
+            selectedXTxtBox.Size = new Size(125, 27);
+            selectedXTxtBox.TabIndex = 12;
+            selectedXTxtBox.TextChanged += selectedXTxtBox_TextChanged;
+            // 
+            // selectedIdTxtBox
+            // 
+            selectedIdTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedIdTxtBox.Location = new Point(144, 347);
+            selectedIdTxtBox.Name = "selectedIdTxtBox";
+            selectedIdTxtBox.ReadOnly = true;
+            selectedIdTxtBox.Size = new Size(125, 27);
+            selectedIdTxtBox.TabIndex = 11;
+            // 
+            // selectedLengthLabel
+            // 
+            selectedLengthLabel.AutoSize = true;
+            selectedLengthLabel.Location = new Point(86, 482);
+            selectedLengthLabel.Name = "selectedLengthLabel";
+            selectedLengthLabel.Size = new Size(57, 20);
+            selectedLengthLabel.TabIndex = 10;
+            selectedLengthLabel.Text = "Length:";
+            // 
+            // selectedWidthLabel
+            // 
+            selectedWidthLabel.AutoSize = true;
+            selectedWidthLabel.Location = new Point(90, 449);
+            selectedWidthLabel.Name = "selectedWidthLabel";
+            selectedWidthLabel.Size = new Size(52, 20);
+            selectedWidthLabel.TabIndex = 9;
+            selectedWidthLabel.Text = "Width:";
+            // 
+            // selectedYLabel
+            // 
+            selectedYLabel.AutoSize = true;
+            selectedYLabel.Location = new Point(46, 416);
+            selectedYLabel.Name = "selectedYLabel";
+            selectedYLabel.Size = new Size(96, 20);
+            selectedYLabel.TabIndex = 8;
+            selectedYLabel.Text = "Y coordinate:";
+            // 
+            // selectedXLabel
+            // 
+            selectedXLabel.AutoSize = true;
+            selectedXLabel.Location = new Point(46, 383);
+            selectedXLabel.Name = "selectedXLabel";
+            selectedXLabel.Size = new Size(97, 20);
+            selectedXLabel.TabIndex = 7;
+            selectedXLabel.Text = "X coordinate:";
+            // 
+            // selectedidLabel
+            // 
+            selectedidLabel.AutoSize = true;
+            selectedidLabel.Location = new Point(118, 350);
+            selectedidLabel.Name = "selectedidLabel";
+            selectedidLabel.Size = new Size(25, 20);
+            selectedidLabel.TabIndex = 6;
+            selectedidLabel.Text = "Id:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(8, 308);
+            label3.Name = "label3";
+            label3.Size = new Size(135, 20);
+            label3.TabIndex = 5;
+            label3.Text = "Selected rectangle:";
+            // 
+            // delrecButton
+            // 
+            delrecButton.FlatStyle = FlatStyle.Flat;
+            delrecButton.Location = new Point(206, 253);
+            delrecButton.Name = "delrecButton";
+            delrecButton.Size = new Size(144, 29);
+            delrecButton.TabIndex = 4;
+            delrecButton.Text = "Delete rectangle";
+            delrecButton.UseVisualStyleBackColor = true;
+            delrecButton.Click += delrecButton_Click;
+            // 
+            // addrecButton
+            // 
+            addrecButton.FlatStyle = FlatStyle.Flat;
+            addrecButton.Location = new Point(8, 253);
+            addrecButton.Name = "addrecButton";
+            addrecButton.Size = new Size(144, 29);
+            addrecButton.TabIndex = 3;
+            addrecButton.Text = "Add rectangle";
+            addrecButton.UseVisualStyleBackColor = true;
+            addrecButton.Click += addrecButton_Click;
+            // 
+            // secondRectListBox
+            // 
+            secondRectListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            secondRectListBox.FormattingEnabled = true;
+            secondRectListBox.ItemHeight = 20;
+            secondRectListBox.Location = new Point(8, 29);
+            secondRectListBox.Name = "secondRectListBox";
+            secondRectListBox.Size = new Size(342, 204);
+            secondRectListBox.TabIndex = 2;
+            secondRectListBox.SelectedIndexChanged += secondRectListBox_SelectedIndexChanged;
+            // 
+            // rectLabel
+            // 
+            rectLabel.AutoSize = true;
+            rectLabel.Location = new Point(8, 6);
+            rectLabel.Name = "rectLabel";
+            rectLabel.Size = new Size(84, 20);
+            rectLabel.TabIndex = 1;
+            rectLabel.Text = "Rectangles:";
+            // 
+            // rectpanel
+            // 
+            rectpanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            rectpanel.BorderStyle = BorderStyle.FixedSingle;
+            rectpanel.Location = new Point(356, 6);
+            rectpanel.Name = "rectpanel";
+            rectpanel.Size = new Size(428, 537);
+            rectpanel.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -568,6 +760,8 @@
             filmgroupbox.PerformLayout();
             rectgroupbox.ResumeLayout(false);
             rectgroupbox.PerformLayout();
+            rectanglesTab.ResumeLayout(false);
+            rectanglesTab.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -621,5 +815,22 @@
         private Label label2;
         private TextBox idtxtbox;
         private Label idlabel;
+        private TabPage rectanglesTab;
+        private Panel rectpanel;
+        private ListBox secondRectListBox;
+        private Label rectLabel;
+        private Button addrecButton;
+        private Label selectedLengthLabel;
+        private Label selectedWidthLabel;
+        private Label selectedYLabel;
+        private Label selectedXLabel;
+        private Label selectedidLabel;
+        private Label label3;
+        private Button delrecButton;
+        private TextBox selectedLengthTxtBox;
+        private TextBox selectedWidthTxtBox;
+        private TextBox selectedYTxtBox;
+        private TextBox selectedXTxtBox;
+        private TextBox selectedIdTxtBox;
     }
 }

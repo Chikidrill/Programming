@@ -1,12 +1,13 @@
 ﻿using Programming.Model.Classes;
+
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 class Rectangle
 {
 
-    private double _width;
-    private double _length;
-    private Color _color;
+    private int _width;
+    private int _length;
+    private Colour _color;
     private int _centerX;
     private int _centerY;
     private int _id;
@@ -14,7 +15,8 @@ class Rectangle
 
     Random rand = new Random();
     public Point2D Center { get; private set; }
-    public double Width
+
+    public int Width
     {
         get
         {
@@ -26,7 +28,7 @@ class Rectangle
             _width = value;
         }
     }
-    public double Length
+    public int Length
     {
         get
         {
@@ -38,14 +40,19 @@ class Rectangle
             _length = value;
         }
     }
-    public Color Color { get; set; }
+    public Colour Color { get; set; }
     public static int AllRectanglesCount()
     {
         return _allRectangelsCount;
     }
 
     public int ID { get => _id; }
-    public Rectangle(double width, double length, Color color)
+    public override string ToString()
+    {
+        return $"{ID}: (X={Center.coord_X}; Y={Center.coord_Y}; W={Width}; L={Length})";
+    }
+
+    public Rectangle(int width, int length, Colour color)
     {
         Width = width;
         Length = length;
@@ -53,7 +60,7 @@ class Rectangle
 
         _centerX = rand.Next(50, 150);
         _centerY = rand.Next(50, 150);
-        Center = new Point2D(_centerY, _centerX);
+        Center = new Point2D(_centerX, _centerY);
 
         _allRectangelsCount++;
         _id = _allRectangelsCount;
