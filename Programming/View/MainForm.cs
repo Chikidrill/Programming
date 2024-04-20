@@ -36,12 +36,12 @@ namespace Programming
 
             Random random = new Random();
             string[] rectangle_listboxItems = new string[5];
-            for (int i = 0; i < 5; i++)
+            for (int k = 0; k < 5; k++)
             {
                 Colour randcolor = (Colour)random.Next(1, 7);
                 Rectangle rectangle = new Rectangle(random.Next(3, 118), random.Next(3, 320), randcolor);
-                _rectangles[i] = rectangle;
-                rectangle_listboxItems[i] = ($"Rectangle {i + 1}");
+                _rectangles[k] = rectangle;
+                rectangle_listboxItems[k] = ($"Rectangle {k + 1}");
             }
 
             rectangle_listbox.Items.AddRange(rectangle_listboxItems);
@@ -341,7 +341,6 @@ namespace Programming
             int RectangleOrder;
             if (CanvaRectanglesListBoxItems.Count != 0)
             {
-
                 RectangleOrder = Convert.ToInt16(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]
                     .Substring(0, 2).Trim(')')) + 1;
             }
@@ -419,11 +418,6 @@ namespace Programming
 
                 }
             }
-        }
-        public void RectanglesCollisionControl()
-        {
-            InitializeComponent();
-
         }
         private void CanvaWidthTxtBox_TextChanged(object sender, EventArgs e)
         {

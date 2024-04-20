@@ -19,8 +19,8 @@ namespace Programming.Model.Geometry
         public static Rectangle Randomize()
         {
             //Получаем случайные значения длины и ширины.
-            int recLength = random.Next(20, 100);
-            int recWide = random.Next(20, 100);
+            int recLength = random.Next(20, 200);
+            int recWide = random.Next(20, 200);
 
             //Присваиваем случайное значение цвета из перечисления Colour.
             int randomIndex = ChooseRandomEnumIndex(colour);
