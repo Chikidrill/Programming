@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Хранит методы для создания прямоугольников со случайными значениями.
+    /// </summary>
     static class RectangleFactory
     {
         static Random random = new Random();
@@ -13,7 +16,7 @@ namespace Programming.Model.Geometry
         static string _rectColour;
 
         /// <summary>
-        /// Создает экземпляр прмоугольника со случайными значениями.
+        /// Создает экземпляр прямоугольника со случайными значениями.
         /// </summary>
         /// <returns></returns>
         public static Rectangle Randomize()
@@ -32,7 +35,7 @@ namespace Programming.Model.Geometry
         }
 
         /// <summary>
-        /// Создает панельку, которая соответствует параметрам переданного прямоугольника.
+        /// Создает панель, которая соответствует параметрам переданного прямоугольника.
         /// </summary>
         /// <param name="rect"></param>
         /// <returns></returns>

@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит методы для поиска пересечений фигур - прямоугольников и колец.
+    /// </summary>
     public static class CollissionManager
     {
+        /// <summary>
+        /// Определяет, пересекаются ли два прямоугольника.
+        /// </summary>
+        /// <param name="rectangle1">Первый прямоугольник для проверки.</param>
+        /// <param name="rectangle2">Второй прямоугольник для проверки.</param>
+        /// <returns></returns>
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
             bool result = false;
@@ -30,10 +39,10 @@ namespace Programming.Model.Classes
         }
 
         /// <summary>
-        /// проверяет, пересекаются ли кольца.
+        /// Проверяет, пересекаются ли кольца.
         /// </summary>
-        /// <param name="ring1"></param>
-        /// <param name="ring2"></param>
+        /// <param name="ring1">Первое кольцо для проверки.</param>
+        /// <param name="ring2">Второе кольцо для проверки.</param>
         /// <returns></returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
