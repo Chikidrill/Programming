@@ -1,4 +1,7 @@
-﻿public enum Manufacturers
+﻿/// <summary>
+/// Хранит названия фирм-производителей смартфонов.
+/// </summary>
+public enum Manufacturers
 {
     Xiaomi=1,
     Samsung,
