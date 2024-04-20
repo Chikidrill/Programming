@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
-    public partial class RectanglesCollisionControl : UserControl
+    public partial class RectangleCollisionControl : UserControl
     {
         private List<Rectangle> _canvaRectangles = new List<Rectangle>();
         private Rectangle _currentCanvaRectangle;
         private List<string> CanvaRectanglesListBoxItems = new List<string>();
         private List<Panel> _rectanglesPanels = new List<Panel>();
-        public RectanglesCollisionControl()
+        public RectangleCollisionControl()
         {
             InitializeComponent();
             CanvaRectangleInitiaziation();

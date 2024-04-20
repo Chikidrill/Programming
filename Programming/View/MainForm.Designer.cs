@@ -28,24 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            SeasonGroupBox = new GroupBox();
-            seasonbtn = new Button();
-            SeasonCombobox = new ComboBox();
-            ChSeasonLabel = new Label();
-            WDParsingGroupBox = new GroupBox();
-            OutputParseLabel = new Label();
-            ParseValuetxtbox = new TextBox();
-            ParseButton = new Button();
-            ParseLabel = new Label();
-            IntValueLabel = new Label();
-            intvaluetxtbox = new TextBox();
-            ValueLabel = new Label();
-            EnumLabel = new Label();
-            ValueListBox = new ListBox();
-            EnumsListBox = new ListBox();
-            EnumsGroupBox = new GroupBox();
+            rectanglesTab = new TabPage();
             classespage = new TabPage();
             filmgroupbox = new GroupBox();
             ratingtxtbox = new TextBox();
@@ -75,214 +58,45 @@
             lengthlabel = new Label();
             widthlabel = new Label();
             label1 = new Label();
-            rectanglesTab = new TabPage();
-            CanvaRectPanel = new Panel();
-            rectLabel = new Label();
-            CanvaRectListBox = new ListBox();
-            AddRecButton = new Button();
-            DelRecButton = new Button();
-            label3 = new Label();
-            CanvaIdLabel = new Label();
-            CanvaXLabel = new Label();
-            CanvaYLabel = new Label();
-            CanvaWidthLabel = new Label();
-            CanvaLengthLabel = new Label();
-            CanvaIdTxtBox = new TextBox();
-            CanvaXTxtBox = new TextBox();
-            CanvaYTxtBox = new TextBox();
-            CanvaWidthTxtBox = new TextBox();
-            CanvaLengthTxtBox = new TextBox();
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
-            SeasonGroupBox.SuspendLayout();
-            WDParsingGroupBox.SuspendLayout();
+            tabPage1 = new TabPage();
+            SeasonGroupBox = new GroupBox();
+            seasonbtn = new Button();
+            SeasonCombobox = new ComboBox();
+            ChSeasonLabel = new Label();
+            WDParsingGroupBox = new GroupBox();
+            OutputParseLabel = new Label();
+            ParseValuetxtbox = new TextBox();
+            ParseButton = new Button();
+            ParseLabel = new Label();
+            IntValueLabel = new Label();
+            intvaluetxtbox = new TextBox();
+            ValueLabel = new Label();
+            EnumLabel = new Label();
+            ValueListBox = new ListBox();
+            EnumsListBox = new ListBox();
+            EnumsGroupBox = new GroupBox();
+            tabControl1 = new TabControl();
+            rectangleCollisionControl1 = new View.Panels.RectangleCollisionControl();
+            rectanglesTab.SuspendLayout();
             classespage.SuspendLayout();
             filmgroupbox.SuspendLayout();
             rectgroupbox.SuspendLayout();
-            rectanglesTab.SuspendLayout();
+            tabPage1.SuspendLayout();
+            SeasonGroupBox.SuspendLayout();
+            WDParsingGroupBox.SuspendLayout();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl1
+            // rectanglesTab
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(classespage);
-            tabControl1.Controls.Add(rectanglesTab);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 584);
-            tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Controls.Add(SeasonGroupBox);
-            tabPage1.Controls.Add(WDParsingGroupBox);
-            tabPage1.Controls.Add(IntValueLabel);
-            tabPage1.Controls.Add(intvaluetxtbox);
-            tabPage1.Controls.Add(ValueLabel);
-            tabPage1.Controls.Add(EnumLabel);
-            tabPage1.Controls.Add(ValueListBox);
-            tabPage1.Controls.Add(EnumsListBox);
-            tabPage1.Controls.Add(EnumsGroupBox);
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(792, 551);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Enums";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // SeasonGroupBox
-            // 
-            SeasonGroupBox.Controls.Add(seasonbtn);
-            SeasonGroupBox.Controls.Add(SeasonCombobox);
-            SeasonGroupBox.Controls.Add(ChSeasonLabel);
-            SeasonGroupBox.Location = new Point(421, 367);
-            SeasonGroupBox.Name = "SeasonGroupBox";
-            SeasonGroupBox.Size = new Size(363, 176);
-            SeasonGroupBox.TabIndex = 6;
-            SeasonGroupBox.TabStop = false;
-            SeasonGroupBox.Text = "Season Handle";
-            // 
-            // seasonbtn
-            // 
-            seasonbtn.Location = new Point(193, 59);
-            seasonbtn.Name = "seasonbtn";
-            seasonbtn.Size = new Size(94, 29);
-            seasonbtn.TabIndex = 2;
-            seasonbtn.Text = "Go!";
-            seasonbtn.UseVisualStyleBackColor = true;
-            seasonbtn.Click += seasonbtn_Click;
-            // 
-            // SeasonCombobox
-            // 
-            SeasonCombobox.FormattingEnabled = true;
-            SeasonCombobox.Location = new Point(6, 59);
-            SeasonCombobox.Name = "SeasonCombobox";
-            SeasonCombobox.Size = new Size(168, 28);
-            SeasonCombobox.TabIndex = 1;
-            // 
-            // ChSeasonLabel
-            // 
-            ChSeasonLabel.AutoSize = true;
-            ChSeasonLabel.Location = new Point(6, 36);
-            ChSeasonLabel.Name = "ChSeasonLabel";
-            ChSeasonLabel.Size = new Size(110, 20);
-            ChSeasonLabel.TabIndex = 0;
-            ChSeasonLabel.Text = "Choose season:";
-            // 
-            // WDParsingGroupBox
-            // 
-            WDParsingGroupBox.Controls.Add(OutputParseLabel);
-            WDParsingGroupBox.Controls.Add(ParseValuetxtbox);
-            WDParsingGroupBox.Controls.Add(ParseButton);
-            WDParsingGroupBox.Controls.Add(ParseLabel);
-            WDParsingGroupBox.Location = new Point(8, 367);
-            WDParsingGroupBox.Name = "WDParsingGroupBox";
-            WDParsingGroupBox.Size = new Size(407, 176);
-            WDParsingGroupBox.TabIndex = 0;
-            WDParsingGroupBox.TabStop = false;
-            WDParsingGroupBox.Text = "Weekday Parsing";
-            // 
-            // OutputParseLabel
-            // 
-            OutputParseLabel.AutoSize = true;
-            OutputParseLabel.Location = new Point(6, 99);
-            OutputParseLabel.Name = "OutputParseLabel";
-            OutputParseLabel.Size = new Size(50, 20);
-            OutputParseLabel.TabIndex = 9;
-            OutputParseLabel.Text = "label1";
-            // 
-            // ParseValuetxtbox
-            // 
-            ParseValuetxtbox.Location = new Point(6, 59);
-            ParseValuetxtbox.Name = "ParseValuetxtbox";
-            ParseValuetxtbox.Size = new Size(228, 27);
-            ParseValuetxtbox.TabIndex = 8;
-            // 
-            // ParseButton
-            // 
-            ParseButton.Location = new Point(273, 59);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(94, 29);
-            ParseButton.TabIndex = 7;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
-            ParseButton.Click += ParseButton_Click;
-            // 
-            // ParseLabel
-            // 
-            ParseLabel.AutoSize = true;
-            ParseLabel.Location = new Point(6, 36);
-            ParseLabel.Name = "ParseLabel";
-            ParseLabel.Size = new Size(158, 20);
-            ParseLabel.TabIndex = 0;
-            ParseLabel.Text = "Type value for parsing:";
-            // 
-            // IntValueLabel
-            // 
-            IntValueLabel.AutoSize = true;
-            IntValueLabel.Location = new Point(452, 44);
-            IntValueLabel.Name = "IntValueLabel";
-            IntValueLabel.Size = new Size(136, 20);
-            IntValueLabel.TabIndex = 5;
-            IntValueLabel.Text = "Enter integer value:";
-            // 
-            // intvaluetxtbox
-            // 
-            intvaluetxtbox.Location = new Point(452, 67);
-            intvaluetxtbox.Name = "intvaluetxtbox";
-            intvaluetxtbox.Size = new Size(136, 27);
-            intvaluetxtbox.TabIndex = 4;
-            // 
-            // ValueLabel
-            // 
-            ValueLabel.AutoSize = true;
-            ValueLabel.Location = new Point(252, 44);
-            ValueLabel.Name = "ValueLabel";
-            ValueLabel.Size = new Size(100, 20);
-            ValueLabel.TabIndex = 3;
-            ValueLabel.Text = "Choose value:";
-            // 
-            // EnumLabel
-            // 
-            EnumLabel.AutoSize = true;
-            EnumLabel.Location = new Point(28, 44);
-            EnumLabel.Name = "EnumLabel";
-            EnumLabel.Size = new Size(149, 20);
-            EnumLabel.TabIndex = 2;
-            EnumLabel.Text = "Choose enumeration:";
-            // 
-            // ValueListBox
-            // 
-            ValueListBox.FormattingEnabled = true;
-            ValueListBox.ItemHeight = 20;
-            ValueListBox.Location = new Point(252, 67);
-            ValueListBox.Name = "ValueListBox";
-            ValueListBox.Size = new Size(163, 264);
-            ValueListBox.TabIndex = 1;
-            ValueListBox.SelectedIndexChanged += ValueListBox_SelectedIndexChanged_1;
-            // 
-            // EnumsListBox
-            // 
-            EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.ItemHeight = 20;
-            EnumsListBox.Items.AddRange(new object[] { "Color", "Education Form", "Genre", "Manufacturers", "Season", "Weekday" });
-            EnumsListBox.Location = new Point(28, 67);
-            EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(163, 264);
-            EnumsListBox.TabIndex = 0;
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            // 
-            // EnumsGroupBox
-            // 
-            EnumsGroupBox.Location = new Point(8, 6);
-            EnumsGroupBox.Name = "EnumsGroupBox";
-            EnumsGroupBox.Size = new Size(776, 355);
-            EnumsGroupBox.TabIndex = 1;
-            EnumsGroupBox.TabStop = false;
-            EnumsGroupBox.Text = "Enumerations";
+            rectanglesTab.Controls.Add(rectangleCollisionControl1);
+            rectanglesTab.Location = new Point(4, 29);
+            rectanglesTab.Name = "rectanglesTab";
+            rectanglesTab.Padding = new Padding(3);
+            rectanglesTab.Size = new Size(792, 551);
+            rectanglesTab.TabIndex = 2;
+            rectanglesTab.Text = "Rectangles";
+            rectanglesTab.UseVisualStyleBackColor = true;
             // 
             // classespage
             // 
@@ -566,178 +380,194 @@
             label1.TabIndex = 0;
             label1.Text = "Color:";
             // 
-            // rectanglesTab
+            // tabPage1
             // 
-            rectanglesTab.Controls.Add(CanvaLengthTxtBox);
-            rectanglesTab.Controls.Add(CanvaWidthTxtBox);
-            rectanglesTab.Controls.Add(CanvaYTxtBox);
-            rectanglesTab.Controls.Add(CanvaXTxtBox);
-            rectanglesTab.Controls.Add(CanvaIdTxtBox);
-            rectanglesTab.Controls.Add(CanvaLengthLabel);
-            rectanglesTab.Controls.Add(CanvaWidthLabel);
-            rectanglesTab.Controls.Add(CanvaYLabel);
-            rectanglesTab.Controls.Add(CanvaXLabel);
-            rectanglesTab.Controls.Add(CanvaIdLabel);
-            rectanglesTab.Controls.Add(label3);
-            rectanglesTab.Controls.Add(DelRecButton);
-            rectanglesTab.Controls.Add(AddRecButton);
-            rectanglesTab.Controls.Add(CanvaRectListBox);
-            rectanglesTab.Controls.Add(rectLabel);
-            rectanglesTab.Controls.Add(CanvaRectPanel);
-            rectanglesTab.Location = new Point(4, 29);
-            rectanglesTab.Name = "rectanglesTab";
-            rectanglesTab.Padding = new Padding(3);
-            rectanglesTab.Size = new Size(792, 551);
-            rectanglesTab.TabIndex = 2;
-            rectanglesTab.Text = "Rectangles";
-            rectanglesTab.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(SeasonGroupBox);
+            tabPage1.Controls.Add(WDParsingGroupBox);
+            tabPage1.Controls.Add(IntValueLabel);
+            tabPage1.Controls.Add(intvaluetxtbox);
+            tabPage1.Controls.Add(ValueLabel);
+            tabPage1.Controls.Add(EnumLabel);
+            tabPage1.Controls.Add(ValueListBox);
+            tabPage1.Controls.Add(EnumsListBox);
+            tabPage1.Controls.Add(EnumsGroupBox);
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(792, 551);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Enums";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
-            // CanvaRectPanel
+            // SeasonGroupBox
             // 
-            CanvaRectPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
-            CanvaRectPanel.Location = new Point(356, 6);
-            CanvaRectPanel.Name = "CanvaRectPanel";
-            CanvaRectPanel.Size = new Size(428, 537);
-            CanvaRectPanel.TabIndex = 0;
+            SeasonGroupBox.Controls.Add(seasonbtn);
+            SeasonGroupBox.Controls.Add(SeasonCombobox);
+            SeasonGroupBox.Controls.Add(ChSeasonLabel);
+            SeasonGroupBox.Location = new Point(421, 367);
+            SeasonGroupBox.Name = "SeasonGroupBox";
+            SeasonGroupBox.Size = new Size(363, 176);
+            SeasonGroupBox.TabIndex = 6;
+            SeasonGroupBox.TabStop = false;
+            SeasonGroupBox.Text = "Season Handle";
             // 
-            // rectLabel
+            // seasonbtn
             // 
-            rectLabel.AutoSize = true;
-            rectLabel.Location = new Point(8, 6);
-            rectLabel.Name = "rectLabel";
-            rectLabel.Size = new Size(84, 20);
-            rectLabel.TabIndex = 1;
-            rectLabel.Text = "Rectangles:";
+            seasonbtn.Location = new Point(193, 59);
+            seasonbtn.Name = "seasonbtn";
+            seasonbtn.Size = new Size(94, 29);
+            seasonbtn.TabIndex = 2;
+            seasonbtn.Text = "Go!";
+            seasonbtn.UseVisualStyleBackColor = true;
+            seasonbtn.Click += seasonbtn_Click;
             // 
-            // CanvaRectListBox
+            // SeasonCombobox
             // 
-            CanvaRectListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CanvaRectListBox.FormattingEnabled = true;
-            CanvaRectListBox.ItemHeight = 20;
-            CanvaRectListBox.Location = new Point(8, 29);
-            CanvaRectListBox.Name = "CanvaRectListBox";
-            CanvaRectListBox.Size = new Size(342, 204);
-            CanvaRectListBox.TabIndex = 2;
-            CanvaRectListBox.SelectedIndexChanged += CanvaRectListBox_SelectedIndexChanged;
+            SeasonCombobox.FormattingEnabled = true;
+            SeasonCombobox.Location = new Point(6, 59);
+            SeasonCombobox.Name = "SeasonCombobox";
+            SeasonCombobox.Size = new Size(168, 28);
+            SeasonCombobox.TabIndex = 1;
             // 
-            // AddRecButton
+            // ChSeasonLabel
             // 
-            AddRecButton.FlatStyle = FlatStyle.Flat;
-            AddRecButton.Location = new Point(8, 253);
-            AddRecButton.Name = "AddRecButton";
-            AddRecButton.Size = new Size(144, 29);
-            AddRecButton.TabIndex = 3;
-            AddRecButton.Text = "Add rectangle";
-            AddRecButton.UseVisualStyleBackColor = true;
-            AddRecButton.Click += AddRecButton_Click;
+            ChSeasonLabel.AutoSize = true;
+            ChSeasonLabel.Location = new Point(6, 36);
+            ChSeasonLabel.Name = "ChSeasonLabel";
+            ChSeasonLabel.Size = new Size(110, 20);
+            ChSeasonLabel.TabIndex = 0;
+            ChSeasonLabel.Text = "Choose season:";
             // 
-            // DelRecButton
+            // WDParsingGroupBox
             // 
-            DelRecButton.FlatStyle = FlatStyle.Flat;
-            DelRecButton.Location = new Point(206, 253);
-            DelRecButton.Name = "DelRecButton";
-            DelRecButton.Size = new Size(144, 29);
-            DelRecButton.TabIndex = 4;
-            DelRecButton.Text = "Delete rectangle";
-            DelRecButton.UseVisualStyleBackColor = true;
-            DelRecButton.Click += DelRecButton_Click;
+            WDParsingGroupBox.Controls.Add(OutputParseLabel);
+            WDParsingGroupBox.Controls.Add(ParseValuetxtbox);
+            WDParsingGroupBox.Controls.Add(ParseButton);
+            WDParsingGroupBox.Controls.Add(ParseLabel);
+            WDParsingGroupBox.Location = new Point(8, 367);
+            WDParsingGroupBox.Name = "WDParsingGroupBox";
+            WDParsingGroupBox.Size = new Size(407, 176);
+            WDParsingGroupBox.TabIndex = 0;
+            WDParsingGroupBox.TabStop = false;
+            WDParsingGroupBox.Text = "Weekday Parsing";
             // 
-            // label3
+            // OutputParseLabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(8, 308);
-            label3.Name = "label3";
-            label3.Size = new Size(135, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Selected rectangle:";
+            OutputParseLabel.AutoSize = true;
+            OutputParseLabel.Location = new Point(6, 99);
+            OutputParseLabel.Name = "OutputParseLabel";
+            OutputParseLabel.Size = new Size(50, 20);
+            OutputParseLabel.TabIndex = 9;
+            OutputParseLabel.Text = "label1";
             // 
-            // CanvaIdLabel
+            // ParseValuetxtbox
             // 
-            CanvaIdLabel.AutoSize = true;
-            CanvaIdLabel.Location = new Point(118, 350);
-            CanvaIdLabel.Name = "CanvaIdLabel";
-            CanvaIdLabel.Size = new Size(25, 20);
-            CanvaIdLabel.TabIndex = 6;
-            CanvaIdLabel.Text = "Id:";
+            ParseValuetxtbox.Location = new Point(6, 59);
+            ParseValuetxtbox.Name = "ParseValuetxtbox";
+            ParseValuetxtbox.Size = new Size(228, 27);
+            ParseValuetxtbox.TabIndex = 8;
             // 
-            // CanvaXLabel
+            // ParseButton
             // 
-            CanvaXLabel.AutoSize = true;
-            CanvaXLabel.Location = new Point(46, 383);
-            CanvaXLabel.Name = "CanvaXLabel";
-            CanvaXLabel.Size = new Size(97, 20);
-            CanvaXLabel.TabIndex = 7;
-            CanvaXLabel.Text = "X coordinate:";
+            ParseButton.Location = new Point(273, 59);
+            ParseButton.Name = "ParseButton";
+            ParseButton.Size = new Size(94, 29);
+            ParseButton.TabIndex = 7;
+            ParseButton.Text = "Parse";
+            ParseButton.UseVisualStyleBackColor = true;
+            ParseButton.Click += ParseButton_Click;
             // 
-            // CanvaYLabel
+            // ParseLabel
             // 
-            CanvaYLabel.AutoSize = true;
-            CanvaYLabel.Location = new Point(46, 416);
-            CanvaYLabel.Name = "CanvaYLabel";
-            CanvaYLabel.Size = new Size(96, 20);
-            CanvaYLabel.TabIndex = 8;
-            CanvaYLabel.Text = "Y coordinate:";
+            ParseLabel.AutoSize = true;
+            ParseLabel.Location = new Point(6, 36);
+            ParseLabel.Name = "ParseLabel";
+            ParseLabel.Size = new Size(158, 20);
+            ParseLabel.TabIndex = 0;
+            ParseLabel.Text = "Type value for parsing:";
             // 
-            // CanvaWidthLabel
+            // IntValueLabel
             // 
-            CanvaWidthLabel.AutoSize = true;
-            CanvaWidthLabel.Location = new Point(90, 449);
-            CanvaWidthLabel.Name = "CanvaWidthLabel";
-            CanvaWidthLabel.Size = new Size(52, 20);
-            CanvaWidthLabel.TabIndex = 9;
-            CanvaWidthLabel.Text = "Width:";
+            IntValueLabel.AutoSize = true;
+            IntValueLabel.Location = new Point(452, 44);
+            IntValueLabel.Name = "IntValueLabel";
+            IntValueLabel.Size = new Size(136, 20);
+            IntValueLabel.TabIndex = 5;
+            IntValueLabel.Text = "Enter integer value:";
             // 
-            // CanvaLengthLabel
+            // intvaluetxtbox
             // 
-            CanvaLengthLabel.AutoSize = true;
-            CanvaLengthLabel.Location = new Point(86, 482);
-            CanvaLengthLabel.Name = "CanvaLengthLabel";
-            CanvaLengthLabel.Size = new Size(57, 20);
-            CanvaLengthLabel.TabIndex = 10;
-            CanvaLengthLabel.Text = "Length:";
+            intvaluetxtbox.Location = new Point(452, 67);
+            intvaluetxtbox.Name = "intvaluetxtbox";
+            intvaluetxtbox.Size = new Size(136, 27);
+            intvaluetxtbox.TabIndex = 4;
             // 
-            // CanvaIdTxtBox
+            // ValueLabel
             // 
-            CanvaIdTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaIdTxtBox.Location = new Point(144, 347);
-            CanvaIdTxtBox.Name = "CanvaIdTxtBox";
-            CanvaIdTxtBox.ReadOnly = true;
-            CanvaIdTxtBox.Size = new Size(125, 27);
-            CanvaIdTxtBox.TabIndex = 11;
+            ValueLabel.AutoSize = true;
+            ValueLabel.Location = new Point(252, 44);
+            ValueLabel.Name = "ValueLabel";
+            ValueLabel.Size = new Size(100, 20);
+            ValueLabel.TabIndex = 3;
+            ValueLabel.Text = "Choose value:";
             // 
-            // CanvaXTxtBox
+            // EnumLabel
             // 
-            CanvaXTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaXTxtBox.Location = new Point(144, 380);
-            CanvaXTxtBox.Name = "CanvaXTxtBox";
-            CanvaXTxtBox.Size = new Size(125, 27);
-            CanvaXTxtBox.TabIndex = 12;
+            EnumLabel.AutoSize = true;
+            EnumLabel.Location = new Point(28, 44);
+            EnumLabel.Name = "EnumLabel";
+            EnumLabel.Size = new Size(149, 20);
+            EnumLabel.TabIndex = 2;
+            EnumLabel.Text = "Choose enumeration:";
             // 
-            // CanvaYTxtBox
+            // ValueListBox
             // 
-            CanvaYTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaYTxtBox.Location = new Point(144, 413);
-            CanvaYTxtBox.Name = "CanvaYTxtBox";
-            CanvaYTxtBox.Size = new Size(125, 27);
-            CanvaYTxtBox.TabIndex = 13;
+            ValueListBox.FormattingEnabled = true;
+            ValueListBox.ItemHeight = 20;
+            ValueListBox.Location = new Point(252, 67);
+            ValueListBox.Name = "ValueListBox";
+            ValueListBox.Size = new Size(163, 264);
+            ValueListBox.TabIndex = 1;
+            ValueListBox.SelectedIndexChanged += ValueListBox_SelectedIndexChanged_1;
             // 
-            // CanvaWidthTxtBox
+            // EnumsListBox
             // 
-            CanvaWidthTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaWidthTxtBox.Location = new Point(144, 446);
-            CanvaWidthTxtBox.Name = "CanvaWidthTxtBox";
-            CanvaWidthTxtBox.Size = new Size(125, 27);
-            CanvaWidthTxtBox.TabIndex = 14;
-            CanvaWidthTxtBox.TextChanged += CanvaWidthTxtBox_TextChanged;
+            EnumsListBox.FormattingEnabled = true;
+            EnumsListBox.ItemHeight = 20;
+            EnumsListBox.Items.AddRange(new object[] { "Color", "Education Form", "Genre", "Manufacturers", "Season", "Weekday" });
+            EnumsListBox.Location = new Point(28, 67);
+            EnumsListBox.Name = "EnumsListBox";
+            EnumsListBox.Size = new Size(163, 264);
+            EnumsListBox.TabIndex = 0;
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
-            // CanvaLengthTxtBox
+            // EnumsGroupBox
             // 
-            CanvaLengthTxtBox.Location = new Point(144, 479);
-            CanvaLengthTxtBox.Name = "CanvaLengthTxtBox";
-            CanvaLengthTxtBox.Size = new Size(125, 27);
-            CanvaLengthTxtBox.TabIndex = 15;
-            CanvaLengthTxtBox.TextChanged += CanvaLengthTxtBox_TextChanged;
+            EnumsGroupBox.Location = new Point(8, 6);
+            EnumsGroupBox.Name = "EnumsGroupBox";
+            EnumsGroupBox.Size = new Size(776, 355);
+            EnumsGroupBox.TabIndex = 1;
+            EnumsGroupBox.TabStop = false;
+            EnumsGroupBox.Text = "Enumerations";
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(classespage);
+            tabControl1.Controls.Add(rectanglesTab);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(800, 584);
+            tabControl1.TabIndex = 0;
+            // 
+            // rectangleCollisionControl1
+            // 
+            rectangleCollisionControl1.Location = new Point(4, 5);
+            rectangleCollisionControl1.Name = "rectangleCollisionControl1";
+            rectangleCollisionControl1.Size = new Size(780, 546);
+            rectangleCollisionControl1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -747,55 +577,31 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Programming ver. 0.2";
-            tabControl1.ResumeLayout(false);
+            rectanglesTab.ResumeLayout(false);
+            classespage.ResumeLayout(false);
+            filmgroupbox.ResumeLayout(false);
+            filmgroupbox.PerformLayout();
+            rectgroupbox.ResumeLayout(false);
+            rectgroupbox.PerformLayout();
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             SeasonGroupBox.ResumeLayout(false);
             SeasonGroupBox.PerformLayout();
             WDParsingGroupBox.ResumeLayout(false);
             WDParsingGroupBox.PerformLayout();
-            classespage.ResumeLayout(false);
-            filmgroupbox.ResumeLayout(false);
-            filmgroupbox.PerformLayout();
-            rectgroupbox.ResumeLayout(false);
-            rectgroupbox.PerformLayout();
-            rectanglesTab.ResumeLayout(false);
-            rectanglesTab.PerformLayout();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private TabControl tabControl1;
-        private TabPage tabPage1;
         private ListBox listBox2;
-        private ListBox EnumsListBox;
-        private ListBox ValueListBox;
-        private Label ValueLabel;
-        private Label EnumLabel;
-        private Label IntValueLabel;
-        private TextBox intvaluetxtbox;
-        private GroupBox WDParsingGroupBox;
-        private Label ParseLabel;
-        private GroupBox EnumsGroupBox;
-        private Button ParseButton;
-        private TextBox ParseValuetxtbox;
-        private Label OutputParseLabel;
-        private GroupBox SeasonGroupBox;
-        private Label ChSeasonLabel;
-        private Button seasonbtn;
-        private ComboBox SeasonCombobox;
+        private TabPage rectanglesTab;
         private TabPage classespage;
-        private GroupBox rectgroupbox;
-        private TextBox lengthtxtbox;
-        private Label lengthlabel;
-        private Label widthlabel;
-        private Label label1;
-        private TextBox colortxtbox;
-        private TextBox widthtxtbox;
-        private Button findbtn;
-        private ListBox rectangle_listbox;
         private GroupBox filmgroupbox;
+        private TextBox ratingtxtbox;
+        private Label ratinglabel;
+        private Label genrelabel;
+        private TextBox genretxtbox;
         private Button buttonfilms;
         private ListBox films_listbox;
         private TextBox releaseyeartxtbox;
@@ -804,32 +610,39 @@
         private Label titlelabel;
         private Label durationlabel;
         private Label yearlabel;
-        private TextBox genretxtbox;
-        private Label genrelabel;
-        private Label ratinglabel;
-        private TextBox ratingtxtbox;
+        private GroupBox rectgroupbox;
+        private TextBox idtxtbox;
+        private Label idlabel;
+        private Label label2;
         private Label xcenterlabel;
         private TextBox ycentertxtbox;
         private TextBox xcentertxtbox;
-        private Label label2;
-        private TextBox idtxtbox;
-        private Label idlabel;
-        private TabPage rectanglesTab;
-        private TextBox CanvaLengthTxtBox;
-        private TextBox CanvaWidthTxtBox;
-        private TextBox CanvaYTxtBox;
-        private TextBox CanvaXTxtBox;
-        private TextBox CanvaIdTxtBox;
-        private Label CanvaLengthLabel;
-        private Label CanvaWidthLabel;
-        private Label CanvaYLabel;
-        private Label CanvaXLabel;
-        private Label CanvaIdLabel;
-        private Label label3;
-        private Button DelRecButton;
-        private Button AddRecButton;
-        private ListBox CanvaRectListBox;
-        private Label rectLabel;
-        private Panel CanvaRectPanel;
+        private Button findbtn;
+        private ListBox rectangle_listbox;
+        private TextBox colortxtbox;
+        private TextBox widthtxtbox;
+        private TextBox lengthtxtbox;
+        private Label lengthlabel;
+        private Label widthlabel;
+        private Label label1;
+        private TabPage tabPage1;
+        private GroupBox SeasonGroupBox;
+        private Button seasonbtn;
+        private ComboBox SeasonCombobox;
+        private Label ChSeasonLabel;
+        private GroupBox WDParsingGroupBox;
+        private Label OutputParseLabel;
+        private TextBox ParseValuetxtbox;
+        private Button ParseButton;
+        private Label ParseLabel;
+        private Label IntValueLabel;
+        private TextBox intvaluetxtbox;
+        private Label ValueLabel;
+        private Label EnumLabel;
+        private ListBox ValueListBox;
+        private ListBox EnumsListBox;
+        private GroupBox EnumsGroupBox;
+        private TabControl tabControl1;
+        private View.Panels.RectangleCollisionControl rectangleCollisionControl1;
     }
 }
