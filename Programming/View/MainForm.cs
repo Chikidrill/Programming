@@ -62,11 +62,11 @@ namespace Programming
         }
 
         // Laboratory work #1+#2
-        private readonly Type[] _typeModel = new Type[]
-        {
-            typeof(Colour), typeof(EducationForm), typeof(Genres), typeof(Manufacturers), typeof(Season),
-            typeof(Weekday)
-        };
+        //private readonly Type[] _typeModel = new Type[]
+        //{
+        //    typeof(Colour), typeof(EducationForm), typeof(Genres), typeof(Manufacturers), typeof(Season),
+        //    typeof(Weekday)
+        //};
 
         static private bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
@@ -79,13 +79,13 @@ namespace Programming
             return false;
         }
 
-        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = EnumsListBox.SelectedIndex;
-            object[] values = Enum.GetValues(_typeModel[selectedIndex]).Cast<object>().ToArray();
-            ValueListBox.Items.Clear();
-            ValueListBox.Items.AddRange(values);
-        }
+        //private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int selectedIndex = EnumsListBox.SelectedIndex;
+        //    object[] values = Enum.GetValues(_typeModel[selectedIndex]).Cast<object>().ToArray();
+        //    ValueListBox.Items.Clear();
+        //    ValueListBox.Items.AddRange(values);
+        //}
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
@@ -131,11 +131,11 @@ namespace Programming
             }
         }
 
-        private void ValueListBox_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            // Отображение числового значения выбранного элемента перечисления
-            intvaluetxtbox.Text = ((int)ValueListBox.SelectedItem).ToString();
-        }
+        //private void ValueListBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        //{
+        //    // Отображение числового значения выбранного элемента перечисления
+        //    intvaluetxtbox.Text = ((int)ValueListBox.SelectedItem).ToString();
+        //}
 
         // Laboratory work #3
         //Rectangles

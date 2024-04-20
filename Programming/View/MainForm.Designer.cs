@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             rectanglesTab = new TabPage();
+            rectangleCollisionControl1 = new View.Panels.RectangleCollisionControl();
             classespage = new TabPage();
             filmgroupbox = new GroupBox();
             ratingtxtbox = new TextBox();
@@ -59,6 +60,7 @@
             widthlabel = new Label();
             label1 = new Label();
             tabPage1 = new TabPage();
+            enumerationsControl1 = new View.Panels.EnumerationsControl();
             SeasonGroupBox = new GroupBox();
             seasonbtn = new Button();
             SeasonCombobox = new ComboBox();
@@ -68,15 +70,7 @@
             ParseValuetxtbox = new TextBox();
             ParseButton = new Button();
             ParseLabel = new Label();
-            IntValueLabel = new Label();
-            intvaluetxtbox = new TextBox();
-            ValueLabel = new Label();
-            EnumLabel = new Label();
-            ValueListBox = new ListBox();
-            EnumsListBox = new ListBox();
-            EnumsGroupBox = new GroupBox();
             tabControl1 = new TabControl();
-            rectangleCollisionControl1 = new View.Panels.RectangleCollisionControl();
             rectanglesTab.SuspendLayout();
             classespage.SuspendLayout();
             filmgroupbox.SuspendLayout();
@@ -97,6 +91,14 @@
             rectanglesTab.TabIndex = 2;
             rectanglesTab.Text = "Rectangles";
             rectanglesTab.UseVisualStyleBackColor = true;
+            // 
+            // rectangleCollisionControl1
+            // 
+            rectangleCollisionControl1.Dock = DockStyle.Fill;
+            rectangleCollisionControl1.Location = new Point(3, 3);
+            rectangleCollisionControl1.Name = "rectangleCollisionControl1";
+            rectangleCollisionControl1.Size = new Size(786, 545);
+            rectangleCollisionControl1.TabIndex = 0;
             // 
             // classespage
             // 
@@ -382,15 +384,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(enumerationsControl1);
             tabPage1.Controls.Add(SeasonGroupBox);
             tabPage1.Controls.Add(WDParsingGroupBox);
-            tabPage1.Controls.Add(IntValueLabel);
-            tabPage1.Controls.Add(intvaluetxtbox);
-            tabPage1.Controls.Add(ValueLabel);
-            tabPage1.Controls.Add(EnumLabel);
-            tabPage1.Controls.Add(ValueListBox);
-            tabPage1.Controls.Add(EnumsListBox);
-            tabPage1.Controls.Add(EnumsGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -398,6 +394,14 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // enumerationsControl1
+            // 
+            enumerationsControl1.BackColor = Color.White;
+            enumerationsControl1.Location = new Point(8, 8);
+            enumerationsControl1.Name = "enumerationsControl1";
+            enumerationsControl1.Size = new Size(776, 353);
+            enumerationsControl1.TabIndex = 7;
             // 
             // SeasonGroupBox
             // 
@@ -486,70 +490,6 @@
             ParseLabel.TabIndex = 0;
             ParseLabel.Text = "Type value for parsing:";
             // 
-            // IntValueLabel
-            // 
-            IntValueLabel.AutoSize = true;
-            IntValueLabel.Location = new Point(452, 44);
-            IntValueLabel.Name = "IntValueLabel";
-            IntValueLabel.Size = new Size(136, 20);
-            IntValueLabel.TabIndex = 5;
-            IntValueLabel.Text = "Enter integer value:";
-            // 
-            // intvaluetxtbox
-            // 
-            intvaluetxtbox.Location = new Point(452, 67);
-            intvaluetxtbox.Name = "intvaluetxtbox";
-            intvaluetxtbox.Size = new Size(136, 27);
-            intvaluetxtbox.TabIndex = 4;
-            // 
-            // ValueLabel
-            // 
-            ValueLabel.AutoSize = true;
-            ValueLabel.Location = new Point(252, 44);
-            ValueLabel.Name = "ValueLabel";
-            ValueLabel.Size = new Size(100, 20);
-            ValueLabel.TabIndex = 3;
-            ValueLabel.Text = "Choose value:";
-            // 
-            // EnumLabel
-            // 
-            EnumLabel.AutoSize = true;
-            EnumLabel.Location = new Point(28, 44);
-            EnumLabel.Name = "EnumLabel";
-            EnumLabel.Size = new Size(149, 20);
-            EnumLabel.TabIndex = 2;
-            EnumLabel.Text = "Choose enumeration:";
-            // 
-            // ValueListBox
-            // 
-            ValueListBox.FormattingEnabled = true;
-            ValueListBox.ItemHeight = 20;
-            ValueListBox.Location = new Point(252, 67);
-            ValueListBox.Name = "ValueListBox";
-            ValueListBox.Size = new Size(163, 264);
-            ValueListBox.TabIndex = 1;
-            ValueListBox.SelectedIndexChanged += ValueListBox_SelectedIndexChanged_1;
-            // 
-            // EnumsListBox
-            // 
-            EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.ItemHeight = 20;
-            EnumsListBox.Items.AddRange(new object[] { "Color", "Education Form", "Genre", "Manufacturers", "Season", "Weekday" });
-            EnumsListBox.Location = new Point(28, 67);
-            EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(163, 264);
-            EnumsListBox.TabIndex = 0;
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            // 
-            // EnumsGroupBox
-            // 
-            EnumsGroupBox.Location = new Point(8, 6);
-            EnumsGroupBox.Name = "EnumsGroupBox";
-            EnumsGroupBox.Size = new Size(776, 355);
-            EnumsGroupBox.TabIndex = 1;
-            EnumsGroupBox.TabStop = false;
-            EnumsGroupBox.Text = "Enumerations";
-            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
@@ -561,13 +501,6 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(800, 584);
             tabControl1.TabIndex = 0;
-            // 
-            // rectangleCollisionControl1
-            // 
-            rectangleCollisionControl1.Location = new Point(4, 5);
-            rectangleCollisionControl1.Name = "rectangleCollisionControl1";
-            rectangleCollisionControl1.Size = new Size(780, 546);
-            rectangleCollisionControl1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -584,7 +517,6 @@
             rectgroupbox.ResumeLayout(false);
             rectgroupbox.PerformLayout();
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
             SeasonGroupBox.ResumeLayout(false);
             SeasonGroupBox.PerformLayout();
             WDParsingGroupBox.ResumeLayout(false);
@@ -635,14 +567,8 @@
         private TextBox ParseValuetxtbox;
         private Button ParseButton;
         private Label ParseLabel;
-        private Label IntValueLabel;
-        private TextBox intvaluetxtbox;
-        private Label ValueLabel;
-        private Label EnumLabel;
-        private ListBox ValueListBox;
-        private ListBox EnumsListBox;
-        private GroupBox EnumsGroupBox;
         private TabControl tabControl1;
         private View.Panels.RectangleCollisionControl rectangleCollisionControl1;
+        private View.Panels.EnumerationsControl enumerationsControl1;
     }
 }

@@ -208,7 +208,7 @@ namespace Programming.View.Panels
             CanvaLengthTxtBox.Text = _currentCanvaRectangle.Length.ToString();
             CanvaWidthTxtBox.Text = _currentCanvaRectangle.Width.ToString();
 
-            CanvaIdTxtBox.Text = (_currentCanvaRectangle.ID - 5).ToString();
+            CanvaIdTxtBox.Text = (_currentCanvaRectangle.ID).ToString();
 
         }
 
