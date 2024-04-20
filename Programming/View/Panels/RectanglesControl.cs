@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Programming.Model.Classes;
 
 namespace Programming.View.Panels
 {
@@ -68,14 +69,14 @@ namespace Programming.View.Panels
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
             try
             {
-                lengthtxtbox.BackColor = System.Drawing.Color.White;
+                lengthtxtbox.BackColor = AppColors.StandartColor;
                 int length = int.Parse(lengthtxtbox.Text);
                 _currentRectangle.Length = length;
 
             }
             catch (Exception)
             {
-                lengthtxtbox.BackColor = System.Drawing.Color.LightPink;
+                lengthtxtbox.BackColor = AppColors.InvalidColor;
             }
         }
 
@@ -84,13 +85,13 @@ namespace Programming.View.Panels
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
             try
             {
-                widthtxtbox.BackColor = System.Drawing.Color.White;
+                widthtxtbox.BackColor = AppColors.StandartColor;
                 int width = int.Parse(widthtxtbox.Text);
                 _currentRectangle.Width = width;
             }
             catch (Exception)
             {
-                widthtxtbox.BackColor = System.Drawing.Color.LightPink;
+                widthtxtbox.BackColor = AppColors.InvalidColor;
             }
         }
     }

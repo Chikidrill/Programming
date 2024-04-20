@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Programming.Model.Classes;
 
 namespace Programming.View.Panels
 {
@@ -80,13 +81,13 @@ namespace Programming.View.Panels
         {
             try
             {
-                titletxtbox.BackColor = System.Drawing.Color.White;
+                titletxtbox.BackColor = AppColors.StandartColor;
                 string Title = titletxtbox.Text;
                 _currentfilm.Title = Title;
             }
             catch (Exception)
             {
-                titletxtbox.BackColor = System.Drawing.Color.LightPink;
+                titletxtbox.BackColor = AppColors.InvalidColor;
             }
         }
 
@@ -94,13 +95,13 @@ namespace Programming.View.Panels
         {
             try
             {
-                durationminutestxtbox.BackColor = System.Drawing.Color.White;
+                durationminutestxtbox.BackColor = AppColors.StandartColor;
                 int Duration = int.Parse(durationminutestxtbox.Text);
                 _currentfilm.DurationMinutes = Duration;
             }
             catch (Exception)
             {
-                durationminutestxtbox.BackColor = System.Drawing.Color.LightPink;
+                durationminutestxtbox.BackColor = AppColors.InvalidColor;
             }
         }
 
@@ -108,13 +109,13 @@ namespace Programming.View.Panels
         {
             try
             {
-                releaseyeartxtbox.BackColor = System.Drawing.Color.White;
+                releaseyeartxtbox.BackColor = AppColors.StandartColor;
                 int Release = int.Parse(releaseyeartxtbox.Text);
                 _currentfilm.ReleaseYear = Release;
             }
             catch (Exception)
             {
-                releaseyeartxtbox.BackColor = System.Drawing.Color.LightPink;
+                releaseyeartxtbox.BackColor = AppColors.InvalidColor;
             }
         }
 
@@ -125,11 +126,11 @@ namespace Programming.View.Panels
             if (TryGetEnumValue<Genres>(genre, out Genres value))
             {
                 _currentfilm.Genre = value;
-                genretxtbox.BackColor = System.Drawing.Color.White;
+                genretxtbox.BackColor = AppColors.StandartColor;
             }
             else
             {
-                genretxtbox.BackColor = System.Drawing.Color.LightPink;
+                genretxtbox.BackColor = AppColors.InvalidColor;
             }
         }
 
@@ -137,13 +138,13 @@ namespace Programming.View.Panels
         {
             try
             {
-                ratingtxtbox.BackColor = System.Drawing.Color.White;
+                ratingtxtbox.BackColor = AppColors.StandartColor;
                 double Rating = double.Parse(ratingtxtbox.Text);
                 _currentfilm.Rating = Rating;
             }
             catch (Exception)
             {
-                ratingtxtbox.BackColor = System.Drawing.Color.LightPink;
+                ratingtxtbox.BackColor = AppColors.InvalidColor;
             }
         }
     }

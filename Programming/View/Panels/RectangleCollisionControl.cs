@@ -37,7 +37,7 @@ namespace Programming.View.Panels
                     (int)_canvaRectangles[i].Center.coord_Y - _canvaRectangles[i].Length / 2);
                 InitPanel.Height = _canvaRectangles[i].Length;
                 InitPanel.Width = _canvaRectangles[i].Width;
-                InitPanel.BackColor = System.Drawing.Color.LightGreen;
+                InitPanel.BackColor = AppColors.ValidColor;
                 CanvaRectPanel.Controls.Add(InitPanel);
                 _rectanglesPanels.Add(InitPanel);
             }
@@ -82,13 +82,13 @@ namespace Programming.View.Panels
                 (int)NewRectangle.Center.coord_Y - NewRectangle.Length / 2);
             NewPanel.Height = NewRectangle.Length;
             NewPanel.Width = NewRectangle.Width;
-            NewPanel.BackColor = System.Drawing.Color.LightGreen;
+            NewPanel.BackColor = AppColors.ValidColor;
 
             _rectanglesPanels.Add(NewPanel);
             CanvaRectPanel.Controls.Add(NewPanel);
 
-            CanvaLengthTxtBox.BackColor = System.Drawing.Color.White;
-            CanvaWidthTxtBox.BackColor = System.Drawing.Color.White;
+            CanvaLengthTxtBox.BackColor = AppColors.StandartColor;
+            CanvaWidthTxtBox.BackColor = AppColors.StandartColor;
 
             FindCollision();
 
@@ -115,7 +115,7 @@ namespace Programming.View.Panels
         {
             foreach (var panel in _rectanglesPanels)
             {
-                panel.BackColor = System.Drawing.Color.LightGreen;
+                panel.BackColor = AppColors.ValidColor;
             }
 
             for (int i = 0; i < _canvaRectangles.Count; i++)
@@ -125,9 +125,9 @@ namespace Programming.View.Panels
                     if (!(_canvaRectangles[i] == _canvaRectangles[j]) &&
                         CollissionManager.IsCollision(_canvaRectangles[i], _canvaRectangles[j]))
                     {
-                        _rectanglesPanels[i].BackColor = System.Drawing.Color.Red;
+                        _rectanglesPanels[i].BackColor = AppColors.ColissionColor;
 
-                        _rectanglesPanels[j].BackColor = System.Drawing.Color.Red;
+                        _rectanglesPanels[j].BackColor = AppColors.ColissionColor;
                     }
 
                 }
@@ -141,7 +141,7 @@ namespace Programming.View.Panels
                 if (CanvaRectListBox.Items.Count != 0)
                 {
 
-                    CanvaWidthTxtBox.BackColor = System.Drawing.Color.White;
+                    CanvaWidthTxtBox.BackColor = AppColors.StandartColor;
                     int width = int.Parse(CanvaWidthTxtBox.Text);
                     _currentCanvaRectangle.Width = width;
                     CanvaYTxtBox.Text = _currentCanvaRectangle.Center.coord_Y.ToString();
@@ -158,7 +158,7 @@ namespace Programming.View.Panels
             }
             catch (Exception)
             {
-                CanvaWidthTxtBox.BackColor = System.Drawing.Color.LightPink;
+                CanvaWidthTxtBox.BackColor = AppColors.InvalidColor;
             }
         }
         private void CanvaLengthTxtBox_TextChanged(object sender, EventArgs e)
@@ -169,7 +169,7 @@ namespace Programming.View.Panels
                 if (CanvaRectListBox.Items.Count != 0)
                 {
 
-                    CanvaLengthTxtBox.BackColor = System.Drawing.Color.White;
+                    CanvaLengthTxtBox.BackColor = AppColors.StandartColor;
                     int length = int.Parse(CanvaLengthTxtBox.Text);
                     _currentCanvaRectangle.Length = length;
                     CanvaXTxtBox.Text = _currentCanvaRectangle.Center.coord_X.ToString();
@@ -194,7 +194,7 @@ namespace Programming.View.Panels
             }
             catch (Exception)
             {
-                CanvaLengthTxtBox.BackColor = System.Drawing.Color.LightPink;
+                CanvaLengthTxtBox.BackColor = AppColors.InvalidColor;
             }
         }
         private void UpdateRectangleInfo()

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Programming.Model.Classes;
 
 namespace Programming.View.Panels
 {
@@ -30,17 +31,17 @@ namespace Programming.View.Panels
             switch (selectedSeason)
             {
                 case "Winter":
-                    SetTabBackColor(System.Drawing.Color.AliceBlue);
+                    SetTabBackColor(AppColors.WinterColor);
                     MessageBox.Show("Бррр... Холодно! Даже программа замерзла :/");
                     break;
                 case "Spring":
-                    SetTabBackColor(System.Drawing.Color.Green);
+                    SetTabBackColor(AppColors.SpringColor);
                     break;
                 case "Summer":
                     MessageBox.Show("Ура! Каникулы :D !!!");
                     break;
                 case "Autumn":
-                    SetTabBackColor(System.Drawing.Color.SandyBrown);
+                    SetTabBackColor(AppColors.AutumnColor);
                     MessageBox.Show("Я календарь, я календарь, я календарь....");
                     break;
             }
