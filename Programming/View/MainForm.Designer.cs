@@ -65,19 +65,14 @@
             seasonbtn = new Button();
             SeasonCombobox = new ComboBox();
             ChSeasonLabel = new Label();
-            WDParsingGroupBox = new GroupBox();
-            OutputParseLabel = new Label();
-            ParseValuetxtbox = new TextBox();
-            ParseButton = new Button();
-            ParseLabel = new Label();
             tabControl1 = new TabControl();
+            weekdaysControl1 = new View.Panels.WeekdaysControl();
             rectanglesTab.SuspendLayout();
             classespage.SuspendLayout();
             filmgroupbox.SuspendLayout();
             rectgroupbox.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
-            WDParsingGroupBox.SuspendLayout();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
@@ -384,9 +379,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(weekdaysControl1);
             tabPage1.Controls.Add(enumerationsControl1);
             tabPage1.Controls.Add(SeasonGroupBox);
-            tabPage1.Controls.Add(WDParsingGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -442,54 +437,6 @@
             ChSeasonLabel.TabIndex = 0;
             ChSeasonLabel.Text = "Choose season:";
             // 
-            // WDParsingGroupBox
-            // 
-            WDParsingGroupBox.Controls.Add(OutputParseLabel);
-            WDParsingGroupBox.Controls.Add(ParseValuetxtbox);
-            WDParsingGroupBox.Controls.Add(ParseButton);
-            WDParsingGroupBox.Controls.Add(ParseLabel);
-            WDParsingGroupBox.Location = new Point(8, 367);
-            WDParsingGroupBox.Name = "WDParsingGroupBox";
-            WDParsingGroupBox.Size = new Size(407, 176);
-            WDParsingGroupBox.TabIndex = 0;
-            WDParsingGroupBox.TabStop = false;
-            WDParsingGroupBox.Text = "Weekday Parsing";
-            // 
-            // OutputParseLabel
-            // 
-            OutputParseLabel.AutoSize = true;
-            OutputParseLabel.Location = new Point(6, 99);
-            OutputParseLabel.Name = "OutputParseLabel";
-            OutputParseLabel.Size = new Size(50, 20);
-            OutputParseLabel.TabIndex = 9;
-            OutputParseLabel.Text = "label1";
-            // 
-            // ParseValuetxtbox
-            // 
-            ParseValuetxtbox.Location = new Point(6, 59);
-            ParseValuetxtbox.Name = "ParseValuetxtbox";
-            ParseValuetxtbox.Size = new Size(228, 27);
-            ParseValuetxtbox.TabIndex = 8;
-            // 
-            // ParseButton
-            // 
-            ParseButton.Location = new Point(273, 59);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(94, 29);
-            ParseButton.TabIndex = 7;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
-            ParseButton.Click += ParseButton_Click;
-            // 
-            // ParseLabel
-            // 
-            ParseLabel.AutoSize = true;
-            ParseLabel.Location = new Point(6, 36);
-            ParseLabel.Name = "ParseLabel";
-            ParseLabel.Size = new Size(158, 20);
-            ParseLabel.TabIndex = 0;
-            ParseLabel.Text = "Type value for parsing:";
-            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
@@ -501,6 +448,13 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(800, 584);
             tabControl1.TabIndex = 0;
+            // 
+            // weekdaysControl1
+            // 
+            weekdaysControl1.Location = new Point(8, 367);
+            weekdaysControl1.Name = "weekdaysControl1";
+            weekdaysControl1.Size = new Size(405, 176);
+            weekdaysControl1.TabIndex = 8;
             // 
             // MainForm
             // 
@@ -519,8 +473,6 @@
             tabPage1.ResumeLayout(false);
             SeasonGroupBox.ResumeLayout(false);
             SeasonGroupBox.PerformLayout();
-            WDParsingGroupBox.ResumeLayout(false);
-            WDParsingGroupBox.PerformLayout();
             tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -562,13 +514,9 @@
         private Button seasonbtn;
         private ComboBox SeasonCombobox;
         private Label ChSeasonLabel;
-        private GroupBox WDParsingGroupBox;
-        private Label OutputParseLabel;
-        private TextBox ParseValuetxtbox;
-        private Button ParseButton;
-        private Label ParseLabel;
         private TabControl tabControl1;
         private View.Panels.RectangleCollisionControl rectangleCollisionControl1;
         private View.Panels.EnumerationsControl enumerationsControl1;
+        private View.Panels.WeekdaysControl weekdaysControl1;
     }
 }

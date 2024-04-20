@@ -28,7 +28,7 @@ namespace Programming
             InitializeComponent();
             //  CanvaRectangleInitiaziation();
             //  CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
-            OutputParseLabel.Text = "";
+            //OutputParseLabel.Text = "";
             foreach (Season season in Enum.GetValues(typeof(Season)))
             {
                 SeasonCombobox.Items.Add(season);
@@ -87,19 +87,19 @@ namespace Programming
         //    ValueListBox.Items.AddRange(values);
         //}
 
-        private void ParseButton_Click(object sender, EventArgs e)
-        {
-            string daytoparse = ParseValuetxtbox.Text;
-            if (Enum.TryParse<Weekday>(daytoparse, out Weekday parsedDay))
-            {
-                int numericValue = (int)parsedDay;
-                OutputParseLabel.Text = $"Это день недели ({parsedDay} = {numericValue})";
-            }
-            else
-            {
-                OutputParseLabel.Text = "Нет такого дня недели";
-            }
-        }
+        //private void ParseButton_Click(object sender, EventArgs e)
+        //{
+        //    string daytoparse = ParseValuetxtbox.Text;
+        //    if (Enum.TryParse<Weekday>(daytoparse, out Weekday parsedDay))
+        //    {
+        //        int numericValue = (int)parsedDay;
+        //        OutputParseLabel.Text = $"Это день недели ({parsedDay} = {numericValue})";
+        //    }
+        //    else
+        //    {
+        //        OutputParseLabel.Text = "Нет такого дня недели";
+        //    }
+        //}
 
         private void SetTabBackColor(System.Drawing.Color color)
         {
