@@ -152,7 +152,6 @@
         }
 
         #endregion
-        private ListBox listBox2;
         private TabPage rectanglesTab;
         private TabPage classespage;
         private TabPage tabPage1;
