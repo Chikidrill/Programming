@@ -29,10 +29,10 @@ namespace Programming
             //  CanvaRectangleInitiaziation();
             //  CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
             //OutputParseLabel.Text = "";
-            foreach (Season season in Enum.GetValues(typeof(Season)))
-            {
-                SeasonCombobox.Items.Add(season);
-            }
+            //foreach (Season season in Enum.GetValues(typeof(Season)))
+            //{
+            //    SeasonCombobox.Items.Add(season);
+            //}
 
             Random random = new Random();
             string[] rectangle_listboxItems = new string[5];
@@ -101,35 +101,35 @@ namespace Programming
         //    }
         //}
 
-        private void SetTabBackColor(System.Drawing.Color color)
-        {
-            foreach (TabPage tabPage in tabControl1.TabPages)
-            {
-                tabPage.BackColor = color;
-            }
-        }
+        //private void SetTabBackColor(System.Drawing.Color color)
+        //{
+        //    foreach (TabPage tabPage in tabControl1.TabPages)
+        //    {
+        //        tabPage.BackColor = color;
+        //    }
+        //}
 
-        private void seasonbtn_Click(object sender, EventArgs e)
-        {
-            string selectedSeason = SeasonCombobox.SelectedItem.ToString();
-            switch (selectedSeason)
-            {
-                case "Winter":
-                    SetTabBackColor(System.Drawing.Color.AliceBlue);
-                    MessageBox.Show("Бррр... Холодно! Даже программа замерзла :/");
-                    break;
-                case "Spring":
-                    SetTabBackColor(System.Drawing.Color.Green);
-                    break;
-                case "Summer":
-                    MessageBox.Show("Ура! Каникулы :D !!!");
-                    break;
-                case "Autumn":
-                    SetTabBackColor(System.Drawing.Color.SandyBrown);
-                    MessageBox.Show("Я календарь, я календарь, я календарь....");
-                    break;
-            }
-        }
+        //private void seasonbtn_Click(object sender, EventArgs e)
+        //{
+        //    string selectedSeason = SeasonCombobox.SelectedItem.ToString();
+        //    switch (selectedSeason)
+        //    {
+        //        case "Winter":
+        //            SetTabBackColor(System.Drawing.Color.AliceBlue);
+        //            MessageBox.Show("Бррр... Холодно! Даже программа замерзла :/");
+        //            break;
+        //        case "Spring":
+        //            SetTabBackColor(System.Drawing.Color.Green);
+        //            break;
+        //        case "Summer":
+        //            MessageBox.Show("Ура! Каникулы :D !!!");
+        //            break;
+        //        case "Autumn":
+        //            SetTabBackColor(System.Drawing.Color.SandyBrown);
+        //            MessageBox.Show("Я календарь, я календарь, я календарь....");
+        //            break;
+        //    }
+        //}
 
         //private void ValueListBox_SelectedIndexChanged_1(object sender, EventArgs e)
         //{

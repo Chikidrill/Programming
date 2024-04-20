@@ -60,19 +60,15 @@
             widthlabel = new Label();
             label1 = new Label();
             tabPage1 = new TabPage();
-            enumerationsControl1 = new View.Panels.EnumerationsControl();
-            SeasonGroupBox = new GroupBox();
-            seasonbtn = new Button();
-            SeasonCombobox = new ComboBox();
-            ChSeasonLabel = new Label();
-            tabControl1 = new TabControl();
             weekdaysControl1 = new View.Panels.WeekdaysControl();
+            enumerationsControl1 = new View.Panels.EnumerationsControl();
+            tabControl1 = new TabControl();
+            seasonControl1 = new View.Panels.SeasonControl();
             rectanglesTab.SuspendLayout();
             classespage.SuspendLayout();
             filmgroupbox.SuspendLayout();
             rectgroupbox.SuspendLayout();
             tabPage1.SuspendLayout();
-            SeasonGroupBox.SuspendLayout();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
@@ -379,9 +375,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(seasonControl1);
             tabPage1.Controls.Add(weekdaysControl1);
             tabPage1.Controls.Add(enumerationsControl1);
-            tabPage1.Controls.Add(SeasonGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -390,52 +386,20 @@
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // weekdaysControl1
+            // 
+            weekdaysControl1.Location = new Point(8, 367);
+            weekdaysControl1.Name = "weekdaysControl1";
+            weekdaysControl1.Size = new Size(405, 176);
+            weekdaysControl1.TabIndex = 8;
+            // 
             // enumerationsControl1
             // 
-            enumerationsControl1.BackColor = Color.White;
+            enumerationsControl1.BackColor = Color.Transparent;
             enumerationsControl1.Location = new Point(8, 8);
             enumerationsControl1.Name = "enumerationsControl1";
             enumerationsControl1.Size = new Size(776, 353);
             enumerationsControl1.TabIndex = 7;
-            // 
-            // SeasonGroupBox
-            // 
-            SeasonGroupBox.Controls.Add(seasonbtn);
-            SeasonGroupBox.Controls.Add(SeasonCombobox);
-            SeasonGroupBox.Controls.Add(ChSeasonLabel);
-            SeasonGroupBox.Location = new Point(421, 367);
-            SeasonGroupBox.Name = "SeasonGroupBox";
-            SeasonGroupBox.Size = new Size(363, 176);
-            SeasonGroupBox.TabIndex = 6;
-            SeasonGroupBox.TabStop = false;
-            SeasonGroupBox.Text = "Season Handle";
-            // 
-            // seasonbtn
-            // 
-            seasonbtn.Location = new Point(193, 59);
-            seasonbtn.Name = "seasonbtn";
-            seasonbtn.Size = new Size(94, 29);
-            seasonbtn.TabIndex = 2;
-            seasonbtn.Text = "Go!";
-            seasonbtn.UseVisualStyleBackColor = true;
-            seasonbtn.Click += seasonbtn_Click;
-            // 
-            // SeasonCombobox
-            // 
-            SeasonCombobox.FormattingEnabled = true;
-            SeasonCombobox.Location = new Point(6, 59);
-            SeasonCombobox.Name = "SeasonCombobox";
-            SeasonCombobox.Size = new Size(168, 28);
-            SeasonCombobox.TabIndex = 1;
-            // 
-            // ChSeasonLabel
-            // 
-            ChSeasonLabel.AutoSize = true;
-            ChSeasonLabel.Location = new Point(6, 36);
-            ChSeasonLabel.Name = "ChSeasonLabel";
-            ChSeasonLabel.Size = new Size(110, 20);
-            ChSeasonLabel.TabIndex = 0;
-            ChSeasonLabel.Text = "Choose season:";
             // 
             // tabControl1
             // 
@@ -449,12 +413,12 @@
             tabControl1.Size = new Size(800, 584);
             tabControl1.TabIndex = 0;
             // 
-            // weekdaysControl1
+            // seasonControl1
             // 
-            weekdaysControl1.Location = new Point(8, 367);
-            weekdaysControl1.Name = "weekdaysControl1";
-            weekdaysControl1.Size = new Size(405, 176);
-            weekdaysControl1.TabIndex = 8;
+            seasonControl1.Location = new Point(419, 367);
+            seasonControl1.Name = "seasonControl1";
+            seasonControl1.Size = new Size(365, 176);
+            seasonControl1.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -471,8 +435,6 @@
             rectgroupbox.ResumeLayout(false);
             rectgroupbox.PerformLayout();
             tabPage1.ResumeLayout(false);
-            SeasonGroupBox.ResumeLayout(false);
-            SeasonGroupBox.PerformLayout();
             tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -510,13 +472,10 @@
         private Label widthlabel;
         private Label label1;
         private TabPage tabPage1;
-        private GroupBox SeasonGroupBox;
-        private Button seasonbtn;
-        private ComboBox SeasonCombobox;
-        private Label ChSeasonLabel;
         private TabControl tabControl1;
         private View.Panels.RectangleCollisionControl rectangleCollisionControl1;
         private View.Panels.EnumerationsControl enumerationsControl1;
         private View.Panels.WeekdaysControl weekdaysControl1;
+        private View.Panels.SeasonControl seasonControl1;
     }
 }

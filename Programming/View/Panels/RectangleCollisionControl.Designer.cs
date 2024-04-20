@@ -181,6 +181,7 @@
             // 
             // CanvaRectPanel
             // 
+            CanvaRectPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
             CanvaRectPanel.Location = new Point(359, 9);
             CanvaRectPanel.Name = "CanvaRectPanel";
