@@ -11,6 +11,9 @@ using Programming.Model.Classes;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Выполняет действия, в зависимости от выбранного времени года.
+    /// </summary>
     public partial class SeasonControl : UserControl
     {
         public SeasonControl()

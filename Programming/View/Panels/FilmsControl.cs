@@ -11,10 +11,16 @@ using Programming.Model.Classes;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Осуществляет поиск фильма с наибольшим рейтингом.
+    /// </summary>
     public partial class FilmsControl : UserControl
     {
         Film[] _films = new Film[5];
         Film _currentfilm = new Film();
+        /// <summary>
+        /// Создание массива из 5 фильмов со случайными значениями года выпуска, рейтинга и жанра.
+        /// </summary>
         public FilmsControl()
         {
             InitializeComponent();
@@ -44,6 +50,11 @@ namespace Programming.View.Panels
             value = default;
             return false;
         }
+        /// <summary>
+        /// Поиск фильма с наибольшим рейтингом.
+        /// </summary>
+        /// <param name="_films">Массив фильмов.</param>
+        /// <returns>Индекс фильма с наибольшим рейтингом.</returns>
         private int FindFilmMaxRate(Film[] _films)
         {
             double MaxRate = _films[0].Rating;
@@ -59,7 +70,11 @@ namespace Programming.View.Panels
 
             return MaxRateIndex;
         }
-
+        /// <summary>
+        /// Отображение данных о выбранном фильме.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void films_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (films_listbox.SelectedIndex == -1) return;
@@ -70,13 +85,21 @@ namespace Programming.View.Panels
             genretxtbox.Text = _currentfilm.Genre.ToString();
             ratingtxtbox.Text = _currentfilm.Rating.ToString();
         }
-
+        /// <summary>
+        /// Отображение фильма с наибольшим рейтингом.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonfilms_Click_1(object sender, EventArgs e)
         {
             double FilmMaxRateIndex = FindFilmMaxRate(_films);
             films_listbox.SelectedIndex = (int)FilmMaxRateIndex;
         }
-
+        /// <summary>
+        /// Изменение и сохранение названия фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void titletxtbox_TextChanged_1(object sender, EventArgs e)
         {
             try
@@ -90,7 +113,11 @@ namespace Programming.View.Panels
                 titletxtbox.BackColor = AppColors.InvalidColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение длительности фильма с её валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void durationminutestxtbox_TextChanged_1(object sender, EventArgs e)
         {
             try
@@ -104,7 +131,11 @@ namespace Programming.View.Panels
                 durationminutestxtbox.BackColor = AppColors.InvalidColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение года выпуска фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void releaseyeartxtbox_TextChanged_1(object sender, EventArgs e)
         {
             try
@@ -118,7 +149,11 @@ namespace Programming.View.Panels
                 releaseyeartxtbox.BackColor = AppColors.InvalidColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение жанра фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void genretxtbox_TextChanged_1(object sender, EventArgs e)
         {
             if (_currentfilm == null) return;
@@ -133,7 +168,11 @@ namespace Programming.View.Panels
                 genretxtbox.BackColor = AppColors.InvalidColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение рейтинга фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ratingtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             try

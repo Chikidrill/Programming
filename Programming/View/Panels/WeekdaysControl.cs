@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Проверяет, является ли введенное значение днём недели, обращаясь к перечислению <see cref="Weekday"/>.
+    /// </summary>
     public partial class WeekdaysControl : UserControl
     {
         public WeekdaysControl()

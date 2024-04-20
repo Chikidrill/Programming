@@ -11,10 +11,18 @@ using Programming.Model.Classes;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Осуществляет поиск прямоугольника с наибольшей шириной.
+    /// </summary>
     public partial class RectanglesControl : UserControl
     {
+
         Rectangle _currentRectangle = new Rectangle();
         Rectangle[] _rectangles = new Rectangle[5];
+
+        /// <summary>
+        /// Создание 5 прямоугольников со случайными значениями.
+        /// </summary>
         public RectanglesControl()
         {
             InitializeComponent();
@@ -30,6 +38,11 @@ namespace Programming.View.Panels
 
             rectangle_listbox.Items.AddRange(rectangle_listboxItems);
         }
+        /// <summary>
+        /// Метод для поиска прямоугольника с наибольшей шириной.
+        /// </summary>
+        /// <param name="rectangles">Массив прямоугольников.</param>
+        /// <returns>Индекс прямоугольника с наибольшей шириной.</returns>
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
             double MaxWidth = rectangles[0].Width;
@@ -45,13 +58,21 @@ namespace Programming.View.Panels
 
             return MaxWidthIndex;
         }
-
+        /// <summary>
+        /// Метод для отображения в ЛистБоксе прямоугольника с наибольшей шириной.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void findbtn_Click(object sender, EventArgs e)
         {
             int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
             rectangle_listbox.SelectedIndex = RectangleMaxWidthIndex;
         }
-
+        /// <summary>
+        /// Отображение параметров выбранного прямоугольника в ТекстБоксах.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rectangle_listbox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (rectangle_listbox.SelectedIndex == -1) return;
@@ -63,7 +84,11 @@ namespace Programming.View.Panels
             ycentertxtbox.Text = _currentRectangle.Center.coord_Y.ToString();
             idtxtbox.Text = _currentRectangle.ID.ToString();
         }
-
+        /// <summary>
+        /// Изменение и сохранение значений длины с их валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lengthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
@@ -79,7 +104,11 @@ namespace Programming.View.Panels
                 lengthtxtbox.BackColor = AppColors.InvalidColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение значений ширины с их валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void widthtxtbox_TextChanged_1(object sender, EventArgs e)
         {
             int index = rectangle_listbox.Items.IndexOf(_currentRectangle);
