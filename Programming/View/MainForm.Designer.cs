@@ -76,22 +76,22 @@
             widthlabel = new Label();
             label1 = new Label();
             rectanglesTab = new TabPage();
-            CanvaLengthTxtBox = new TextBox();
-            CanvaWidthTxtBox = new TextBox();
-            CanvaYTxtBox = new TextBox();
-            CanvaXTxtBox = new TextBox();
-            CanvaIdTxtBox = new TextBox();
-            CanvaLengthLabel = new Label();
-            CanvaWidthLabel = new Label();
-            CanvaYLabel = new Label();
-            CanvaXLabel = new Label();
-            CanvaIdLabel = new Label();
-            label3 = new Label();
-            DelRecButton = new Button();
-            AddRecButton = new Button();
-            CanvaRectListBox = new ListBox();
-            rectLabel = new Label();
             CanvaRectPanel = new Panel();
+            rectLabel = new Label();
+            CanvaRectListBox = new ListBox();
+            AddRecButton = new Button();
+            DelRecButton = new Button();
+            label3 = new Label();
+            CanvaIdLabel = new Label();
+            CanvaXLabel = new Label();
+            CanvaYLabel = new Label();
+            CanvaWidthLabel = new Label();
+            CanvaLengthLabel = new Label();
+            CanvaIdTxtBox = new TextBox();
+            CanvaXTxtBox = new TextBox();
+            CanvaYTxtBox = new TextBox();
+            CanvaWidthTxtBox = new TextBox();
+            CanvaLengthTxtBox = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
@@ -592,123 +592,23 @@
             rectanglesTab.Text = "Rectangles";
             rectanglesTab.UseVisualStyleBackColor = true;
             // 
-            // CanvaLengthTxtBox
+            // CanvaRectPanel
             // 
-            CanvaLengthTxtBox.Location = new Point(144, 479);
-            CanvaLengthTxtBox.Name = "CanvaLengthTxtBox";
-            CanvaLengthTxtBox.Size = new Size(125, 27);
-            CanvaLengthTxtBox.TabIndex = 15;
-            CanvaLengthTxtBox.TextChanged += CanvaLengthTxtBox_TextChanged;
+            CanvaRectPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
+            CanvaRectPanel.Location = new Point(356, 6);
+            CanvaRectPanel.Name = "CanvaRectPanel";
+            CanvaRectPanel.Size = new Size(428, 537);
+            CanvaRectPanel.TabIndex = 0;
             // 
-            // CanvaWidthTxtBox
+            // rectLabel
             // 
-            CanvaWidthTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaWidthTxtBox.Location = new Point(144, 446);
-            CanvaWidthTxtBox.Name = "CanvaWidthTxtBox";
-            CanvaWidthTxtBox.Size = new Size(125, 27);
-            CanvaWidthTxtBox.TabIndex = 14;
-            CanvaWidthTxtBox.TextChanged += CanvaWidthTxtBox_TextChanged;
-            // 
-            // CanvaYTxtBox
-            // 
-            CanvaYTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaYTxtBox.Location = new Point(144, 413);
-            CanvaYTxtBox.Name = "CanvaYTxtBox";
-            CanvaYTxtBox.Size = new Size(125, 27);
-            CanvaYTxtBox.TabIndex = 13;
-            // 
-            // CanvaXTxtBox
-            // 
-            CanvaXTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaXTxtBox.Location = new Point(144, 380);
-            CanvaXTxtBox.Name = "CanvaXTxtBox";
-            CanvaXTxtBox.Size = new Size(125, 27);
-            CanvaXTxtBox.TabIndex = 12;
-            // 
-            // CanvaIdTxtBox
-            // 
-            CanvaIdTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            CanvaIdTxtBox.Location = new Point(144, 347);
-            CanvaIdTxtBox.Name = "CanvaIdTxtBox";
-            CanvaIdTxtBox.ReadOnly = true;
-            CanvaIdTxtBox.Size = new Size(125, 27);
-            CanvaIdTxtBox.TabIndex = 11;
-            // 
-            // CanvaLengthLabel
-            // 
-            CanvaLengthLabel.AutoSize = true;
-            CanvaLengthLabel.Location = new Point(86, 482);
-            CanvaLengthLabel.Name = "CanvaLengthLabel";
-            CanvaLengthLabel.Size = new Size(57, 20);
-            CanvaLengthLabel.TabIndex = 10;
-            CanvaLengthLabel.Text = "Length:";
-            // 
-            // CanvaWidthLabel
-            // 
-            CanvaWidthLabel.AutoSize = true;
-            CanvaWidthLabel.Location = new Point(90, 449);
-            CanvaWidthLabel.Name = "CanvaWidthLabel";
-            CanvaWidthLabel.Size = new Size(52, 20);
-            CanvaWidthLabel.TabIndex = 9;
-            CanvaWidthLabel.Text = "Width:";
-            // 
-            // CanvaYLabel
-            // 
-            CanvaYLabel.AutoSize = true;
-            CanvaYLabel.Location = new Point(46, 416);
-            CanvaYLabel.Name = "CanvaYLabel";
-            CanvaYLabel.Size = new Size(96, 20);
-            CanvaYLabel.TabIndex = 8;
-            CanvaYLabel.Text = "Y coordinate:";
-            // 
-            // CanvaXLabel
-            // 
-            CanvaXLabel.AutoSize = true;
-            CanvaXLabel.Location = new Point(46, 383);
-            CanvaXLabel.Name = "CanvaXLabel";
-            CanvaXLabel.Size = new Size(97, 20);
-            CanvaXLabel.TabIndex = 7;
-            CanvaXLabel.Text = "X coordinate:";
-            // 
-            // CanvaIdLabel
-            // 
-            CanvaIdLabel.AutoSize = true;
-            CanvaIdLabel.Location = new Point(118, 350);
-            CanvaIdLabel.Name = "CanvaIdLabel";
-            CanvaIdLabel.Size = new Size(25, 20);
-            CanvaIdLabel.TabIndex = 6;
-            CanvaIdLabel.Text = "Id:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(8, 308);
-            label3.Name = "label3";
-            label3.Size = new Size(135, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Selected rectangle:";
-            // 
-            // DelRecButton
-            // 
-            DelRecButton.FlatStyle = FlatStyle.Flat;
-            DelRecButton.Location = new Point(206, 253);
-            DelRecButton.Name = "DelRecButton";
-            DelRecButton.Size = new Size(144, 29);
-            DelRecButton.TabIndex = 4;
-            DelRecButton.Text = "Delete rectangle";
-            DelRecButton.UseVisualStyleBackColor = true;
-            DelRecButton.Click += DelRecButton_Click;
-            // 
-            // AddRecButton
-            // 
-            AddRecButton.FlatStyle = FlatStyle.Flat;
-            AddRecButton.Location = new Point(8, 253);
-            AddRecButton.Name = "AddRecButton";
-            AddRecButton.Size = new Size(144, 29);
-            AddRecButton.TabIndex = 3;
-            AddRecButton.Text = "Add rectangle";
-            AddRecButton.UseVisualStyleBackColor = true;
-            AddRecButton.Click += AddRecButton_Click;
+            rectLabel.AutoSize = true;
+            rectLabel.Location = new Point(8, 6);
+            rectLabel.Name = "rectLabel";
+            rectLabel.Size = new Size(84, 20);
+            rectLabel.TabIndex = 1;
+            rectLabel.Text = "Rectangles:";
             // 
             // CanvaRectListBox
             // 
@@ -721,23 +621,123 @@
             CanvaRectListBox.TabIndex = 2;
             CanvaRectListBox.SelectedIndexChanged += CanvaRectListBox_SelectedIndexChanged;
             // 
-            // rectLabel
+            // AddRecButton
             // 
-            rectLabel.AutoSize = true;
-            rectLabel.Location = new Point(8, 6);
-            rectLabel.Name = "rectLabel";
-            rectLabel.Size = new Size(84, 20);
-            rectLabel.TabIndex = 1;
-            rectLabel.Text = "Rectangles:";
+            AddRecButton.FlatStyle = FlatStyle.Flat;
+            AddRecButton.Location = new Point(8, 253);
+            AddRecButton.Name = "AddRecButton";
+            AddRecButton.Size = new Size(144, 29);
+            AddRecButton.TabIndex = 3;
+            AddRecButton.Text = "Add rectangle";
+            AddRecButton.UseVisualStyleBackColor = true;
+            AddRecButton.Click += AddRecButton_Click;
             // 
-            // CanvaRectPanel
+            // DelRecButton
             // 
-            CanvaRectPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CanvaRectPanel.BorderStyle = BorderStyle.FixedSingle;
-            CanvaRectPanel.Location = new Point(356, 6);
-            CanvaRectPanel.Name = "CanvaRectPanel";
-            CanvaRectPanel.Size = new Size(428, 537);
-            CanvaRectPanel.TabIndex = 0;
+            DelRecButton.FlatStyle = FlatStyle.Flat;
+            DelRecButton.Location = new Point(206, 253);
+            DelRecButton.Name = "DelRecButton";
+            DelRecButton.Size = new Size(144, 29);
+            DelRecButton.TabIndex = 4;
+            DelRecButton.Text = "Delete rectangle";
+            DelRecButton.UseVisualStyleBackColor = true;
+            DelRecButton.Click += DelRecButton_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(8, 308);
+            label3.Name = "label3";
+            label3.Size = new Size(135, 20);
+            label3.TabIndex = 5;
+            label3.Text = "Selected rectangle:";
+            // 
+            // CanvaIdLabel
+            // 
+            CanvaIdLabel.AutoSize = true;
+            CanvaIdLabel.Location = new Point(118, 350);
+            CanvaIdLabel.Name = "CanvaIdLabel";
+            CanvaIdLabel.Size = new Size(25, 20);
+            CanvaIdLabel.TabIndex = 6;
+            CanvaIdLabel.Text = "Id:";
+            // 
+            // CanvaXLabel
+            // 
+            CanvaXLabel.AutoSize = true;
+            CanvaXLabel.Location = new Point(46, 383);
+            CanvaXLabel.Name = "CanvaXLabel";
+            CanvaXLabel.Size = new Size(97, 20);
+            CanvaXLabel.TabIndex = 7;
+            CanvaXLabel.Text = "X coordinate:";
+            // 
+            // CanvaYLabel
+            // 
+            CanvaYLabel.AutoSize = true;
+            CanvaYLabel.Location = new Point(46, 416);
+            CanvaYLabel.Name = "CanvaYLabel";
+            CanvaYLabel.Size = new Size(96, 20);
+            CanvaYLabel.TabIndex = 8;
+            CanvaYLabel.Text = "Y coordinate:";
+            // 
+            // CanvaWidthLabel
+            // 
+            CanvaWidthLabel.AutoSize = true;
+            CanvaWidthLabel.Location = new Point(90, 449);
+            CanvaWidthLabel.Name = "CanvaWidthLabel";
+            CanvaWidthLabel.Size = new Size(52, 20);
+            CanvaWidthLabel.TabIndex = 9;
+            CanvaWidthLabel.Text = "Width:";
+            // 
+            // CanvaLengthLabel
+            // 
+            CanvaLengthLabel.AutoSize = true;
+            CanvaLengthLabel.Location = new Point(86, 482);
+            CanvaLengthLabel.Name = "CanvaLengthLabel";
+            CanvaLengthLabel.Size = new Size(57, 20);
+            CanvaLengthLabel.TabIndex = 10;
+            CanvaLengthLabel.Text = "Length:";
+            // 
+            // CanvaIdTxtBox
+            // 
+            CanvaIdTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CanvaIdTxtBox.Location = new Point(144, 347);
+            CanvaIdTxtBox.Name = "CanvaIdTxtBox";
+            CanvaIdTxtBox.ReadOnly = true;
+            CanvaIdTxtBox.Size = new Size(125, 27);
+            CanvaIdTxtBox.TabIndex = 11;
+            // 
+            // CanvaXTxtBox
+            // 
+            CanvaXTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CanvaXTxtBox.Location = new Point(144, 380);
+            CanvaXTxtBox.Name = "CanvaXTxtBox";
+            CanvaXTxtBox.Size = new Size(125, 27);
+            CanvaXTxtBox.TabIndex = 12;
+            // 
+            // CanvaYTxtBox
+            // 
+            CanvaYTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CanvaYTxtBox.Location = new Point(144, 413);
+            CanvaYTxtBox.Name = "CanvaYTxtBox";
+            CanvaYTxtBox.Size = new Size(125, 27);
+            CanvaYTxtBox.TabIndex = 13;
+            // 
+            // CanvaWidthTxtBox
+            // 
+            CanvaWidthTxtBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CanvaWidthTxtBox.Location = new Point(144, 446);
+            CanvaWidthTxtBox.Name = "CanvaWidthTxtBox";
+            CanvaWidthTxtBox.Size = new Size(125, 27);
+            CanvaWidthTxtBox.TabIndex = 14;
+            CanvaWidthTxtBox.TextChanged += CanvaWidthTxtBox_TextChanged;
+            // 
+            // CanvaLengthTxtBox
+            // 
+            CanvaLengthTxtBox.Location = new Point(144, 479);
+            CanvaLengthTxtBox.Name = "CanvaLengthTxtBox";
+            CanvaLengthTxtBox.Size = new Size(125, 27);
+            CanvaLengthTxtBox.TabIndex = 15;
+            CanvaLengthTxtBox.TextChanged += CanvaLengthTxtBox_TextChanged;
             // 
             // MainForm
             // 
@@ -815,10 +815,11 @@
         private TextBox idtxtbox;
         private Label idlabel;
         private TabPage rectanglesTab;
-        private Panel CanvaRectPanel;
-        private ListBox CanvaRectListBox;
-        private Label rectLabel;
-        private Button AddRecButton;
+        private TextBox CanvaLengthTxtBox;
+        private TextBox CanvaWidthTxtBox;
+        private TextBox CanvaYTxtBox;
+        private TextBox CanvaXTxtBox;
+        private TextBox CanvaIdTxtBox;
         private Label CanvaLengthLabel;
         private Label CanvaWidthLabel;
         private Label CanvaYLabel;
@@ -826,10 +827,9 @@
         private Label CanvaIdLabel;
         private Label label3;
         private Button DelRecButton;
-        private TextBox CanvaLengthTxtBox;
-        private TextBox CanvaWidthTxtBox;
-        private TextBox CanvaYTxtBox;
-        private TextBox CanvaXTxtBox;
-        private TextBox CanvaIdTxtBox;
+        private Button AddRecButton;
+        private ListBox CanvaRectListBox;
+        private Label rectLabel;
+        private Panel CanvaRectPanel;
     }
 }
