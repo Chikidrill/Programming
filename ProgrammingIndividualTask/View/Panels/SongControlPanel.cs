@@ -35,7 +35,26 @@ namespace ProgrammingIndividualTask.View.Panels
             ArtistNameTextBox.Text = _currentSong.ArtistName;
             DurationTextBox.Text = _currentSong.Duration.ToString();
             GenreComboBox.Text = _currentSong.Genre.ToString();
+
+
         }
+        // Обработчик события клика по ListBox
+        private void SongsListBox_Click(object sender, EventArgs e)
+        {
+            // Получаем индекс элемента, на который был сделан клик
+            int clickedIndex = SongsListBox.IndexFromPoint(SongsListBox.PointToClient(Cursor.Position));
+
+            // Проверяем, был ли сделан клик на пустом месте или на существующем элементе
+            if (clickedIndex == -1)
+            {
+                // Очищаем выделение в ListBox
+                SongsListBox.ClearSelected();
+
+                // Очищаем текстовые поля
+                ClearInputFields();
+            }
+        }
+
 
         private void AddSongButton_Click(object sender, EventArgs e)
         {
@@ -56,6 +75,30 @@ namespace ProgrammingIndividualTask.View.Panels
             // Очищаем поля ввода после добавления песни
             ClearInputFields();
         }
+        private void DelSongButton_Click(object sender, EventArgs e)
+        {
+            // Проверяем, выбран ли какой-либо элемент в ListBox
+            if (SongsListBox.SelectedItem != null)
+            {
+                // Получаем индекс выбранной песни
+                int selectedIndex = SongsListBox.SelectedIndex;
+
+                // Удаляем песню из списка
+                _songs.RemoveAt(selectedIndex);
+
+                // Сохраняем список песен в файл
+                SaveSongList();
+
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
+
+                ClearInputFields();
+            }
+            else
+            {
+                MessageBox.Show("Выберите песню для удаления.");
+            }
+        }
         private void DisplaySongList()
         {
             // Очищаем ListBox перед добавлением обновленных данных
@@ -64,7 +107,7 @@ namespace ProgrammingIndividualTask.View.Panels
             // Добавляем каждую песню из списка в ListBox
             foreach (Song song in _songs)
             {
-                SongsListBox.Items.Add($"{song.SongName} - {song.ArtistName} ({song.Duration} sec) - {song.Genre}");
+                SongsListBox.Items.Add($"SongName:{song.SongName} - {song.ArtistName}");
             }
         }
         private void LoadSongList()
@@ -125,17 +168,61 @@ namespace ProgrammingIndividualTask.View.Panels
 
         private void SongNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            int index = SongsListBox.Items.IndexOf(_currentSong);
+ 
             try
             {
                 SongNameTextBox.BackColor = AppColors.StandartColor;
                 string songname = SongNameTextBox.Text;
                 _currentSong.SongName = songname;
+                // Сохраняем список песен в файл
+                SaveSongList();
 
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
             }
             catch (Exception)
             {
                 SongNameTextBox.BackColor = AppColors.InvalidColor;
+            }
+        }
+
+        private void ArtistNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                ArtistNameTextBox.BackColor = AppColors.StandartColor;
+                string artistname = ArtistNameTextBox.Text;
+                _currentSong.ArtistName = artistname;
+                // Сохраняем список песен в файл
+                SaveSongList();
+
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
+            }
+            catch (Exception)
+            {
+                ArtistNameTextBox.BackColor = AppColors.InvalidColor;
+            }
+        }
+
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                DurationTextBox.BackColor = AppColors.StandartColor;
+                int duration = int.Parse(DurationTextBox.Text);
+                _currentSong.Duration = duration;
+                // Сохраняем список песен в файл
+                SaveSongList();
+
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
+            }
+            catch (Exception)
+            {
+                DurationTextBox.BackColor = AppColors.InvalidColor;
             }
         }
     }

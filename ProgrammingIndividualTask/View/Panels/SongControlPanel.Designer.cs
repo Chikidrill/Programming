@@ -74,6 +74,7 @@
             DurationTextBox.Name = "DurationTextBox";
             DurationTextBox.Size = new Size(315, 27);
             DurationTextBox.TabIndex = 6;
+            DurationTextBox.TextChanged += DurationTextBox_TextChanged;
             // 
             // ArtistNameTextBox
             // 
@@ -81,6 +82,7 @@
             ArtistNameTextBox.Name = "ArtistNameTextBox";
             ArtistNameTextBox.Size = new Size(315, 27);
             ArtistNameTextBox.TabIndex = 5;
+            ArtistNameTextBox.TextChanged += ArtistNameTextBox_TextChanged;
             // 
             // SongNameTextBox
             // 
@@ -88,7 +90,7 @@
             SongNameTextBox.Name = "SongNameTextBox";
             SongNameTextBox.Size = new Size(315, 27);
             SongNameTextBox.TabIndex = 4;
-            SongNameTextBox.TextChanged += SongNameTextBox_TextChanged ;
+            SongNameTextBox.TextChanged += SongNameTextBox_TextChanged;
             // 
             // label4
             // 
@@ -134,6 +136,7 @@
             DelSongButton.TabIndex = 6;
             DelSongButton.Text = "Delete Song";
             DelSongButton.UseVisualStyleBackColor = true;
+            DelSongButton.Click += DelSongButton_Click;
             // 
             // AddSongButton
             // 
@@ -154,6 +157,7 @@
             SongsListBox.Name = "SongsListBox";
             SongsListBox.Size = new Size(300, 444);
             SongsListBox.TabIndex = 4;
+            SongsListBox.Click += SongsListBox_Click;
             SongsListBox.SelectedIndexChanged += SongsListBox_SelectedIndexChanged;
             // 
             // SongControlPanel

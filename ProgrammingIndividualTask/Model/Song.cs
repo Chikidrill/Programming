@@ -37,8 +37,8 @@ namespace ProgrammingIndividualTask.Model
             set
             {
                  if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Name of song cannot be empty or null");
-                _songName = value;
+                    throw new ArgumentException("Name of song cannot be empty or null"); 
+                 _songName = value;
             }
         }
         /// <summary>
