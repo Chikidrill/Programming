@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingIndividualTask", "ProgrammingIndividualTask.csproj", "{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SongsList", "SongsList.csproj", "{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Programming", "..\Programming\Programming.csproj", "{EE9EA420-8945-4A64-B6B1-560851964EF9}"
 EndProject
