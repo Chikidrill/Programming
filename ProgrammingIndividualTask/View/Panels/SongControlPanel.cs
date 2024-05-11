@@ -15,7 +15,7 @@ namespace ProgrammingIndividualTask.View.Panels
     {
         private List<Song> _songs = new List<Song>();
         private Song _currentSong;
-        private string filePath = "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Data.txt";
+        private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data.txt");
         public SongControlPanel()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace ProgrammingIndividualTask.View.Panels
         private void SongsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SongsListBox.SelectedIndex == -1) return;
+
             _currentSong = _songs[SongsListBox.SelectedIndex];
             SongNameTextBox.Text = _currentSong.SongName;
             ArtistNameTextBox.Text = _currentSong.ArtistName;
@@ -58,6 +59,7 @@ namespace ProgrammingIndividualTask.View.Panels
 
         private void AddSongButton_Click(object sender, EventArgs e)
         {
+
             Song newSong = new Song
             {
                 SongName = SongNameTextBox.Text,
@@ -65,6 +67,7 @@ namespace ProgrammingIndividualTask.View.Panels
                 Duration = int.Parse(DurationTextBox.Text),
                 Genre = (Genre)GenreComboBox.SelectedItem
             };
+
 
             _songs.Add(newSong);
             SaveSongList();
@@ -107,7 +110,7 @@ namespace ProgrammingIndividualTask.View.Panels
             // Добавляем каждую песню из списка в ListBox
             foreach (Song song in _songs)
             {
-                SongsListBox.Items.Add($"SongName:{song.SongName} - {song.ArtistName}");
+                SongsListBox.Items.Add($"Song name: {song.SongName} - Artist name: {song.ArtistName}");
             }
         }
         private void LoadSongList()
@@ -160,15 +163,24 @@ namespace ProgrammingIndividualTask.View.Panels
         }
         private void ClearInputFields()
         {
-            SongNameTextBox.Clear();
-            ArtistNameTextBox.Clear();
-            DurationTextBox.Clear();
+            SongNameTextBox.Text = "";
+            ArtistNameTextBox.Text = "";
+            DurationTextBox.Text = "";
             GenreComboBox.SelectedIndex = -1; // Сброс выбора в комбо-боксе
+            SongNameTextBox.BackColor = AppColors.StandartColor;
+            ArtistNameTextBox.BackColor = AppColors.StandartColor;
+            DurationTextBox .BackColor = AppColors.StandartColor;
+            GenreComboBox.BackColor = AppColors.StandartColor;
+            if (SongsListBox.SelectedIndex == -1)
+            {
+                // Очищаем выбранный элемент в ListBox
+                SongsListBox.SelectedItem = null;
+            }
         }
 
         private void SongNameTextBox_TextChanged(object sender, EventArgs e)
         {
- 
+
             try
             {
                 SongNameTextBox.BackColor = AppColors.StandartColor;
@@ -182,7 +194,7 @@ namespace ProgrammingIndividualTask.View.Panels
             }
             catch (Exception)
             {
-                SongNameTextBox.BackColor = AppColors.InvalidColor;
+               SongNameTextBox.BackColor = AppColors.InvalidColor;
             }
         }
 

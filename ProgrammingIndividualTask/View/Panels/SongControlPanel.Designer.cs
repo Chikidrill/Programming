@@ -45,6 +45,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Right;
             groupBox1.Controls.Add(GenreComboBox);
             groupBox1.Controls.Add(DurationTextBox);
             groupBox1.Controls.Add(ArtistNameTextBox);
@@ -130,6 +131,7 @@
             // 
             // DelSongButton
             // 
+            DelSongButton.Anchor = AnchorStyles.Right;
             DelSongButton.Location = new Point(660, 264);
             DelSongButton.Name = "DelSongButton";
             DelSongButton.Size = new Size(169, 29);
@@ -140,6 +142,7 @@
             // 
             // AddSongButton
             // 
+            AddSongButton.Anchor = AnchorStyles.Right;
             AddSongButton.Location = new Point(342, 264);
             AddSongButton.Name = "AddSongButton";
             AddSongButton.Size = new Size(169, 29);
@@ -150,7 +153,7 @@
             // 
             // SongsListBox
             // 
-            SongsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            SongsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             SongsListBox.FormattingEnabled = true;
             SongsListBox.ItemHeight = 20;
             SongsListBox.Location = new Point(18, 22);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ProgrammingIndividualTask.Model
 {
     public class Song
@@ -36,8 +37,8 @@ namespace ProgrammingIndividualTask.Model
             }
             set
             {
-                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Name of song cannot be empty or null"); 
+                int strLength = value.Length;
+                Validator.AssertValueLength(strLength, 1, 50, nameof(SongName));
                  _songName = value;
             }
         }
@@ -52,8 +53,8 @@ namespace ProgrammingIndividualTask.Model
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Artist name cannot be empty or null");
+                int strLength = value.Length;
+                Validator.AssertValueLength(strLength, 1, 50, nameof(ArtistName));
                 _artistName = value;
             }
         }
@@ -69,6 +70,7 @@ namespace ProgrammingIndividualTask.Model
             set
             {
                 Validator.AssertOnPositiveValue(value, nameof(Duration));
+                Validator.AssertValueInRange(value, 1, 7200, nameof(Duration));
                 _duration = value;
             }
         }
