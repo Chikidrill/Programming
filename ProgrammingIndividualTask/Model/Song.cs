@@ -19,11 +19,11 @@ namespace ProgrammingIndividualTask.Model
         /// </summary>
         private string _artistName;
         /// <summary>
-        /// Название лейбла, выпустившего песню, для каждого объекта класса.
+        /// Длительность песни в секундах для каждого объекта класса.
         /// </summary>
         private int _duration;
         /// <summary>
-        /// Длительность песни в секундах для каждого объекта класса.
+        /// Жанр песни из перечисления Genre
         /// </summary>
         private Genre _genre;
         /// <summary>

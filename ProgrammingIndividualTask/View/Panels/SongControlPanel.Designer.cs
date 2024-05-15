@@ -40,6 +40,7 @@
             DelSongButton = new Button();
             AddSongButton = new Button();
             SongsListBox = new ListBox();
+            ClearSelectedButton = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -160,13 +161,23 @@
             SongsListBox.Name = "SongsListBox";
             SongsListBox.Size = new Size(300, 444);
             SongsListBox.TabIndex = 4;
-            SongsListBox.Click += SongsListBox_Click;
             SongsListBox.SelectedIndexChanged += SongsListBox_SelectedIndexChanged;
+            // 
+            // ClearSelectedButton
+            // 
+            ClearSelectedButton.Location = new Point(524, 312);
+            ClearSelectedButton.Name = "ClearSelectedButton";
+            ClearSelectedButton.Size = new Size(94, 29);
+            ClearSelectedButton.TabIndex = 7;
+            ClearSelectedButton.Text = "button1";
+            ClearSelectedButton.UseVisualStyleBackColor = true;
+            ClearSelectedButton.Click += ClearSelectedButton_Click;
             // 
             // SongControlPanel
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(ClearSelectedButton);
             Controls.Add(DelSongButton);
             Controls.Add(AddSongButton);
             Controls.Add(SongsListBox);
@@ -192,5 +203,6 @@
         private Button DelSongButton;
         private Button AddSongButton;
         private ListBox SongsListBox;
+        private Button ClearSelectedButton;
     }
 }

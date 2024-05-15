@@ -48,8 +48,7 @@
             Controls.Add(songControlPanel1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Individual Task";
-            //Load += MainForm_Load_1;
+            Text = "Song List";
             ResumeLayout(false);
         }
 

@@ -16,6 +16,7 @@ namespace ProgrammingIndividualTask.View.Panels
         private List<Song> _songs = new List<Song>();
         private Song _currentSong;
         private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data.txt");
+        private bool ignoreChanges = false;
         public SongControlPanel()
         {
             InitializeComponent();
@@ -23,44 +24,32 @@ namespace ProgrammingIndividualTask.View.Panels
             DisplaySongList();
             // Путь к файлу с данными
 
-
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
         }
 
         private void SongsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SongsListBox.SelectedIndex == -1) return;
+            if (ignoreChanges) return;
+            int selectedIndex = SongsListBox.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                Song selectedSong = _songs[selectedIndex];
 
-            _currentSong = _songs[SongsListBox.SelectedIndex];
-            SongNameTextBox.Text = _currentSong.SongName;
-            ArtistNameTextBox.Text = _currentSong.ArtistName;
-            DurationTextBox.Text = _currentSong.Duration.ToString();
-            GenreComboBox.Text = _currentSong.Genre.ToString();
-
+                SongNameTextBox.Text = selectedSong.SongName;
+                ArtistNameTextBox.Text = selectedSong.ArtistName;
+                DurationTextBox.Text = selectedSong.Duration.ToString();
+                GenreComboBox.SelectedItem = selectedSong.Genre;
+            }
 
         }
         // Обработчик события клика по ListBox
-        private void SongsListBox_Click(object sender, EventArgs e)
-        {
-            // Получаем индекс элемента, на который был сделан клик
-            int clickedIndex = SongsListBox.IndexFromPoint(SongsListBox.PointToClient(Cursor.Position));
 
-            // Проверяем, был ли сделан клик на пустом месте или на существующем элементе
-            if (clickedIndex == -1)
-            {
-                // Очищаем выделение в ListBox
-                SongsListBox.ClearSelected();
-
-                // Очищаем текстовые поля
-                ClearInputFields();
-            }
-        }
 
 
         private void AddSongButton_Click(object sender, EventArgs e)
         {
 
-            Song newSong = new Song
+            var newSong = new Song
             {
                 SongName = SongNameTextBox.Text,
                 ArtistName = ArtistNameTextBox.Text,
@@ -68,8 +57,17 @@ namespace ProgrammingIndividualTask.View.Panels
                 Genre = (Genre)GenreComboBox.SelectedItem
             };
 
-
             _songs.Add(newSong);
+
+            ignoreChanges = true;
+            SongNameTextBox.Clear();
+            ArtistNameTextBox.Clear();
+            DurationTextBox.Clear();
+            GenreComboBox.SelectedIndex = -1;
+            ignoreChanges = false;
+
+            SongsListBox.ClearSelected();
+
             SaveSongList();
 
             // Отображаем обновленный список песен в ListBox
@@ -169,7 +167,7 @@ namespace ProgrammingIndividualTask.View.Panels
             GenreComboBox.SelectedIndex = -1; // Сброс выбора в комбо-боксе
             SongNameTextBox.BackColor = AppColors.StandartColor;
             ArtistNameTextBox.BackColor = AppColors.StandartColor;
-            DurationTextBox .BackColor = AppColors.StandartColor;
+            DurationTextBox.BackColor = AppColors.StandartColor;
             GenreComboBox.BackColor = AppColors.StandartColor;
             if (SongsListBox.SelectedIndex == -1)
             {
@@ -180,7 +178,7 @@ namespace ProgrammingIndividualTask.View.Panels
 
         private void SongNameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            // Здесь можно проводить валидацию поля
             try
             {
                 SongNameTextBox.BackColor = AppColors.StandartColor;
@@ -194,7 +192,7 @@ namespace ProgrammingIndividualTask.View.Panels
             }
             catch (Exception)
             {
-               SongNameTextBox.BackColor = AppColors.InvalidColor;
+                SongNameTextBox.BackColor = AppColors.InvalidColor;
             }
         }
 
@@ -236,6 +234,19 @@ namespace ProgrammingIndividualTask.View.Panels
             {
                 DurationTextBox.BackColor = AppColors.InvalidColor;
             }
+        }
+
+        private void ClearSelectedButton_Click(object sender, EventArgs e)
+        {
+            ignoreChanges = true;
+
+            SongNameTextBox.Clear();
+            ArtistNameTextBox.Clear();
+            DurationTextBox.Clear();
+            GenreComboBox.SelectedIndex = -1;
+            SongsListBox.ClearSelected();
+
+            ignoreChanges = false;
         }
     }
 }
