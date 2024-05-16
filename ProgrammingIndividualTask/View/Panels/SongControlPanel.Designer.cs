@@ -46,7 +46,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Anchor = AnchorStyles.Right;
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox1.Controls.Add(GenreComboBox);
             groupBox1.Controls.Add(DurationTextBox);
             groupBox1.Controls.Add(ArtistNameTextBox);
@@ -132,10 +132,10 @@
             // 
             // DelSongButton
             // 
-            DelSongButton.Anchor = AnchorStyles.Right;
-            DelSongButton.Location = new Point(660, 264);
+            DelSongButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DelSongButton.Location = new Point(699, 264);
             DelSongButton.Name = "DelSongButton";
-            DelSongButton.Size = new Size(169, 29);
+            DelSongButton.Size = new Size(130, 29);
             DelSongButton.TabIndex = 6;
             DelSongButton.Text = "Delete Song";
             DelSongButton.UseVisualStyleBackColor = true;
@@ -143,10 +143,10 @@
             // 
             // AddSongButton
             // 
-            AddSongButton.Anchor = AnchorStyles.Right;
-            AddSongButton.Location = new Point(342, 264);
+            AddSongButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddSongButton.Location = new Point(344, 264);
             AddSongButton.Name = "AddSongButton";
-            AddSongButton.Size = new Size(169, 29);
+            AddSongButton.Size = new Size(130, 29);
             AddSongButton.TabIndex = 5;
             AddSongButton.Text = "Add Song";
             AddSongButton.UseVisualStyleBackColor = true;
@@ -165,11 +165,12 @@
             // 
             // ClearSelectedButton
             // 
-            ClearSelectedButton.Location = new Point(524, 312);
+            ClearSelectedButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ClearSelectedButton.Location = new Point(522, 264);
             ClearSelectedButton.Name = "ClearSelectedButton";
-            ClearSelectedButton.Size = new Size(94, 29);
+            ClearSelectedButton.Size = new Size(130, 29);
             ClearSelectedButton.TabIndex = 7;
-            ClearSelectedButton.Text = "button1";
+            ClearSelectedButton.Text = "Clear Selected";
             ClearSelectedButton.UseVisualStyleBackColor = true;
             ClearSelectedButton.Click += ClearSelectedButton_Click;
             // 
