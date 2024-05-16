@@ -205,5 +205,6 @@
         private Button AddSongButton;
         private ListBox SongsListBox;
         private Button ClearSelectedButton;
+        private VScrollBar vScrollBar1;
     }
 }

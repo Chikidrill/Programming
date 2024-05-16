@@ -15,7 +15,6 @@ namespace ProgrammingIndividualTask.View.Panels
     {
         private List<Song> _songs = new List<Song>();
         private Song _currentSong;
-        private List<string> SongListBoxItems = new List<string>();
         private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data.txt");
         private bool ignoreChanges = false;
         public SongControlPanel()
@@ -56,13 +55,10 @@ namespace ProgrammingIndividualTask.View.Panels
             }
 
         }
-        // Обработчик события клика по ListBox
-
-
 
         private void AddSongButton_Click(object sender, EventArgs e)
         {
-
+            
             var newSong = new Song
             {
                 SongName = SongNameTextBox.Text,
@@ -124,18 +120,6 @@ namespace ProgrammingIndividualTask.View.Panels
             {
                 SongsListBox.Items.Add($"Song name: {song.SongName} - Artist name: {song.ArtistName}");
             }
-        }
-        private void UpdateInfo()
-        {
-            int selectedIndex = SongsListBox.SelectedIndex;
-
-
-            _currentSong = _songs[selectedIndex];
-
-            SongNameTextBox.Text = _currentSong.SongName.ToString();
-            ArtistNameTextBox.Text = _currentSong.ArtistName.ToString();
-            DurationTextBox.Text = _currentSong.Duration.ToString();
-            GenreComboBox.Text = _currentSong.Genre.ToString();
         }
         private void LoadSongList()
         {
@@ -222,10 +206,13 @@ namespace ProgrammingIndividualTask.View.Panels
                 // Отображаем обновленный список песен в ListBox
                 DisplaySongList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 SongNameTextBox.BackColor = AppColors.InvalidColor;
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
             }
+        
         }
 
         private void ArtistNameTextBox_TextChanged(object sender, EventArgs e)
@@ -248,9 +235,11 @@ namespace ProgrammingIndividualTask.View.Panels
                 // Отображаем обновленный список песен в ListBox
                 DisplaySongList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 ArtistNameTextBox.BackColor = AppColors.InvalidColor;
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
         }
 
@@ -274,9 +263,11 @@ namespace ProgrammingIndividualTask.View.Panels
                 // Отображаем обновленный список песен в ListBox
                 DisplaySongList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 DurationTextBox.BackColor = AppColors.InvalidColor;
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
         }
 
@@ -288,6 +279,10 @@ namespace ProgrammingIndividualTask.View.Panels
             ArtistNameTextBox.Text = string.Empty;
             GenreComboBox.SelectedIndex = -1;
             DurationTextBox.Text = string.Empty;
+            SongNameTextBox.BackColor = AppColors.StandartColor;
+            ArtistNameTextBox.BackColor = AppColors.StandartColor;
+            GenreComboBox.SelectedIndex = -1;
+            DurationTextBox.BackColor = AppColors.StandartColor;
         }
     }
 }

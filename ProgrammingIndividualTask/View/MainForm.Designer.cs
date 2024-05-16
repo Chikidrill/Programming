@@ -46,6 +46,7 @@
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(898, 523);
             Controls.Add(songControlPanel1);
+            MinimumSize = new Size(750, 500);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Song List";
