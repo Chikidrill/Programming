@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            GenreErrorlabel = new Label();
+            DurationErrorlabel = new Label();
+            ArtistNameErrorlabel = new Label();
+            SongNameErrorlabel = new Label();
             GenreComboBox = new ComboBox();
             DurationTextBox = new TextBox();
             ArtistNameTextBox = new TextBox();
@@ -47,6 +51,10 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox1.Controls.Add(GenreErrorlabel);
+            groupBox1.Controls.Add(DurationErrorlabel);
+            groupBox1.Controls.Add(ArtistNameErrorlabel);
+            groupBox1.Controls.Add(SongNameErrorlabel);
             groupBox1.Controls.Add(GenreComboBox);
             groupBox1.Controls.Add(DurationTextBox);
             groupBox1.Controls.Add(ArtistNameTextBox);
@@ -57,15 +65,67 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(344, 22);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(485, 199);
+            groupBox1.Size = new Size(485, 278);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Selected song";
             // 
+            // GenreErrorlabel
+            // 
+            GenreErrorlabel.AutoSize = true;
+            GenreErrorlabel.BackColor = Color.Transparent;
+            GenreErrorlabel.Font = new Font("Segoe UI", 6F, FontStyle.Regular, GraphicsUnit.Point);
+            GenreErrorlabel.ForeColor = Color.Red;
+            GenreErrorlabel.Location = new Point(153, 242);
+            GenreErrorlabel.MaximumSize = new Size(330, 0);
+            GenreErrorlabel.Name = "GenreErrorlabel";
+            GenreErrorlabel.Size = new Size(30, 12);
+            GenreErrorlabel.TabIndex = 11;
+            GenreErrorlabel.Text = "label5";
+            // 
+            // DurationErrorlabel
+            // 
+            DurationErrorlabel.AutoSize = true;
+            DurationErrorlabel.BackColor = Color.Transparent;
+            DurationErrorlabel.Font = new Font("Segoe UI", 6F, FontStyle.Regular, GraphicsUnit.Point);
+            DurationErrorlabel.ForeColor = Color.Red;
+            DurationErrorlabel.Location = new Point(153, 188);
+            DurationErrorlabel.MaximumSize = new Size(330, 0);
+            DurationErrorlabel.Name = "DurationErrorlabel";
+            DurationErrorlabel.Size = new Size(30, 12);
+            DurationErrorlabel.TabIndex = 10;
+            DurationErrorlabel.Text = "label5";
+            // 
+            // ArtistNameErrorlabel
+            // 
+            ArtistNameErrorlabel.AutoSize = true;
+            ArtistNameErrorlabel.BackColor = Color.Transparent;
+            ArtistNameErrorlabel.Font = new Font("Segoe UI", 6F, FontStyle.Regular, GraphicsUnit.Point);
+            ArtistNameErrorlabel.ForeColor = Color.Red;
+            ArtistNameErrorlabel.Location = new Point(153, 135);
+            ArtistNameErrorlabel.MaximumSize = new Size(330, 0);
+            ArtistNameErrorlabel.Name = "ArtistNameErrorlabel";
+            ArtistNameErrorlabel.Size = new Size(30, 12);
+            ArtistNameErrorlabel.TabIndex = 9;
+            ArtistNameErrorlabel.Text = "label5";
+            // 
+            // SongNameErrorlabel
+            // 
+            SongNameErrorlabel.AutoSize = true;
+            SongNameErrorlabel.BackColor = Color.Transparent;
+            SongNameErrorlabel.Font = new Font("Segoe UI", 6F, FontStyle.Regular, GraphicsUnit.Point);
+            SongNameErrorlabel.ForeColor = Color.Red;
+            SongNameErrorlabel.Location = new Point(153, 82);
+            SongNameErrorlabel.MaximumSize = new Size(330, 0);
+            SongNameErrorlabel.Name = "SongNameErrorlabel";
+            SongNameErrorlabel.Size = new Size(30, 12);
+            SongNameErrorlabel.TabIndex = 8;
+            SongNameErrorlabel.Text = "label5";
+            // 
             // GenreComboBox
             // 
             GenreComboBox.FormattingEnabled = true;
-            GenreComboBox.Location = new Point(151, 153);
+            GenreComboBox.Location = new Point(153, 211);
             GenreComboBox.Name = "GenreComboBox";
             GenreComboBox.Size = new Size(315, 28);
             GenreComboBox.TabIndex = 7;
@@ -73,7 +133,7 @@
             // 
             // DurationTextBox
             // 
-            DurationTextBox.Location = new Point(151, 120);
+            DurationTextBox.Location = new Point(153, 158);
             DurationTextBox.Name = "DurationTextBox";
             DurationTextBox.Size = new Size(315, 27);
             DurationTextBox.TabIndex = 6;
@@ -81,7 +141,7 @@
             // 
             // ArtistNameTextBox
             // 
-            ArtistNameTextBox.Location = new Point(151, 87);
+            ArtistNameTextBox.Location = new Point(153, 105);
             ArtistNameTextBox.Name = "ArtistNameTextBox";
             ArtistNameTextBox.Size = new Size(315, 27);
             ArtistNameTextBox.TabIndex = 5;
@@ -98,7 +158,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(7, 156);
+            label4.Location = new Point(9, 214);
             label4.Name = "label4";
             label4.Size = new Size(51, 20);
             label4.TabIndex = 3;
@@ -107,7 +167,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(7, 123);
+            label3.Location = new Point(9, 161);
             label3.Name = "label3";
             label3.Size = new Size(105, 20);
             label3.TabIndex = 2;
@@ -116,7 +176,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(7, 90);
+            label2.Location = new Point(9, 108);
             label2.Name = "label2";
             label2.Size = new Size(88, 20);
             label2.TabIndex = 1;
@@ -125,7 +185,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(8, 57);
+            label1.Location = new Point(9, 57);
             label1.Name = "label1";
             label1.Size = new Size(87, 20);
             label1.TabIndex = 0;
@@ -134,7 +194,7 @@
             // DelSongButton
             // 
             DelSongButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            DelSongButton.Location = new Point(699, 264);
+            DelSongButton.Location = new Point(699, 329);
             DelSongButton.Name = "DelSongButton";
             DelSongButton.Size = new Size(130, 29);
             DelSongButton.TabIndex = 6;
@@ -145,7 +205,7 @@
             // AddSongButton
             // 
             AddSongButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            AddSongButton.Location = new Point(344, 264);
+            AddSongButton.Location = new Point(344, 329);
             AddSongButton.Name = "AddSongButton";
             AddSongButton.Size = new Size(130, 29);
             AddSongButton.TabIndex = 5;
@@ -167,7 +227,7 @@
             // ClearSelectedButton
             // 
             ClearSelectedButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ClearSelectedButton.Location = new Point(522, 264);
+            ClearSelectedButton.Location = new Point(522, 329);
             ClearSelectedButton.Name = "ClearSelectedButton";
             ClearSelectedButton.Size = new Size(130, 29);
             ClearSelectedButton.TabIndex = 7;
@@ -207,5 +267,9 @@
         private ListBox SongsListBox;
         private Button ClearSelectedButton;
         private VScrollBar vScrollBar1;
+        private Label GenreErrorlabel;
+        private Label DurationErrorlabel;
+        private Label ArtistNameErrorlabel;
+        private Label SongNameErrorlabel;
     }
 }

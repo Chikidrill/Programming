@@ -22,7 +22,7 @@ namespace ProgrammingIndividualTask.Model
         {
             if (value < min || value > max)
             {
-                throw new ArgumentException($"Длина строки равная \"{value}\" вышла за рамки для \"{propertyName}\". Она должно быть от {min} до {max}.");
+                throw new ArgumentException($"Длина строки равная \"{value}\" вышла за рамки для \"{propertyName}\". Она должна быть от {min} до {max}.");
             }
         }
         public static void AssertValueInRange(int value, int min, int max, string propertyName)

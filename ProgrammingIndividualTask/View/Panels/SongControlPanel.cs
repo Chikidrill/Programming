@@ -19,12 +19,16 @@ namespace ProgrammingIndividualTask.View.Panels
         private bool ignoreChanges = false;
         public SongControlPanel()
         {
+
             InitializeComponent();
             LoadSongList();
             DisplaySongList();
             SortSongs();
             // Путь к файлу с данными
-
+            SongNameErrorlabel.Text = "";
+            ArtistNameErrorlabel.Text = "";
+            DurationErrorlabel.Text = "";
+            GenreErrorlabel.Text = "";
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
         }
         /// <summary>
@@ -77,7 +81,7 @@ namespace ProgrammingIndividualTask.View.Panels
                 {
                     _currentSong = new Song();
                 }
-
+                SongNameErrorlabel.Text = "";
                 _currentSong.SongName = songname;
                 SortSongs();
                 // Сохраняем список песен в файл
@@ -90,6 +94,7 @@ namespace ProgrammingIndividualTask.View.Panels
             catch (Exception ex)
             {
                 SongNameTextBox.BackColor = AppColors.InvalidColor;
+                SongNameErrorlabel.Text = ex.Message;
             }
         }
         /// <summary>
@@ -109,7 +114,7 @@ namespace ProgrammingIndividualTask.View.Panels
                 {
                     _currentSong = new Song();
                 }
-
+                ArtistNameErrorlabel.Text = "";
                 _currentSong.ArtistName = artistname;
                 // Сохраняем список песен в файл
                 SortSongs();
@@ -121,7 +126,7 @@ namespace ProgrammingIndividualTask.View.Panels
             catch (Exception ex)
             {
                 ArtistNameTextBox.BackColor = AppColors.InvalidColor;
-
+                ArtistNameErrorlabel.Text = ex.Message;
             }
         }
         /// <summary>
@@ -141,7 +146,7 @@ namespace ProgrammingIndividualTask.View.Panels
                 {
                     _currentSong = new Song();
                 }
-
+                DurationErrorlabel.Text = "";
                 _currentSong.Duration = duration;
                 SortSongs();
                 // Сохраняем список песен в файл
@@ -153,7 +158,7 @@ namespace ProgrammingIndividualTask.View.Panels
             catch (Exception ex)
             {
                 DurationTextBox.BackColor = AppColors.InvalidColor;
-
+                DurationErrorlabel.Text = ex.Message;
             }
         }
         /// <summary>
@@ -171,7 +176,7 @@ namespace ProgrammingIndividualTask.View.Panels
                 {
                     Song selectedSong = _songs[selectedIndex];
                     selectedSong.Genre = genre;
-
+                    GenreErrorlabel.Text = "";
                     SongsListBox.Items[selectedIndex] = selectedSong;
 
                     // Сортируем список песен после изменения данных
@@ -184,6 +189,7 @@ namespace ProgrammingIndividualTask.View.Panels
             catch (Exception ex)
             {
                 DurationTextBox.BackColor = AppColors.InvalidColor;
+                GenreComboBox.Text = ex.Message;
             }
         }
         /// <summary>
@@ -210,7 +216,10 @@ namespace ProgrammingIndividualTask.View.Panels
             DurationTextBox.Clear();
             GenreComboBox.SelectedIndex = -1;
             ignoreChanges = false;
-
+            SongNameErrorlabel.Text = "";
+            ArtistNameErrorlabel.Text = "";
+            DurationErrorlabel.Text = "";
+            GenreErrorlabel.Text = "";
             SongsListBox.ClearSelected();
 
             SaveSongList();
@@ -233,7 +242,7 @@ namespace ProgrammingIndividualTask.View.Panels
             if (selectedIndex != -1)
             {
                 // Получаем индекс выбранной песни
-                
+
 
                 // Удаляем песню из списка
                 _songs.RemoveAt(selectedIndex);
@@ -245,6 +254,10 @@ namespace ProgrammingIndividualTask.View.Panels
                 DisplaySongList();
 
                 ClearInputFields();
+                SongNameErrorlabel.Text = "";
+                ArtistNameErrorlabel.Text = "";
+                DurationErrorlabel.Text = "";
+                GenreErrorlabel.Text = "";
             }
             else
             {
