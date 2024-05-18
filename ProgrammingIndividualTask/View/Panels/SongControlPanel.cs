@@ -32,7 +32,7 @@ namespace ProgrammingIndividualTask.View.Panels
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
         }
         /// <summary>
-        /// Событие для 
+        /// Событие для отображения выбранного элемента.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -293,7 +293,7 @@ namespace ProgrammingIndividualTask.View.Panels
             // Добавляем каждую песню из списка в ListBox
             foreach (Song song in _songs)
             {
-                SongsListBox.Items.Add($"Song name: {song.SongName} - Artist name: {song.ArtistName}");
+                SongsListBox.Items.Add($"Artist name: {song.ArtistName} - Song name: {song.SongName}");
             }
         }
         /// <summary>
