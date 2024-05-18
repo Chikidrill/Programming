@@ -13,7 +13,7 @@ namespace ProgrammingIndividualTask.Model
         /// </summary>
         public static readonly Color ValidColor = Color.LightGreen;
         /// <summary>
-        /// Цвет для отображения пересечения прямоугольников.
+        /// Цвет для отображения некорректных значений.
         /// </summary>
         public static readonly Color InvalidColor = Color.LightPink;
         /// <summary>

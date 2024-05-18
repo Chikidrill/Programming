@@ -69,6 +69,7 @@
             GenreComboBox.Name = "GenreComboBox";
             GenreComboBox.Size = new Size(315, 28);
             GenreComboBox.TabIndex = 7;
+            GenreComboBox.SelectedIndexChanged += GenreComboBox_SelectedIndexChanged;
             // 
             // DurationTextBox
             // 

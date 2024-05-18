@@ -1,6 +1,8 @@
-﻿public enum Genre
+﻿/// <summary>
+/// Перечисление, содержащее в себе жанры песен.
+/// </summary>
+public enum Genre
 {
-
     Pop,
     Rock,
     HipHop,

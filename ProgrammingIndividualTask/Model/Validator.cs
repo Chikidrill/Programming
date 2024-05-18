@@ -6,27 +6,30 @@ using System.Threading.Tasks;
 
 namespace ProgrammingIndividualTask.Model
 {
+    /// <summary>
+    /// Класс, содержащий функции для валидации значений.
+    /// </summary>
     public class Validator
     {
         public static void AssertOnPositiveValue(int value, string propertyName)
         {
             if (value <= 0)
             {
-                throw new ArgumentException($"The value \"{value}\" is invalid for property \"{propertyName}\". It must be a positive integer.");
+                throw new ArgumentException($"Значение \"{value}\" не может быть присвоено \"{propertyName}\". Значение должно быть положительным целым числом.");
             }
         }
         public static void AssertValueLength(int value, int min, int max, string propertyName)
         {
             if (value < min || value > max)
             {
-                throw new ArgumentException($"The value length \"{value}\" is out of range for property \"{propertyName}\". It must be between {min} and {max}.");
+                throw new ArgumentException($"Длина строки равная \"{value}\" вышла за рамки для \"{propertyName}\". Она должно быть от {min} до {max}.");
             }
         }
         public static void AssertValueInRange(int value, int min, int max, string propertyName)
         {
             if (value < min || value > max)
             {
-                throw new ArgumentException($"The value \"{value}\" is out of range for property \"{propertyName}\". It must be between {min} and {max}.");
+                throw new ArgumentException($"Значение \"{value}\" вышло за рамки промежутка для \"{propertyName}\". Оно должно быть от {min} до {max}.");
             }
         }
     }

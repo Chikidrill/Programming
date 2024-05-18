@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProgrammingIndividualTask.Model
 {
+    /// <summary>
+    /// Класс для создания песен.
+    /// </summary>
     public class Song
     {
         /// <summary>
@@ -59,7 +62,7 @@ namespace ProgrammingIndividualTask.Model
             }
         }
         /// <summary>
-        /// Возвращает и задаёт название лейбла. Не может быть пустым полем.
+        /// Возвращает и задаёт длительность песни в секундах. Должно быть целым числом, больше 0.
         /// </summary>
         public int Duration
         {
@@ -75,7 +78,7 @@ namespace ProgrammingIndividualTask.Model
             }
         }
         /// <summary>
-        /// Возвращает и задаёт длительность песни в секундах. Должно быть целым числом, больше 0.
+        /// Возвращает и задаёт жанр песни из перечисления Genre. 
         /// </summary>
         public Genre Genre
         {
@@ -93,8 +96,8 @@ namespace ProgrammingIndividualTask.Model
         /// </summary>
         /// <param name="songName">Название песни.Не может бытьп пустым.</param>
         /// <param name="artistName">Имя артиста. Не может быть пустым.</param>
-        /// <param name="duration">Название лейбла. Не может быть пустым</param>
-        /// <param name="genre">Длительность песни в секундах. Должно быть целым числом, больше 0.</param>
+        /// <param name="duration">Длительность песни в секундах. Должно быть целым числом, больше 0. Не может быть пустым</param>
+        /// <param name="genre">Жанр песни. Должен быть выбран из перечисления Genre.</param>
         public Song(string songName, string artistName, int duration, Genre genre)
         {
             SongName = songName;

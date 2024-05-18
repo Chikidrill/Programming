@@ -22,11 +22,16 @@ namespace ProgrammingIndividualTask.View.Panels
             InitializeComponent();
             LoadSongList();
             DisplaySongList();
+            SortSongs();
             // Путь к файлу с данными
 
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
         }
-
+        /// <summary>
+        /// Событие для 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SongsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = SongsListBox.SelectedIndex;
@@ -55,10 +60,140 @@ namespace ProgrammingIndividualTask.View.Panels
             }
 
         }
+        /// <summary>
+        /// Осуществляет изменение поля SongName у конкретного объекта. Производит валидацию нового значения, сортировку и отображение после изменения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SongNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SongNameTextBox.BackColor = AppColors.StandartColor;
+                string songname = SongNameTextBox.Text;
 
+                // Проверяем, инициализирован ли _currentSong
+                if (_currentSong == null)
+                {
+                    _currentSong = new Song();
+                }
+
+                _currentSong.SongName = songname;
+                SortSongs();
+                // Сохраняем список песен в файл
+                SaveSongList();
+
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
+
+            }
+            catch (Exception ex)
+            {
+                SongNameTextBox.BackColor = AppColors.InvalidColor;
+            }
+        }
+        /// <summary>
+        /// Осуществляет изменение поля ArtistName у конкретного объекта. Производит валидацию нового значения, сортировку и отображение после изменения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ArtistNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ArtistNameTextBox.BackColor = AppColors.StandartColor;
+                string artistname = ArtistNameTextBox.Text;
+
+                // Проверяем, инициализирован ли _currentSong
+                if (_currentSong == null)
+                {
+                    _currentSong = new Song();
+                }
+
+                _currentSong.ArtistName = artistname;
+                // Сохраняем список песен в файл
+                SortSongs();
+                SaveSongList();
+
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
+            }
+            catch (Exception ex)
+            {
+                ArtistNameTextBox.BackColor = AppColors.InvalidColor;
+
+            }
+        }
+        /// <summary>
+        /// Осуществляет изменение поля Duration у конкретного объекта. Производит валидацию нового значения, сортировку и отображение после изменения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DurationTextBox.BackColor = AppColors.StandartColor;
+                int duration = int.Parse(DurationTextBox.Text);
+
+                // Проверяем, инициализирован ли _currentSong
+                if (_currentSong == null)
+                {
+                    _currentSong = new Song();
+                }
+
+                _currentSong.Duration = duration;
+                SortSongs();
+                // Сохраняем список песен в файл
+                SaveSongList();
+
+                // Отображаем обновленный список песен в ListBox
+                DisplaySongList();
+            }
+            catch (Exception ex)
+            {
+                DurationTextBox.BackColor = AppColors.InvalidColor;
+
+            }
+        }
+        /// <summary>
+        /// Осуществляет изменение поля Genre у конкретного объекта. Производит валидацию нового значения, сортировку и отображение после изменения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = SongsListBox.SelectedIndex;
+
+            try
+            {
+                if (selectedIndex != -1 && Enum.TryParse(GenreComboBox.SelectedItem?.ToString(), out Genre genre))
+                {
+                    Song selectedSong = _songs[selectedIndex];
+                    selectedSong.Genre = genre;
+
+                    SongsListBox.Items[selectedIndex] = selectedSong;
+
+                    // Сортируем список песен после изменения данных
+                    SortSongs();
+
+                    SaveSongList();
+                    DisplaySongList();
+                }
+            }
+            catch (Exception ex)
+            {
+                DurationTextBox.BackColor = AppColors.InvalidColor;
+            }
+        }
+        /// <summary>
+        /// Осуществляет добавление нового объекта класса Song, записывая значения из TextBox и ComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddSongButton_Click(object sender, EventArgs e)
         {
-            
+
             var newSong = new Song
             {
                 SongName = SongNameTextBox.Text,
@@ -68,7 +203,7 @@ namespace ProgrammingIndividualTask.View.Panels
             };
 
             _songs.Add(newSong);
-
+            SortSongs();
             ignoreChanges = true;
             SongNameTextBox.Clear();
             ArtistNameTextBox.Clear();
@@ -86,17 +221,23 @@ namespace ProgrammingIndividualTask.View.Panels
             // Очищаем поля ввода после добавления песни
             ClearInputFields();
         }
+        /// <summary>
+        /// Осуществляет удаление объекта класса Song.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DelSongButton_Click(object sender, EventArgs e)
         {
+            int selectedIndex = SongsListBox.SelectedIndex;
             // Проверяем, выбран ли какой-либо элемент в ListBox
-            if (SongsListBox.SelectedItem != null)
+            if (selectedIndex != -1)
             {
                 // Получаем индекс выбранной песни
-                int selectedIndex = SongsListBox.SelectedIndex;
+                
 
                 // Удаляем песню из списка
                 _songs.RemoveAt(selectedIndex);
-
+                SortSongs();
                 // Сохраняем список песен в файл
                 SaveSongList();
 
@@ -110,6 +251,27 @@ namespace ProgrammingIndividualTask.View.Panels
                 MessageBox.Show("Выберите песню для удаления.");
             }
         }
+        /// <summary>
+        /// Осуществляет очищение значений из TextBox и ComboBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearSelectedButton_Click(object sender, EventArgs e)
+        {
+            // Сбрасываем текущую песню, если ничего не выбрано
+            _currentSong = null;
+            SongNameTextBox.Text = string.Empty;
+            ArtistNameTextBox.Text = string.Empty;
+            GenreComboBox.SelectedIndex = -1;
+            DurationTextBox.Text = string.Empty;
+            SongNameTextBox.BackColor = AppColors.StandartColor;
+            ArtistNameTextBox.BackColor = AppColors.StandartColor;
+            GenreComboBox.SelectedIndex = -1;
+            DurationTextBox.BackColor = AppColors.StandartColor;
+        }
+        /// <summary>
+        /// Осуществляет вывод значений в ListBox.
+        /// </summary>
         private void DisplaySongList()
         {
             // Очищаем ListBox перед добавлением обновленных данных
@@ -121,6 +283,9 @@ namespace ProgrammingIndividualTask.View.Panels
                 SongsListBox.Items.Add($"Song name: {song.SongName} - Artist name: {song.ArtistName}");
             }
         }
+        /// <summary>
+        /// Осуществляет загрузку файлов из файла.
+        /// </summary>
         private void LoadSongList()
         {
             if (File.Exists(filePath))
@@ -149,8 +314,9 @@ namespace ProgrammingIndividualTask.View.Panels
                 }
             }
         }
-
-        // Метод для сохранения списка песен в файл
+        /// <summary>
+        /// Осуществляет сохранение данных в файл.
+        /// </summary>
         private void SaveSongList()
         {
             try
@@ -169,6 +335,9 @@ namespace ProgrammingIndividualTask.View.Panels
                 MessageBox.Show("Ошибка при сохранении файла: " + ex.Message);
             }
         }
+        /// <summary>
+        /// Осуществляет очистку полей ввода после добавления или удаления выбранного элемента.
+        /// </summary>
         private void ClearInputFields()
         {
             SongNameTextBox.Text = "";
@@ -185,104 +354,20 @@ namespace ProgrammingIndividualTask.View.Panels
                 SongsListBox.SelectedItem = null;
             }
         }
-
-        private void SongNameTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Осуществляет сортировку песен.
+        /// </summary>
+        private void SortSongs()
         {
-            try
+            // Сортируем список песен
+            var sortedSongs = _songs.OrderBy(song => song.ArtistName).ThenBy(song => song.SongName).ToList();
+
+            // Очищаем BindingList и добавляем отсортированные песни
+            _songs.Clear();
+            foreach (var song in sortedSongs)
             {
-                SongNameTextBox.BackColor = AppColors.StandartColor;
-                string songname = SongNameTextBox.Text;
-
-                // Проверяем, инициализирован ли _currentSong
-                if (_currentSong == null)
-                {
-                    _currentSong = new Song();
-                }
-
-                _currentSong.SongName = songname;
-                // Сохраняем список песен в файл
-                SaveSongList();
-
-                // Отображаем обновленный список песен в ListBox
-                DisplaySongList();
+                _songs.Add(song);
             }
-            catch (Exception ex)
-            {
-                SongNameTextBox.BackColor = AppColors.InvalidColor;
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
-            }
-        
-        }
-
-        private void ArtistNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ArtistNameTextBox.BackColor = AppColors.StandartColor;
-                string artistname = ArtistNameTextBox.Text;
-
-                // Проверяем, инициализирован ли _currentSong
-                if (_currentSong == null)
-                {
-                    _currentSong = new Song();
-                }
-
-                _currentSong.ArtistName = artistname;
-                // Сохраняем список песен в файл
-                SaveSongList();
-
-                // Отображаем обновленный список песен в ListBox
-                DisplaySongList();
-            }
-            catch (Exception ex)
-            {
-                ArtistNameTextBox.BackColor = AppColors.InvalidColor;
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-            }
-        }
-
-        private void DurationTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DurationTextBox.BackColor = AppColors.StandartColor;
-                int duration = int.Parse(DurationTextBox.Text);
-
-                // Проверяем, инициализирован ли _currentSong
-                if (_currentSong == null)
-                {
-                    _currentSong = new Song();
-                }
-
-                _currentSong.Duration = duration;
-                // Сохраняем список песен в файл
-                SaveSongList();
-
-                // Отображаем обновленный список песен в ListBox
-                DisplaySongList();
-            }
-            catch (Exception ex)
-            {
-                DurationTextBox.BackColor = AppColors.InvalidColor;
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-            }
-        }
-
-        private void ClearSelectedButton_Click(object sender, EventArgs e)
-        {
-            // Сбрасываем текущую песню, если ничего не выбрано
-            _currentSong = null;
-            SongNameTextBox.Text = string.Empty;
-            ArtistNameTextBox.Text = string.Empty;
-            GenreComboBox.SelectedIndex = -1;
-            DurationTextBox.Text = string.Empty;
-            SongNameTextBox.BackColor = AppColors.StandartColor;
-            ArtistNameTextBox.BackColor = AppColors.StandartColor;
-            GenreComboBox.SelectedIndex = -1;
-            DurationTextBox.BackColor = AppColors.StandartColor;
         }
     }
 }
