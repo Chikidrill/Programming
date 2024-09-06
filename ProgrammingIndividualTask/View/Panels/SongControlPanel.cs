@@ -62,7 +62,6 @@ namespace ProgrammingIndividualTask.View.Panels
                 GenreComboBox.SelectedIndex = -1;
                 DurationTextBox.Text = string.Empty;
             }
-
         }
         /// <summary>
         /// Осуществляет изменение поля SongName у конкретного объекта. Производит валидацию нового значения, сортировку и отображение после изменения.
@@ -188,7 +187,7 @@ namespace ProgrammingIndividualTask.View.Panels
             }
             catch (Exception ex)
             {
-                DurationTextBox.BackColor = AppColors.InvalidColor;
+                GenreComboBox.BackColor = AppColors.InvalidColor;
                 GenreComboBox.Text = ex.Message;
             }
         }
