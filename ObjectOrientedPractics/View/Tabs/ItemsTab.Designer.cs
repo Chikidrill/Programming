@@ -182,9 +182,9 @@
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label2.Location = new Point(433, 3);
             label2.Name = "label2";
-            label2.Size = new Size(49, 20);
+            label2.Size = new Size(103, 20);
             label2.TabIndex = 20;
-            label2.Text = "Items";
+            label2.Text = "Selected item";
             // 
             // ClearButton
             // 

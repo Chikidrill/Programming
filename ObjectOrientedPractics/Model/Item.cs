@@ -89,7 +89,6 @@ namespace ObjectOrientedPractics.Model
         /// <param name="cost">Стоимость товара.</param>
         public Item(int id, string name, string info, double cost)
         {
-            ID = id;    
             Name = name;
             Info = info;
             Cost = cost;

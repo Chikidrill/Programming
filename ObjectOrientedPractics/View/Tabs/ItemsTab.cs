@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,15 +21,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
         }
-
+        private IdGenerator idGenerator = new IdGenerator();
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newItem = new Item
-            {
-                Cost = double.Parse(CostTextBox.Text),
-                Name = NameTextBox.Text,
-                Info = DescriptionTextBox.Text,
-            };
+            var newItem = new Item(idGenerator.GetNextId(), NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text));
             _items.Add(newItem);
             NameTextBox.Clear();
             DescriptionTextBox.Clear();
@@ -118,7 +114,7 @@ namespace ObjectOrientedPractics.View.Tabs
             
                 _currentItem = _items[selectedIndex];
 
-                IdTextBox.Text = _currentItem.ID.ToString();
+
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 NameTextBox.Text = _currentItem.Name;
                 DescriptionTextBox.Text = _currentItem.Info;

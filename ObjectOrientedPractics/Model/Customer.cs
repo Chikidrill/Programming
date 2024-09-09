@@ -30,7 +30,8 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
-        public int Id { get { return _id; } }
+        public int Id { get => IdGenerator.GetNextId(); }
+        private static IdGenerator IdGenerator = new IdGenerator();
 
         // <summary>
         /// Возвращает и задает ФИО покупателя. Не может быть длиной больше 200 символов.
@@ -63,10 +64,11 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullName">ФИО покупателя.</param>
         /// <param name="address">Адрес доставки.</param>
-        public Customer(string fullName, string address)
+        public Customer(int id, string fullName, string address)
         { 
             FullName = fullName;
             Address = address;
         }
+        public Customer() { }
     }
 }
