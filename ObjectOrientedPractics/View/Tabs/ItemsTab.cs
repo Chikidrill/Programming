@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         private IdGenerator idGenerator = new IdGenerator();
         /// <summary>
-        /// 
+        /// Осуществляет добавление нового элемента
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -45,7 +45,11 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearInputFields();
             DisplayItemsList();
         }
-
+        /// <summary>
+        /// Осуществляет удаление выбранного элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
@@ -61,6 +65,29 @@ namespace ObjectOrientedPractics.View.Tabs
                 MessageBox.Show("Выберите песню для удаления.");
             }
         }
+        /// <summary>
+        /// Осуществляет сброс выбранного элемента и очищение полей ввода
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            _currentItem = null;
+            IdTextBox.Text = string.Empty;
+            CostTextBox.Text = string.Empty;
+            NameTextBox.Text = string.Empty;
+            DescriptionTextBox.Text = string.Empty;
+            CategoryComboBox.SelectedIndex = -1;
+            CostTextBox.BackColor = AppColors.StandartColor;
+            NameTextBox.BackColor = AppColors.StandartColor;
+            DescriptionTextBox.BackColor = AppColors.StandartColor;
+            CategoryComboBox.BackColor = AppColors.StandartColor;
+        }
+        /// <summary>
+        /// Осуществляет изменение значения поля Name у выбранного элемента.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -80,7 +107,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 // MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Осуществляет изменение значения поля Description у выбранного элемента.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -100,8 +131,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// Осуществляет изменение значения поля Cost у выбранного элемента.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
+            DisplayItemsList();
             try
             {
                 CostTextBox.BackColor = AppColors.StandartColor;
@@ -114,7 +151,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 _currentItem.Cost = cost;
                 SaveItemsList();
-                DisplayItemsList();
+                
             }
             catch (Exception ex)
             {
@@ -122,7 +159,34 @@ namespace ObjectOrientedPractics.View.Tabs
                 //   MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Осуществляет изменение значения поля Category у выбранного элемента.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentItem == null) return;
+            int selectedIndex = CategoryComboBox.SelectedIndex;
+            try
+            {
+                if (Enum.TryParse(CategoryComboBox.SelectedItem?.ToString(), out Category category))
+                {
+                    _currentItem.Category = category;
+                    SaveItemsList(); // Сохранение изменений
+                    DisplayItemsList(); // Обновление списка отображаемых элементов
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Функция отображения выбранного элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
@@ -136,9 +200,10 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = _currentItem.Name.ToString();
             DescriptionTextBox.Text = _currentItem.Info.ToString();
             CategoryComboBox.Text = _currentItem.Category.ToString();
-
-
         }
+        /// <summary>
+        /// Функция отображения элементов в ЛистБокс
+        /// </summary>
         private void DisplayItemsList()
         {
             // Очищаем ListBox перед добавлением обновленных данных
@@ -150,7 +215,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Add($"ID: {item.Id} Item name: {item.Name} - Item cost: {item.Cost}");
             }
         }
-
+        /// <summary>
+        /// Функция очищения полей ввода
+        /// </summary>
         private void ClearInputFields()
         {
             IdTextBox.Text = string.Empty;
@@ -164,42 +231,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CategoryComboBox.BackColor = AppColors.StandartColor;
 
         }
-
-        private void ClearButton_Click(object sender, EventArgs e)
-        {
-            _currentItem = null;
-            IdTextBox.Text = string.Empty;
-            CostTextBox.Text = string.Empty;
-            NameTextBox.Text = string.Empty;
-            DescriptionTextBox.Text = string.Empty;
-            CategoryComboBox.SelectedIndex = -1;
-            CostTextBox.BackColor = AppColors.StandartColor;
-            NameTextBox.BackColor = AppColors.StandartColor;
-            DescriptionTextBox.BackColor = AppColors.StandartColor;
-            CategoryComboBox.BackColor = AppColors.StandartColor;
-        }
-
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = CategoryComboBox.SelectedIndex;
-
-            try
-            {
-                if (selectedIndex != -1 && Enum.TryParse(CategoryComboBox.SelectedItem?.ToString(), out Category category))
-                {
-                    Item selectedItem = _items[selectedIndex];
-                    selectedItem.Category = category;
-                    ItemsListBox.Items[selectedIndex] = selectedItem;
-
-                    SaveItemsList();
-                    DisplayItemsList();
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
+        /// <summary>
+        /// Функция загрузки данных из файла .json
+        /// </summary>
         private void LoadItemsList()
         {
             if (File.Exists(filePath))
@@ -215,8 +249,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
+
         /// <summary>
-        /// Осуществляет сохранение данных в файл.
+        /// Осуществляет сохранение данных в файл .json.
         /// </summary>
         private void SaveItemsList()
         {
