@@ -42,7 +42,13 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Генератор ID
         /// </summary>
-        public int ID { get => IdGenerator.GetNextId(); }
+        public int Id 
+        {
+            get 
+            {  
+                return _id; 
+            }
+        }
 
         public Category Category { get; set; }
 
@@ -90,8 +96,9 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара.</param>
         /// <param name="info">Информация о товаре.</param>
         /// <param name="cost">Стоимость товара.</param>
-        public Item(int id, string name, string info, double cost, Category category)
+        public Item(string name, string info, double cost, Category category)
         {
+            _id = IdGenerator.GetNextId();
             Name = name;
             Info = info;
             Cost = cost;

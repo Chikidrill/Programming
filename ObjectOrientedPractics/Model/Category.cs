@@ -1,4 +1,8 @@
-﻿public enum Category
+﻿
+/// <summary>
+/// Перечисление, описывающее категории товаров
+/// </summary>
+public enum Category
 {
     Fruits, // фрукты
     Vegetables, // овощи

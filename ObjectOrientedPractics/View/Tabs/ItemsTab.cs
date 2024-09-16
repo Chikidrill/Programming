@@ -30,12 +30,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newItem = new Item(idGenerator.GetNextId(), NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
+            var newItem = new Item(NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
+            IdTextBox.Text = newItem.Id.ToString();
             _items.Add(newItem);
             NameTextBox.Clear();
             DescriptionTextBox.Clear();
             CostTextBox.Clear();
-            CategoryComboBox.SelectedIndex = -1;
+           
             ClearInputFields();
             DisplayItemsList();
         }
@@ -122,7 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 _currentItem = _items[selectedIndex];
 
-
+                IdTextBox.Text = _currentItem.Id.ToString();
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 NameTextBox.Text = _currentItem.Name;
                 DescriptionTextBox.Text = _currentItem.Info;
@@ -135,7 +136,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CostTextBox.Text = string.Empty;
                 NameTextBox.Text = string.Empty;
                 DescriptionTextBox.Text = string.Empty;
-                CategoryComboBox.SelectedIndex = -1;
+                CategoryComboBox.SelectedItem = null;
             }
 
         }
@@ -147,7 +148,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // Добавляем каждую песню из списка в ListBox
             foreach (Item item in _items)
             {
-                ItemsListBox.Items.Add($"Item name: {item.Name} - Item cost: {item.Cost}");
+                ItemsListBox.Items.Add($"ID: {item.Id} Item name: {item.Name} - Item cost: {item.Cost}");
             }
         }
 
@@ -158,6 +159,10 @@ namespace ObjectOrientedPractics.View.Tabs
             DescriptionTextBox.Text = string.Empty;
             CostTextBox.Text = string.Empty;
             CategoryComboBox.SelectedIndex = -1;
+            CostTextBox.BackColor = AppColors.StandartColor;
+            NameTextBox.BackColor = AppColors.StandartColor;
+            DescriptionTextBox.BackColor = AppColors.StandartColor;
+            CategoryComboBox.BackColor = AppColors.StandartColor;
 
             if (ItemsListBox.SelectedIndex == -1)
             {
@@ -176,6 +181,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.BackColor = AppColors.StandartColor;
             NameTextBox.BackColor = AppColors.StandartColor;
             DescriptionTextBox.BackColor = AppColors.StandartColor;
+            CategoryComboBox.BackColor = AppColors.StandartColor;
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,7 +201,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch (Exception ex)
             {
-                CategoryComboBox.Text = ex.Message;
+                
             }
         }
     }

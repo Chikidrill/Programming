@@ -30,7 +30,13 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
-        public int Id { get => IdGenerator.GetNextId(); }
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
         /// <summary>
         /// Генератор ID
         /// </summary>
@@ -69,6 +75,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="address">Адрес доставки.</param>
         public Customer(int id, string fullName, string address)
         { 
+            _id = IdGenerator.GetNextId();
             FullName = fullName;
             Address = address;
         }
