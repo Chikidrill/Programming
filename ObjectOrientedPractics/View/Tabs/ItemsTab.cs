@@ -20,15 +20,22 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
         }
         private IdGenerator idGenerator = new IdGenerator();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newItem = new Item(idGenerator.GetNextId(), NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text));
+            var newItem = new Item(idGenerator.GetNextId(), NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
             _items.Add(newItem);
             NameTextBox.Clear();
             DescriptionTextBox.Clear();
             CostTextBox.Clear();
+            CategoryComboBox.SelectedIndex = -1;
             ClearInputFields();
             DisplayItemsList();
         }
@@ -110,14 +117,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
 
-            if (selectedIndex != -1) { 
-            
+            if (selectedIndex != -1)
+            {
+
                 _currentItem = _items[selectedIndex];
 
 
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 NameTextBox.Text = _currentItem.Name;
                 DescriptionTextBox.Text = _currentItem.Info;
+                CategoryComboBox.Text = _currentItem.Category.ToString();
 
             }
             else
@@ -126,6 +135,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CostTextBox.Text = string.Empty;
                 NameTextBox.Text = string.Empty;
                 DescriptionTextBox.Text = string.Empty;
+                CategoryComboBox.SelectedIndex = -1;
             }
 
         }
@@ -147,7 +157,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = string.Empty;
             DescriptionTextBox.Text = string.Empty;
             CostTextBox.Text = string.Empty;
-
+            CategoryComboBox.SelectedIndex = -1;
 
             if (ItemsListBox.SelectedIndex == -1)
             {
@@ -157,14 +167,36 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            _currentItem = null; 
+            _currentItem = null;
             IdTextBox.Text = string.Empty;
             CostTextBox.Text = string.Empty;
             NameTextBox.Text = string.Empty;
             DescriptionTextBox.Text = string.Empty;
+            CategoryComboBox.SelectedIndex = -1;
             CostTextBox.BackColor = AppColors.StandartColor;
             NameTextBox.BackColor = AppColors.StandartColor;
             DescriptionTextBox.BackColor = AppColors.StandartColor;
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = CategoryComboBox.SelectedIndex;
+
+            try
+            {
+                if (selectedIndex != -1 && Enum.TryParse(CategoryComboBox.SelectedItem?.ToString(), out Category category))
+                {
+                    Item selectedItem = _items[selectedIndex];
+                    selectedItem.Category = category;
+                    ItemsListBox.Items[selectedIndex] = selectedItem;
+
+                    DisplayItemsList();
+                }
+            }
+            catch (Exception ex)
+            {
+                CategoryComboBox.Text = ex.Message;
+            }
         }
     }
 }

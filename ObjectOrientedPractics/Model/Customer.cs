@@ -31,6 +31,9 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
         public int Id { get => IdGenerator.GetNextId(); }
+        /// <summary>
+        /// Генератор ID
+        /// </summary>
         private static IdGenerator IdGenerator = new IdGenerator();
 
         // <summary>

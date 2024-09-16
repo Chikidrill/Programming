@@ -42,13 +42,15 @@
             label1 = new Label();
             label2 = new Label();
             ClearButton = new Button();
+            label3 = new Label();
+            CategoryComboBox = new ComboBox();
             SuspendLayout();
             // 
             // nameLabel
             // 
             nameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(434, 117);
+            nameLabel.Location = new Point(434, 183);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(52, 20);
             nameLabel.TabIndex = 15;
@@ -57,7 +59,7 @@
             // NameTextBox
             // 
             NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            NameTextBox.Location = new Point(433, 140);
+            NameTextBox.Location = new Point(433, 206);
             NameTextBox.MaximumSize = new Size(0, 120);
             NameTextBox.MinimumSize = new Size(270, 40);
             NameTextBox.Name = "NameTextBox";
@@ -70,7 +72,7 @@
             // 
             descriptionLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(434, 263);
+            descriptionLabel.Location = new Point(434, 329);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(88, 20);
             descriptionLabel.TabIndex = 13;
@@ -79,7 +81,7 @@
             // CostTextBox
             // 
             CostTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            CostTextBox.Location = new Point(499, 66);
+            CostTextBox.Location = new Point(525, 63);
             CostTextBox.MinimumSize = new Size(120, 30);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(231, 30);
@@ -89,7 +91,7 @@
             // DescriptionTextBox
             // 
             DescriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DescriptionTextBox.Location = new Point(433, 286);
+            DescriptionTextBox.Location = new Point(433, 352);
             DescriptionTextBox.MaximumSize = new Size(0, 120);
             DescriptionTextBox.MinimumSize = new Size(270, 40);
             DescriptionTextBox.Name = "DescriptionTextBox";
@@ -101,7 +103,7 @@
             // IdTextBox
             // 
             IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            IdTextBox.Location = new Point(499, 26);
+            IdTextBox.Location = new Point(525, 23);
             IdTextBox.MinimumSize = new Size(120, 30);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
@@ -199,10 +201,30 @@
             ClearButton.UseVisualStyleBackColor = true;
             ClearButton.Click += ClearButton_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(433, 113);
+            label3.Name = "label3";
+            label3.Size = new Size(76, 20);
+            label3.TabIndex = 22;
+            label3.Text = "Category: ";
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(525, 105);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(231, 28);
+            CategoryComboBox.TabIndex = 23;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
+            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(CategoryComboBox);
+            Controls.Add(label3);
             Controls.Add(ClearButton);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -238,5 +260,7 @@
         private Label label1;
         private Label label2;
         private Button ClearButton;
+        private Label label3;
+        private ComboBox CategoryComboBox;
     }
 }

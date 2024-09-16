@@ -14,6 +14,7 @@ namespace ObjectOrientedPractics.Model
     public class Item
     {
         private static int _allItems = 0;
+        private static IdGenerator IdGenerator = new IdGenerator();
         /// <summary>
         /// Уникальный идентификатор для объекта класса <see cref="Item"/>. Доступен только для чтения.
         /// </summary>
@@ -37,11 +38,13 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
-        public int ID { get => IdGenerator.GetNextId(); }
+
         /// <summary>
-        /// Возвращает и задает название товара. Не может быть длиной больше 200 символов.
+        /// Генератор ID
         /// </summary>
-        private static IdGenerator IdGenerator = new IdGenerator();
+        public int ID { get => IdGenerator.GetNextId(); }
+
+        public Category Category { get; set; }
 
         public static int AllItems()
         {
@@ -87,11 +90,12 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара.</param>
         /// <param name="info">Информация о товаре.</param>
         /// <param name="cost">Стоимость товара.</param>
-        public Item(int id, string name, string info, double cost)
+        public Item(int id, string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
         public Item() { }
     }

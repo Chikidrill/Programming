@@ -11,7 +11,9 @@ namespace ObjectOrientedPractics.Services
     /// </summary>
     public class IdGenerator
     {
-        
+        /// <summary>
+        /// Начальный ID
+        /// </summary>
         private int _currentId = 0;
         /// <summary>
         /// Метод, задающий уникальный идентификатор.
