@@ -8,35 +8,38 @@ using static ObjectOrientedPractics.Services.ValueValidator;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Класс, описывабщий и хранящий информацию об адресе доставки
+    /// </summary>
     public class Address
     {
         /// <summary>
-        /// 
+        /// Номер почтового индекса для каждого объекта класса.
         /// </summary>
         private int _index;
         /// <summary>
-        /// 
+        /// Название страны для каждого объекта класса.
         /// </summary>
         private string _country;
         /// <summary>
-        /// 
+        /// Название города для каждого объекта класса.
         /// </summary>
         private string _city;
         /// <summary>
-        /// 
+        /// Название улицы для каждого объекта класса.
         /// </summary>
         private string _street;
         /// <summary>
-        /// 
+        /// Дом (строение) для каждого объекта класса.
         /// </summary>
         private string _building;
         /// <summary>
-        /// 
+        /// Квартира для каждого объекта класса.
         /// </summary>
         private string _apartment;
 
         /// <summary>
-        /// 
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Index - должно быть целое шестизначное число.
         /// </summary>
         public int Index
         {
@@ -52,7 +55,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Country. Длина строки не более 50 символов.
         /// </summary>
         public string Country
         {
@@ -68,7 +71,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля City. Длина строки не более 50 символов.
         /// </summary>
         public string City
         {
@@ -84,7 +87,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Street. Длина строки не более 100 символов.
         /// </summary>
         public string Street
         {
@@ -100,7 +103,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Building. Длина строки не более 10 символов.
         /// </summary>
         public string Building
         {
@@ -116,7 +119,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Apartment. Длина строки не более 10 символов.
         /// </summary>
         public string Apartment
         {
@@ -132,14 +135,14 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Address"/>
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="country"></param>
-        /// <param name="city"></param>
-        /// <param name="street"></param>
-        /// <param name="building"></param>
-        /// <param name="apartment"></param>
+        /// <param name="index">Почтовый индекс. Целое шестизначное число.</param>
+        /// <param name="country">Страна. Строка, длиной не более 50 символов</param>
+        /// <param name="city">Город. Строка, длиной не более 50 символов</param>
+        /// <param name="street">Улица. Строка, длиной не более 100 символов</param>
+        /// <param name="building">Строение. Строка, длиной не более 10 символов</param>
+        /// <param name="apartment">Квартира. Строка, длиной не более 10 символов</param>
         public Address(int index, string country, string city, string street, string building, string apartment)
         {
             Index = index;
