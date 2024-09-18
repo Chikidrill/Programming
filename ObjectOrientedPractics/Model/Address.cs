@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ObjectOrientedPractics.Services.ValueValidator;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -41,97 +41,83 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает, задает и осуществляет валидацию вводимого значения поля Index - должно быть целое шестизначное число.
         /// </summary>
+        /// <summary>
+        /// Почтовый индекс.
+        /// </summary>
         public int Index
         {
-            get
-            {
-                return _index;
-            }
+            get => _index;
             set
             {
+                ValueValidator.AssertValueInRange(value, 0, 999999, nameof(Index));
                 _index = value;
-                AssertValueInRange(value, 6, 6, "Index");
             }
         }
 
-        /// <summary>
-        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Country. Длина строки не более 50 символов.
-        /// </summary>
         public string Country
         {
-            get
-            {
-                return _country;
-            }
+            get => _country;
             set
             {
+                ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
                 _country = value;
-                AssertStringOnLength(value, 50, "Country");
             }
         }
 
-        /// <summary>
-        /// Возвращает, задает и осуществляет валидацию вводимого значения поля City. Длина строки не более 50 символов.
-        /// </summary>
         public string City
         {
-            get
-            {
-                return _city;
-            }
+            get => _city;
             set
             {
+                ValueValidator.AssertStringOnLength(value, 50, nameof(City));
                 _city = value;
-                AssertStringOnLength(value, 50, "City");
             }
         }
 
-        /// <summary>
-        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Street. Длина строки не более 100 символов.
-        /// </summary>
         public string Street
         {
-            get
-            {
-                return _street;
-            }
+            get => _street;
             set
             {
+                ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
                 _street = value;
-                AssertStringOnLength(value, 100, "Street");
             }
         }
 
-        /// <summary>
-        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Building. Длина строки не более 10 символов.
-        /// </summary>
         public string Building
         {
-            get
-            {
-                return _building;
-            }
+            get => _building;
             set
             {
+                ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
                 _building = value;
-                AssertStringOnLength(value, 10, "Building");
+            }
+        }
+
+        public string Apartment
+        {
+            get => _apartment;
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
+                _apartment = value;
             }
         }
 
         /// <summary>
-        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Apartment. Длина строки не более 10 символов.
+        /// 
         /// </summary>
-        public string Apartment
+        /// <summary>
+        /// Конструктор по умолчанию.
+        /// </summary>
+        public Address()
         {
-            get
-            {
-                return _apartment;
-            }
-            set
-            {
-                _apartment = value;
-                AssertStringOnLength(value, 10, "Apartment");
-            }
+            //_index = 100000;
+            //_country = "Не указано";
+            //_city = "Не указано";
+            //_street = "Не указано";
+            //_building = "Не указано";
+            //_apartment = "Не указано";
         }
 
         /// <summary>
@@ -152,9 +138,9 @@ namespace ObjectOrientedPractics.Model
             Building = building;
             Apartment = apartment;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Address() { }
+        public override string ToString()
+        {
+            return $"{_index}, {_country}, {_city}, {_street}, д. {_building}, кв. {_apartment}";
+        }
     }
 }

@@ -28,8 +28,24 @@ namespace ObjectOrientedPractics.View.Tabs
             DisplayItemsList();
         }
         private IdGenerator idGenerator = new IdGenerator();
+
+        /// <summary>
+        /// Gets or sets the list of items.
+        /// When setting, updates the ListBox with the new list of items.
+        /// </summary>
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                DisplayItemsList();
+            }
+        }
+
         /// <summary>
         /// Осуществляет добавление нового элемента
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -25,7 +25,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес доставки для каждого объекта класса <see cref="Item"/>. 
         /// </summary>
-        private string _address;
+        private Address _address;
 
         /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
@@ -58,14 +58,10 @@ namespace ObjectOrientedPractics.Model
         // <summary>
         /// Возвращает и задает адрес доставки. Не может быть длиной больше 500 символов.
         /// </summary>
-        public string Address
+        public Address Address
         {
-            get { return _address; }
-            set 
-            {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
-                _address = value; 
-            }
+            get => _address;
+            set => _address = value ?? new Address(); // Убедитесь, что _address не равен null
         }
 
         /// <summary>
@@ -73,7 +69,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullName">ФИО покупателя.</param>
         /// <param name="address">Адрес доставки.</param>
-        public Customer(int id, string fullName, string address)
+        public Customer(int id, string fullName, Address address)
         { 
             _id = IdGenerator.GetNextId();
             FullName = fullName;
