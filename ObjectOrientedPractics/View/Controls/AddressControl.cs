@@ -15,11 +15,16 @@ namespace ObjectOrientedPractics.View.Controls
     public partial class AddressControl : UserControl
     {
         private Address _address;
+
+        /// <summary>
+        /// Получает или задает адрес, который будет отображен в элементе управления.
+        /// При установке нового значения автоматически обновляется информация об адресе.
+        /// </summary>
         public Address Address
         {
             get
             {
-                // Return a new Address instance with updated values
+                
                 return new Address
                 {
                     Country = CountryTextBox.Text,
@@ -40,14 +45,18 @@ namespace ObjectOrientedPractics.View.Controls
                 
             }
         }
-
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="AddressControl"/> и создает новый адрес.
+        /// </summary>
         public AddressControl()
         {
             InitializeComponent();
             Address = new Address();
-
         }
-        
+
+        /// <summary>
+        /// Обновляет информацию об адресе на основе введенных пользователем данных из текстовых полей.
+        /// </summary>
         private void UpdateAddressFromFields()
         {
             try
@@ -76,6 +85,9 @@ namespace ObjectOrientedPractics.View.Controls
 
         }
 
+        /// <summary>
+        /// Обновляет текстовые поля с текущей информацией об адресе.
+        /// </summary>
         public void UpdateAddressInfo()
         {
             
@@ -87,6 +99,10 @@ namespace ObjectOrientedPractics.View.Controls
             ApartsTextBox.Text = _address.Apartment;
            
         }
+
+        /// <summary>
+        /// Очищает все текстовые поля в элементе управления.
+        /// </summary>
         public void ClearInfo()
         {
             IndexTextBox.Clear();
@@ -97,6 +113,9 @@ namespace ObjectOrientedPractics.View.Controls
             ApartsTextBox.Clear();  
         }
 
+        /// <summary>
+        /// Обрабатывает изменение текста в поле для индекса и обновляет цвет фона в зависимости от корректности ввода.
+        /// </summary>
         private void IndexTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -119,6 +138,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обрабатывает изменение текста в поле для страны и обновляет цвет фона в зависимости от корректности ввода.
+        /// </summary>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -134,6 +156,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обрабатывает изменение текста в поле для города и обновляет цвет фона в зависимости от корректности ввода.
+        /// </summary>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -149,6 +174,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обрабатывает изменение текста в поле для улицы и обновляет цвет фона в зависимости от корректности ввода.
+        /// </summary>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -164,6 +192,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обрабатывает изменение текста в поле для дома и обновляет цвет фона в зависимости от корректности ввода.
+        /// </summary>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -179,6 +210,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обрабатывает изменение текста в поле для квартиры и обновляет цвет фона в зависимости от корректности ввода.
+        /// </summary>
         private void ApartsTextBox_TextChanged(object sender, EventArgs e)
         {
             try

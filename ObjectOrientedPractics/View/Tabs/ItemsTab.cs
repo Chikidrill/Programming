@@ -24,14 +24,12 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
-            LoadItemsList();
             DisplayItemsList();
         }
         private IdGenerator idGenerator = new IdGenerator();
 
         /// <summary>
-        /// Gets or sets the list of items.
-        /// When setting, updates the ListBox with the new list of items.
+        /// Задает и возвращает список _items 
         /// </summary>
         public List<Item> Items
         {
@@ -45,7 +43,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
         /// <summary>
         /// Осуществляет добавление нового элемента
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,7 +54,6 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Clear();
             DescriptionTextBox.Clear();
             CostTextBox.Clear();
-            SaveItemsList();
             ClearInputFields();
             DisplayItemsList();
         }
@@ -72,7 +68,6 @@ namespace ObjectOrientedPractics.View.Tabs
             if (selectedIndex != -1)
             {
                 _items.RemoveAt(selectedIndex);
-                SaveItemsList();
                 DisplayItemsList();
                 ClearInputFields();
             }
@@ -115,7 +110,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 string name = NameTextBox.Text;
                 _currentItem.Name = name;
-                SaveItemsList();
             }
             catch (Exception ex)
             {
@@ -139,7 +133,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 string description = DescriptionTextBox.Text;
                 _currentItem.Info = description;
-                SaveItemsList();
             }
             catch (Exception ex)
             {
@@ -166,7 +159,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
 
                 _currentItem.Cost = cost;
-                SaveItemsList();
                 
             }
             catch (Exception ex)
@@ -189,7 +181,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (Enum.TryParse(CategoryComboBox.SelectedItem?.ToString(), out Category category))
                 {
                     _currentItem.Category = category;
-                    SaveItemsList(); // Сохранение изменений
                     DisplayItemsList(); // Обновление списка отображаемых элементов
                 }
             }
@@ -246,40 +237,6 @@ namespace ObjectOrientedPractics.View.Tabs
             DescriptionTextBox.BackColor = AppColors.StandartColor;
             CategoryComboBox.BackColor = AppColors.StandartColor;
 
-        }
-        /// <summary>
-        /// Функция загрузки данных из файла .json
-        /// </summary>
-        private void LoadItemsList()
-        {
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    string jsonString = File.ReadAllText(filePath);
-                    _items = JsonSerializer.Deserialize<List<Item>>(jsonString) ?? new List<Item>();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка при чтении файла: " + ex.Message);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Осуществляет сохранение данных в файл .json.
-        /// </summary>
-        private void SaveItemsList()
-        {
-            try
-            {
-                string jsonString = JsonSerializer.Serialize(_items, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(filePath, jsonString);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при сохранении файла: " + ex.Message);
-            }
         }
     }
 }

@@ -14,34 +14,37 @@ namespace ObjectOrientedPractics.Model
         private string itemsFilePath = "items.json";
         private string customersFilePath = "customers.json";
 
+        /// <summary>
+        /// Получает и задает список товаров.
+        /// </summary>
         public List<Item> Items
         {
             get { return _items; }
             set { _items = value; }
         }
 
+        /// <summary>
+        /// Получает и задает список покупателей.
+        /// </summary>
         public List<Customer> Customers
         {
             get { return _customers; }
             set { _customers = value; }
         }
 
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Store"/> class.
+        /// Загружает данные о товарах и покупателях из файлов.
         /// </summary>
-
-
-        /// <summary>
-        /// Adds a new item to the store.
-        /// </summary>
-        /// <param name="item">The item to add.</param>
         public void LoadData()
         {
             LoadItems();
             LoadCustomers();
         }
 
+        /// <summary>
+        /// Загружает данные о товарах из файла <see cref="itemsFilePath"/>.
+        /// Если файл не существует или происходит ошибка при его чтении, выводится сообщение об ошибке.
+        /// </summary>
         private void LoadItems()
         {
             if (File.Exists(itemsFilePath))
@@ -58,6 +61,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Загружает данные о покупателях из файла <see cref="customersFilePath"/>.
+        /// Если файл не существует или происходит ошибка при его чтении, выводится сообщение об ошибке.
+        /// </summary>
         private void LoadCustomers()
         {
             if (File.Exists(customersFilePath))
@@ -74,12 +81,19 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Сохраняет текущие данные о товарах и покупателях в соответствующие файлы.
+        /// </summary>
         public void SaveData()
         {
             SaveItems();
             SaveCustomers();
         }
 
+        /// <summary>
+        /// Сохраняет данные о товарах в файл <see cref="itemsFilePath"/>.
+        /// Если возникает ошибка при сохранении, выводится сообщение об ошибке.
+        /// </summary>
         private void SaveItems()
         {
             try
@@ -93,6 +107,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Сохраняет данные о покупателях в файл <see cref="customersFilePath"/>.
+        /// Если возникает ошибка при сохранении, выводится сообщение об ошибке.
+        /// </summary>
         private void SaveCustomers()
         {
             try
@@ -105,6 +123,10 @@ namespace ObjectOrientedPractics.Model
                 MessageBox.Show("Ошибка при сохранении файла с покупателями: " + ex.Message);
             }
         }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Store"/> и создает пустые списки для товаров и покупателей.
+        /// </summary>
         public Store()
         {
             _items = new List<Item>();

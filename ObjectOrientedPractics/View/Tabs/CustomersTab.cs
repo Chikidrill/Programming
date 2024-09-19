@@ -26,7 +26,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             InitializeAddressControl();
-            LoadCustomersList();
             DisplayCustomersList();
         }
 
@@ -44,6 +43,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Инициализация элемента AddressControl.
+        /// </summary>
         private void InitializeAddressControl()
         {
             _addressControl = new AddressControl
@@ -54,6 +56,11 @@ namespace ObjectOrientedPractics.View.Tabs
             Controls.Add(_addressControl); // Добавляем AddressControl на форму
         }
 
+        /// <summary>
+        /// Осуществляет добавление нового элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             var address = _addressControl.Address;
@@ -68,13 +75,18 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearInputFields();
             DisplayCustomersList();
         }
+
+        /// <summary>
+        /// Осуществляет удаление выбранного элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
                 _customers.RemoveAt(selectedIndex);
-                SaveCustomersList() ;
                 DisplayCustomersList();
                 ClearInputFields();
             }
@@ -84,7 +96,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-
+        /// <summary>
+        /// Осуществляет сброс выбранного элемента и очищение полей ввода
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
             _currentCustomer = null;
@@ -93,6 +109,10 @@ namespace ObjectOrientedPractics.View.Tabs
             _addressControl.Address = new Address(); // Очистить адрес
             FullNameTextBox.BackColor = AppColors.StandartColor;
         }
+
+        /// <summary>
+        /// Функция очищения полей ввода
+        /// </summary>
         private void ClearInputFields()
         {
             IdTextBox.Text = string.Empty;
@@ -104,6 +124,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomersListBox.SelectedItem = null;
             }
         }
+
+        /// <summary>
+        /// Функция отображения элементов в ЛистБокс
+        /// </summary>
         private void DisplayCustomersList()
         {
             // Очищаем ListBox перед добавлением обновленных данных
@@ -116,6 +140,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Осуществляет изменение значения поля FullName у выбранного элемента.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -128,7 +157,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 string fullname = FullNameTextBox.Text;
                 _currentCustomer.FullName = fullname;
-                SaveCustomersList();
                 DisplayCustomersList();
             }
             catch (Exception ex)
@@ -139,6 +167,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Функция отображения выбранного элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CustomersListBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
@@ -164,37 +197,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 IdTextBox.Clear();
                 FullNameTextBox.Clear();
                 _addressControl.Address = new Address(); // Очистить AddressControl
-            }
-        }
-        private void LoadCustomersList()
-        {
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    string jsonString = File.ReadAllText(filePath);
-                    _customers = JsonSerializer.Deserialize<List<Customer>>(jsonString) ?? new List<Customer>();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка при чтении файла: " + ex.Message);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Осуществляет сохранение данных в файл .json.
-        /// </summary>
-        private void SaveCustomersList()
-        {
-            try
-            {
-                string jsonString = JsonSerializer.Serialize(_customers, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(filePath, jsonString);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при сохранении файла: " + ex.Message);
             }
         }
     }

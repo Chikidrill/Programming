@@ -41,9 +41,6 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает, задает и осуществляет валидацию вводимого значения поля Index - должно быть целое шестизначное число.
         /// </summary>
-        /// <summary>
-        /// Почтовый индекс.
-        /// </summary>
         public int Index
         {
             get => _index;
@@ -54,6 +51,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Country.
+        /// </summary>
         public string Country
         {
             get => _country;
@@ -64,6 +64,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля City.
+        /// </summary>
         public string City
         {
             get => _city;
@@ -74,6 +77,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Street.
+        /// </summary>
         public string Street
         {
             get => _street;
@@ -84,6 +90,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Building.
+        /// </summary>
         public string Building
         {
             get => _building;
@@ -94,6 +103,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает, задает и осуществляет валидацию вводимого значения поля Apartment.
+        /// </summary>
         public string Apartment
         {
             get => _apartment;
@@ -104,21 +116,8 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <summary>
-        /// Конструктор по умолчанию.
-        /// </summary>
-        public Address()
-        {
-            //_index = 100000;
-            //_country = "Не указано";
-            //_city = "Не указано";
-            //_street = "Не указано";
-            //_building = "Не указано";
-            //_apartment = "Не указано";
-        }
+
+
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Address"/>
@@ -138,6 +137,20 @@ namespace ObjectOrientedPractics.Model
             Building = building;
             Apartment = apartment;
         }
+
+        /// <summary>
+        /// Конструктор по умолчанию.
+        /// </summary>
+        public Address()
+        {
+
+        }
+        /// <summary>
+        /// Возвращает строковое представление объекта, 
+        /// содержащего индекс, страну, город, улицу, 
+        /// номер дома и номер квартиры.
+        /// </summary>
+        /// <returns>Строка в формате: "индекс, страна, город, улица, д. дом, кв. квартира"</returns>
         public override string ToString()
         {
             return $"{_index}, {_country}, {_city}, {_street}, д. {_building}, кв. {_apartment}";
