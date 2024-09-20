@@ -11,8 +11,8 @@ namespace ObjectOrientedPractics.Model
     {
         private List<Item> _items;
         private List<Customer> _customers;
-        private string itemsFilePath = "items.json";
-        private string customersFilePath = "customers.json";
+        private string _itemsFilePath = "items.json";
+        private string _customersFilePath = "customers.json";
 
         /// <summary>
         /// Получает и задает список товаров.
@@ -45,13 +45,13 @@ namespace ObjectOrientedPractics.Model
         /// Загружает данные о товарах из файла <see cref="itemsFilePath"/>.
         /// Если файл не существует или происходит ошибка при его чтении, выводится сообщение об ошибке.
         /// </summary>
-        private void LoadItems()
+        public void LoadItems()
         {
-            if (File.Exists(itemsFilePath))
+            if (File.Exists(_itemsFilePath))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(itemsFilePath);
+                    string jsonString = File.ReadAllText(_itemsFilePath);
                     _items = JsonSerializer.Deserialize<List<Item>>(jsonString) ?? new List<Item>();
                 }
                 catch (Exception ex)
@@ -65,13 +65,13 @@ namespace ObjectOrientedPractics.Model
         /// Загружает данные о покупателях из файла <see cref="customersFilePath"/>.
         /// Если файл не существует или происходит ошибка при его чтении, выводится сообщение об ошибке.
         /// </summary>
-        private void LoadCustomers()
+        public void LoadCustomers()
         {
-            if (File.Exists(customersFilePath))
+            if (File.Exists(_customersFilePath))
             {
                 try
                 {
-                    string jsonString = File.ReadAllText(customersFilePath);
+                    string jsonString = File.ReadAllText(_customersFilePath);
                     _customers = JsonSerializer.Deserialize<List<Customer>>(jsonString) ?? new List<Customer>();
                 }
                 catch (Exception ex)
@@ -94,12 +94,12 @@ namespace ObjectOrientedPractics.Model
         /// Сохраняет данные о товарах в файл <see cref="itemsFilePath"/>.
         /// Если возникает ошибка при сохранении, выводится сообщение об ошибке.
         /// </summary>
-        private void SaveItems()
+        public void SaveItems()
         {
             try
             {
                 string jsonString = JsonSerializer.Serialize(_items, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(itemsFilePath, jsonString);
+                File.WriteAllText(_itemsFilePath, jsonString);
             }
             catch (Exception ex)
             {
@@ -111,12 +111,12 @@ namespace ObjectOrientedPractics.Model
         /// Сохраняет данные о покупателях в файл <see cref="customersFilePath"/>.
         /// Если возникает ошибка при сохранении, выводится сообщение об ошибке.
         /// </summary>
-        private void SaveCustomers()
+        public void SaveCustomers()
         {
             try
             {
                 string jsonString = JsonSerializer.Serialize(_customers, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(customersFilePath, jsonString);
+                File.WriteAllText(_customersFilePath, jsonString);
             }
             catch (Exception ex)
             {
