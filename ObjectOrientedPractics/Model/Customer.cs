@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
@@ -15,7 +16,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для объекта класса <see cref="Item"/>. Доступен только для чтения.
         /// </summary>
-        private readonly int _id;
+        private readonly int _id; [JsonInclude]
 
         /// <summary>
         /// ФИО покупателя для каждого объекта класса <see cref="Item"/>. 
@@ -47,9 +48,15 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private Cart _cart;
 
+        // Поле для списка заказов
+        private List<Order> _orders;
         public Cart Cart
         {
             get { return _cart; }
+        }
+        public List<Order> Orders
+        {
+            get { return _orders; }
         }
 
         // <summary>
@@ -85,6 +92,7 @@ namespace ObjectOrientedPractics.Model
             FullName = fullName;
             Address = address;
             _cart = new Cart();
+            _orders = new List<Order>();
         }
         public Customer() { }
     }
