@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
 
@@ -13,11 +14,14 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Item
     {
-        private static int _allItems = 0;
+        /// <summary>
+        /// Генератор ID
+        /// </summary>
+        private static IdGenerator IdGenerator = new IdGenerator();
         /// <summary>
         /// Уникальный идентификатор для объекта класса <see cref="Item"/>. Доступен только для чтения.
         /// </summary>
-        private readonly int _id;
+        private readonly int _id; [JsonInclude]
 
         /// <summary>
         /// Название товара для каждого объекта класса <see cref="Item"/>. 
@@ -37,16 +41,25 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
-        public int ID { get => IdGenerator.GetNextId(); }
-        /// <summary>
-        /// Возвращает и задает название товара. Не может быть длиной больше 200 символов.
-        /// </summary>
-        private static IdGenerator IdGenerator = new IdGenerator();
 
-        public static int AllItems()
+        /// <summary>
+        /// Возвращает значение ID
+        /// </summary>
+        public int Id 
         {
-            return _allItems;
+            get 
+            {  
+                return _id; 
+            }
         }
+        /// <summary>
+        /// Вовзращает и задает категорию товара из перечисления Category
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает название товара
+        /// </summary>
         public string Name
         {
             get { return _name; }
@@ -87,11 +100,16 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара.</param>
         /// <param name="info">Информация о товаре.</param>
         /// <param name="cost">Стоимость товара.</param>
-        public Item(int id, string name, string info, double cost)
+        /// <param name="category">Категория товара.</param>
+
+        [JsonConstructor]
+        public Item(string name, string info, double cost, Category category)
         {
+            _id = IdGenerator.GetNextId();
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
         public Item() { }
     }

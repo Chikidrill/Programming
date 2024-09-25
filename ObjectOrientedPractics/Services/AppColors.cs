@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Класс, хранящий цвета, используемые в приложении
+    /// </summary>
     class AppColors
     {
         /// <summary>

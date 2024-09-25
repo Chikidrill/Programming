@@ -34,8 +34,6 @@
             RemoveButton = new Button();
             AddButton = new Button();
             CustomersListBox = new ListBox();
-            AddressLabel = new Label();
-            AddressTextBox = new RichTextBox();
             FullNameTextBox = new TextBox();
             IdTextBox = new TextBox();
             FullNameLabel = new Label();
@@ -111,29 +109,7 @@
             CustomersListBox.Name = "CustomersListBox";
             CustomersListBox.Size = new Size(378, 444);
             CustomersListBox.TabIndex = 30;
-            CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
-            // 
-            // AddressLabel
-            // 
-            AddressLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            AddressLabel.AutoSize = true;
-            AddressLabel.Location = new Point(424, 112);
-            AddressLabel.Name = "AddressLabel";
-            AddressLabel.Size = new Size(65, 20);
-            AddressLabel.TabIndex = 29;
-            AddressLabel.Text = "Address:";
-            // 
-            // AddressTextBox
-            // 
-            AddressTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            AddressTextBox.Location = new Point(507, 112);
-            AddressTextBox.MaximumSize = new Size(0, 120);
-            AddressTextBox.MinimumSize = new Size(270, 40);
-            AddressTextBox.Name = "AddressTextBox";
-            AddressTextBox.Size = new Size(507, 120);
-            AddressTextBox.TabIndex = 28;
-            AddressTextBox.Text = "";
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
+            CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged_1;
             // 
             // FullNameTextBox
             // 
@@ -185,8 +161,6 @@
             Controls.Add(RemoveButton);
             Controls.Add(AddButton);
             Controls.Add(CustomersListBox);
-            Controls.Add(AddressLabel);
-            Controls.Add(AddressTextBox);
             Controls.Add(FullNameTextBox);
             Controls.Add(IdTextBox);
             Controls.Add(FullNameLabel);
@@ -205,8 +179,6 @@
         private Button RemoveButton;
         private Button AddButton;
         private ListBox CustomersListBox;
-        private Label AddressLabel;
-        private RichTextBox AddressTextBox;
         private TextBox FullNameTextBox;
         private TextBox IdTextBox;
         private Label FullNameLabel;
