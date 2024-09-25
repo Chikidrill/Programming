@@ -42,6 +42,16 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private static IdGenerator IdGenerator = new IdGenerator();
 
+        /// <summary>
+        /// Уникальная корзина для каждого покупателя
+        /// </summary>
+        private Cart _cart;
+
+        public Cart Cart
+        {
+            get { return _cart; }
+        }
+
         // <summary>
         /// Возвращает и задает ФИО покупателя. Не может быть длиной больше 200 символов.
         /// </summary>
@@ -74,6 +84,7 @@ namespace ObjectOrientedPractics.Model
             _id = IdGenerator.GetNextId();
             FullName = fullName;
             Address = address;
+            _cart = new Cart();
         }
         public Customer() { }
     }
