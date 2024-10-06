@@ -41,17 +41,19 @@ namespace ObjectOrientedPractics.Model
             get { return _deliveryAddress; } 
             set {_deliveryAddress = value; }
         }
-        public List<Item> Items
+       public List<Item> Items
         {
-            get { return _items; }
-            set { _items = value; }
+            get => _items;
+            set => _items = value ?? new List<Item>();
         }
         public double TotalAmount
         {
             get
             {
-                if (_items == null || !_items.Any())
+                if (_items == null || _items.Count == 0)
+                {
                     return 0.0;
+                }
 
                 double totalAmount = 0.0;
                 foreach (var item in _items)
@@ -63,12 +65,13 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public Order(int id, Address deliveryAddress)
+        public Order(int id, Address deliveryAddress, OrderStatus status)
         {
             _id = id;
             _date = DateTime.Now;
             _deliveryAddress = deliveryAddress;
             _items = new List<Item>();
+           
         }
     }
 }

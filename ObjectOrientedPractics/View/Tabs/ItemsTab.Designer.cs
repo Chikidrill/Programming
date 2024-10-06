@@ -58,9 +58,9 @@
             // 
             // NameTextBox
             // 
-            NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            NameTextBox.Location = new Point(433, 206);
-            NameTextBox.MaximumSize = new Size(0, 120);
+            NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            NameTextBox.Location = new Point(434, 206);
+            NameTextBox.MaximumSize = new Size(0, 220);
             NameTextBox.MinimumSize = new Size(270, 40);
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(591, 120);
@@ -70,9 +70,9 @@
             // 
             // descriptionLabel
             // 
-            descriptionLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            descriptionLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(434, 329);
+            descriptionLabel.Location = new Point(434, 342);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(88, 20);
             descriptionLabel.TabIndex = 13;
@@ -91,7 +91,7 @@
             // DescriptionTextBox
             // 
             DescriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DescriptionTextBox.Location = new Point(433, 352);
+            DescriptionTextBox.Location = new Point(434, 365);
             DescriptionTextBox.MaximumSize = new Size(0, 120);
             DescriptionTextBox.MinimumSize = new Size(270, 40);
             DescriptionTextBox.Name = "DescriptionTextBox";
@@ -160,11 +160,11 @@
             // 
             ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
-            ItemsListBox.Location = new Point(13, 26);
+            ItemsListBox.Location = new Point(3, 26);
             ItemsListBox.MaximumSize = new Size(450, 444);
             ItemsListBox.MinimumSize = new Size(300, 380);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(378, 444);
+            ItemsListBox.Size = new Size(388, 444);
             ItemsListBox.TabIndex = 16;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 

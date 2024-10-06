@@ -65,7 +65,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             var address = _addressControl.Address;
 
-            var newCustomer = new Customer(idGenerator.GetNextId(), FullNameTextBox.Text, address);
+            var newCustomer = new Customer(FullNameTextBox.Text, address);
             _customers.Add(newCustomer);
 
             // Обновление UI и очистка

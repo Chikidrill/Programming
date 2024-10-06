@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Свойство для получения списка товаров
         /// </summary>
-        public List<Item> Items { get { return _items; } set { _items = value; } }
+        public List<Item> Items { get { return _items; } set { _items = value ?? new List<Item>(); } }
 
         /// <summary>
         /// Свойство, возвращающее общую стоимость товаров в корзине
@@ -28,8 +28,10 @@ namespace ObjectOrientedPractics.Model
         {
             get
             {
-                if (_items == null || !_items.Any())
+                if (_items == null || _items.Count == 0)
+                {
                     return 0.0;
+                }
 
                 double totalAmount = 0.0;
                 foreach (var item in _items)
@@ -46,6 +48,10 @@ namespace ObjectOrientedPractics.Model
         public Cart()
         {
             _items = new List<Item>();
+        }
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
         }
     }
 }

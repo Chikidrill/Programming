@@ -31,9 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            itemsTab1 = new View.Tabs.ItemsTab();
             tabPage2 = new TabPage();
             customersTab1 = new View.Tabs.CustomersTab();
+            CartsTab = new TabPage();
+            itemsTab1 = new View.Tabs.ItemsTab();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -43,6 +44,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(CartsTab);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -60,14 +62,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Items";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // itemsTab1
-            // 
-            itemsTab1.Dock = DockStyle.Fill;
-            itemsTab1.Location = new Point(3, 3);
-            itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(1123, 564);
-            itemsTab1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -87,6 +81,24 @@
             customersTab1.Name = "customersTab1";
             customersTab1.Size = new Size(1123, 564);
             customersTab1.TabIndex = 0;
+            // 
+            // CartsTab
+            // 
+            CartsTab.Location = new Point(4, 29);
+            CartsTab.Name = "CartsTab";
+            CartsTab.Padding = new Padding(3);
+            CartsTab.Size = new Size(1129, 570);
+            CartsTab.TabIndex = 2;
+            CartsTab.Text = "Carts";
+            CartsTab.UseVisualStyleBackColor = true;
+            // 
+            // itemsTab1
+            // 
+            itemsTab1.Dock = DockStyle.Fill;
+            itemsTab1.Location = new Point(3, 3);
+            itemsTab1.Name = "itemsTab1";
+            itemsTab1.Size = new Size(1123, 564);
+            itemsTab1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -110,7 +122,8 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private View.Tabs.ItemsTab itemsTab1;
         private View.Tabs.CustomersTab customersTab1;
+        private TabPage CartsTab;
+        private View.Tabs.ItemsTab itemsTab1;
     }
 }

@@ -29,6 +29,11 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
+        /// Генератор ID
+        /// </summary>
+        private static IdGenerator IdGenerator = new IdGenerator();
+
+        /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
         public int Id
@@ -38,10 +43,7 @@ namespace ObjectOrientedPractics.Model
                 return _id;
             }
         }
-        /// <summary>
-        /// Генератор ID
-        /// </summary>
-        private static IdGenerator IdGenerator = new IdGenerator();
+        
 
         /// <summary>
         /// Уникальная корзина для каждого покупателя
@@ -50,16 +52,15 @@ namespace ObjectOrientedPractics.Model
 
         // Поле для списка заказов
         private List<Order> _orders;
-        public Cart Cart
-        {
-            get { return _cart; }
-        }
+        public Cart Cart { get; set; }
         public List<Order> Orders
         {
-            get { return _orders; }
+            get => _orders;
+            set => _orders = value ?? new List<Order>();
         }
 
-        // <summary>
+
+        /// <summary>
         /// Возвращает и задает ФИО покупателя. Не может быть длиной больше 200 символов.
         /// </summary>
         public string FullName 
@@ -72,7 +73,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        // <summary>
+        /// <summary>
         /// Возвращает и задает адрес доставки. Не может быть длиной больше 500 символов.
         /// </summary>
         public Address Address
@@ -81,12 +82,17 @@ namespace ObjectOrientedPractics.Model
             set => _address = value ?? new Address(); // Убедитесь, что _address не равен null
         }
 
+        public void AddOrder(Order order)
+        {
+            _orders.Add(order);
+        }
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>
         /// </summary>
         /// <param name="fullName">ФИО покупателя.</param>
         /// <param name="address">Адрес доставки.</param>
-        public Customer(int id, string fullName, Address address)
+        public Customer(string fullName, Address address)
         { 
             _id = IdGenerator.GetNextId();
             FullName = fullName;
@@ -94,6 +100,9 @@ namespace ObjectOrientedPractics.Model
             _cart = new Cart();
             _orders = new List<Order>();
         }
-        public Customer() { }
+        public Customer() 
+        {
+            Cart = new Cart();
+        }
     }
 }
