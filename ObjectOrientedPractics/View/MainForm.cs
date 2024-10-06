@@ -1,6 +1,6 @@
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View.Tabs;
-
+using static ObjectOrientedPractics.View.Tabs.CartsTab;
 
 
 namespace ObjectOrientedPractics
@@ -13,6 +13,8 @@ namespace ObjectOrientedPractics
         {
             InitializeComponent();
 
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+
             // Инициализация объекта Store
             _cartsTab = new CartsTab();
             _store = new Store();
@@ -24,7 +26,7 @@ namespace ObjectOrientedPractics
 
 
             // Добавляем элемент управления CartsTab на вкладку Carts
-            CartsTab.Controls.Add(_cartsTab);
+            cartsPage.Controls.Add(_cartsTab);
             _cartsTab.Dock = DockStyle.Fill;  // Растянуть элемент на всю вкладку
 
             // Инициализируем данные CartsTab
@@ -39,6 +41,14 @@ namespace ObjectOrientedPractics
         {
             base.OnFormClosing(e);
             _store.SaveData();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == cartsPage)
+            {
+                _cartsTab.RefreshData();
+            }
         }
     }
 }

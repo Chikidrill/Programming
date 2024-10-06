@@ -55,8 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public CartsTab()
         {
             InitializeComponent();
-
-
+            CustomerComboBox.SelectedIndex = -1;
         }
 
         // Метод для инициализации списка товаров
@@ -73,25 +72,30 @@ namespace ObjectOrientedPractics.View.Tabs
         // Метод для инициализации списка покупателей
         public void InitializeCustomersList()
         {
-            CustomerComboBox.DataSource = null; // Сброс данных
-            if (Customers != null && Customers.Count > 0)
+            if (_customers != null)
             {
-                CustomerComboBox.DataSource = Customers;
-                CustomerComboBox.DisplayMember = "FullName"; // Отображаемое свойство
+                CustomerComboBox.DataSource = null; // Сбрасываем DataSource
+                CustomerComboBox.DataSource = _customers; // Присваиваем новый источник данных
+                CustomerComboBox.DisplayMember = "FullName"; // Отображаем имя покупателя
+                CustomerComboBox.SelectedIndex = -1;
             }
         }
 
         // Инициализация товаров в корзине текущего покупателя
         private void InitializeCartListBox()
         {
-            CartListBox.Items.Clear();
-            if (CurrentCustomer != null && CurrentCustomer.Cart != null && CurrentCustomer.Cart.Items.Count > 0)
-            {
-                CartListBox.DataSource = null; // Сброс данных
-                CartListBox.DataSource = CurrentCustomer.Cart.Items;
-                CartListBox.DisplayMember = "Name"; // Отображаемое свойство
-            }
+            CartListBox.DataSource = null; // Сбрасываем DataSource
+            CartListBox.DataSource = CurrentCustomer?.Cart?.Items; // Присваиваем новый источник данных
+            CartListBox.DisplayMember = "Name";
             UpdateTotalAmount();
+        }
+
+        public void RefreshData()
+        {
+            InitializeItemsList(); // Перезаполняем ListBox с товарами
+            InitializeCustomersList(); // Перезаполняем ComboBox с покупателями
+            CurrentCustomer = null; // Сбрасываем выбранного покупателя
+            InitializeCartListBox(); // Обновляем ListBox с корзиной
         }
 
         // Обработчик изменения выбора покупателя
@@ -191,6 +195,6 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateTotalAmount(); // Обновление общей стоимости
 
             MessageBox.Show("Заказ успешно создан!");
-        }
+        } 
     }
 }
