@@ -44,10 +44,11 @@
             // 
             // ItemsListBox
             // 
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.Location = new Point(18, 41);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(339, 384);
+            ItemsListBox.Size = new Size(339, 424);
             ItemsListBox.TabIndex = 0;
             // 
             // label1
@@ -115,18 +116,25 @@
             // 
             // CreateOrderButton
             // 
-            CreateOrderButton.Location = new Point(404, 442);
+            CreateOrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CreateOrderButton.Location = new Point(547, 415);
+            CreateOrderButton.MaximumSize = new Size(135, 0);
+            CreateOrderButton.MinimumSize = new Size(100, 0);
             CreateOrderButton.Name = "CreateOrderButton";
-            CreateOrderButton.Size = new Size(124, 63);
+            CreateOrderButton.Size = new Size(135, 46);
             CreateOrderButton.TabIndex = 8;
             CreateOrderButton.Text = "Create Order";
             CreateOrderButton.UseVisualStyleBackColor = true;
+            CreateOrderButton.Click += CreateOrderButton_Click;
             // 
             // RemoveItemButton
             // 
-            RemoveItemButton.Location = new Point(630, 442);
+            RemoveItemButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            RemoveItemButton.Location = new Point(688, 415);
+            RemoveItemButton.MaximumSize = new Size(135, 0);
+            RemoveItemButton.MinimumSize = new Size(100, 0);
             RemoveItemButton.Name = "RemoveItemButton";
-            RemoveItemButton.Size = new Size(135, 63);
+            RemoveItemButton.Size = new Size(135, 46);
             RemoveItemButton.TabIndex = 9;
             RemoveItemButton.Text = "Remove Item";
             RemoveItemButton.UseVisualStyleBackColor = true;
@@ -135,18 +143,22 @@
             // ClearCartButton
             // 
             ClearCartButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ClearCartButton.Location = new Point(788, 442);
+            ClearCartButton.Location = new Point(829, 415);
+            ClearCartButton.MaximumSize = new Size(135, 0);
+            ClearCartButton.MinimumSize = new Size(100, 0);
             ClearCartButton.Name = "ClearCartButton";
-            ClearCartButton.Size = new Size(176, 63);
+            ClearCartButton.Size = new Size(135, 46);
             ClearCartButton.TabIndex = 10;
             ClearCartButton.Text = "Clear Cart";
             ClearCartButton.UseVisualStyleBackColor = true;
+            ClearCartButton.Click += ClearCartButton_Click;
             // 
             // AddToCartButton
             // 
-            AddToCartButton.Location = new Point(18, 445);
+            AddToCartButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AddToCartButton.Location = new Point(18, 486);
             AddToCartButton.Name = "AddToCartButton";
-            AddToCartButton.Size = new Size(176, 60);
+            AddToCartButton.Size = new Size(125, 60);
             AddToCartButton.TabIndex = 11;
             AddToCartButton.Text = "Add To Cart";
             AddToCartButton.UseVisualStyleBackColor = true;
@@ -154,8 +166,9 @@
             // 
             // CartListBox
             // 
+            CartListBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CartListBox.FormattingEnabled = true;
-            CartListBox.Location = new Point(404, 159);
+            CartListBox.Location = new Point(404, 147);
             CartListBox.Name = "CartListBox";
             CartListBox.Size = new Size(560, 164);
             CartListBox.TabIndex = 12;
@@ -177,7 +190,7 @@
             Controls.Add(label1);
             Controls.Add(ItemsListBox);
             Name = "CartsTab";
-            Size = new Size(1016, 674);
+            Size = new Size(1016, 558);
             ResumeLayout(false);
             PerformLayout();
         }

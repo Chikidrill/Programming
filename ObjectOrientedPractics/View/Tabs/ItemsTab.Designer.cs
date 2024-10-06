@@ -48,9 +48,9 @@
             // 
             // nameLabel
             // 
-            nameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            nameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(434, 183);
+            nameLabel.Location = new Point(434, 168);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(52, 20);
             nameLabel.TabIndex = 15;
@@ -59,20 +59,20 @@
             // NameTextBox
             // 
             NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            NameTextBox.Location = new Point(434, 206);
-            NameTextBox.MaximumSize = new Size(0, 220);
+            NameTextBox.Location = new Point(433, 191);
+            NameTextBox.MaximumSize = new Size(0, 420);
             NameTextBox.MinimumSize = new Size(270, 40);
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(591, 120);
+            NameTextBox.Size = new Size(592, 120);
             NameTextBox.TabIndex = 14;
             NameTextBox.Text = "";
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
             // descriptionLabel
             // 
-            descriptionLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            descriptionLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(434, 342);
+            descriptionLabel.Location = new Point(432, 327);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(88, 20);
             descriptionLabel.TabIndex = 13;
@@ -91,8 +91,8 @@
             // DescriptionTextBox
             // 
             DescriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DescriptionTextBox.Location = new Point(434, 365);
-            DescriptionTextBox.MaximumSize = new Size(0, 120);
+            DescriptionTextBox.Location = new Point(434, 350);
+            DescriptionTextBox.MaximumSize = new Size(0, 420);
             DescriptionTextBox.MinimumSize = new Size(270, 40);
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(591, 120);
@@ -212,6 +212,7 @@
             // 
             // CategoryComboBox
             // 
+            CategoryComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(525, 105);
             CategoryComboBox.Name = "CategoryComboBox";

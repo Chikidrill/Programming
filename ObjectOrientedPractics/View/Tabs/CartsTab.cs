@@ -55,7 +55,8 @@ namespace ObjectOrientedPractics.View.Tabs
         public CartsTab()
         {
             InitializeComponent();
-            AmountLabel.Text = "Total: $0.00";
+
+
         }
 
         // Метод для инициализации списка товаров
@@ -90,6 +91,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.DataSource = CurrentCustomer.Cart.Items;
                 CartListBox.DisplayMember = "Name"; // Отображаемое свойство
             }
+            UpdateTotalAmount();
         }
 
         // Обработчик изменения выбора покупателя
@@ -157,6 +159,38 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 AmountLabel.Text = "Total: $0.00";
             }
+        }
+
+        private void ClearCartButton_Click(object sender, EventArgs e)
+        {
+            CurrentCustomer.Cart.Items.Clear();
+            CartListBox.DataSource = null;
+            UpdateTotalAmount();
+            InitializeCartListBox();
+        }
+
+        private void CreateOrderButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
+            {
+                MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
+                return;
+            }
+
+            // Создайте новый заказ
+            var newOrder = new Order(CurrentCustomer.Address);
+
+            // Добавьте новый заказ в список заказов покупателя
+            CurrentCustomer.Orders.Add(newOrder);
+
+            // Очистите корзину
+            CurrentCustomer.Cart.Items.Clear();
+
+            // Обновите интерфейс
+            CartListBox.DataSource = null; // Обновление ListBox
+            UpdateTotalAmount(); // Обновление общей стоимости
+
+            MessageBox.Show("Заказ успешно создан!");
         }
     }
 }

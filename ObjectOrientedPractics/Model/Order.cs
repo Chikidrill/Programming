@@ -41,11 +41,12 @@ namespace ObjectOrientedPractics.Model
             get { return _deliveryAddress; } 
             set {_deliveryAddress = value; }
         }
-       public List<Item> Items
+        public List<Item> Items
         {
             get => _items;
             set => _items = value ?? new List<Item>();
         }
+        public OrderStatus Status { get; set; }
         public double TotalAmount
         {
             get
@@ -65,12 +66,13 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public Order(int id, Address deliveryAddress, OrderStatus status)
+        public Order(Address deliveryAddress)
         {
-            _id = id;
+            _id = IdGenerator.GetNextId();
             _date = DateTime.Now;
             _deliveryAddress = deliveryAddress;
             _items = new List<Item>();
+            Status = OrderStatus.New;
            
         }
     }
