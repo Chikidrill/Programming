@@ -9,6 +9,7 @@ namespace ObjectOrientedPractics
     {
         private Store _store;
         private CartsTab _cartsTab;
+        private OrdersTab _ordersTab;
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +25,10 @@ namespace ObjectOrientedPractics
             customersTab1.Customers = _store.Customers;
             // Создаем элемент CartsTab
 
+            _ordersTab = new OrdersTab();
+            OrdersPage.Controls.Add(_ordersTab);
+            _ordersTab.Customers = _store.Customers; // Передаем список покупателей
+            _ordersTab.UpdateOrders();
 
             // Добавляем элемент управления CartsTab на вкладку Carts
             cartsPage.Controls.Add(_cartsTab);
@@ -48,6 +53,10 @@ namespace ObjectOrientedPractics
             if (tabControl1.SelectedTab == cartsPage)
             {
                 _cartsTab.RefreshData();
+            }
+            if (tabControl1.SelectedTab == OrdersPage)
+            {
+                _ordersTab.RefreshData();
             }
         }
     }

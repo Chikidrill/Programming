@@ -175,25 +175,31 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
+            // Проверяем, выбран ли покупатель и есть ли товары в корзине
             if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
             {
                 MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
                 return;
             }
 
-            // Создайте новый заказ
-            var newOrder = new Order(CurrentCustomer.Address);
+            // Создаём новый заказ с адресом доставки и полным именем покупателя
+            var newOrder = new Order(CurrentCustomer.Address, CurrentCustomer.FullName)
+            {
+                // Копируем товары из корзины в заказ
+                Items = new List<Item>(CurrentCustomer.Cart.Items)
+            };
 
-            // Добавьте новый заказ в список заказов покупателя
+            // Добавляем новый заказ в список заказов покупателя
             CurrentCustomer.Orders.Add(newOrder);
 
-            // Очистите корзину
+            // Очищаем корзину
             CurrentCustomer.Cart.Items.Clear();
 
-            // Обновите интерфейс
-            CartListBox.DataSource = null; // Обновление ListBox
-            UpdateTotalAmount(); // Обновление общей стоимости
+            // Обновляем интерфейс
+            CartListBox.DataSource = null; // Сбрасываем DataSource для обновления списка
+            UpdateTotalAmount(); // Обновляем общую стоимость корзины
 
+            // Отображаем сообщение об успешном создании заказа
             MessageBox.Show("Заказ успешно создан!");
         } 
     }

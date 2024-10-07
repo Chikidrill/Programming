@@ -11,6 +11,7 @@ namespace ObjectOrientedPractics.Model
     {
         private List<Item> _items;
         private List<Customer> _customers;
+        private List<Order> _orders;
         private string _itemsFilePath = "items.json";
         private string _customersFilePath = "customers.json";
 
@@ -31,6 +32,8 @@ namespace ObjectOrientedPractics.Model
             get { return _customers; }
             set { _customers = value; }
         }
+
+        public List<Order> Orders => _orders;
 
         /// <summary>
         /// Загружает данные о товарах и покупателях из файлов.
@@ -131,6 +134,7 @@ namespace ObjectOrientedPractics.Model
         {
             _items = new List<Item>();
             _customers = new List<Customer>();
+            _orders = new List<Order>();
         }
     }
 }

@@ -21,6 +21,8 @@ namespace ObjectOrientedPractics.Model
         private readonly int _id; [JsonInclude]
 
         private readonly DateTime _date;
+
+        private string _fullName;
         private Address _deliveryAddress;
         private List<Item> _items;
 
@@ -47,7 +49,7 @@ namespace ObjectOrientedPractics.Model
             set => _items = value ?? new List<Item>();
         }
         public OrderStatus Status { get; set; }
-        public double TotalAmount
+        public double TotalCost
         {
             get
             {
@@ -56,24 +58,28 @@ namespace ObjectOrientedPractics.Model
                     return 0.0;
                 }
 
-                double totalAmount = 0.0;
+                double totalCost = 0.0;
                 foreach (var item in _items)
                 {
-                    totalAmount += item.Cost;
+                    totalCost += item.Cost;
                 }
 
-                return totalAmount;
+                return totalCost;
             }
         }
-
-        public Order(Address deliveryAddress)
+        public string FullName
+        {
+            get => _fullName;
+            set => _fullName = value ?? "Unknown";
+        }
+        public Order(Address deliveryAddress, string FullName)
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Now;
             _deliveryAddress = deliveryAddress;
+            _fullName = FullName;
             _items = new List<Item>();
             Status = OrderStatus.New;
-           
         }
     }
 }
