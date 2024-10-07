@@ -51,7 +51,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1137, 603);
+            tabControl1.Size = new Size(1137, 711);
             tabControl1.TabIndex = 0;
             // 
             // itemsPage
@@ -60,7 +60,7 @@
             itemsPage.Location = new Point(4, 29);
             itemsPage.Name = "itemsPage";
             itemsPage.Padding = new Padding(3);
-            itemsPage.Size = new Size(1129, 570);
+            itemsPage.Size = new Size(1129, 678);
             itemsPage.TabIndex = 0;
             itemsPage.Text = "Items";
             itemsPage.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@
             itemsTab1.Dock = DockStyle.Fill;
             itemsTab1.Location = new Point(3, 3);
             itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(1123, 564);
+            itemsTab1.Size = new Size(1123, 672);
             itemsTab1.TabIndex = 0;
             // 
             // customersPage
@@ -79,7 +79,7 @@
             customersPage.Location = new Point(4, 29);
             customersPage.Name = "customersPage";
             customersPage.Padding = new Padding(3);
-            customersPage.Size = new Size(1129, 570);
+            customersPage.Size = new Size(1129, 606);
             customersPage.TabIndex = 1;
             customersPage.Text = "Customers";
             customersPage.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             customersTab1.Dock = DockStyle.Fill;
             customersTab1.Location = new Point(3, 3);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(1123, 564);
+            customersTab1.Size = new Size(1123, 600);
             customersTab1.TabIndex = 0;
             // 
             // cartsPage
@@ -97,7 +97,7 @@
             cartsPage.Location = new Point(4, 29);
             cartsPage.Name = "cartsPage";
             cartsPage.Padding = new Padding(3);
-            cartsPage.Size = new Size(1129, 570);
+            cartsPage.Size = new Size(1129, 606);
             cartsPage.TabIndex = 2;
             cartsPage.Text = "Carts";
             cartsPage.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             OrdersPage.Location = new Point(4, 29);
             OrdersPage.Name = "OrdersPage";
             OrdersPage.Padding = new Padding(3);
-            OrdersPage.Size = new Size(1129, 570);
+            OrdersPage.Size = new Size(1129, 606);
             OrdersPage.TabIndex = 3;
             OrdersPage.Text = "Orders";
             OrdersPage.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1137, 603);
+            ClientSize = new Size(1137, 711);
             Controls.Add(tabControl1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(900, 600);

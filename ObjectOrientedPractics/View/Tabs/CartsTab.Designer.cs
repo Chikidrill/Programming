@@ -40,6 +40,8 @@
             ClearCartButton = new Button();
             AddToCartButton = new Button();
             CartListBox = new ListBox();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // ItemsListBox
@@ -66,7 +68,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Nekst Semi Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(404, 46);
+            label2.Location = new Point(15, 63);
             label2.Name = "label2";
             label2.Size = new Size(85, 18);
             label2.TabIndex = 2;
@@ -76,9 +78,9 @@
             // 
             CustomerComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CustomerComboBox.FormattingEnabled = true;
-            CustomerComboBox.Location = new Point(548, 41);
+            CustomerComboBox.Location = new Point(157, 58);
             CustomerComboBox.Name = "CustomerComboBox";
-            CustomerComboBox.Size = new Size(416, 28);
+            CustomerComboBox.Size = new Size(390, 28);
             CustomerComboBox.TabIndex = 3;
             CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
             // 
@@ -86,7 +88,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Nekst Semi Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(404, 126);
+            label3.Location = new Point(15, 114);
             label3.Name = "label3";
             label3.Size = new Size(46, 18);
             label3.TabIndex = 5;
@@ -97,7 +99,7 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Nekst Semi Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(893, 340);
+            label4.Location = new Point(465, 378);
             label4.Name = "label4";
             label4.Size = new Size(71, 18);
             label4.TabIndex = 6;
@@ -108,7 +110,7 @@
             AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Nekst Semi Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(829, 371);
+            AmountLabel.Location = new Point(401, 409);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(135, 41);
             AmountLabel.TabIndex = 7;
@@ -117,11 +119,11 @@
             // CreateOrderButton
             // 
             CreateOrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            CreateOrderButton.Location = new Point(547, 415);
+            CreateOrderButton.Location = new Point(15, 457);
             CreateOrderButton.MaximumSize = new Size(135, 0);
             CreateOrderButton.MinimumSize = new Size(100, 0);
             CreateOrderButton.Name = "CreateOrderButton";
-            CreateOrderButton.Size = new Size(135, 46);
+            CreateOrderButton.Size = new Size(135, 53);
             CreateOrderButton.TabIndex = 8;
             CreateOrderButton.Text = "Create Order";
             CreateOrderButton.UseVisualStyleBackColor = true;
@@ -130,11 +132,11 @@
             // RemoveItemButton
             // 
             RemoveItemButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            RemoveItemButton.Location = new Point(688, 415);
+            RemoveItemButton.Location = new Point(170, 457);
             RemoveItemButton.MaximumSize = new Size(135, 0);
             RemoveItemButton.MinimumSize = new Size(100, 0);
             RemoveItemButton.Name = "RemoveItemButton";
-            RemoveItemButton.Size = new Size(135, 46);
+            RemoveItemButton.Size = new Size(135, 53);
             RemoveItemButton.TabIndex = 9;
             RemoveItemButton.Text = "Remove Item";
             RemoveItemButton.UseVisualStyleBackColor = true;
@@ -143,11 +145,11 @@
             // ClearCartButton
             // 
             ClearCartButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ClearCartButton.Location = new Point(829, 415);
+            ClearCartButton.Location = new Point(326, 457);
             ClearCartButton.MaximumSize = new Size(135, 0);
             ClearCartButton.MinimumSize = new Size(100, 0);
             ClearCartButton.Name = "ClearCartButton";
-            ClearCartButton.Size = new Size(135, 46);
+            ClearCartButton.Size = new Size(135, 53);
             ClearCartButton.TabIndex = 10;
             ClearCartButton.Text = "Clear Cart";
             ClearCartButton.UseVisualStyleBackColor = true;
@@ -168,29 +170,40 @@
             // 
             CartListBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CartListBox.FormattingEnabled = true;
-            CartListBox.Location = new Point(404, 147);
+            CartListBox.Location = new Point(15, 135);
             CartListBox.Name = "CartListBox";
-            CartListBox.Size = new Size(560, 164);
+            CartListBox.Size = new Size(532, 204);
             CartListBox.TabIndex = 12;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(CartListBox);
+            panel1.Controls.Add(CustomerComboBox);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(AmountLabel);
+            panel1.Controls.Add(CreateOrderButton);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(ClearCartButton);
+            panel1.Controls.Add(RemoveItemButton);
+            panel1.Location = new Point(390, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(549, 552);
+            panel1.TabIndex = 13;
             // 
             // CartsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(CartListBox);
+            Controls.Add(panel1);
             Controls.Add(AddToCartButton);
-            Controls.Add(ClearCartButton);
-            Controls.Add(RemoveItemButton);
-            Controls.Add(CreateOrderButton);
-            Controls.Add(AmountLabel);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(CustomerComboBox);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(ItemsListBox);
             Name = "CartsTab";
             Size = new Size(1016, 558);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -209,5 +222,6 @@
         private Button ClearCartButton;
         private Button AddToCartButton;
         private ListBox CartListBox;
+        private Panel panel1;
     }
 }

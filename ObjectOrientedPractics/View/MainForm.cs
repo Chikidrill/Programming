@@ -27,8 +27,10 @@ namespace ObjectOrientedPractics
 
             _ordersTab = new OrdersTab();
             OrdersPage.Controls.Add(_ordersTab);
+            _ordersTab.Dock = DockStyle.Fill;
             _ordersTab.Customers = _store.Customers; // Передаем список покупателей
             _ordersTab.UpdateOrders();
+            
 
             // Добавляем элемент управления CartsTab на вкладку Carts
             cartsPage.Controls.Add(_cartsTab);

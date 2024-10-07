@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address1 = new Model.Address();
             OrdersDataGridView = new DataGridView();
-            addressControl1 = new Controls.AddressControl();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -39,38 +37,34 @@
             OrderIdTextBox = new TextBox();
             OrderCreationTimeTextBox = new TextBox();
             StatusComboBox = new ComboBox();
+            label6 = new Label();
+            OrderItemsRichTextBox = new RichTextBox();
+            totalAmountLabel = new Label();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // OrdersDataGridView
             // 
+            OrdersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersDataGridView.Location = new Point(16, 32);
+            OrdersDataGridView.Location = new Point(14, 33);
             OrdersDataGridView.Name = "OrdersDataGridView";
             OrdersDataGridView.RowHeadersWidth = 51;
-            OrdersDataGridView.Size = new Size(417, 509);
+            OrdersDataGridView.Size = new Size(417, 605);
             OrdersDataGridView.TabIndex = 0;
             OrdersDataGridView.CellClick += OrdersDataGridView_CellClick;
-            // 
-            // addressControl1
-            // 
-            address1.Apartment = "";
-            address1.Building = "";
-            address1.City = "";
-            address1.Country = "";
-            address1.Index = 0;
-            address1.Street = "";
-            addressControl1.Address = address1;
-            addressControl1.Location = new Point(439, 178);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(637, 267);
-            addressControl1.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(439, 9);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
             label1.Size = new Size(116, 20);
             label1.TabIndex = 2;
@@ -80,7 +74,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(16, 9);
+            label2.Location = new Point(14, 10);
             label2.Name = "label2";
             label2.Size = new Size(56, 20);
             label2.TabIndex = 3;
@@ -89,7 +83,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(439, 48);
+            label3.Location = new Point(3, 39);
             label3.Name = "label3";
             label3.Size = new Size(27, 20);
             label3.TabIndex = 4;
@@ -98,7 +92,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(439, 84);
+            label4.Location = new Point(3, 75);
             label4.Name = "label4";
             label4.Size = new Size(64, 20);
             label4.TabIndex = 5;
@@ -107,7 +101,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(439, 122);
+            label5.Location = new Point(3, 113);
             label5.Name = "label5";
             label5.Size = new Size(49, 20);
             label5.TabIndex = 6;
@@ -115,7 +109,8 @@
             // 
             // OrderIdTextBox
             // 
-            OrderIdTextBox.Location = new Point(529, 45);
+            OrderIdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            OrderIdTextBox.Location = new Point(93, 36);
             OrderIdTextBox.Name = "OrderIdTextBox";
             OrderIdTextBox.ReadOnly = true;
             OrderIdTextBox.Size = new Size(200, 27);
@@ -123,7 +118,8 @@
             // 
             // OrderCreationTimeTextBox
             // 
-            OrderCreationTimeTextBox.Location = new Point(529, 81);
+            OrderCreationTimeTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            OrderCreationTimeTextBox.Location = new Point(93, 72);
             OrderCreationTimeTextBox.Name = "OrderCreationTimeTextBox";
             OrderCreationTimeTextBox.ReadOnly = true;
             OrderCreationTimeTextBox.Size = new Size(200, 27);
@@ -131,38 +127,104 @@
             // 
             // StatusComboBox
             // 
+            StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StatusComboBox.FormattingEnabled = true;
-            StatusComboBox.Location = new Point(529, 114);
+            StatusComboBox.Location = new Point(93, 105);
             StatusComboBox.Name = "StatusComboBox";
             StatusComboBox.Size = new Size(200, 28);
             StatusComboBox.TabIndex = 9;
             StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
             // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label6.Location = new Point(3, 13);
+            label6.Name = "label6";
+            label6.Size = new Size(96, 20);
+            label6.TabIndex = 11;
+            label6.Text = "Order items:";
+            // 
+            // OrderItemsRichTextBox
+            // 
+            OrderItemsRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            OrderItemsRichTextBox.Location = new Point(0, 36);
+            OrderItemsRichTextBox.Name = "OrderItemsRichTextBox";
+            OrderItemsRichTextBox.ReadOnly = true;
+            OrderItemsRichTextBox.Size = new Size(597, 125);
+            OrderItemsRichTextBox.TabIndex = 12;
+            OrderItemsRichTextBox.Text = "";
+            // 
+            // totalAmountLabel
+            // 
+            totalAmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            totalAmountLabel.AutoSize = true;
+            totalAmountLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            totalAmountLabel.Location = new Point(0, 182);
+            totalAmountLabel.Name = "totalAmountLabel";
+            totalAmountLabel.Size = new Size(86, 41);
+            totalAmountLabel.TabIndex = 14;
+            totalAmountLabel.Text = "4999";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(totalAmountLabel);
+            panel1.Controls.Add(OrderItemsRichTextBox);
+            panel1.Location = new Point(454, 418);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(600, 244);
+            panel1.TabIndex = 15;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(StatusComboBox);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(OrderCreationTimeTextBox);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(OrderIdTextBox);
+            panel2.Location = new Point(454, 9);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(320, 150);
+            panel2.TabIndex = 16;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(OrdersDataGridView);
+            panel3.Location = new Point(3, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(445, 659);
+            panel3.TabIndex = 17;
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(StatusComboBox);
-            Controls.Add(OrderCreationTimeTextBox);
-            Controls.Add(OrderIdTextBox);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(addressControl1);
-            Controls.Add(OrdersDataGridView);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Name = "OrdersTab";
-            Size = new Size(1095, 569);
+            Size = new Size(1095, 665);
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private DataGridView OrdersDataGridView;
-        private Controls.AddressControl addressControl1;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -171,5 +233,11 @@
         private TextBox OrderIdTextBox;
         private TextBox OrderCreationTimeTextBox;
         private ComboBox StatusComboBox;
+        private Label label6;
+        private RichTextBox OrderItemsRichTextBox;
+        private Label totalAmountLabel;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
     }
 }

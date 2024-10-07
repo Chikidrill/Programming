@@ -9,20 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ObjectOrientedPractics.Model.Item;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class OrdersTab : UserControl
     {
         private List<Order> _orders;
+        private List<ItemsTab> _items;
         private Order _selectedOrder;
+        private AddressControl _addressControl;
 
         public OrdersTab()
         {
             InitializeComponent();
             LoadOrders();
             InitializeDataGridView();
+            InitializeAddressControl();
             StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
+            totalAmountLabel.Text = "Total: $0.00";
         }
 
         public List<Customer> Customers { get; set; }
@@ -32,6 +37,44 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _selectedOrder; }
             private set { _selectedOrder = value; }
         }
+
+        private void InitializeAddressControl()
+        {
+            _addressControl = new AddressControl
+            {
+                Location = new System.Drawing.Point(435, 150), // Установите нужные координаты
+                Size = new System.Drawing.Size(590, 500) // Установите нужный размер
+            };
+            Controls.Add(_addressControl); // Добавляем AddressControl на форму
+            _addressControl.Anchor = AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom;
+        }
+
+        private void DisplayOrderItems(List<Item> items)
+        {
+            // Очищаем RichTextBox перед выводом новых данных
+            OrderItemsRichTextBox.Clear();
+
+            // Проверяем, что есть предметы в заказе
+            if (items != null && items.Count > 0)
+            {
+                StringBuilder itemsText = new StringBuilder();
+
+                // Проходим по списку предметов и добавляем их описание в StringBuilder
+                foreach (var item in items)
+                {
+                    itemsText.AppendLine($"Name: {item.Name}, Cost: {item.Cost}");
+                }
+
+                // Выводим текст в RichTextBox
+                OrderItemsRichTextBox.Text = itemsText.ToString();
+            }
+            else
+            {
+                // Если предметов нет, выводим сообщение
+                OrderItemsRichTextBox.Text = "No items in this order.";
+            }
+        }
+
         private void InitializeDataGridView()
         {
             OrdersDataGridView.Columns.Clear();
@@ -156,6 +199,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderIdTextBox.Text = orderId;
                 OrderCreationTimeTextBox.Text = creationDate;
                 StatusComboBox.SelectedItem = SelectedOrder.Status;
+                _addressControl.DisplayAddress(SelectedOrder.DeliveryAddress);
+                DisplayOrderItems(SelectedOrder.Items);
+                totalAmountLabel.Text = $"Total: {totalCost} $";
             }
         }
 

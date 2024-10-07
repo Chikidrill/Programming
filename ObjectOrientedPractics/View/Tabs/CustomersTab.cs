@@ -54,8 +54,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 Size = new System.Drawing.Size(590, 500) // Установите нужный размер
             };
             Controls.Add(_addressControl); // Добавляем AddressControl на форму
+            _addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
-
         /// <summary>
         /// Осуществляет добавление нового элемента
         /// </summary>
