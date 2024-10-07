@@ -1,4 +1,8 @@
-﻿public enum OrderStatus
+﻿
+/// <summary>
+/// Перечисление, отражающее статус заказа
+/// </summary>
+public enum OrderStatus
 {
     New=1,
     Processing,

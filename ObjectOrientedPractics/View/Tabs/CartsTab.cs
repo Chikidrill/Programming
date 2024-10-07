@@ -13,14 +13,24 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
-        // Поля для списка товаров и покупателей
+        /// <summary>
+        /// Список предметов
+        /// </summary>
         private List<Item> _items;
+
+        /// <summary>
+        /// Список покупателей
+        /// </summary>
         private List<Customer> _customers;
 
-        // Текущий выбранный покупатель
+        /// <summary>
+        /// Выбранный (текущий) покупатель
+        /// </summary>
         private Customer _currentCustomer;
 
-        // Свойства для списка товаров и покупателей
+        /// <summary>
+        /// Возвращает и задает список предметов
+        /// </summary>
         public List<Item> Items
         {
             get => _items;
@@ -31,6 +41,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает список покупателей
+        /// </summary>
         public List<Customer> Customers
         {
             get => _customers;
@@ -41,14 +54,16 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        // Свойство для текущего покупателя
+        /// <summary>
+        /// Возвращает и задает текущего (выбранного) покупателя
+        /// </summary>
         private Customer CurrentCustomer
         {
             get => _currentCustomer;
             set
             {
                 _currentCustomer = value;
-                InitializeCartListBox(); // обновляем список корзины при изменении покупателя
+                InitializeCartListBox(); 
             }
         }
 
@@ -58,101 +73,58 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerComboBox.SelectedIndex = -1;
         }
 
-        // Метод для инициализации списка товаров
+        /// <summary>
+        /// Инициализирует список предметов в ListBox
+        /// </summary>
         public void InitializeItemsList()
         {
-            ItemsListBox.DataSource = null; // Сброс данных
+            ItemsListBox.DataSource = null; 
             if (Items != null && Items.Count > 0)
             {
                 ItemsListBox.DataSource = Items;
-                ItemsListBox.DisplayMember = "Name"; // Отображаемое свойство
+                ItemsListBox.DisplayMember = "Name"; 
             }
         }
 
-        // Метод для инициализации списка покупателей
+        /// <summary>
+        /// Инициализирует список покупателей в ComboBox
+        /// </summary>
         public void InitializeCustomersList()
         {
             if (_customers != null)
             {
-                CustomerComboBox.DataSource = null; // Сбрасываем DataSource
-                CustomerComboBox.DataSource = _customers; // Присваиваем новый источник данных
-                CustomerComboBox.DisplayMember = "FullName"; // Отображаем имя покупателя
+                CustomerComboBox.DataSource = null; 
+                CustomerComboBox.DataSource = _customers; 
+                CustomerComboBox.DisplayMember = "FullName"; 
                 CustomerComboBox.SelectedIndex = -1;
             }
         }
 
-        // Инициализация товаров в корзине текущего покупателя
+        /// <summary>
+        /// Инициализирует корзину в ListBox
+        /// </summary>
         private void InitializeCartListBox()
         {
-            CartListBox.DataSource = null; // Сбрасываем DataSource
-            CartListBox.DataSource = CurrentCustomer?.Cart?.Items; // Присваиваем новый источник данных
+            CartListBox.DataSource = null; 
+            CartListBox.DataSource = CurrentCustomer?.Cart?.Items; 
             CartListBox.DisplayMember = "Name";
             UpdateTotalAmount();
         }
 
+        /// <summary>
+        /// Обновляет данные на вкладке
+        /// </summary>
         public void RefreshData()
         {
-            InitializeItemsList(); // Перезаполняем ListBox с товарами
-            InitializeCustomersList(); // Перезаполняем ComboBox с покупателями
-            CurrentCustomer = null; // Сбрасываем выбранного покупателя
-            InitializeCartListBox(); // Обновляем ListBox с корзиной
+            InitializeItemsList(); 
+            InitializeCustomersList(); 
+            CurrentCustomer = null; 
+            InitializeCartListBox(); 
         }
 
-        // Обработчик изменения выбора покупателя
-        private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CurrentCustomer = (Customer)CustomerComboBox.SelectedItem; // Устанавливаем выбранного покупателя
-        }
-
-        // Обработчик добавления товара в корзину
-        private void AddToCartButton_Click(object sender, EventArgs e)
-        {
-            if (CurrentCustomer.Cart == null)
-            {
-                CurrentCustomer.Cart = new Cart(); // Инициализация корзины, если не инициализирована
-            }
-
-            var selectedItem = (Item)ItemsListBox.SelectedItem;
-            if (selectedItem != null)
-            {
-                // Сбрасываем DataSource
-                CartListBox.DataSource = null;
-
-                // Добавляем выбранный товар в корзину
-                CurrentCustomer.Cart.Items.Add(selectedItem);
-
-                // Снова устанавливаем DataSource
-                CartListBox.DataSource = CurrentCustomer.Cart.Items;
-                CartListBox.DisplayMember = "Name";
-
-                // Обновляем общую стоимость корзины
-                UpdateTotalAmount();
-            }
-        }
-
-        // Обработчик удаления товара из корзины
-        private void RemoveItemButton_Click(object sender, EventArgs e)
-        {
-            var selectedItem = (Item)CartListBox.SelectedItem;
-
-            if (selectedItem != null && CurrentCustomer != null)
-            {
-                // Сбрасываем DataSource, чтобы можно было изменять список
-                CartListBox.DataSource = null;
-
-                // Удаляем выбранный товар из корзины
-                CurrentCustomer.Cart.Items.Remove(selectedItem);
-
-                // Снова устанавливаем DataSource после изменения списка
-                CartListBox.DataSource = CurrentCustomer.Cart.Items;
-                CartListBox.DisplayMember = "Name";  // Убедитесь, что отображаем имя товара
-
-                // Обновляем общую стоимость корзины
-                UpdateTotalAmount();
-            }
-        }
-
-        // Метод для обновления отображения общей суммы корзины
+        /// <summary>
+        /// Осуществляет обновление общей стоимости
+        /// </summary>
         private void UpdateTotalAmount()
         {
             if (CurrentCustomer != null && CurrentCustomer.Cart != null)
@@ -165,6 +137,63 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Осуществляет изменение выбранного покупателя в ComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CurrentCustomer = (Customer)CustomerComboBox.SelectedItem; 
+        }
+
+        /// <summary>
+        /// Осуществляет добавление предмета в корзину
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddToCartButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentCustomer.Cart == null)
+            {
+                CurrentCustomer.Cart = new Cart(); 
+            }
+
+            var selectedItem = (Item)ItemsListBox.SelectedItem;
+            if (selectedItem != null)
+            {
+                CartListBox.DataSource = null;
+                CurrentCustomer.Cart.Items.Add(selectedItem);
+                CartListBox.DataSource = CurrentCustomer.Cart.Items;
+                CartListBox.DisplayMember = "Name";
+                UpdateTotalAmount();
+            }
+        }
+
+        /// <summary>
+        /// Осуществляет удаление предмета из корзины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            var selectedItem = (Item)CartListBox.SelectedItem;
+
+            if (selectedItem != null && CurrentCustomer != null)
+            {
+                CartListBox.DataSource = null;
+                CurrentCustomer.Cart.Items.Remove(selectedItem);
+                CartListBox.DataSource = CurrentCustomer.Cart.Items;
+                CartListBox.DisplayMember = "Name"; 
+                UpdateTotalAmount();
+            }
+        }
+
+        /// <summary>
+        /// Осуществляет очищение корзины покупателя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
             CurrentCustomer.Cart.Items.Clear();
@@ -173,33 +202,26 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeCartListBox();
         }
 
+        /// <summary>
+        /// Осуществляет создание заказа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            // Проверяем, выбран ли покупатель и есть ли товары в корзине
             if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
             {
                 MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
                 return;
             }
-
-            // Создаём новый заказ с адресом доставки и полным именем покупателя
             var newOrder = new Order(CurrentCustomer.Address, CurrentCustomer.FullName)
             {
-                // Копируем товары из корзины в заказ
                 Items = new List<Item>(CurrentCustomer.Cart.Items)
             };
-
-            // Добавляем новый заказ в список заказов покупателя
             CurrentCustomer.Orders.Add(newOrder);
-
-            // Очищаем корзину
             CurrentCustomer.Cart.Items.Clear();
-
-            // Обновляем интерфейс
-            CartListBox.DataSource = null; // Сбрасываем DataSource для обновления списка
-            UpdateTotalAmount(); // Обновляем общую стоимость корзины
-
-            // Отображаем сообщение об успешном создании заказа
+            CartListBox.DataSource = null; 
+            UpdateTotalAmount(); 
             MessageBox.Show("Заказ успешно создан!");
         } 
     }

@@ -49,9 +49,5 @@ namespace ObjectOrientedPractics.Model
         {
             _items = new List<Item>();
         }
-        public void AddItem(Item item)
-        {
-            Items.Add(item);
-        }
     }
 }

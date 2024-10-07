@@ -15,11 +15,36 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class OrdersTab : UserControl
     {
+        /// <summary>
+        /// Список заказов
+        /// </summary>
         private List<Order> _orders;
+        /// <summary>
+        /// Список предметов
+        /// </summary>
         private List<ItemsTab> _items;
+        /// <summary>
+        /// Текущий выбранный заказ
+        /// </summary>
         private Order _selectedOrder;
+        /// <summary>
+        /// Элемент AddressControl
+        /// </summary>
         private AddressControl _addressControl;
 
+        /// <summary>
+        /// Возвращает и задает список покупателей
+        /// </summary>
+        public List<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает текущий выбранный заказ
+        /// </summary>
+        public Order SelectedOrder
+        {
+            get { return _selectedOrder; }
+            private set { _selectedOrder = value; }
+        }
         public OrdersTab()
         {
             InitializeComponent();
@@ -30,110 +55,96 @@ namespace ObjectOrientedPractics.View.Tabs
             totalAmountLabel.Text = "Total: $0.00";
         }
 
-        public List<Customer> Customers { get; set; }
-
-        public Order SelectedOrder
-        {
-            get { return _selectedOrder; }
-            private set { _selectedOrder = value; }
-        }
-
+        /// <summary>
+        /// Инициализирует элемент управления AddressControl
+        /// </summary>
         private void InitializeAddressControl()
         {
             _addressControl = new AddressControl
             {
-                Location = new System.Drawing.Point(435, 150), // Установите нужные координаты
-                Size = new System.Drawing.Size(590, 500) // Установите нужный размер
+                Location = new System.Drawing.Point(435, 150), 
+                Size = new System.Drawing.Size(590, 500) 
             };
-            Controls.Add(_addressControl); // Добавляем AddressControl на форму
+            Controls.Add(_addressControl); 
             _addressControl.Anchor = AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom;
         }
 
+        /// <summary>
+        /// Осуществляет отображение списка предметов в заказе
+        /// </summary>
+        /// <param name="items"></param>
         private void DisplayOrderItems(List<Item> items)
         {
-            // Очищаем RichTextBox перед выводом новых данных
             OrderItemsRichTextBox.Clear();
-
-            // Проверяем, что есть предметы в заказе
             if (items != null && items.Count > 0)
             {
                 StringBuilder itemsText = new StringBuilder();
-
-                // Проходим по списку предметов и добавляем их описание в StringBuilder
                 foreach (var item in items)
                 {
                     itemsText.AppendLine($"Name: {item.Name}, Cost: {item.Cost}");
                 }
-
-                // Выводим текст в RichTextBox
                 OrderItemsRichTextBox.Text = itemsText.ToString();
             }
             else
             {
-                // Если предметов нет, выводим сообщение
                 OrderItemsRichTextBox.Text = "No items in this order.";
             }
         }
 
+        /// <summary>
+        /// Инициализирует таблицу заказов OrdersDataGridView
+        /// </summary>
         private void InitializeDataGridView()
         {
             OrdersDataGridView.Columns.Clear();
-
-            // Столбец для Id заказа
             var idColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Order Id",
-                DataPropertyName = "Id",  // Свойство класса Order
+                DataPropertyName = "Id",  
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(idColumn);
 
-            // Столбец для даты создания
             var creationDateColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Creation Date",
-                DataPropertyName = "CreationDate",  // Свойство класса Order
+                DataPropertyName = "CreationDate",  
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(creationDateColumn);
 
-            // Столбец для ФИО покупателя
             var customerNameColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Customer Full Name",
-                DataPropertyName = "FullName",  // Свойство класса Order
+                DataPropertyName = "FullName",  
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(customerNameColumn);
 
-            // Столбец для адреса доставки
             var addressColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Delivery Address",
-                DataPropertyName = "DeliveryAddress",  // Свойство класса Order (для простоты преобразуем в строку)
+                DataPropertyName = "DeliveryAddress", 
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(addressColumn);
 
-            // Столбец для общей стоимости
             var totalCostColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Total Cost",
-                DataPropertyName = "TotalCost",  // Свойство класса Order
+                DataPropertyName = "TotalCost",  
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(totalCostColumn);
 
-            // Столбец для статуса заказа
             var statusColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Status",
-                DataPropertyName = "Status",  // Свойство класса Order
+                DataPropertyName = "Status", 
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(statusColumn);
 
-            // Настройки для DataGridView
             OrdersDataGridView.AutoGenerateColumns = false;
             OrdersDataGridView.AllowUserToAddRows = false;
             OrdersDataGridView.AllowUserToDeleteRows = false;
@@ -145,18 +156,18 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.AllowUserToOrderColumns = false;
         }
 
-        private void SetOrders(List<Order> orders)
-        {
-            _orders = orders;
-            LoadOrders();
-        }
-
-        // Method to load orders into DataGridView
+        /// <summary>
+        /// Осуществляет загрузку заказов в таблицу
+        /// </summary>
         private void LoadOrders()
         {
-            OrdersDataGridView.DataSource = null; // Clear the DataGridView first
-            OrdersDataGridView.DataSource = _orders; // Set the DataGridView's DataSource to the list of orders
+            OrdersDataGridView.DataSource = null; 
+            OrdersDataGridView.DataSource = _orders; 
         }
+
+        /// <summary>
+        /// Осуществляет обновление списка заказов
+        /// </summary>
         public void UpdateOrders()
         {
             if (Customers == null || Customers.Count == 0)
@@ -166,28 +177,26 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             List<Order> orders = new List<Order>();
-
-            // Собираем все заказы от всех покупателей
             foreach (var customer in Customers)
             {
                 orders.AddRange(customer.Orders);
             }
-
-            // Привязываем список заказов к DataGridView
             OrdersDataGridView.DataSource = null;
             OrdersDataGridView.DataSource = orders;
         }
 
+        /// <summary>
+        /// Осуществляет отображение данных о выбранном в таблице заказе
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrdersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Проверяем, что была выбрана строка
             if (e.RowIndex >= 0)
             {
-                //   Получаем выбранную строку
                 DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
 
-                //  Извлекаем данные из выбранной строки
                 var orderId = selectedRow.Cells[0].Value.ToString();
                 var creationDate = selectedRow.Cells[1].Value.ToString();
                 var FullName = selectedRow.Cells[2].Value.ToString();
@@ -195,7 +204,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 var totalCost = selectedRow.Cells[4].Value.ToString();
                 var status = selectedRow.Cells[5].Value.ToString();
 
-                // Присваиваем данные текстовым полям
                 OrderIdTextBox.Text = orderId;
                 OrderCreationTimeTextBox.Text = creationDate;
                 StatusComboBox.SelectedItem = SelectedOrder.Status;
@@ -205,21 +213,24 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Осуществляет изменение параметра Status в ComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SelectedOrder != null)
             {
-                // Получаем новое значение статуса из ComboBox
                 OrderStatus newStatus = (OrderStatus)StatusComboBox.SelectedItem;
-
-                // Обновляем статус выбранного заказа
                 SelectedOrder.Status = newStatus;
-
-                // Обновляем DataGridView (если требуется)
                 UpdateOrders();
             }
         }
-
+        
+        /// <summary>
+        /// Осуществляет обновление данных
+        /// </summary>
         public void RefreshData()
         {
             UpdateOrders();

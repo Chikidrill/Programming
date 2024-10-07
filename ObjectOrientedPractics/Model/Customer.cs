@@ -44,21 +44,29 @@ namespace ObjectOrientedPractics.Model
             }
         }
         
-
         /// <summary>
         /// Уникальная корзина для каждого покупателя
         /// </summary>
         private Cart _cart;
 
-        // Поле для списка заказов
+        /// <summary>
+        /// Список заказов
+        /// </summary>
         private List<Order> _orders;
+
+        /// <summary>
+        /// Возвращает и задает корзину
+        /// </summary>
         public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает список заказов
+        /// </summary>
         public List<Order> Orders
         {
             get => _orders;
             set => _orders = value ?? new List<Order>();
         }
-
 
         /// <summary>
         /// Возвращает и задает ФИО покупателя. Не может быть длиной больше 200 символов.
@@ -82,16 +90,13 @@ namespace ObjectOrientedPractics.Model
             set => _address = value ?? new Address(); // Убедитесь, что _address не равен null
         }
 
-        public void AddOrder(Order order)
-        {
-            _orders.Add(order);
-        }
-
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>
         /// </summary>
         /// <param name="fullName">ФИО покупателя.</param>
         /// <param name="address">Адрес доставки.</param>
+
+        [JsonConstructor]
         public Customer(string fullName, Address address)
         { 
             _id = IdGenerator.GetNextId();

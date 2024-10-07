@@ -113,7 +113,7 @@
             OrderIdTextBox.Location = new Point(93, 36);
             OrderIdTextBox.Name = "OrderIdTextBox";
             OrderIdTextBox.ReadOnly = true;
-            OrderIdTextBox.Size = new Size(200, 27);
+            OrderIdTextBox.Size = new Size(521, 27);
             OrderIdTextBox.TabIndex = 7;
             // 
             // OrderCreationTimeTextBox
@@ -122,7 +122,7 @@
             OrderCreationTimeTextBox.Location = new Point(93, 72);
             OrderCreationTimeTextBox.Name = "OrderCreationTimeTextBox";
             OrderCreationTimeTextBox.ReadOnly = true;
-            OrderCreationTimeTextBox.Size = new Size(200, 27);
+            OrderCreationTimeTextBox.Size = new Size(521, 27);
             OrderCreationTimeTextBox.TabIndex = 8;
             // 
             // StatusComboBox
@@ -131,7 +131,7 @@
             StatusComboBox.FormattingEnabled = true;
             StatusComboBox.Location = new Point(93, 105);
             StatusComboBox.Name = "StatusComboBox";
-            StatusComboBox.Size = new Size(200, 28);
+            StatusComboBox.Size = new Size(521, 28);
             StatusComboBox.TabIndex = 9;
             StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
             // 
@@ -152,7 +152,7 @@
             OrderItemsRichTextBox.Location = new Point(0, 36);
             OrderItemsRichTextBox.Name = "OrderItemsRichTextBox";
             OrderItemsRichTextBox.ReadOnly = true;
-            OrderItemsRichTextBox.Size = new Size(597, 125);
+            OrderItemsRichTextBox.Size = new Size(638, 125);
             OrderItemsRichTextBox.TabIndex = 12;
             OrderItemsRichTextBox.Text = "";
             // 
@@ -175,7 +175,7 @@
             panel1.Controls.Add(OrderItemsRichTextBox);
             panel1.Location = new Point(454, 418);
             panel1.Name = "panel1";
-            panel1.Size = new Size(600, 244);
+            panel1.Size = new Size(641, 244);
             panel1.TabIndex = 15;
             // 
             // panel2
@@ -190,7 +190,7 @@
             panel2.Controls.Add(OrderIdTextBox);
             panel2.Location = new Point(454, 9);
             panel2.Name = "panel2";
-            panel2.Size = new Size(320, 150);
+            panel2.Size = new Size(641, 150);
             panel2.TabIndex = 16;
             // 
             // panel3
