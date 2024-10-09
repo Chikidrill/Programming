@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
@@ -15,7 +16,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для объекта класса <see cref="Item"/>. Доступен только для чтения.
         /// </summary>
-        private readonly int _id;
+        private readonly int _id; [JsonInclude]
 
         /// <summary>
         /// ФИО покупателя для каждого объекта класса <see cref="Item"/>. 
@@ -28,6 +29,11 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
+        /// Генератор ID
+        /// </summary>
+        private static IdGenerator IdGenerator = new IdGenerator();
+
+        /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
         public int Id
@@ -37,12 +43,32 @@ namespace ObjectOrientedPractics.Model
                 return _id;
             }
         }
+        
         /// <summary>
-        /// Генератор ID
+        /// Уникальная корзина для каждого покупателя
         /// </summary>
-        private static IdGenerator IdGenerator = new IdGenerator();
+        private Cart _cart;
 
-        // <summary>
+        /// <summary>
+        /// Список заказов
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
+        /// Возвращает и задает корзину
+        /// </summary>
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает список заказов
+        /// </summary>
+        public List<Order> Orders
+        {
+            get => _orders;
+            set => _orders = value ?? new List<Order>();
+        }
+
+        /// <summary>
         /// Возвращает и задает ФИО покупателя. Не может быть длиной больше 200 символов.
         /// </summary>
         public string FullName 
@@ -55,7 +81,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        // <summary>
+        /// <summary>
         /// Возвращает и задает адрес доставки. Не может быть длиной больше 500 символов.
         /// </summary>
         public Address Address
@@ -69,12 +95,19 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullName">ФИО покупателя.</param>
         /// <param name="address">Адрес доставки.</param>
-        public Customer(int id, string fullName, Address address)
+
+        [JsonConstructor]
+        public Customer(string fullName, Address address)
         { 
             _id = IdGenerator.GetNextId();
             FullName = fullName;
             Address = address;
+            _cart = new Cart();
+            _orders = new List<Order>();
         }
-        public Customer() { }
+        public Customer() 
+        {
+            Cart = new Cart();
+        }
     }
 }

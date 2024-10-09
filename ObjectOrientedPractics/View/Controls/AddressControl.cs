@@ -227,5 +227,15 @@ namespace ObjectOrientedPractics.View.Controls
                 // MessageBox.Show(ex.Message);
             }
         }
+
+        public void DisplayAddress(Address address)
+        {
+            IndexTextBox.Text = address.Index.ToString();
+            CountryTextBox.Text = address.Country;
+            CityTextBox.Text = address.City;
+            StreetTextBox.Text = address.Street;
+            BuildingTextBox.Text = address.Building;
+            ApartsTextBox.Text = address.Apartment;
+        }
     }
 }

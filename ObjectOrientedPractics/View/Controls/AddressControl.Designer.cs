@@ -95,7 +95,7 @@
             // 
             // CountryTextBox
             // 
-            CountryTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CountryTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CountryTextBox.Location = new Point(108, 98);
             CountryTextBox.MinimumSize = new Size(200, 20);
             CountryTextBox.Name = "CountryTextBox";
@@ -155,7 +155,7 @@
             // 
             // BuildingTextBox
             // 
-            BuildingTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            BuildingTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             BuildingTextBox.Location = new Point(108, 200);
             BuildingTextBox.MinimumSize = new Size(150, 20);
             BuildingTextBox.Name = "BuildingTextBox";
