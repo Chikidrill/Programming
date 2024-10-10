@@ -1,69 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace ObjectOrientedPractics.Model
 {
     public class PriorityOrder : Order
     {
-        /// <summary>
-        /// Желаемая дата доставки.
-        /// </summary>
-        private DateTime _desiredDeliveryDate;
+        private DeliveryTimeRange _deliveryTime;
+        private DateTime _deliveryDate;
 
         /// <summary>
-        /// Желаемое время доставки.
-        /// </summary>
-        private DeliveryTimeRange _desiredDeliveryTime;
-
-        /// <summary>
-        /// Возвращает и задает желаемую дату доставки.
-        /// </summary>
-        public DateTime DesiredDeliveryDate
-        {
-            get => _desiredDeliveryDate;
-            set => _desiredDeliveryDate = value;
-        }
-
-        /// <summary>
-        /// Возвращает и задает желаемое время доставки.
+        /// Возвращает и задаёт время доставки.
         /// </summary>
         public DeliveryTimeRange DesiredDeliveryTime
         {
-            get => _desiredDeliveryTime;
-            set => _desiredDeliveryTime = value;
+            get { return _deliveryTime; }
+            set { _deliveryTime = value; }
         }
 
         /// <summary>
-        /// Создает новый экземпляр класса <see cref="PriorityOrder"/> с параметрами по умолчанию.
+        /// Возвращает и задаёт дату доставки.
         /// </summary>
-        public PriorityOrder() : base()
+        public DateTime DeliveryDate
         {
-            _desiredDeliveryDate = DateTime.Now.AddDays(1); // Например, завтрашняя дата
-            _desiredDeliveryTime = DeliveryTimeRange.From9To11;
+            get { return _deliveryDate; }
+            set { _deliveryDate = value; }
         }
 
         /// <summary>
-        /// Создает новый экземпляр класса <see cref="PriorityOrder"/> с указанными параметрами.
+        /// Создаёт экземпляр класса <see cref="PriorityOrder"/>.
         /// </summary>
+        /// <param name="items">Список товаров.</param>
         /// <param name="deliveryAddress">Адрес доставки.</param>
-        /// <param name="fullName">Имя покупателя.</param>
-        /// <param name="deliveryTime">Желаемое время доставки.</param>
-        /// <param name="deliveryDate">Желаемая дата доставки.</param>
-        public PriorityOrder(Address deliveryAddress, string fullName, DateTime deliveryDate, DeliveryTimeRange deliveryTime)
-            : base(deliveryAddress, fullName)
+        /// <param name="customerName">Имя покупателя.</param>
+        /// <param name="totalPrice">Итоговая цена.</param>
+        /// <param name="customerId">ID покупателя.</param>
+        /// <param name="desiredDeliveryTime">Время доставки.</param>
+        /// <param name="deliveryDate">Дата доставки.</param>
+        public PriorityOrder(Address deliveryAddress, string customerName, DeliveryTimeRange desiredDeliveryTime, DateTime deliveryDate)
+            : base(deliveryAddress, customerName)  // Вызов конструктора базового класса
         {
-            DesiredDeliveryDate = deliveryDate;
-            DesiredDeliveryTime = deliveryTime;
+            DesiredDeliveryTime = desiredDeliveryTime;
+            DeliveryDate = deliveryDate;
         }
 
-        /// <summary>
-        /// Переопределяет метод ToString для вывода информации о приоритетном заказе.
-        /// </summary>
-        public override string ToString()
-        {
-            return $"{base.ToString()}, Desired Delivery Date: {DesiredDeliveryDate.ToShortDateString()}, Desired Delivery Time: {DesiredDeliveryTime}";
-        }
+        public PriorityOrder() : base() { }
     }
-
 }

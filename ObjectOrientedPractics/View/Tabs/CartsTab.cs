@@ -216,8 +216,8 @@ namespace ObjectOrientedPractics.View.Tabs
                     MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
                     return;
                 }
-                var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DateTime.Now.AddDays(1), DeliveryTimeRange.From9To11)
-                { 
+                var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DeliveryTimeRange.From9To11, DateTime.Now.AddDays(1))
+                {
                     Items = new List<Item>(CurrentCustomer.Cart.Items)
                 };
                 CurrentCustomer.Orders.Add(newPriorityOrder);
@@ -245,5 +245,5 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
         }
+        }
     }
-}

@@ -1,25 +1,21 @@
 ﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
     public class Order
     {
-
         /// <summary>
         /// Генератор ID
         /// </summary>
         private static IdGenerator IdGenerator = new IdGenerator();
 
         /// <summary>
-        /// Уникальный идентификатор для объекта класса <see cref="Item"/>. Доступен только для чтения.
+        /// Уникальный идентификатор для объекта класса <see cref="Order"/>. Доступен только для чтения.
         /// </summary>
-        private readonly int _id; [JsonInclude]
+        private readonly int _id;
 
         /// <summary>
         /// Уникальная дата для каждого заказа
@@ -44,30 +40,20 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID
         /// </summary>
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public int Id => _id;
 
         /// <summary>
         /// Возвращает дату создания заказа
         /// </summary>
-        public DateTime CreationDate
-        {
-            get { return _date; }
-        }
-
+        public DateTime CreationDate => _date;
 
         /// <summary>
         /// Возвращает и задает адрес доставки класса <see cref="Address"></see>
         /// </summary>
         public Address DeliveryAddress
-        { 
-            get { return _deliveryAddress; } 
-            set {_deliveryAddress = value; }
+        {
+            get { return _deliveryAddress; }
+            set { _deliveryAddress = value; }
         }
 
         /// <summary>
@@ -80,7 +66,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задает статус заказа из перечисления <see cref="OrderStatus"/>
+        /// Возвращает и задает статус заказа
         /// </summary>
         public OrderStatus Status { get; set; }
 
@@ -118,18 +104,30 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>
         /// </summary>
+        /// <param name="items">Список предметов</param>
         /// <param name="deliveryAddress">Адрес доставки</param>
-        /// <param name="FullName">Имя покупателя</param>
-        public Order(Address deliveryAddress, string FullName)
+        /// <param name="fullName">Имя покупателя</param>
+        public Order(Address deliveryAddress, string fullName)
+        {
+            _id = IdGenerator.GetNextId();
+            _date = DateTime.Now;  // Инициализация даты создания заказа
+            _items = new List<Item>();
+            DeliveryAddress = deliveryAddress;
+            _fullName = fullName;
+            Status = OrderStatus.New;
+        }
+
+        public Order()
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Now;
-            _deliveryAddress = deliveryAddress;
-            _fullName = FullName;
             _items = new List<Item>();
             Status = OrderStatus.New;
         }
 
-        public Order() { }
+        public override string ToString()
+        {
+            return $"Order Id: {Id}, Creation Date: {CreationDate}, Customer: {FullName}";
+        }
     }
 }

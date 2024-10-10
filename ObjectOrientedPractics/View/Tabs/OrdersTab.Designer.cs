@@ -210,6 +210,7 @@
             // 
             // delivTimePanel
             // 
+            delivTimePanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             delivTimePanel.Controls.Add(label8);
             delivTimePanel.Controls.Add(delivTimeComboBox);
             delivTimePanel.Controls.Add(label7);
@@ -229,12 +230,13 @@
             // 
             // delivTimeComboBox
             // 
+            delivTimeComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             delivTimeComboBox.FormattingEnabled = true;
             delivTimeComboBox.Location = new Point(112, 40);
             delivTimeComboBox.Name = "delivTimeComboBox";
             delivTimeComboBox.Size = new Size(222, 28);
             delivTimeComboBox.TabIndex = 20;
-            delivTimeComboBox.SelectedIndexChanged += delivTimeComboBox_SelectedIndexChanged;
+           // delivTimeComboBox.SelectedIndexChanged += delivTimeComboBox_SelectedIndexChanged;
             // 
             // label7
             // 

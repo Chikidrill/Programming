@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics
 
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
-            
+
             _store = new Store();
             _store.LoadData();
 
@@ -26,12 +26,12 @@ namespace ObjectOrientedPractics
             _ordersTab = new OrdersTab();
             OrdersPage.Controls.Add(_ordersTab);
             _ordersTab.Dock = DockStyle.Fill;
-            _ordersTab.Customers = _store.Customers; 
-            _ordersTab.UpdateOrders();
+            _ordersTab.Customers = _store.Customers;
+
 
             _cartsTab = new CartsTab();
             cartsPage.Controls.Add(_cartsTab);
-            _cartsTab.Dock = DockStyle.Fill;  
+            _cartsTab.Dock = DockStyle.Fill;
             _cartsTab.Items = _store.Items;
             _cartsTab.Customers = _store.Customers;
         }

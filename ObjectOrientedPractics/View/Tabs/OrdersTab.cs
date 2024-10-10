@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View.Tabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -213,9 +214,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (e.RowIndex >= 0)
             {
-                SelectedOrder = null;
-                SelectedPriorityOrder = null;
-                DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
+                var selectedRow = OrdersDataGridView.CurrentRow;
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
 
                 var orderId = selectedRow.Cells[0].Value.ToString();
