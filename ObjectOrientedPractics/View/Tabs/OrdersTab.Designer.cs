@@ -43,10 +43,15 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
+            delivTimePanel = new Panel();
+            label8 = new Label();
+            delivTimeComboBox = new ComboBox();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            delivTimePanel.SuspendLayout();
             SuspendLayout();
             // 
             // OrdersDataGridView
@@ -64,7 +69,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(3, 4);
             label1.Name = "label1";
             label1.Size = new Size(116, 20);
             label1.TabIndex = 2;
@@ -203,10 +208,49 @@
             panel3.Size = new Size(445, 659);
             panel3.TabIndex = 17;
             // 
+            // delivTimePanel
+            // 
+            delivTimePanel.Controls.Add(label8);
+            delivTimePanel.Controls.Add(delivTimeComboBox);
+            delivTimePanel.Controls.Add(label7);
+            delivTimePanel.Location = new Point(755, 9);
+            delivTimePanel.Name = "delivTimePanel";
+            delivTimePanel.Size = new Size(337, 150);
+            delivTimePanel.TabIndex = 18;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 43);
+            label8.Name = "label8";
+            label8.Size = new Size(103, 20);
+            label8.TabIndex = 10;
+            label8.Text = "Delivery Time:";
+            // 
+            // delivTimeComboBox
+            // 
+            delivTimeComboBox.FormattingEnabled = true;
+            delivTimeComboBox.Location = new Point(112, 40);
+            delivTimeComboBox.Name = "delivTimeComboBox";
+            delivTimeComboBox.Size = new Size(222, 28);
+            delivTimeComboBox.TabIndex = 20;
+            delivTimeComboBox.SelectedIndexChanged += delivTimeComboBox_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label7.Location = new Point(3, 4);
+            label7.Name = "label7";
+            label7.Size = new Size(124, 20);
+            label7.TabIndex = 19;
+            label7.Text = "Priority Options:";
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(delivTimePanel);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -219,6 +263,8 @@
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            delivTimePanel.ResumeLayout(false);
+            delivTimePanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -239,5 +285,9 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
+        private Panel delivTimePanel;
+        private Label label8;
+        private ComboBox delivTimeComboBox;
+        private Label label7;
     }
 }

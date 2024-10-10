@@ -27,6 +27,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Текущий выбранный заказ
         /// </summary>
         private Order _selectedOrder;
+
+        private PriorityOrder _selectedPriorityOrder;
+
         /// <summary>
         /// Элемент AddressControl
         /// </summary>
@@ -37,13 +40,29 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public List<Customer> Customers { get; set; }
 
+        PriorityOrder? SelectedPriorityOrder { get; set; }
+
         /// <summary>
         /// Возвращает и задает текущий выбранный заказ
         /// </summary>
         public Order SelectedOrder
         {
-            get { return _selectedOrder; }
-            private set { _selectedOrder = value; }
+            get => _selectedOrder;
+            set
+            {
+                _selectedOrder = value;
+                if (_selectedOrder is PriorityOrder priorityOrder)
+                {
+                    _selectedPriorityOrder = priorityOrder;
+                    delivTimePanel.Visible = true;
+                    delivTimeComboBox.SelectedItem = _selectedPriorityOrder.DesiredDeliveryTime.ToString();
+                }
+                else
+                {
+                    _selectedPriorityOrder = null;
+                    delivTimePanel.Visible = false;
+                }
+            }
         }
         public OrdersTab()
         {
@@ -53,8 +72,8 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeAddressControl();
             StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
             totalAmountLabel.Text = "Total: $0.00";
+            delivTimeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTimeRange));
         }
-
         /// <summary>
         /// Инициализирует элемент управления AddressControl
         /// </summary>
@@ -62,10 +81,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             _addressControl = new AddressControl
             {
-                Location = new System.Drawing.Point(435, 150), 
-                Size = new System.Drawing.Size(590, 500) 
+                Location = new System.Drawing.Point(435, 150),
+                Size = new System.Drawing.Size(590, 500)
             };
-            Controls.Add(_addressControl); 
+            Controls.Add(_addressControl);
             _addressControl.Anchor = AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom;
         }
 
@@ -100,7 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var idColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Order Id",
-                DataPropertyName = "Id",  
+                DataPropertyName = "Id",
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(idColumn);
@@ -108,7 +127,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var creationDateColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Creation Date",
-                DataPropertyName = "CreationDate",  
+                DataPropertyName = "CreationDate",
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(creationDateColumn);
@@ -116,7 +135,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var customerNameColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Customer Full Name",
-                DataPropertyName = "FullName",  
+                DataPropertyName = "FullName",
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(customerNameColumn);
@@ -124,7 +143,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var addressColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Delivery Address",
-                DataPropertyName = "DeliveryAddress", 
+                DataPropertyName = "DeliveryAddress",
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(addressColumn);
@@ -132,7 +151,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var totalCostColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Total Cost",
-                DataPropertyName = "TotalCost",  
+                DataPropertyName = "TotalCost",
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(totalCostColumn);
@@ -140,7 +159,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var statusColumn = new DataGridViewTextBoxColumn
             {
                 HeaderText = "Status",
-                DataPropertyName = "Status", 
+                DataPropertyName = "Status",
                 ReadOnly = true
             };
             OrdersDataGridView.Columns.Add(statusColumn);
@@ -161,8 +180,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void LoadOrders()
         {
-            OrdersDataGridView.DataSource = null; 
-            OrdersDataGridView.DataSource = _orders; 
+            OrdersDataGridView.DataSource = null;
+            OrdersDataGridView.DataSource = _orders;
         }
 
         /// <summary>
@@ -194,6 +213,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (e.RowIndex >= 0)
             {
+                SelectedOrder = null;
+                SelectedPriorityOrder = null;
                 DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
 
@@ -227,7 +248,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 UpdateOrders();
             }
         }
-        
+
         /// <summary>
         /// Осуществляет обновление данных
         /// </summary>
@@ -235,6 +256,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             UpdateOrders();
             SelectedOrder = null;
+        }
+
+        private void delivTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SelectedOrder != null)
+            {
+                DeliveryTimeRange newDeliveryTime = (DeliveryTimeRange)delivTimeComboBox.SelectedItem;
+                _selectedPriorityOrder.DesiredDeliveryTime = newDeliveryTime;
+                UpdateOrders();
+            }
         }
     }
 }

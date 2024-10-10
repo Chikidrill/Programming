@@ -209,20 +209,41 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
+            if (CurrentCustomer.IsPriority == true)
             {
-                MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
-                return;
+                if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
+                {
+                    MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
+                    return;
+                }
+                var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DateTime.Now.AddDays(1), DeliveryTimeRange.From9To11)
+                { 
+                    Items = new List<Item>(CurrentCustomer.Cart.Items)
+                };
+                CurrentCustomer.Orders.Add(newPriorityOrder);
+                CurrentCustomer.Cart.Items.Clear();
+                CartListBox.DataSource = null;
+                UpdateTotalAmount();
+                MessageBox.Show("Заказ приоритетного покупателя успешно создан!");
             }
-            var newOrder = new Order(CurrentCustomer.Address, CurrentCustomer.FullName)
+            else
             {
-                Items = new List<Item>(CurrentCustomer.Cart.Items)
-            };
-            CurrentCustomer.Orders.Add(newOrder);
-            CurrentCustomer.Cart.Items.Clear();
-            CartListBox.DataSource = null; 
-            UpdateTotalAmount(); 
-            MessageBox.Show("Заказ успешно создан!");
-        } 
+                if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
+                {
+                    MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
+                    return;
+                }
+                var newOrder = new Order(CurrentCustomer.Address, CurrentCustomer.FullName)
+                {
+                    Items = new List<Item>(CurrentCustomer.Cart.Items)
+                };
+                CurrentCustomer.Orders.Add(newOrder);
+                CurrentCustomer.Cart.Items.Clear();
+                CartListBox.DataSource = null;
+                UpdateTotalAmount();
+                MessageBox.Show("Заказ успешно создан!");
+            }
+
+        }
     }
 }

@@ -40,6 +40,7 @@
             idLabel = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            isPriorityCheckBox = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -166,6 +167,7 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.Controls.Add(isPriorityCheckBox);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(idLabel);
             panel2.Controls.Add(FullNameLabel);
@@ -175,6 +177,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(593, 125);
             panel2.TabIndex = 37;
+            // 
+            // isPriorityCheckBox
+            // 
+            isPriorityCheckBox.AutoSize = true;
+            isPriorityCheckBox.Location = new Point(8, 99);
+            isPriorityCheckBox.Name = "isPriorityCheckBox";
+            isPriorityCheckBox.Size = new Size(92, 24);
+            isPriorityCheckBox.TabIndex = 35;
+            isPriorityCheckBox.Text = "Is Priority";
+            isPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // CustomersTab
             // 
@@ -205,5 +217,6 @@
         private Label idLabel;
         private Panel panel1;
         private Panel panel2;
+        private CheckBox isPriorityCheckBox;
     }
 }

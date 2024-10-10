@@ -66,6 +66,10 @@ namespace ObjectOrientedPractics.View.Tabs
             var address = _addressControl.Address;
 
             var newCustomer = new Customer(FullNameTextBox.Text, address);
+            if (isPriorityCheckBox.Checked==true)
+            {
+                newCustomer.IsPriority = true;
+            }
             _customers.Add(newCustomer);
 
             // Обновление UI и очистка
@@ -74,6 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _addressControl.ClearInfo(); // Очистить адрес
             ClearInputFields();
             DisplayCustomersList();
+            isPriorityCheckBox.Checked = false;
         }
 
         /// <summary>

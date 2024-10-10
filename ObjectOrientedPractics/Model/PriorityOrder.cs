@@ -53,8 +53,8 @@ namespace ObjectOrientedPractics.Model
         public PriorityOrder(Address deliveryAddress, string fullName, DateTime deliveryDate, DeliveryTimeRange deliveryTime)
             : base(deliveryAddress, fullName)
         {
-            _desiredDeliveryDate = deliveryDate;
-            _desiredDeliveryTime = deliveryTime;
+            DesiredDeliveryDate = deliveryDate;
+            DesiredDeliveryTime = deliveryTime;
         }
 
         /// <summary>
