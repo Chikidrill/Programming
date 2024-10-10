@@ -195,6 +195,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _addressControl.Address = new Address(); // Очистить AddressControl
                 }
+                isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
             }
             else
             {

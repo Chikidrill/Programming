@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics.Model
     {
         private DeliveryTimeRange _deliveryTime;
         private DateTime _deliveryDate;
-
+        public bool IsPriority { get; set; }
         /// <summary>
         /// Возвращает и задаёт время доставки.
         /// </summary>
@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт дату доставки.
         /// </summary>
-        public DateTime DeliveryDate
+        public DateTime DesiredDeliveryDate
         {
             get { return _deliveryDate; }
             set { _deliveryDate = value; }
@@ -36,13 +36,17 @@ namespace ObjectOrientedPractics.Model
         /// <param name="customerId">ID покупателя.</param>
         /// <param name="desiredDeliveryTime">Время доставки.</param>
         /// <param name="deliveryDate">Дата доставки.</param>
-        public PriorityOrder(Address deliveryAddress, string customerName, DeliveryTimeRange desiredDeliveryTime, DateTime deliveryDate)
-            : base(deliveryAddress, customerName)  // Вызов конструктора базового класса
+        public PriorityOrder(Address deliveryAddress, string fullName, DeliveryTimeRange desiredDeliveryTime, DateTime deliveryDate)
+            : base(deliveryAddress, fullName)  // Вызов конструктора базового класса
         {
             DesiredDeliveryTime = desiredDeliveryTime;
-            DeliveryDate = deliveryDate;
+            DesiredDeliveryDate = deliveryDate;
         }
 
-        public PriorityOrder() : base() { }
+        public PriorityOrder() : base() 
+        {
+            DesiredDeliveryDate = DateTime.Now.AddDays(1); // Например, завтрашняя дата
+            DesiredDeliveryTime = DeliveryTimeRange.From9To11;
+        }
     }
 }

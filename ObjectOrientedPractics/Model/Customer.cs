@@ -109,7 +109,6 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             _cart = new Cart();
             _orders = new List<Order>();
-            IsPriority = false;
         }
         public Customer() 
         {

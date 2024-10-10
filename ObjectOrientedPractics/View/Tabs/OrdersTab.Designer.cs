@@ -236,7 +236,7 @@
             delivTimeComboBox.Name = "delivTimeComboBox";
             delivTimeComboBox.Size = new Size(222, 28);
             delivTimeComboBox.TabIndex = 20;
-           // delivTimeComboBox.SelectedIndexChanged += delivTimeComboBox_SelectedIndexChanged;
+            delivTimeComboBox.SelectedIndexChanged += delivTimeComboBox_SelectedIndexChanged;
             // 
             // label7
             // 

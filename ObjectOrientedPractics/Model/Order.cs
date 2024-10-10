@@ -107,13 +107,13 @@ namespace ObjectOrientedPractics.Model
         /// <param name="items">Список предметов</param>
         /// <param name="deliveryAddress">Адрес доставки</param>
         /// <param name="fullName">Имя покупателя</param>
-        public Order(Address deliveryAddress, string fullName)
+        public Order(Address deliveryAddress, string FullName)
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Now;  // Инициализация даты создания заказа
             _items = new List<Item>();
             DeliveryAddress = deliveryAddress;
-            _fullName = fullName;
+            _fullName = FullName;
             Status = OrderStatus.New;
         }
 

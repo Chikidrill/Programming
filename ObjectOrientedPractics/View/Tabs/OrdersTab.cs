@@ -54,6 +54,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedOrder = value;
                 if (_selectedOrder is PriorityOrder priorityOrder)
                 {
+
                     _selectedPriorityOrder = priorityOrder;
                     delivTimePanel.Visible = true;
                     delivTimeComboBox.SelectedItem = _selectedPriorityOrder.DesiredDeliveryTime.ToString();
@@ -165,6 +166,14 @@ namespace ObjectOrientedPractics.View.Tabs
             };
             OrdersDataGridView.Columns.Add(statusColumn);
 
+            var priorityColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Priority",
+                DataPropertyName = "Priority",
+                ReadOnly = true
+            };
+            OrdersDataGridView.Columns.Add(priorityColumn);
+
             OrdersDataGridView.AutoGenerateColumns = false;
             OrdersDataGridView.AllowUserToAddRows = false;
             OrdersDataGridView.AllowUserToDeleteRows = false;
@@ -214,7 +223,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (e.RowIndex >= 0)
             {
-                var selectedRow = OrdersDataGridView.CurrentRow;
+                DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
 
                 var orderId = selectedRow.Cells[0].Value.ToString();
