@@ -129,5 +129,7 @@ namespace ObjectOrientedPractics.Model
             _items = new List<Item>();
             Status = OrderStatus.New;
         }
+
+        public Order() { }
     }
 }

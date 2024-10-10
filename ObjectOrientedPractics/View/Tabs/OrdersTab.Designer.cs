@@ -113,7 +113,7 @@
             OrderIdTextBox.Location = new Point(93, 36);
             OrderIdTextBox.Name = "OrderIdTextBox";
             OrderIdTextBox.ReadOnly = true;
-            OrderIdTextBox.Size = new Size(521, 27);
+            OrderIdTextBox.Size = new Size(175, 27);
             OrderIdTextBox.TabIndex = 7;
             // 
             // OrderCreationTimeTextBox
@@ -122,7 +122,7 @@
             OrderCreationTimeTextBox.Location = new Point(93, 72);
             OrderCreationTimeTextBox.Name = "OrderCreationTimeTextBox";
             OrderCreationTimeTextBox.ReadOnly = true;
-            OrderCreationTimeTextBox.Size = new Size(521, 27);
+            OrderCreationTimeTextBox.Size = new Size(175, 27);
             OrderCreationTimeTextBox.TabIndex = 8;
             // 
             // StatusComboBox
@@ -131,7 +131,7 @@
             StatusComboBox.FormattingEnabled = true;
             StatusComboBox.Location = new Point(93, 105);
             StatusComboBox.Name = "StatusComboBox";
-            StatusComboBox.Size = new Size(521, 28);
+            StatusComboBox.Size = new Size(175, 28);
             StatusComboBox.TabIndex = 9;
             StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
             // 
@@ -190,7 +190,7 @@
             panel2.Controls.Add(OrderIdTextBox);
             panel2.Location = new Point(454, 9);
             panel2.Name = "panel2";
-            panel2.Size = new Size(641, 150);
+            panel2.Size = new Size(295, 150);
             panel2.TabIndex = 16;
             // 
             // panel3
