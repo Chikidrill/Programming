@@ -1,6 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View.Controls;
-using ObjectOrientedPractics.View.Tabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,8 +28,15 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Order _selectedOrder;
 
+        /// <summary>
+        /// Текущий выбранный приоритетный заказ
+        /// </summary>
         private PriorityOrder _selectedPriorityOrder;
 
+        /// <summary>
+        /// Список покупателей
+        /// </summary>
+        private List<Customer> _customers;
         /// <summary>
         /// Элемент AddressControl
         /// </summary>
@@ -41,7 +47,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public List<Customer> Customers { get; set; }
 
-        PriorityOrder? SelectedPriorityOrder { get; set; }
+        public PriorityOrder? SelectedPriorityOrder { get; set; }
 
         /// <summary>
         /// Возвращает и задает текущий выбранный заказ
@@ -54,7 +60,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedOrder = value;
                 if (_selectedOrder is PriorityOrder priorityOrder)
                 {
-
                     _selectedPriorityOrder = priorityOrder;
                     delivTimePanel.Visible = true;
                     delivTimeComboBox.SelectedItem = _selectedPriorityOrder.DesiredDeliveryTime.ToString();
@@ -166,14 +171,6 @@ namespace ObjectOrientedPractics.View.Tabs
             };
             OrdersDataGridView.Columns.Add(statusColumn);
 
-            var priorityColumn = new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Priority",
-                DataPropertyName = "Priority",
-                ReadOnly = true
-            };
-            OrdersDataGridView.Columns.Add(priorityColumn);
-
             OrdersDataGridView.AutoGenerateColumns = false;
             OrdersDataGridView.AllowUserToAddRows = false;
             OrdersDataGridView.AllowUserToDeleteRows = false;
@@ -208,6 +205,19 @@ namespace ObjectOrientedPractics.View.Tabs
             List<Order> orders = new List<Order>();
             foreach (var customer in Customers)
             {
+                if (customer.IsPriority)
+                {
+                    for (int i = 0; i < customer.Orders.Count; i++)
+                    {
+                        if (!(customer.Orders[i] is PriorityOrder))
+                        {
+                            customer.Orders[i] = new PriorityOrder(customer.Address,customer.FullName, DateTime.Today, DeliveryTimeRange.From9To11);
+                        }
+                    }
+                }
+            }
+            foreach (var customer in Customers)
+            {
                 orders.AddRange(customer.Orders);
             }
             OrdersDataGridView.DataSource = null;
@@ -223,22 +233,21 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (e.RowIndex >= 0)
             {
+                // Сбрасываем выбранные заказы
+                SelectedOrder = null;
+                SelectedPriorityOrder = null;
+
+                // Получаем выбранную строку
                 DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
 
-                var orderId = selectedRow.Cells[0].Value.ToString();
-                var creationDate = selectedRow.Cells[1].Value.ToString();
-                var FullName = selectedRow.Cells[2].Value.ToString();
-                var deliveryAddress = selectedRow.Cells[3].Value.ToString();
-                var totalCost = selectedRow.Cells[4].Value.ToString();
-                var status = selectedRow.Cells[5].Value.ToString();
-
-                OrderIdTextBox.Text = orderId;
-                OrderCreationTimeTextBox.Text = creationDate;
+                // Обновляем поля данных на форме
+                OrderIdTextBox.Text = selectedRow.Cells[0].Value.ToString();
+                OrderCreationTimeTextBox.Text = selectedRow.Cells[1].Value.ToString();
                 StatusComboBox.SelectedItem = SelectedOrder.Status;
                 _addressControl.DisplayAddress(SelectedOrder.DeliveryAddress);
                 DisplayOrderItems(SelectedOrder.Items);
-                totalAmountLabel.Text = $"Total: {totalCost} $";
+                totalAmountLabel.Text = $"Total: {selectedRow.Cells[4].Value} $";
             }
         }
 
@@ -268,7 +277,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void delivTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SelectedOrder != null)
+            if (SelectedOrder != null && SelectedOrder is PriorityOrder)
             {
                 DeliveryTimeRange newDeliveryTime = (DeliveryTimeRange)delivTimeComboBox.SelectedItem;
                 _selectedPriorityOrder.DesiredDeliveryTime = newDeliveryTime;

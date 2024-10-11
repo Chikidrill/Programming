@@ -63,7 +63,7 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _currentCustomer = value;
-                InitializeCartListBox(); 
+                InitializeCartListBox();
             }
         }
 
@@ -78,11 +78,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void InitializeItemsList()
         {
-            ItemsListBox.DataSource = null; 
+            ItemsListBox.DataSource = null;
             if (Items != null && Items.Count > 0)
             {
                 ItemsListBox.DataSource = Items;
-                ItemsListBox.DisplayMember = "Name"; 
+                ItemsListBox.DisplayMember = "Name";
             }
         }
 
@@ -93,9 +93,9 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_customers != null)
             {
-                CustomerComboBox.DataSource = null; 
-                CustomerComboBox.DataSource = _customers; 
-                CustomerComboBox.DisplayMember = "FullName"; 
+                CustomerComboBox.DataSource = null;
+                CustomerComboBox.DataSource = _customers;
+                CustomerComboBox.DisplayMember = "FullName";
                 CustomerComboBox.SelectedIndex = -1;
             }
         }
@@ -105,8 +105,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeCartListBox()
         {
-            CartListBox.DataSource = null; 
-            CartListBox.DataSource = CurrentCustomer?.Cart?.Items; 
+            CartListBox.DataSource = null;
+            CartListBox.DataSource = CurrentCustomer?.Cart?.Items;
             CartListBox.DisplayMember = "Name";
             UpdateTotalAmount();
         }
@@ -116,10 +116,10 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void RefreshData()
         {
-            InitializeItemsList(); 
-            InitializeCustomersList(); 
-            CurrentCustomer = null; 
-            InitializeCartListBox(); 
+            InitializeItemsList();
+            InitializeCustomersList();
+            CurrentCustomer = null;
+            InitializeCartListBox();
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentCustomer = (Customer)CustomerComboBox.SelectedItem; 
+            CurrentCustomer = (Customer)CustomerComboBox.SelectedItem;
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CurrentCustomer.Cart == null)
             {
-                CurrentCustomer.Cart = new Cart(); 
+                CurrentCustomer.Cart = new Cart();
             }
 
             var selectedItem = (Item)ItemsListBox.SelectedItem;
@@ -184,7 +184,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.DataSource = null;
                 CurrentCustomer.Cart.Items.Remove(selectedItem);
                 CartListBox.DataSource = CurrentCustomer.Cart.Items;
-                CartListBox.DisplayMember = "Name"; 
+                CartListBox.DisplayMember = "Name";
                 UpdateTotalAmount();
             }
         }
@@ -216,7 +216,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
                     return;
                 }
-                var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DeliveryTimeRange.From9To11, DateTime.Now.AddDays(1))
+                var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DateTime.Now.AddDays(1), DeliveryTimeRange.From9To11)
                 {
                     Items = new List<Item>(CurrentCustomer.Cart.Items)
                 };
@@ -245,5 +245,5 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
         }
-        }
     }
+}

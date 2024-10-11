@@ -218,6 +218,7 @@
             delivTimePanel.Name = "delivTimePanel";
             delivTimePanel.Size = new Size(337, 150);
             delivTimePanel.TabIndex = 18;
+            delivTimePanel.Visible = false;
             // 
             // label8
             // 

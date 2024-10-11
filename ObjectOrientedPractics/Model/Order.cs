@@ -36,7 +36,6 @@ namespace ObjectOrientedPractics.Model
         /// Список предметов в каждом заказе
         /// </summary>
         private List<Item> _items;
-
         /// <summary>
         /// Возвращает ID
         /// </summary>
@@ -69,7 +68,6 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задает статус заказа
         /// </summary>
         public OrderStatus Status { get; set; }
-
         /// <summary>
         /// Возвращает общую стоимость заказа
         /// </summary>
@@ -121,6 +119,7 @@ namespace ObjectOrientedPractics.Model
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Now;
+            _fullName = FullName;
             _items = new List<Item>();
             Status = OrderStatus.New;
         }

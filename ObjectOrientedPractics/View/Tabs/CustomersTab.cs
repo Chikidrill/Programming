@@ -66,7 +66,7 @@ namespace ObjectOrientedPractics.View.Tabs
             var address = _addressControl.Address;
 
             var newCustomer = new Customer(FullNameTextBox.Text, address);
-            if (isPriorityCheckBox.Checked==true)
+            if (isPriorityCheckBox.Checked == true)
             {
                 newCustomer.IsPriority = true;
             }
@@ -143,6 +143,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomersListBox.Items.Add($"ID: {customer.Id} Full name: {customer.FullName} {customer.Address}");
             }
+
         }
 
         /// <summary>
