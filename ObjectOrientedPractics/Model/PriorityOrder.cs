@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.Model
             get => _desiredDeliveryDate;
             set => _desiredDeliveryDate = value;
         }
-
+        public OrderStatus Status { get; set; }
         /// <summary>
         /// Возвращает и задает желаемое время доставки.
         /// </summary>
@@ -39,8 +39,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public PriorityOrder() : base()
         {
-            _desiredDeliveryDate = DateTime.Now.AddDays(1); // Например, завтрашняя дата
-            _desiredDeliveryTime = DeliveryTimeRange.From9To11;
+            DesiredDeliveryDate = DateTime.Now.AddDays(1); // Например, завтрашняя дата
+            DesiredDeliveryTime = DeliveryTimeRange.From9To11;
         }
 
         /// <summary>

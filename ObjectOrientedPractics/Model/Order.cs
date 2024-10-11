@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальная дата для каждого заказа
         /// </summary>
-        private readonly DateTime _date;
+        private  DateTime _date;
 
         /// <summary>
         /// Уникальное имя покупателя для каждого экземпляра класса
@@ -44,7 +44,11 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает дату создания заказа
         /// </summary>
-        public DateTime CreationDate => _date;
+        public DateTime CreationDate
+        {
+            get { return _date; }
+            private set { _date = value; }
+        }
 
         /// <summary>
         /// Возвращает и задает адрес доставки класса <see cref="Address"></see>
@@ -108,7 +112,7 @@ namespace ObjectOrientedPractics.Model
         public Order(Address deliveryAddress, string FullName)
         {
             _id = IdGenerator.GetNextId();
-            _date = DateTime.Now;  // Инициализация даты создания заказа
+            CreationDate = DateTime.Now;  // Инициализация даты создания заказа
             _items = new List<Item>();
             DeliveryAddress = deliveryAddress;
             _fullName = FullName;
@@ -118,7 +122,7 @@ namespace ObjectOrientedPractics.Model
         public Order()
         {
             _id = IdGenerator.GetNextId();
-            _date = DateTime.Now;
+            CreationDate = DateTime.Now;
             _fullName = FullName;
             _items = new List<Item>();
             Status = OrderStatus.New;

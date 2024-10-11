@@ -113,6 +113,7 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Text = string.Empty;
             _addressControl.Address = new Address(); // Очистить адрес
             FullNameTextBox.BackColor = AppColors.StandartColor;
+            isPriorityCheckBox.Checked = false ;
         }
 
         /// <summary>
@@ -128,6 +129,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomersListBox.SelectedItem = null;
             }
+            isPriorityCheckBox.Checked = false;
         }
 
         /// <summary>
@@ -135,10 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void DisplayCustomersList()
         {
-            // Очищаем ListBox перед добавлением обновленных данных
             CustomersListBox.Items.Clear();
-
-            // Добавляем каждую песню из списка в ListBox
             foreach (Customer customer in _customers)
             {
                 CustomersListBox.Items.Add($"ID: {customer.Id} Full name: {customer.FullName} {customer.Address}");
@@ -168,7 +167,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch (Exception ex)
             {
                 FullNameTextBox.BackColor = AppColors.InvalidColor;
-                // MessageBox.Show(ex.Message);
             }
 
         }

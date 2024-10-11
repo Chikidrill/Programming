@@ -15,6 +15,8 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class OrdersTab : UserControl
     {
+
+        private string _selectedDeliveryTime;
         /// <summary>
         /// Список заказов
         /// </summary>
@@ -203,26 +205,57 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             List<Order> orders = new List<Order>();
+
+            // Проверяем все заказы для каждого покупателя
             foreach (var customer in Customers)
             {
+                // Для приоритетных покупателей проверяем их заказы
                 if (customer.IsPriority)
                 {
+
                     for (int i = 0; i < customer.Orders.Count; i++)
                     {
-                        if (!(customer.Orders[i] is PriorityOrder))
+                        // Если заказ не является приоритетным, заменяем его на приоритетный заказ
+                        if (customer.Orders[i] is not PriorityOrder)
                         {
-                            customer.Orders[i] = new PriorityOrder(customer.Address,customer.FullName, DateTime.Today, DeliveryTimeRange.From9To11);
+                            // Создаем новый приоритетный заказ на основе старого
+                            var originalOrder = customer.Orders[i];
+                            var priorityOrder = new PriorityOrder(
+                                customer.Address,
+                                customer.FullName,
+                                originalOrder.CreationDate, // Сохраняем дату создания
+                                DeliveryTimeRange.From9To11// Можно настроить другое время
+                            );
+                            
+                            // Копируем предметы и стоимость
+                            foreach (var item in originalOrder.Items)
+                            {
+                                priorityOrder.Items.Add(item);
+                            }
+
+                            // Заменяем заказ на приоритетный
+                            customer.Orders[i] = priorityOrder;
                         }
                     }
                 }
-            }
-            foreach (var customer in Customers)
-            {
+
+                // Добавляем все заказы покупателя в общий список
                 orders.AddRange(customer.Orders);
             }
+
+            // Обновляем источник данных для таблицы заказов
             OrdersDataGridView.DataSource = null;
             OrdersDataGridView.DataSource = orders;
+
+            // Обновляем отображение заказа, если выбран приоритетный заказ
+            if (SelectedPriorityOrder != null)
+            {
+                DisplayOrderItems(SelectedPriorityOrder.Items);
+                totalAmountLabel.Text = $"Total: {SelectedPriorityOrder.TotalCost} $";
+            }
+
         }
+
 
         /// <summary>
         /// Осуществляет отображение данных о выбранном в таблице заказе
@@ -233,13 +266,19 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (e.RowIndex >= 0)
             {
-                // Сбрасываем выбранные заказы
-                SelectedOrder = null;
-                SelectedPriorityOrder = null;
-
-                // Получаем выбранную строку
                 DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
+
+                
+
+                var orderId = selectedRow.Cells[0].Value.ToString();
+                var creationDate = selectedRow.Cells[1].Value.ToString();
+                var FullName = selectedRow.Cells[2].Value.ToString();
+                var deliveryAddress = selectedRow.Cells[3].Value.ToString();
+                var totalCost = selectedRow.Cells[4].Value.ToString();
+                var status = selectedRow.Cells[5].Value.ToString();
+
+                
 
                 // Обновляем поля данных на форме
                 OrderIdTextBox.Text = selectedRow.Cells[0].Value.ToString();
@@ -247,9 +286,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 StatusComboBox.SelectedItem = SelectedOrder.Status;
                 _addressControl.DisplayAddress(SelectedOrder.DeliveryAddress);
                 DisplayOrderItems(SelectedOrder.Items);
-                totalAmountLabel.Text = $"Total: {selectedRow.Cells[4].Value} $";
+                totalAmountLabel.Text = $"Total: {totalCost} $";
+                if (SelectedOrder is PriorityOrder priorityOrder)
+                {
+                    delivTimeComboBox.SelectedItem = priorityOrder.DesiredDeliveryTime;
+                }
             }
         }
+
 
         /// <summary>
         /// Осуществляет изменение параметра Status в ComboBox
