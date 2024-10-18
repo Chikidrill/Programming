@@ -226,7 +226,7 @@ namespace ObjectOrientedPractics.View.Tabs
                                 originalOrder.CreationDate, // Сохраняем дату создания
                                 DeliveryTimeRange.From9To11// Можно настроить другое время
                             );
-                            
+
                             // Копируем предметы и стоимость
                             foreach (var item in originalOrder.Items)
                             {
@@ -269,7 +269,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 DataGridViewRow selectedRow = OrdersDataGridView.Rows[e.RowIndex];
                 SelectedOrder = (Order)selectedRow.DataBoundItem;
 
-                
+
 
                 var orderId = selectedRow.Cells[0].Value.ToString();
                 var creationDate = selectedRow.Cells[1].Value.ToString();
@@ -278,7 +278,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 var totalCost = selectedRow.Cells[4].Value.ToString();
                 var status = selectedRow.Cells[5].Value.ToString();
 
-                
+
 
                 // Обновляем поля данных на форме
                 OrderIdTextBox.Text = selectedRow.Cells[0].Value.ToString();
