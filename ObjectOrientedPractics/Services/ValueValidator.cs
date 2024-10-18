@@ -47,5 +47,12 @@ namespace ObjectOrientedPractics.Services
                 throw new ArgumentException($"The value \"{value}\" is out of range for property \"{propertyName}\". It must be between {min} and {max}");
             }
         }
+        public static void AssertOnPositiveValue(int value, string propertyName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentException($"Значение \"{value}\" не может быть присвоено \"{propertyName}\". Значение должно быть положительным целым числом.");
+            }
+        }
     }
 }
