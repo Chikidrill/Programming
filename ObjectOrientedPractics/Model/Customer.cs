@@ -36,6 +36,11 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID. Является полем, доступным только для чтения.
         /// </summary>
+        /// 
+
+        private bool _isPriority = false;
+
+        public bool IsPriority { get; set; }
         public int Id
         {
             get

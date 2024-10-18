@@ -66,6 +66,10 @@ namespace ObjectOrientedPractics.View.Tabs
             var address = _addressControl.Address;
 
             var newCustomer = new Customer(FullNameTextBox.Text, address);
+            if (isPriorityCheckBox.Checked == true)
+            {
+                newCustomer.IsPriority = true;
+            }
             _customers.Add(newCustomer);
 
             // Обновление UI и очистка
@@ -74,6 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _addressControl.ClearInfo(); // Очистить адрес
             ClearInputFields();
             DisplayCustomersList();
+            isPriorityCheckBox.Checked = false;
         }
 
         /// <summary>
@@ -108,6 +113,7 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Text = string.Empty;
             _addressControl.Address = new Address(); // Очистить адрес
             FullNameTextBox.BackColor = AppColors.StandartColor;
+            isPriorityCheckBox.Checked = false ;
         }
 
         /// <summary>
@@ -123,6 +129,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomersListBox.SelectedItem = null;
             }
+            isPriorityCheckBox.Checked = false;
         }
 
         /// <summary>
@@ -130,14 +137,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void DisplayCustomersList()
         {
-            // Очищаем ListBox перед добавлением обновленных данных
             CustomersListBox.Items.Clear();
-
-            // Добавляем каждую песню из списка в ListBox
             foreach (Customer customer in _customers)
             {
                 CustomersListBox.Items.Add($"ID: {customer.Id} Full name: {customer.FullName} {customer.Address}");
             }
+
         }
 
         /// <summary>
@@ -162,7 +167,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch (Exception ex)
             {
                 FullNameTextBox.BackColor = AppColors.InvalidColor;
-                // MessageBox.Show(ex.Message);
             }
 
         }
@@ -190,6 +194,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _addressControl.Address = new Address(); // Очистить AddressControl
                 }
+                isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
             }
             else
             {

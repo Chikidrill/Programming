@@ -33,8 +33,6 @@ namespace ObjectOrientedPractics.Model
             set { _customers = value; }
         }
 
-        public List<Order> Orders => _orders;
-
         /// <summary>
         /// Загружает данные о товарах и покупателях из файлов.
         /// </summary>
@@ -130,6 +128,8 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Store"/> и создает пустые списки для товаров и покупателей.
         /// </summary>
+        /// 
+
         public Store()
         {
             _items = new List<Item>();
