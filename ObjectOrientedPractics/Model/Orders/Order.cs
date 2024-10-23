@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class Order
     {
@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальная дата для каждого заказа
         /// </summary>
-        private  DateTime _date;
+        private DateTime _date;
 
         /// <summary>
         /// Уникальное имя покупателя для каждого экземпляра класса
@@ -36,6 +36,7 @@ namespace ObjectOrientedPractics.Model
         /// Список предметов в каждом заказе
         /// </summary>
         private List<Item> _items;
+        private double _discountAmount;
         /// <summary>
         /// Возвращает ID
         /// </summary>
@@ -101,6 +102,29 @@ namespace ObjectOrientedPractics.Model
         {
             get => _fullName;
             set => _fullName = value ?? "Unknown";
+        }
+
+        public double DiscountAmount
+        {
+            get
+            {
+                return _discountAmount;
+            }
+            set
+            {
+                ValueValidator.AssertOnPositiveValue(value, nameof(DiscountAmount));
+                value = _discountAmount;
+            }
+        }
+
+        public double Total
+        {
+            get
+            {
+                double total = TotalCost - DiscountAmount;
+                ValueValidator.AssertOnPositiveValue(total, nameof(Total));
+                return TotalCost - DiscountAmount;
+            }
         }
 
         /// <summary>

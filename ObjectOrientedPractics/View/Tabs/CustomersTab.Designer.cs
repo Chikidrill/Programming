@@ -41,6 +41,9 @@
             panel1 = new Panel();
             panel2 = new Panel();
             isPriorityCheckBox = new CheckBox();
+            DiscountsListBox = new ListBox();
+            AddDiscountButton = new Button();
+            RemoveDiscountButton = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -188,10 +191,41 @@
             isPriorityCheckBox.Text = "Is Priority";
             isPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
+            // DiscountsListBox
+            // 
+            DiscountsListBox.FormattingEnabled = true;
+            DiscountsListBox.Location = new Point(442, 435);
+            DiscountsListBox.Name = "DiscountsListBox";
+            DiscountsListBox.Size = new Size(294, 124);
+            DiscountsListBox.TabIndex = 38;
+            // 
+            // AddDiscountButton
+            // 
+            AddDiscountButton.Location = new Point(824, 430);
+            AddDiscountButton.Name = "AddDiscountButton";
+            AddDiscountButton.Size = new Size(109, 42);
+            AddDiscountButton.TabIndex = 39;
+            AddDiscountButton.Text = "Add";
+            AddDiscountButton.UseVisualStyleBackColor = true;
+            AddDiscountButton.Click += AddDiscountButton_Click;
+            // 
+            // RemoveDiscountButton
+            // 
+            RemoveDiscountButton.Location = new Point(824, 490);
+            RemoveDiscountButton.Name = "RemoveDiscountButton";
+            RemoveDiscountButton.Size = new Size(109, 44);
+            RemoveDiscountButton.TabIndex = 40;
+            RemoveDiscountButton.Text = "Remove";
+            RemoveDiscountButton.UseVisualStyleBackColor = true;
+            RemoveDiscountButton.Click += RemoveDiscountButton_Click;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(RemoveDiscountButton);
+            Controls.Add(AddDiscountButton);
+            Controls.Add(DiscountsListBox);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "CustomersTab";
@@ -218,5 +252,8 @@
         private Panel panel1;
         private Panel panel2;
         private CheckBox isPriorityCheckBox;
+        private ListBox DiscountsListBox;
+        private Button AddDiscountButton;
+        private Button RemoveDiscountButton;
     }
 }

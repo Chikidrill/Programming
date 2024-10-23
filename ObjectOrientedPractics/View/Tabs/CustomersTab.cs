@@ -11,7 +11,9 @@ using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using System.Reflection.Emit;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View;
 using System.Text.Json;
+using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -21,12 +23,15 @@ namespace ObjectOrientedPractics.View.Tabs
         private Customer _currentCustomer;
         private IdGenerator idGenerator = new IdGenerator();
         private string filePath = "customers.json";
+        private List<IDiscount>? _discounts;
         AddressControl _addressControl;
+        private AddDiscountForm addDiscountForm;
         public CustomersTab()
         {
             InitializeComponent();
             InitializeAddressControl();
             DisplayCustomersList();
+            addDiscountForm = new AddDiscountForm();
         }
 
         /// <summary>
@@ -42,7 +47,18 @@ namespace ObjectOrientedPractics.View.Tabs
                 DisplayCustomersList();
             }
         }
-
+        public List<IDiscount>? Discounts
+        {
+            get
+            {
+                return _discounts;
+            }
+            set
+            {
+                _discounts = value;
+                FillDiscountsListBox();
+            }
+        }
         /// <summary>
         /// Инициализация элемента AddressControl.
         /// </summary>
@@ -113,7 +129,8 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Text = string.Empty;
             _addressControl.Address = new Address(); // Очистить адрес
             FullNameTextBox.BackColor = AppColors.StandartColor;
-            isPriorityCheckBox.Checked = false ;
+            isPriorityCheckBox.Checked = false;
+            DiscountsListBox.Items.Clear();
         }
 
         /// <summary>
@@ -185,7 +202,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer = _customers[selectedIndex];
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
-
+                FillDiscountsListBox();
                 if (_currentCustomer.Address != null)
                 {
                     _addressControl.Address = _currentCustomer.Address;
@@ -202,6 +219,62 @@ namespace ObjectOrientedPractics.View.Tabs
                 IdTextBox.Clear();
                 FullNameTextBox.Clear();
                 _addressControl.Address = new Address(); // Очистить AddressControl
+                DiscountsListBox.Items.Clear();
+            }
+        }
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (Discounts == null || DiscountsListBox.SelectedItem == null) return;
+            if (DiscountsListBox.SelectedItem is PointsDiscount)
+            {
+                MessageBox.Show("Нельзя удалить накопительную скидку!");
+                return;
+            }
+            Discounts.Remove((IDiscount)DiscountsListBox.SelectedItem);
+            DiscountsListBox.Items.Remove(DiscountsListBox.SelectedItem);
+        }
+        private void FillDiscountsListBox()
+        {
+            DiscountsListBox.Items.Clear();
+            if (_currentCustomer != null)
+            {
+                foreach (IDiscount discount in _currentCustomer.Discounts)
+                {
+                    DiscountsListBox.Items.Add($"{discount.Info}");
+                }
+            }
+
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (_currentCustomer != null)
+            {
+                Category category;
+                AddDiscountForm addDiscountForm = new AddDiscountForm();
+                addDiscountForm.ShowDialog();
+                if (addDiscountForm.IsChanged)
+                {
+                    bool isContains = false;
+                    foreach (var discount in _currentCustomer.Discounts)
+                    {
+                        if (discount is PercentDiscount)
+                        {
+                            PercentDiscount percentDiscount1 = (PercentDiscount)discount;
+                            if (percentDiscount1.Category == addDiscountForm.Category)
+                            {
+                                isContains = true;
+                            }
+                        }
+                    }
+                    if (!isContains)
+                    {
+                        category = addDiscountForm.Category;
+                        PercentDiscount percentDiscount = new PercentDiscount(category);
+                        _currentCustomer.Discounts.Add(percentDiscount);
+                    }
+                }
+                FillDiscountsListBox();
             }
         }
     }

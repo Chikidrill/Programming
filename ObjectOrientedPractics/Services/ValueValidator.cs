@@ -49,7 +49,14 @@ namespace ObjectOrientedPractics.Services
         }
         public static void AssertOnPositiveValue(int value, string propertyName)
         {
-            if (value <= 0)
+            if (value < 0)
+            {
+                throw new ArgumentException($"Значение \"{value}\" не может быть присвоено \"{propertyName}\". Значение должно быть положительным целым числом.");
+            }
+        }
+        public static void AssertOnPositiveValue(double value, string propertyName)
+        {
+            if (value < 0)
             {
                 throw new ArgumentException($"Значение \"{value}\" не может быть присвоено \"{propertyName}\". Значение должно быть положительным целым числом.");
             }

@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

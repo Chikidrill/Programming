@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal interface IDiscount
+    public interface IDiscount
     {
         /// <summary>
         /// Получает информацию о скидке в виде строки.
@@ -35,6 +35,5 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="items">Список товаров для расчета общей суммы.</param>
         /// <returns>Общая сумма товаров в списке.</returns>
-        double GetAmount(List<Item> items);
     }
 }
