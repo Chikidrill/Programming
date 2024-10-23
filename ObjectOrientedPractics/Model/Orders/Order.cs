@@ -141,6 +141,7 @@ namespace ObjectOrientedPractics.Model.Orders
             DeliveryAddress = deliveryAddress;
             _fullName = FullName;
             Status = OrderStatus.New;
+
         }
 
         public Order()

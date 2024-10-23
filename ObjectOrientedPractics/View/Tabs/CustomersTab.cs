@@ -224,14 +224,11 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         private void RemoveDiscountButton_Click(object sender, EventArgs e)
         {
-            if (Discounts == null || DiscountsListBox.SelectedItem == null) return;
-            if (DiscountsListBox.SelectedItem is PointsDiscount)
+            if (_currentCustomer != null && DiscountsListBox.SelectedIndex != 0)
             {
-                MessageBox.Show("Нельзя удалить накопительную скидку!");
-                return;
+                _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+                FillDiscountsListBox();
             }
-            Discounts.Remove((IDiscount)DiscountsListBox.SelectedItem);
-            DiscountsListBox.Items.Remove(DiscountsListBox.SelectedItem);
         }
         private void FillDiscountsListBox()
         {
@@ -270,7 +267,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     if (!isContains)
                     {
                         category = addDiscountForm.Category;
-                        PercentDiscount percentDiscount = new PercentDiscount(category);
+                        PercentDiscount percentDiscount = new PercentDiscount(category, _currentCustomer.Cart.Amount);
                         _currentCustomer.Discounts.Add(percentDiscount);
                     }
                 }

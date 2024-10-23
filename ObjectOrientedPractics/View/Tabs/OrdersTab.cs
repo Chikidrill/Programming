@@ -329,5 +329,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 UpdateOrders();
             }
         }
+
+        private void OrdersTab_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

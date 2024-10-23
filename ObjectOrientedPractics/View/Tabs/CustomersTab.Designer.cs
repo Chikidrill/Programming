@@ -44,8 +44,11 @@
             DiscountsListBox = new ListBox();
             AddDiscountButton = new Button();
             RemoveDiscountButton = new Button();
+            panel3 = new Panel();
+            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // ClearButton
@@ -193,15 +196,17 @@
             // 
             // DiscountsListBox
             // 
+            DiscountsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DiscountsListBox.FormattingEnabled = true;
-            DiscountsListBox.Location = new Point(442, 435);
+            DiscountsListBox.Location = new Point(5, 47);
             DiscountsListBox.Name = "DiscountsListBox";
-            DiscountsListBox.Size = new Size(294, 124);
+            DiscountsListBox.Size = new Size(362, 244);
             DiscountsListBox.TabIndex = 38;
             // 
             // AddDiscountButton
             // 
-            AddDiscountButton.Location = new Point(824, 430);
+            AddDiscountButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddDiscountButton.Location = new Point(413, 47);
             AddDiscountButton.Name = "AddDiscountButton";
             AddDiscountButton.Size = new Size(109, 42);
             AddDiscountButton.TabIndex = 39;
@@ -211,7 +216,8 @@
             // 
             // RemoveDiscountButton
             // 
-            RemoveDiscountButton.Location = new Point(824, 490);
+            RemoveDiscountButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            RemoveDiscountButton.Location = new Point(413, 127);
             RemoveDiscountButton.Name = "RemoveDiscountButton";
             RemoveDiscountButton.Size = new Size(109, 44);
             RemoveDiscountButton.TabIndex = 40;
@@ -219,13 +225,33 @@
             RemoveDiscountButton.UseVisualStyleBackColor = true;
             RemoveDiscountButton.Click += RemoveDiscountButton_Click;
             // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(RemoveDiscountButton);
+            panel3.Controls.Add(AddDiscountButton);
+            panel3.Controls.Add(DiscountsListBox);
+            panel3.Location = new Point(427, 386);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(525, 301);
+            panel3.TabIndex = 41;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label3.Location = new Point(5, 24);
+            label3.Name = "label3";
+            label3.Size = new Size(75, 20);
+            label3.TabIndex = 41;
+            label3.Text = "Discounts";
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(RemoveDiscountButton);
-            Controls.Add(AddDiscountButton);
-            Controls.Add(DiscountsListBox);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "CustomersTab";
@@ -234,6 +260,8 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -255,5 +283,7 @@
         private ListBox DiscountsListBox;
         private Button AddDiscountButton;
         private Button RemoveDiscountButton;
+        private Panel panel3;
+        private Label label3;
     }
 }

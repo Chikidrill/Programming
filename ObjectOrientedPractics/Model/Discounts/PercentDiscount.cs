@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     {
         private int _percent = 1;
         private Category _category;
-        private double _totalSum;
+        public double TotalSpent { get; private set; }
 
         /// <summary>
         /// Возвращает размер скидки в процентах.
@@ -45,16 +45,9 @@ namespace ObjectOrientedPractics.Model
         /// <returns></returns>
         public double Calculate(List<Item> items)
         {
-            double sum = 0;
-            foreach (var item in items)
-            {
-                if (item.Category == _category)
-                {
-                    sum += item.Cost;
-                }
-            }
-
-            return (sum / 100) * _percent;
+            double amount = GetAmount(items);
+            double discountAmount = amount * ((double)DiscountPercentage) / 100;
+            return discountAmount;
         }
 
         /// <summary>
@@ -64,16 +57,8 @@ namespace ObjectOrientedPractics.Model
         /// <returns></returns>
         public double Apply(List<Item> items)
         {
-            double sum = 0;
-            foreach (var item in items)
-            {
-                if (item.Category == _category)
-                {
-                    sum += item.Cost;
-                }
-            }
-
-            return (sum / 100) * _percent;
+            double discountAmount = Calculate(items);
+            return discountAmount;
         }
 
         /// <summary>
@@ -82,25 +67,36 @@ namespace ObjectOrientedPractics.Model
         /// <param name="items"></param>
         public void Update(List<Item> items)
         {
-
-            foreach (var item in items)
+            double amount = GetAmount(items);
+            TotalSpent += amount;
+        }
+        public double GetAmount(List<Item> items)
+        {
+            double sum = 0;
+            items.ForEach(x =>
             {
-                if (item.Category == _category)
+                if (x.Category == Category)
                 {
-                    _totalSum += item.Cost;
+                    sum += x.Cost;
                 }
             }
-            double sum2 = _totalSum;
-            while ((sum2 >= 1000) && (_percent < 10))
+            );
+            return Math.Round(sum, 2);
+        }
+        public int DiscountPercentage
+        {
+            get
             {
-                sum2 -= 1000;
-                _percent++;
+                int discountPercentage = (int)Math.Floor(TotalSpent / 1000);
+                if (discountPercentage > 9) discountPercentage = 9;
+                return discountPercentage + 1;
             }
         }
-
-        public PercentDiscount(Category category)
+        public PercentDiscount(Category category, double totalSpent)
         {
             _category = category;
+            TotalSpent = totalSpent;
+            
         }
     }
 }

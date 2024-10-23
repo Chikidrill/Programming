@@ -130,11 +130,42 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CurrentCustomer != null && CurrentCustomer.Cart != null)
             {
-                AmountLabel.Text = $"Total: {CurrentCustomer.Cart.Amount:C}";
+                // Основная общая сумма товаров в корзине
+                double totalAmount = CurrentCustomer.Cart.Amount;
+
+                // Сумма после применения всех скидок
+                double amountWithDiscounts = totalAmount;
+
+                // Рассчитываем все скидки, если они есть
+                foreach (var discount in CurrentCustomer.Discounts)
+                {
+                    double discountAmount = discount.Calculate(CurrentCustomer.Cart.Items);
+                    amountWithDiscounts -= discountAmount;
+                }
+
+                // Логика для накопительной скидки
+                double loyaltyDiscount = 0.0;
+                if (totalAmount > 500) // Например, если сумма покупок больше 500
+                {
+                    loyaltyDiscount = totalAmount * 0.05; // Скидка 5% от суммы
+                    amountWithDiscounts -= loyaltyDiscount;
+                }
+
+                // Отображаем обновленную информацию о сумме
+                TotalAmountLabel.Text = $"Total with discounts: {amountWithDiscounts:F2}";
+                AmountLabel.Text = $"Total: {totalAmount:F2}";
+
+                // Отображаем информацию о накопительной скидке
+                if (loyaltyDiscount > 0)
+                {
+                    DiscountAmountLabel.Text = $"Loyalty discount: {loyaltyDiscount:F2}";
+                }
             }
             else
             {
                 AmountLabel.Text = "Total: $0.00";
+                TotalAmountLabel.Text = "Total with discounts: $0.00";
+                DiscountAmountLabel.Text = "Loyalty discount: $0.00";
             }
         }
 
@@ -146,6 +177,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CurrentCustomer = (Customer)CustomerComboBox.SelectedItem;
+            InitializeDiscountCheckedListBox();
         }
 
         /// <summary>
@@ -168,6 +200,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.DataSource = CurrentCustomer.Cart.Items;
                 CartListBox.DisplayMember = "Name";
                 UpdateTotalAmount();
+                UpdateTotalDiscountAmount();
             }
         }
 
@@ -187,6 +220,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.DataSource = CurrentCustomer.Cart.Items;
                 CartListBox.DisplayMember = "Name";
                 UpdateTotalAmount();
+                UpdateTotalDiscountAmount();
             }
         }
 
@@ -210,41 +244,118 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            if (CurrentCustomer.IsPriority == true)
+            if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
             {
-                if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
+                MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
+                return;
+            }
+
+            double discountSum = 0;
+
+            if (CurrentCustomer.IsPriority)
+            {
+                // Применяем только выбранные скидки для приоритетных покупателей
+                for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
                 {
-                    MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
-                    return;
+                    if (DiscountCheckedListBox.GetItemChecked(i))
+                    {
+                        discountSum += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
+                        CurrentCustomer.Discounts[i].Apply(CurrentCustomer.Cart.Items);
+                    }
                 }
+
+                // Обновляем информацию о всех скидках
+                foreach (var discount in CurrentCustomer.Discounts)
+                {
+                    discount.Update(CurrentCustomer.Cart.Items);
+                }
+
                 var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DateTime.Now.AddDays(1), DeliveryTimeRange.From9To11)
                 {
-                    Items = new List<Item>(CurrentCustomer.Cart.Items)
+                    Items = new List<Item>(CurrentCustomer.Cart.Items),
+                    DiscountAmount = discountSum // Добавляем сумму скидок в заказ
                 };
+
                 CurrentCustomer.Orders.Add(newPriorityOrder);
-                CurrentCustomer.Cart.Items.Clear();
-                CartListBox.DataSource = null;
-                UpdateTotalAmount();
                 MessageBox.Show("Заказ приоритетного покупателя успешно создан!");
             }
             else
             {
-                if (CurrentCustomer == null || CurrentCustomer.Cart.Items.Count == 0)
+                // Для обычных покупателей скидки не применяются
+                for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
                 {
-                    MessageBox.Show("Выберите покупателя и добавьте товары в корзину.");
-                    return;
+                    if (DiscountCheckedListBox.GetItemChecked(i) == false)
+                    {
+                        CurrentCustomer.Discounts[i].Apply(CurrentCustomer.Cart.Items);
+                    }
                 }
+
+                foreach (var discount in CurrentCustomer.Discounts)
+                {
+                    discount.Update(CurrentCustomer.Cart.Items);
+                }
+
+                // Создаем заказ для обычного покупателя без учета скидок
                 var newOrder = new Order(CurrentCustomer.Address, CurrentCustomer.FullName)
                 {
-                    Items = new List<Item>(CurrentCustomer.Cart.Items)
+                    Items = new List<Item>(CurrentCustomer.Cart.Items),
+                    DiscountAmount = discountSum // Скидки не будут учитываться для обычных покупателей
                 };
+
                 CurrentCustomer.Orders.Add(newOrder);
-                CurrentCustomer.Cart.Items.Clear();
-                CartListBox.DataSource = null;
-                UpdateTotalAmount();
                 MessageBox.Show("Заказ успешно создан!");
             }
 
+            // Очищаем корзину и обновляем интерфейс
+            CurrentCustomer.Cart.Items.Clear();
+            CartListBox.DataSource = null;
+            UpdateTotalAmount(); // Обновляем общую стоимость и метку с учетом скидок
+            UpdateTotalDiscountAmount(); // Обновляем метку с суммой скидки
+        }
+
+        private void DiscountCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // Задержка обновления до завершения проверки элементов
+      
+                UpdateTotalDiscountAmount();
+                UpdateTotalAmount(); // Пересчитываем общую сумму с учетом новых скидок
+   
+        }
+        private void UpdateTotalDiscountAmount()
+        {
+            double discountSum = 0.0;
+
+            // Пересчитываем сумму скидок на основе выбранных галочек
+            if (CurrentCustomer != null)
+            {
+                for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
+                {
+                    if (DiscountCheckedListBox.GetItemChecked(i))
+                    {
+                        discountSum += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
+
+                    }
+                }
+            }
+
+            DiscountAmountLabel.Text = $"Discount: {discountSum}";
+
+        }
+        private void InitializeDiscountCheckedListBox()
+        {
+            DiscountCheckedListBox.Items.Clear();
+
+            if (CurrentCustomer != null && CurrentCustomer.Discounts != null)
+            {
+                foreach (var discount in CurrentCustomer.Discounts)
+                {
+                    DiscountCheckedListBox.Items.Add(discount.Info, true); // Добавляем все скидки с установленными галочками
+                }
+            }
+
+            DiscountCheckedListBox.CheckOnClick = true;
+            DiscountCheckedListBox.SelectionMode = SelectionMode.One;
+            DiscountCheckedListBox.IntegralHeight = false;
         }
     }
 }

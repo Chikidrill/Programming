@@ -13,97 +13,102 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class PointsDiscount : IDiscount
     {
-        int _pointsBalance;
+        private int _points = 0;
 
         /// <summary>
-        /// Количество накопленных баллов, которые могут быть использованы для получения скидки.
+        /// Возвращает количество накопленных баллов.
         /// </summary>
-        public int PointsBalance
+        public int Points
         {
-            get
-            {
-                return _pointsBalance;
-            }
+            get { return _points; }
             private set
             {
-                ValueValidator.AssertOnPositiveValue(value, nameof(PointsBalance));
-                _pointsBalance = value;
+                if (value >= 0)
+                {
+                    _points = value;
+
+                }
             }
         }
+
         /// <summary>
-        /// Возвращает информацию о текущем количестве накопленных баллов.
+        /// Возвращает информацию о скидке.
         /// </summary>
         public string Info
         {
             get
             {
-                return $"Накопительная - {PointsBalance} баллов";
+                if (_points % 100 >= 11 && _points % 100 <= 14)
+                {
+                    return $"Накопительная - {_points} баллов";
+                }
+
+                int lastDigit = _points % 10;
+
+                if (lastDigit == 1 && _points % 100 != 11)
+                {
+                    return $"Накопительная - {_points} балл";
+                }
+                else if (lastDigit >= 2 && lastDigit <= 4 && _points % 100 != 12 && _points % 100 != 13 && _points % 100 != 14)
+                {
+                    return $"Накопительная - {_points} балла";
+                }
+                else
+                {
+                    return $"Накопительная - {_points} баллов";
+                }
             }
         }
 
         /// <summary>
-        /// Рассчитывает сумму скидки, которая может быть применена к заказу на основе накопленных баллов.
-        /// Максимальная скидка не может превышать 30% от общей суммы заказа.
+        /// Возвращает размер доступной скидки.
         /// </summary>
-        /// <param name="items">Список товаров для расчета скидки.</param>
-        /// <returns>Сумма скидки, рассчитанная на основе накопленных баллов.</returns>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public double Calculate(List<Item> items)
         {
             double amount = GetAmount(items);
-            if (PointsBalance > amount * 0.3)
+            if (Points > amount * 0.3)
             {
                 return Math.Floor(amount * 0.3);
             }
             else
             {
-                return PointsBalance;
+                return Points;
             }
-        }
-        /// <summary>
-        /// Применяет рассчитанную скидку к списку товаров и уменьшает баланс накопленных баллов.
-        /// </summary>
-        /// <param name="items">Список товаров для применения скидки.</param>
-        /// <returns>Сумма скидки, которая была применена.</returns>
-        public double Apply(List<Item> items)
-        {
-            double discountAmount = Calculate(items);
-            PointsBalance -= (int)discountAmount;
-            return discountAmount;
-        }
-        /// <summary>
-        /// Обновляет баланс накопленных баллов на основе суммы покупок.
-        /// Покупатель получает 10% от суммы покупки в виде баллов.
-        /// </summary>
-        /// <param name="items">Список товаров для обновления баланса баллов.</param>
-        public void Update(List<Item> items)
-        {
-            double amount = GetAmount(items);
-            PointsBalance += (int)Math.Ceiling(amount * 0.1);
         }
 
         /// <summary>
-        /// Возвращает общую сумму заказа.
+        /// Применяет скидку к товарам. Списывает баллы.
         /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        public double Apply(List<Item> items)
+        {
+            double discountAmount = Calculate(items);
+            Points -= (int)discountAmount;
+            return discountAmount;
+
+        }
+
+        /// <summary>
+        /// Начисляет баллы после покупки.
+        /// </summary>
+        /// <param name="items"></param>
+        public void Update(List<Item> items)
+        {
+            double amount = GetAmount(items);
+            Points += (int)Math.Ceiling(amount * 0.1);
+        }
         public double GetAmount(List<Item> items)
         {
             double sum = 0;
             items.ForEach(x => { sum += x.Cost; });
             return Math.Round(sum, 2);
         }
-
-        /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        /// <param name="pointsBalance">Баланс накопленных баллов.</param>
         public PointsDiscount(int pointsBalance)
         {
-            PointsBalance = pointsBalance;
-        }
-
-        /// <inheritdoc/>
-        public override string ToString()
-        {
-            return Info;
+            Points = pointsBalance;
         }
     }
 }

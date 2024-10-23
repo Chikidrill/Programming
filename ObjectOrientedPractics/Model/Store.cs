@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.Model
@@ -44,7 +44,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Загружает данные о товарах из файла <see cref="itemsFilePath"/>.
+        /// Загружает данные о товарах из файла <see cref="_itemsFilePath"/>.
         /// Если файл не существует или происходит ошибка при его чтении, выводится сообщение об ошибке.
         /// </summary>
         public void LoadItems()
@@ -54,7 +54,11 @@ namespace ObjectOrientedPractics.Model
                 try
                 {
                     string jsonString = File.ReadAllText(_itemsFilePath);
-                    _items = JsonSerializer.Deserialize<List<Item>>(jsonString) ?? new List<Item>();
+                    // Используем TypeNameHandling.All для сохранения информации о типах объектов
+                    _items = JsonConvert.DeserializeObject<List<Item>>(jsonString, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    }) ?? new List<Item>();
                 }
                 catch (Exception ex)
                 {
@@ -64,7 +68,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Загружает данные о покупателях из файла <see cref="customersFilePath"/>.
+        /// Загружает данные о покупателях из файла <see cref="_customersFilePath"/>.
         /// Если файл не существует или происходит ошибка при его чтении, выводится сообщение об ошибке.
         /// </summary>
         public void LoadCustomers()
@@ -74,7 +78,11 @@ namespace ObjectOrientedPractics.Model
                 try
                 {
                     string jsonString = File.ReadAllText(_customersFilePath);
-                    _customers = JsonSerializer.Deserialize<List<Customer>>(jsonString) ?? new List<Customer>();
+                    // Используем TypeNameHandling.All для сохранения информации о типах объектов
+                    _customers = JsonConvert.DeserializeObject<List<Customer>>(jsonString, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    }) ?? new List<Customer>();
                 }
                 catch (Exception ex)
                 {
@@ -93,14 +101,18 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Сохраняет данные о товарах в файл <see cref="itemsFilePath"/>.
+        /// Сохраняет данные о товарах в файл <see cref="_itemsFilePath"/>.
         /// Если возникает ошибка при сохранении, выводится сообщение об ошибке.
         /// </summary>
         public void SaveItems()
         {
             try
             {
-                string jsonString = JsonSerializer.Serialize(_items, new JsonSerializerOptions { WriteIndented = true });
+                // Используем TypeNameHandling.All для сохранения информации о типах объектов
+                string jsonString = JsonConvert.SerializeObject(_items, Formatting.Indented, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All
+                });
                 File.WriteAllText(_itemsFilePath, jsonString);
             }
             catch (Exception ex)
@@ -110,14 +122,18 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Сохраняет данные о покупателях в файл <see cref="customersFilePath"/>.
+        /// Сохраняет данные о покупателях в файл <see cref="_customersFilePath"/>.
         /// Если возникает ошибка при сохранении, выводится сообщение об ошибке.
         /// </summary>
         public void SaveCustomers()
         {
             try
             {
-                string jsonString = JsonSerializer.Serialize(_customers, new JsonSerializerOptions { WriteIndented = true });
+                // Используем TypeNameHandling.All для сохранения информации о типах объектов
+                string jsonString = JsonConvert.SerializeObject(_customers, Formatting.Indented, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All
+                });
                 File.WriteAllText(_customersFilePath, jsonString);
             }
             catch (Exception ex)
@@ -129,8 +145,6 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Store"/> и создает пустые списки для товаров и покупателей.
         /// </summary>
-        /// 
-
         public Store()
         {
             _items = new List<Item>();

@@ -119,7 +119,6 @@ namespace ObjectOrientedPractics.Model
         public Customer() 
         {
             Cart = new Cart();
-            Discounts = new List<IDiscount>();
         }
     }
 }
