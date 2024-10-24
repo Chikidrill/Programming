@@ -244,7 +244,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (CurrentCustomer.IsPriority)
             {
-                // Применяем только выбранные скидки для приоритетных покупателей
                 for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
                 {
                     if (DiscountCheckedListBox.GetItemChecked(i))
@@ -253,11 +252,10 @@ namespace ObjectOrientedPractics.View.Tabs
                         {
                             discountSum += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
                             CurrentCustomer.Discounts[i].Apply(CurrentCustomer.Cart.Items);
+                            
                         }
                     }
                 }
-
-                // Обновляем информацию о всех скидках
                 if (CurrentCustomer.Discounts != null)
                 {
                     foreach (var discount in CurrentCustomer.Discounts)
@@ -269,23 +267,25 @@ namespace ObjectOrientedPractics.View.Tabs
                 var newPriorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.FullName, DateTime.Now.AddDays(1), DeliveryTimeRange.From9To11)
                 {
                     Items = new List<Item>(CurrentCustomer.Cart.Items),
-                    DiscountAmount = discountSum // Добавляем сумму скидок в заказ
+                    DiscountAmount = discountSum 
+                    
                 };
-
+                MessageBox.Show(discountSum.ToString());
                 CurrentCustomer.Orders.Add(newPriorityOrder);
                 MessageBox.Show("Заказ приоритетного покупателя успешно создан!");
                 InitializeDiscountCheckedListBox();
             }
             else
             {
-                // Для обычных покупателей скидки не применяются
                 for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
                 {
-                    if (DiscountCheckedListBox.GetItemChecked(i) == false)
+                    if (DiscountCheckedListBox.GetItemChecked(i))
                     {
                         if (CurrentCustomer.Discounts != null && CurrentCustomer.Discounts[i] != null)
                         {
+                            discountSum += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
                             CurrentCustomer.Discounts[i].Apply(CurrentCustomer.Cart.Items);
+
                         }
                     }
                 }
@@ -297,47 +297,45 @@ namespace ObjectOrientedPractics.View.Tabs
                         discount.Update(CurrentCustomer.Cart.Items);
                     }
                 }
-
-                // Создаем заказ для обычного покупателя без учета скидок
                 var newOrder = new Order(CurrentCustomer.Address, CurrentCustomer.FullName)
                 {
                     Items = new List<Item>(CurrentCustomer.Cart.Items),
-                    DiscountAmount = discountSum // Скидки не будут учитываться для обычных покупателей
+                    DiscountAmount = discountSum
                 };
-
+                MessageBox.Show(discountSum.ToString());
                 CurrentCustomer.Orders.Add(newOrder);
                 MessageBox.Show("Заказ успешно создан!");
                 InitializeDiscountCheckedListBox();
             }
 
-            // Очищаем корзину и обновляем интерфейс
             CurrentCustomer.Cart.Items.Clear();
             CartListBox.DataSource = null;
-            UpdateTotalAmount(); // Обновляем общую стоимость и метку с учетом скидок
-            UpdateTotalDiscountAmount(); // Обновляем метку с суммой скидки
+            UpdateTotalAmount(); 
+            UpdateTotalDiscountAmount(); 
         }
-
+        /// <summary>
+        /// Осуществляет изменение скидки в зависимости от выделенных элементов в CheckedListBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DiscountCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            // Рассчитываем сумму скидок на основе обновленного состояния чекбоксов
             double discountSum = 0.0;
 
             if (CurrentCustomer != null)
             {
                 for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
                 {
-                    // Учитываем текущее состояние всех элементов, кроме того, который изменяется в данный момент
                     if (i == e.Index)
                     {
-                        // Учитываем новое состояние элемента (будет ли он отмечен или нет)
                         if (e.NewValue == CheckState.Checked)
                         {
                             discountSum += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
+                            
                         }
                     }
                     else
                     {
-                        // Для всех остальных элементов используем текущее состояние
                         if (DiscountCheckedListBox.GetItemChecked(i))
                         {
                             discountSum += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
@@ -345,16 +343,21 @@ namespace ObjectOrientedPractics.View.Tabs
                     }
                 }
             }
-            // Обновляем метку с суммой скидки
             DiscountAmountLabel.Text = $"Discount: {discountSum}";
-            // Пересчитываем общую сумму с учетом новой суммы скидки
             UpdateTotalAmountWithDiscount(discountSum);
         }
+        /// <summary>
+        /// Обновляет общий размер скидки
+        /// </summary>
         private void UpdateTotalDiscountAmount()
         {
             double discountSum = CalculateDiscountSum();
             DiscountAmountLabel.Text = $"Discount: {discountSum}";
         }
+        /// <summary>
+        /// Обновляет стоимость с учетом скидки
+        /// </summary>
+        /// <param name="discountSum">Размер скидки</param>
         private void UpdateTotalAmountWithDiscount(double discountSum)
         {
             if (CurrentCustomer != null && CurrentCustomer.Cart != null)
@@ -362,7 +365,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 double totalAmount = CurrentCustomer.Cart.Amount;
                 double amountWithDiscounts = totalAmount - discountSum;
 
-                // Обновляем метки
                 TotalAmountLabel.Text = $"Total: {amountWithDiscounts}";
                 AmountLabel.Text = $"Total: {totalAmount}";
             }
@@ -372,6 +374,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 TotalAmountLabel.Text = "Total: $0.00";
             }
         }
+        /// <summary>
+        /// Рассчитывает общий размер скидки
+        /// </summary>
+        /// <returns></returns>
         private double CalculateDiscountSum()
         {
             double discountSum = 0.0;
@@ -380,7 +386,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 for (int i = 0; i < DiscountCheckedListBox.Items.Count; i++)
                 {
-                    // Учитываем новое состояние элемента в CheckedListBox
                     bool isChecked = DiscountCheckedListBox.GetItemChecked(i);
                     if (isChecked && CurrentCustomer.Discounts[i] != null)
                     {
@@ -391,6 +396,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
             return discountSum;
         }
+        /// <summary>
+        /// Инициализирует значениями CheckedListBox
+        /// </summary>
         private void InitializeDiscountCheckedListBox()
         {
             DiscountCheckedListBox.Items.Clear();
@@ -399,7 +407,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 foreach (var discount in CurrentCustomer.Discounts)
                 {
-                    DiscountCheckedListBox.Items.Add(discount.Info, true); // Добавляем все скидки с установленными галочками
+                    DiscountCheckedListBox.Items.Add(discount.Info, true); 
                 }
             }
         }

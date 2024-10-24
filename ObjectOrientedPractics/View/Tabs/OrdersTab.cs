@@ -110,7 +110,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 StringBuilder itemsText = new StringBuilder();
                 foreach (var item in items)
                 {
-                    itemsText.AppendLine($"Name: {item.Name}, Cost: {item.Cost}");
+                    itemsText.AppendLine($"Name: {item.Name}");
                 }
                 OrderItemsRichTextBox.Text = itemsText.ToString();
             }
@@ -174,6 +174,14 @@ namespace ObjectOrientedPractics.View.Tabs
             };
             OrdersDataGridView.Columns.Add(statusColumn);
 
+            var totalColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Total Cost",
+                DataPropertyName = "Total",
+                ReadOnly = true
+            };
+            OrdersDataGridView.Columns.Add(totalColumn);
+
             OrdersDataGridView.AutoGenerateColumns = false;
             OrdersDataGridView.AllowUserToAddRows = false;
             OrdersDataGridView.AllowUserToDeleteRows = false;
@@ -206,26 +214,22 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             List<Order> orders = new List<Order>();
-
-            // Проверяем все заказы для каждого покупателя
             foreach (var customer in Customers)
             {
-                // Для приоритетных покупателей проверяем их заказы
                 if (customer.IsPriority)
                 {
 
                     for (int i = 0; i < customer.Orders.Count; i++)
                     {
-                        // Если заказ не является приоритетным, заменяем его на приоритетный заказ
+
                         if (customer.Orders[i] is not PriorityOrder)
                         {
-                            // Создаем новый приоритетный заказ на основе старого
                             var originalOrder = customer.Orders[i];
                             var priorityOrder = new PriorityOrder(
                                 customer.Address,
                                 customer.FullName,
-                                originalOrder.CreationDate, // Сохраняем дату создания
-                                DeliveryTimeRange.From9To11// Можно настроить другое время
+                                originalOrder.CreationDate, 
+                                DeliveryTimeRange.From9To11
                             );
 
                             // Копируем предметы и стоимость
@@ -233,22 +237,16 @@ namespace ObjectOrientedPractics.View.Tabs
                             {
                                 priorityOrder.Items.Add(item);
                             }
-
-                            // Заменяем заказ на приоритетный
                             customer.Orders[i] = priorityOrder;
                         }
                     }
                 }
-
-                // Добавляем все заказы покупателя в общий список
                 orders.AddRange(customer.Orders);
             }
-
-            // Обновляем источник данных для таблицы заказов
             OrdersDataGridView.DataSource = null;
             OrdersDataGridView.DataSource = orders;
 
-            // Обновляем отображение заказа, если выбран приоритетный заказ
+
             if (SelectedPriorityOrder != null)
             {
                 DisplayOrderItems(SelectedPriorityOrder.Items);
@@ -287,7 +285,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 StatusComboBox.SelectedItem = SelectedOrder.Status;
                 _addressControl.DisplayAddress(SelectedOrder.DeliveryAddress);
                 DisplayOrderItems(SelectedOrder.Items);
-                totalAmountLabel.Text = $"Total: {totalCost} $";
+                totalAmountLabel.Text = $"Total: {SelectedOrder.Total} $";
                 if (SelectedOrder is PriorityOrder priorityOrder)
                 {
                     delivTimeComboBox.SelectedItem = priorityOrder.DesiredDeliveryTime;

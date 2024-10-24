@@ -42,6 +42,7 @@ namespace ObjectOrientedPractics.Model.Orders
         {
             DesiredDeliveryDate = DateTime.Now.AddDays(1); // Например, завтрашняя дата
             DesiredDeliveryTime = DeliveryTimeRange.From9To11;
+            DiscountAmount = 0;
         }
 
         /// <summary>

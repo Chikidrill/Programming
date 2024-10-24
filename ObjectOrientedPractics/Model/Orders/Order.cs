@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using Newtonsoft.Json;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -26,7 +27,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// Уникальное имя покупателя для каждого экземпляра класса
         /// </summary>
         private string _fullName;
-
+        private double _totalCost;
         /// <summary>
         /// Уникальный адрес доставки для каждого экземпляра класса
         /// </summary>
@@ -104,6 +105,7 @@ namespace ObjectOrientedPractics.Model.Orders
             set => _fullName = value ?? "Unknown";
         }
 
+        [JsonProperty]
         public double DiscountAmount
         {
             get
@@ -113,7 +115,7 @@ namespace ObjectOrientedPractics.Model.Orders
             set
             {
                 ValueValidator.AssertOnPositiveValue(value, nameof(DiscountAmount));
-                value = _discountAmount;
+                _discountAmount = value;
             }
         }
 
@@ -133,6 +135,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="items">Список предметов</param>
         /// <param name="deliveryAddress">Адрес доставки</param>
         /// <param name="fullName">Имя покупателя</param>
+        
         public Order(Address deliveryAddress, string FullName)
         {
             _id = IdGenerator.GetNextId();
@@ -141,7 +144,7 @@ namespace ObjectOrientedPractics.Model.Orders
             DeliveryAddress = deliveryAddress;
             _fullName = FullName;
             Status = OrderStatus.New;
-
+            DiscountAmount = 0.0;
         }
 
         public Order()
@@ -151,6 +154,7 @@ namespace ObjectOrientedPractics.Model.Orders
             _fullName = FullName;
             _items = new List<Item>();
             Status = OrderStatus.New;
+
         }
 
         public override string ToString()

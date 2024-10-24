@@ -70,6 +70,10 @@ namespace ObjectOrientedPractics.Model
             double amount = GetAmount(items);
             TotalSpent += amount;
         }
+
+        /// <summary>
+        /// Возвращает сумму товаров заказа соответствующих категории.
+        /// </summary>
         public double GetAmount(List<Item> items)
         {
             double sum = 0;
@@ -83,6 +87,9 @@ namespace ObjectOrientedPractics.Model
             );
             return Math.Round(sum, 2);
         }
+        /// <summary>
+        /// Рассчитывает размер процентной скидки в зависимости от общей потраченной суммы в категории
+        /// </summary>
         public int DiscountPercentage
         {
             get
@@ -92,6 +99,11 @@ namespace ObjectOrientedPractics.Model
                 return discountPercentage + 1;
             }
         }
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
+        /// <param name="category">Категория товара</param>
+        /// <param name="totalSpent">Общая потраченная сумма</param>
         public PercentDiscount(Category category, double totalSpent)
         {
             _category = category;

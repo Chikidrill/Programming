@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.Model
         public int Points
         {
             get { return _points; }
-            set
+            private set
             {
                 if (value >= 0)
                 {
@@ -102,12 +102,19 @@ namespace ObjectOrientedPractics.Model
             double amount = GetAmount(items);
             Points += (int)Math.Ceiling(amount * 0.1);
         }
+        /// <summary>
+        /// Возвращает сумму товаров заказа соответствующих категории.
+        /// </summary>
         public double GetAmount(List<Item> items)
         {
             double sum = 0;
             items.ForEach(x => { sum += x.Cost; });
             return Math.Round(sum, 2);
         }
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
+        /// <param name="pointsBalance">Количество баллов накопительной скидки</param>
         public PointsDiscount(int pointsBalance)
         {
             Points = pointsBalance;

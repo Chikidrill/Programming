@@ -74,7 +74,9 @@ namespace ObjectOrientedPractics.Model
             get => _orders;
             set => _orders = value ?? new List<Order>();
         }
-
+        /// <summary>
+        /// Возвращает и задает список скидок
+        /// </summary>
         public List<IDiscount> Discounts { get; set; } = new List<IDiscount>();
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace ObjectOrientedPractics.Model
             _id = IdGenerator.GetNextId();
             FullName = fullName;
             Address = address;
-            _cart = new Cart();
+            Cart = new Cart();
             _orders = new List<Order>();
             PointsDiscount points = new PointsDiscount(0);
 
