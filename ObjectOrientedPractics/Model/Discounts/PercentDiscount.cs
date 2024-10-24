@@ -34,7 +34,7 @@ namespace ObjectOrientedPractics.Model
         {
             get
             {
-                return $"Процентная '{_category}' - {_percent}%";
+                return $"Процентная '{_category}' - {DiscountPercentage}%";
             }
         }
 
@@ -96,7 +96,10 @@ namespace ObjectOrientedPractics.Model
         {
             _category = category;
             TotalSpent = totalSpent;
-            
+        }
+        public override string ToString()
+        {
+            return Info;
         }
     }
 }

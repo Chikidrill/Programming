@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
@@ -13,6 +14,7 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class PointsDiscount : IDiscount
     {
+        [JsonInclude]
         private int _points = 0;
 
         /// <summary>
@@ -21,7 +23,7 @@ namespace ObjectOrientedPractics.Model
         public int Points
         {
             get { return _points; }
-            private set
+            set
             {
                 if (value >= 0)
                 {
@@ -109,6 +111,10 @@ namespace ObjectOrientedPractics.Model
         public PointsDiscount(int pointsBalance)
         {
             Points = pointsBalance;
+        }
+        public override string ToString()
+        {
+            return Info;
         }
     }
 }

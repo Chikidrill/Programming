@@ -107,7 +107,7 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Nekst Semi Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(583, 352);
+            label4.Location = new Point(568, 352);
             label4.Name = "label4";
             label4.Size = new Size(71, 18);
             label4.TabIndex = 6;
@@ -118,7 +118,7 @@
             AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Nekst Semi Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(561, 370);
+            AmountLabel.Location = new Point(548, 370);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(78, 24);
             AmountLabel.TabIndex = 7;
@@ -165,8 +165,8 @@
             // 
             // AddToCartButton
             // 
-            AddToCartButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            AddToCartButton.Location = new Point(3, 494);
+            AddToCartButton.Anchor = AnchorStyles.Left;
+            AddToCartButton.Location = new Point(3, 528);
             AddToCartButton.Name = "AddToCartButton";
             AddToCartButton.Size = new Size(125, 78);
             AddToCartButton.TabIndex = 11;
@@ -216,7 +216,7 @@
             DiscountCheckedListBox.FormattingEnabled = true;
             DiscountCheckedListBox.Location = new Point(5, 47);
             DiscountCheckedListBox.Name = "DiscountCheckedListBox";
-            DiscountCheckedListBox.Size = new Size(311, 114);
+            DiscountCheckedListBox.Size = new Size(398, 114);
             DiscountCheckedListBox.TabIndex = 15;
             DiscountCheckedListBox.ItemCheck += DiscountCheckedListBox_ItemCheck;
             // 
@@ -224,28 +224,32 @@
             // 
             TotalAmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             TotalAmountLabel.AutoSize = true;
-            TotalAmountLabel.Location = new Point(437, 81);
+            TotalAmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalAmountLabel.Location = new Point(584, 130);
             TotalAmountLabel.Name = "TotalAmountLabel";
-            TotalAmountLabel.Size = new Size(50, 20);
+            TotalAmountLabel.Size = new Size(79, 31);
             TotalAmountLabel.TabIndex = 16;
             TotalAmountLabel.Text = "label5";
+            TotalAmountLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // DiscountAmountLabel
             // 
             DiscountAmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             DiscountAmountLabel.AutoSize = true;
-            DiscountAmountLabel.Location = new Point(437, 47);
+            DiscountAmountLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscountAmountLabel.Location = new Point(584, 47);
             DiscountAmountLabel.Name = "DiscountAmountLabel";
-            DiscountAmountLabel.Size = new Size(50, 20);
+            DiscountAmountLabel.Size = new Size(55, 23);
             DiscountAmountLabel.TabIndex = 17;
             DiscountAmountLabel.Text = "label5";
+            DiscountAmountLabel.TextAlign = ContentAlignment.TopRight;
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Controls.Add(DiscountAmountLabel);
             panel2.Controls.Add(TotalAmountLabel);
             panel2.Controls.Add(DiscountCheckedListBox);
+            panel2.Controls.Add(DiscountAmountLabel);
             panel2.Controls.Add(Discounts);
             panel2.Location = new Point(390, 462);
             panel2.Name = "panel2";
