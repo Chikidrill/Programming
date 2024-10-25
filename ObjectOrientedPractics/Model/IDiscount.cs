@@ -33,5 +33,6 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="items"></param>
         void Update(List<Item> items);
+        double GetAmount(List<Item> items);
     }
 }

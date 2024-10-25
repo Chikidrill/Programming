@@ -116,7 +116,6 @@ namespace ObjectOrientedPractics.Model
             Cart = new Cart();
             _orders = new List<Order>();
             PointsDiscount points = new PointsDiscount(0);
-
             Discounts.Add(points);
         }
         public Customer() 
