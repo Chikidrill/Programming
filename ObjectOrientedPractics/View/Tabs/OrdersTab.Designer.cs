@@ -61,7 +61,7 @@
             OrdersDataGridView.Location = new Point(14, 33);
             OrdersDataGridView.Name = "OrdersDataGridView";
             OrdersDataGridView.RowHeadersWidth = 51;
-            OrdersDataGridView.Size = new Size(417, 605);
+            OrdersDataGridView.Size = new Size(417, 719);
             OrdersDataGridView.TabIndex = 0;
             OrdersDataGridView.CellClick += OrdersDataGridView_CellClick;
             // 
@@ -157,7 +157,7 @@
             OrderItemsRichTextBox.Location = new Point(0, 36);
             OrderItemsRichTextBox.Name = "OrderItemsRichTextBox";
             OrderItemsRichTextBox.ReadOnly = true;
-            OrderItemsRichTextBox.Size = new Size(638, 125);
+            OrderItemsRichTextBox.Size = new Size(638, 148);
             OrderItemsRichTextBox.TabIndex = 12;
             OrderItemsRichTextBox.Text = "";
             // 
@@ -180,7 +180,7 @@
             panel1.Controls.Add(OrderItemsRichTextBox);
             panel1.Location = new Point(454, 418);
             panel1.Name = "panel1";
-            panel1.Size = new Size(641, 244);
+            panel1.Size = new Size(641, 358);
             panel1.TabIndex = 15;
             // 
             // panel2
@@ -205,7 +205,7 @@
             panel3.Controls.Add(OrdersDataGridView);
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(445, 659);
+            panel3.Size = new Size(445, 773);
             panel3.TabIndex = 17;
             // 
             // delivTimePanel
@@ -258,7 +258,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "OrdersTab";
-            Size = new Size(1095, 665);
+            Size = new Size(1095, 779);
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

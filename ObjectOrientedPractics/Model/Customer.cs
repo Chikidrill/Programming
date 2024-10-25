@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +74,10 @@ namespace ObjectOrientedPractics.Model
             get => _orders;
             set => _orders = value ?? new List<Order>();
         }
+        /// <summary>
+        /// Возвращает и задает список скидок
+        /// </summary>
+        public List<IDiscount> Discounts { get; set; } = new List<IDiscount>();
 
         /// <summary>
         /// Возвращает и задает ФИО покупателя. Не может быть длиной больше 200 символов.
@@ -107,8 +113,10 @@ namespace ObjectOrientedPractics.Model
             _id = IdGenerator.GetNextId();
             FullName = fullName;
             Address = address;
-            _cart = new Cart();
+            Cart = new Cart();
             _orders = new List<Order>();
+            PointsDiscount points = new PointsDiscount(0);
+            Discounts.Add(points);
         }
         public Customer() 
         {

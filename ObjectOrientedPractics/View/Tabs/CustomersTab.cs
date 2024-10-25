@@ -11,7 +11,9 @@ using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using System.Reflection.Emit;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View;
 using System.Text.Json;
+using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -21,12 +23,15 @@ namespace ObjectOrientedPractics.View.Tabs
         private Customer _currentCustomer;
         private IdGenerator idGenerator = new IdGenerator();
         private string filePath = "customers.json";
+        private List<IDiscount>? _discounts;
         AddressControl _addressControl;
+        private AddDiscountForm addDiscountForm;
         public CustomersTab()
         {
             InitializeComponent();
             InitializeAddressControl();
             DisplayCustomersList();
+            addDiscountForm = new AddDiscountForm();
         }
 
         /// <summary>
@@ -42,7 +47,21 @@ namespace ObjectOrientedPractics.View.Tabs
                 DisplayCustomersList();
             }
         }
-
+        /// <summary>
+        /// Возвращает и задает список скидок
+        /// </summary>
+        public List<IDiscount>? Discounts
+        {
+            get
+            {
+                return _discounts;
+            }
+            set
+            {
+                _discounts = value;
+                FillDiscountsListBox();
+            }
+        }
         /// <summary>
         /// Инициализация элемента AddressControl.
         /// </summary>
@@ -50,10 +69,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             _addressControl = new AddressControl
             {
-                Location = new System.Drawing.Point(423, 112), // Установите нужные координаты
-                Size = new System.Drawing.Size(590, 500) // Установите нужный размер
+                Location = new System.Drawing.Point(423, 112), 
+                Size = new System.Drawing.Size(590, 500) 
             };
-            Controls.Add(_addressControl); // Добавляем AddressControl на форму
+            Controls.Add(_addressControl);
             _addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
         /// <summary>
@@ -72,10 +91,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             _customers.Add(newCustomer);
 
-            // Обновление UI и очистка
+
             IdTextBox.Text = newCustomer.Id.ToString();
             FullNameTextBox.Clear();
-            _addressControl.ClearInfo(); // Очистить адрес
+            _addressControl.ClearInfo(); 
             ClearInputFields();
             DisplayCustomersList();
             isPriorityCheckBox.Checked = false;
@@ -111,9 +130,10 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentCustomer = null;
             IdTextBox.Text = string.Empty;
             FullNameTextBox.Text = string.Empty;
-            _addressControl.Address = new Address(); // Очистить адрес
+            _addressControl.Address = new Address();
             FullNameTextBox.BackColor = AppColors.StandartColor;
-            isPriorityCheckBox.Checked = false ;
+            isPriorityCheckBox.Checked = false;
+            DiscountsListBox.Items.Clear();
         }
 
         /// <summary>
@@ -123,8 +143,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Text = string.Empty;
             FullNameTextBox.Text = string.Empty;
-            _addressControl.Address = new Address(); // Очистить адрес
-
+            _addressControl.Address = new Address(); 
             if (CustomersListBox.SelectedIndex == -1)
             {
                 CustomersListBox.SelectedItem = null;
@@ -185,14 +204,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer = _customers[selectedIndex];
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
-
+                FillDiscountsListBox();
                 if (_currentCustomer.Address != null)
                 {
                     _addressControl.Address = _currentCustomer.Address;
                 }
                 else
                 {
-                    _addressControl.Address = new Address(); // Очистить AddressControl
+                    _addressControl.Address = new Address(); 
                 }
                 isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
             }
@@ -201,7 +220,96 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer = null;
                 IdTextBox.Clear();
                 FullNameTextBox.Clear();
-                _addressControl.Address = new Address(); // Очистить AddressControl
+                _addressControl.Address = new Address(); 
+                DiscountsListBox.Items.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Заполняет значениями DiscountListBox
+        /// </summary>
+        private void FillDiscountsListBox()
+        {
+            DiscountsListBox.Items.Clear();
+            if (_currentCustomer != null)
+            {
+                foreach (IDiscount discount in _currentCustomer.Discounts)
+                {
+                    DiscountsListBox.Items.Add($"{discount.Info}");
+                }
+            }
+
+        }
+        /// <summary>
+        /// Осуществляет добавление скидки покупателю
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (_currentCustomer == null)
+            {
+                MessageBox.Show("Выберите покупателя.");
+                return;
+            }
+            if (_currentCustomer.Cart == null)
+            {
+                _currentCustomer.Cart = new Cart(); 
+            }
+
+            Category category;
+            AddDiscountForm addDiscountForm = new AddDiscountForm();
+            addDiscountForm.ShowDialog();
+
+            if (addDiscountForm.IsChanged)
+            {
+                bool isContains = false;
+
+                foreach (var discount in _currentCustomer.Discounts)
+                {
+                    if (discount is PercentDiscount percentDiscount1)
+                    {
+                        if (percentDiscount1.Category == addDiscountForm.Category)
+                        {
+                            isContains = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!isContains)
+                {
+                    category = addDiscountForm.Category;
+                    if (_currentCustomer.Cart.Items.Count > 0)
+                    {
+                        PercentDiscount percentDiscount = new PercentDiscount(category, _currentCustomer.Cart.Amount);
+                        _currentCustomer.Discounts.Add(percentDiscount);
+                        MessageBox.Show("Процентная скидка успешно добавлена.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Корзина пуста, добавьте товары перед применением скидки.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Скидка для выбранной категории уже существует.");
+                }
+            }
+
+            FillDiscountsListBox(); 
+        }
+        /// <summary>
+        /// Осуществляет удаление скидки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (_currentCustomer != null && DiscountsListBox.SelectedIndex != 0)
+            {
+                _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+                FillDiscountsListBox();
             }
         }
     }

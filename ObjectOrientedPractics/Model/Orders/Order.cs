@@ -1,9 +1,10 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using Newtonsoft.Json;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class Order
     {
@@ -20,13 +21,13 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальная дата для каждого заказа
         /// </summary>
-        private  DateTime _date;
+        private DateTime _date;
 
         /// <summary>
         /// Уникальное имя покупателя для каждого экземпляра класса
         /// </summary>
         private string _fullName;
-
+        private double _totalCost;
         /// <summary>
         /// Уникальный адрес доставки для каждого экземпляра класса
         /// </summary>
@@ -36,6 +37,7 @@ namespace ObjectOrientedPractics.Model
         /// Список предметов в каждом заказе
         /// </summary>
         private List<Item> _items;
+        private double _discountAmount;
         /// <summary>
         /// Возвращает ID
         /// </summary>
@@ -103,12 +105,37 @@ namespace ObjectOrientedPractics.Model
             set => _fullName = value ?? "Unknown";
         }
 
+        [JsonProperty]
+        public double DiscountAmount
+        {
+            get
+            {
+                return _discountAmount;
+            }
+            set
+            {
+                ValueValidator.AssertOnPositiveValue(value, nameof(DiscountAmount));
+                _discountAmount = value;
+            }
+        }
+
+        public double Total
+        {
+            get
+            {
+                double total = TotalCost - DiscountAmount;
+                ValueValidator.AssertOnPositiveValue(total, nameof(Total));
+                return TotalCost - DiscountAmount;
+            }
+        }
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>
         /// </summary>
         /// <param name="items">Список предметов</param>
         /// <param name="deliveryAddress">Адрес доставки</param>
         /// <param name="fullName">Имя покупателя</param>
+        
         public Order(Address deliveryAddress, string FullName)
         {
             _id = IdGenerator.GetNextId();
@@ -117,6 +144,7 @@ namespace ObjectOrientedPractics.Model
             DeliveryAddress = deliveryAddress;
             _fullName = FullName;
             Status = OrderStatus.New;
+            DiscountAmount = 0.0;
         }
 
         public Order()
@@ -126,6 +154,7 @@ namespace ObjectOrientedPractics.Model
             _fullName = FullName;
             _items = new List<Item>();
             Status = OrderStatus.New;
+
         }
 
         public override string ToString()

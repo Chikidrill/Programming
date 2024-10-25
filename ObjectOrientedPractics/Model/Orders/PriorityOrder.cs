@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ObjectOrientedPractics.Model.Orders;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class PriorityOrder : Order
     {
@@ -41,6 +42,7 @@ namespace ObjectOrientedPractics.Model
         {
             DesiredDeliveryDate = DateTime.Now.AddDays(1); // Например, завтрашняя дата
             DesiredDeliveryTime = DeliveryTimeRange.From9To11;
+            DiscountAmount = 0;
         }
 
         /// <summary>
