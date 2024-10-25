@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         private int _percent = 1;
         private Category _category;
@@ -99,6 +99,25 @@ namespace ObjectOrientedPractics.Model
                 return discountPercentage + 1;
             }
         }
+
+        /// <inheritdoc/>
+        public int CompareTo(PercentDiscount? percentDiscount2)
+        {
+            if (percentDiscount2 == null)
+                return 1;
+            if (object.ReferenceEquals(this, percentDiscount2))
+                return 0;
+            if (DiscountPercentage < percentDiscount2.DiscountPercentage)
+            {
+                return -1;
+            }
+            else if (DiscountPercentage == percentDiscount2.DiscountPercentage)
+            {
+                return 0;
+            }
+            return 1;
+        }
+
         /// <summary>
         /// Конструктор класса
         /// </summary>

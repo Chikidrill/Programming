@@ -111,6 +111,24 @@ namespace ObjectOrientedPractics.Model
             items.ForEach(x => { sum += x.Cost; });
             return Math.Round(sum, 2);
         }
+        /// <inheritdoc/>
+        public int CompareTo(PointsDiscount? pointsDiscount2)
+        {
+            if (pointsDiscount2 == null)
+                return 1;
+            if (object.ReferenceEquals(this, pointsDiscount2))
+                return 0;
+            if (Points < pointsDiscount2.Points)
+            {
+                return -1;
+            }
+            else if (Points == pointsDiscount2.Points)
+            {
+                return 0;
+            }
+            return 1;
+        }
+
         /// <summary>
         /// Конструктор класса
         /// </summary>
