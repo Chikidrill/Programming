@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, описывающий и хранящий информацию о корзине
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         /// <summary>
         /// Закрытое поле для списка товаров
@@ -42,6 +42,14 @@ namespace ObjectOrientedPractics.Model
                 return totalAmount;
             }
         }
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            Cart copy = new();
+            copy.Items.AddRange([.. Items]);
+            return copy;
+        }
+
         /// <summary>
         /// Конструктор класса
         /// </summary>

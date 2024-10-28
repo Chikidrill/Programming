@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
@@ -11,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, описывабщий и хранящий информацию об адресе доставки
     /// </summary>
-    public class Address
+    public class Address: ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Номер почтового индекса для каждого объекта класса.
@@ -116,8 +117,30 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-
-
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+        /// <inheritdoc/>
+        public bool Equals(Address? address2)
+        {
+            if (address2 == null)
+                return false;
+            if (object.ReferenceEquals(this, address2))
+                return true;
+            PropertyInfo[] properties = typeof(Address).GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                var value1 = property.GetValue(this);
+                var value2 = property.GetValue(address2);
+                if (value1 == null && value2 == null)
+                    continue;
+                if (value1 == null || value2 == null || value1 != value2)
+                    return false; // Если одно из значений null или они не равны
+            }
+            return true;
+        }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Address"/>

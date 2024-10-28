@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace ObjectOrientedPractics.Model.Orders
 {
-    public class Order
+    public class Order: IEquatable<Order>
     {
         /// <summary>
         /// Генератор ID
@@ -128,6 +128,15 @@ namespace ObjectOrientedPractics.Model.Orders
                 return TotalCost - DiscountAmount;
             }
         }
+        /// <inheritdoc/>
+        public bool Equals(Order? order2)
+        {
+            if (order2 == null)
+                return false;
+            if (object.ReferenceEquals(this, order2))
+                return true;
+            return (Id == order2.Id);
+        }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>
@@ -135,7 +144,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="items">Список предметов</param>
         /// <param name="deliveryAddress">Адрес доставки</param>
         /// <param name="fullName">Имя покупателя</param>
-        
+
         public Order(Address deliveryAddress, string FullName)
         {
             _id = IdGenerator.GetNextId();
