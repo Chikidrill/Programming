@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о накопительной скидке.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         [JsonInclude]
         private int _points = 0;
