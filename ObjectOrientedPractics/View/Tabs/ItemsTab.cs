@@ -255,7 +255,11 @@ namespace ObjectOrientedPractics.View.Tabs
             CategoryComboBox.BackColor = AppColors.StandartColor;
 
         }
-
+        /// <summary>
+        /// Обрабатывает изменения текста в SearchTextBox и осуществляет фильтрацию
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
             string searchText = SearchTextBox.Text.Trim();
@@ -269,7 +273,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             DisplayItemsList();
         }
-
+        /// <summary>
+        /// Обновляет ItemsListBox
+        /// </summary>
         private void UpdateItemsListBox()
         {
             var selectedItem = _currentItem;
@@ -302,7 +308,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-
+        /// <summary>
+        /// Осуществляет изменение выбранного элемента в SortComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateItemsListBox();
