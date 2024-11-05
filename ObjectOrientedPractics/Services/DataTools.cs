@@ -6,8 +6,13 @@ namespace ObjectOrientedPractics.Services
 {
     public static class DataTools
     {
-        public delegate bool ItemFilter(Item item);
-        // Метод фильтрации списка товаров
+
+        /// <summary>
+        /// Осуществляет фильтрацию списка предметов
+        /// </summary>
+        /// <param name="items">Список предметов</param>
+        /// <param name="compare">Функция сравнения, возвращающая true для включаемых элементов.</param>
+        /// <returns>Отфильтрованный список предметов</returns>
         public static List<Item> Filter(List<Item> items, Func<Item, bool> compare)
         {
             List<Item> filteredItems = new List<Item>();
@@ -21,7 +26,12 @@ namespace ObjectOrientedPractics.Services
             return filteredItems;
         }
 
-        // Метод сортировки списка товаров по заданному ключу
+        /// <summary>
+        /// Осуществляет сортировку списка предметов
+        /// </summary>
+        /// <param name="items">Список предметов</param>
+        /// <param name="compare">Функция сортировки </param>
+        /// <returns>Отсортированный список предметов</returns>
         public static List<Item> Sort(List<Item> items, Func<Item, Item, bool> compare)
         {
             List<Item> sortedItems = [.. items];
