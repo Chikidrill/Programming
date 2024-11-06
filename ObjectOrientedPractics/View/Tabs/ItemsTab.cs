@@ -19,11 +19,14 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
         private Item _currentItem;
         private string filePath = "items.json";
+        private List<Item> _displayedItems = new List<Item>();
 
         public ItemsTab()
         {
             InitializeComponent();
             CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+            SortComboBox.Items.AddRange(["Name", "Cost (Ascending)", "Cost (Descending)"]);
+            SortComboBox.SelectedIndex = 0;
             DisplayItemsList();
         }
         private IdGenerator idGenerator = new IdGenerator();
@@ -37,6 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _items = value;
+                _displayedItems = new List<Item>(_items);
                 DisplayItemsList();
             }
         }
@@ -48,14 +52,25 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newItem = new Item(NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
-            IdTextBox.Text = newItem.Id.ToString();
-            _items.Add(newItem);
-            NameTextBox.Clear();
-            DescriptionTextBox.Clear();
-            CostTextBox.Clear();
-            ClearInputFields();
-            DisplayItemsList();
+            try
+            {
+                // Создаем новый элемент с данными из текстовых полей
+                var newItem = new Item(NameTextBox.Text, DescriptionTextBox.Text, double.Parse(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
+
+                // Добавляем новый элемент в основной список и список отображаемых предметов
+                _items.Add(newItem);
+                _displayedItems.Add(newItem);
+
+                // Сбрасываем текстовые поля
+                ClearInputFields();
+
+                // Обновляем список элементов на форме
+                DisplayItemsList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении предмета: {ex.Message}");
+            }
         }
         /// <summary>
         /// Осуществляет удаление выбранного элемента
@@ -67,13 +82,18 @@ namespace ObjectOrientedPractics.View.Tabs
             int selectedIndex = ItemsListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
-                _items.RemoveAt(selectedIndex);
+                var itemToRemove = _displayedItems[selectedIndex];
+
+                // Удаляем из обоих списков
+                _items.Remove(itemToRemove);
+                _displayedItems.Remove(itemToRemove);
+
                 DisplayItemsList();
                 ClearInputFields();
             }
             else
             {
-                MessageBox.Show("Выберите песню для удаления.");
+                MessageBox.Show("Выберите предмет для удаления.");
             }
         }
         /// <summary>
@@ -93,6 +113,9 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.BackColor = AppColors.StandartColor;
             DescriptionTextBox.BackColor = AppColors.StandartColor;
             CategoryComboBox.BackColor = AppColors.StandartColor;
+
+            // Сбрасываем выделение в ItemsListBox
+            ItemsListBox.ClearSelected();
         }
         /// <summary>
         /// Осуществляет изменение значения поля Name у выбранного элемента.
@@ -116,6 +139,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameTextBox.BackColor = AppColors.InvalidColor;
                 // MessageBox.Show(ex.Message);
             }
+            
         }
         /// <summary>
         /// Осуществляет изменение значения поля Description у выбранного элемента.
@@ -147,7 +171,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            DisplayItemsList();
+            
             try
             {
                 CostTextBox.BackColor = AppColors.StandartColor;
@@ -159,13 +183,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
 
                 _currentItem.Cost = cost;
-                
+
             }
             catch (Exception ex)
             {
                 CostTextBox.BackColor = AppColors.InvalidColor;
                 //   MessageBox.Show(ex.Message);
             }
+            DisplayItemsList();
         }
         /// <summary>
         /// Осуществляет изменение значения поля Category у выбранного элемента.
@@ -197,15 +222,21 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
+            
+            // Проверяем, что выбранный индекс не выходит за пределы _displayedItems
+            if (selectedIndex < 0 || selectedIndex >= _displayedItems.Count)
+            {
+                return;
+            }
 
-            if (selectedIndex == -1) return;
+            // Получаем выбранный элемент напрямую из _displayedItems
+            _currentItem = _displayedItems[selectedIndex];
 
-            _currentItem = _items[selectedIndex];
-
+            // Обновляем поля UI с информацией из _currentItem
             IdTextBox.Text = _currentItem.Id.ToString();
             CostTextBox.Text = _currentItem.Cost.ToString();
-            NameTextBox.Text = _currentItem.Name.ToString();
-            DescriptionTextBox.Text = _currentItem.Info.ToString();
+            NameTextBox.Text = _currentItem.Name;
+            DescriptionTextBox.Text = _currentItem.Info;
             CategoryComboBox.Text = _currentItem.Category.ToString();
         }
         /// <summary>
@@ -213,13 +244,20 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void DisplayItemsList()
         {
-            // Очищаем ListBox перед добавлением обновленных данных
+            // Сохраняем выбранный элемент
+            var selectedIndex = ItemsListBox.SelectedIndex;
+            
+            // Обновляем ListBox, не меняя изначальный список _items
             ItemsListBox.Items.Clear();
-
-            // Добавляем каждую песню из списка в ListBox
-            foreach (Item item in _items)
+            foreach (var item in _displayedItems)
             {
                 ItemsListBox.Items.Add($"ID: {item.Id} Item name: {item.Name} - Item cost: {item.Cost}");
+            }
+
+            // Восстанавливаем выбранный элемент
+            if (selectedIndex >= 0 && selectedIndex < ItemsListBox.Items.Count)
+            {
+                ItemsListBox.SelectedIndex = selectedIndex;
             }
         }
         /// <summary>
@@ -227,15 +265,84 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void ClearInputFields()
         {
-            IdTextBox.Text = string.Empty;
-            NameTextBox.Text = string.Empty;
-            DescriptionTextBox.Text = string.Empty;
-            CostTextBox.Text = string.Empty;
+            IdTextBox.Text = null;
+            NameTextBox.Text = null;
+            DescriptionTextBox.Text = null;
+            CostTextBox.Text = null;
             CategoryComboBox.SelectedIndex = -1;
             CostTextBox.BackColor = AppColors.StandartColor;
             NameTextBox.BackColor = AppColors.StandartColor;
             DescriptionTextBox.BackColor = AppColors.StandartColor;
             CategoryComboBox.BackColor = AppColors.StandartColor;
+
+        }
+        /// <summary>
+        /// Обрабатывает изменения текста в SearchTextBox и осуществляет фильтрацию
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+            string searchText = SearchTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                _displayedItems = new List<Item>(_items);
+            }
+            else
+            {
+                _displayedItems = DataTools.Filter(_items, item => item.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+            }
+            DisplayItemsList();
+        }
+        /// <summary>
+        /// Обновляет ItemsListBox
+        /// </summary>
+        private void UpdateItemsListBox()
+        {
+            
+            var selectedItem = _currentItem;
+
+            string searchText = SearchTextBox.Text;
+            // Фильтруем и сортируем элементы, основываясь на выбранных критериях
+            var filteredItems = DataTools.Filter(_items, item => item.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+            List<Item> sortedItems;
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 1:
+                    sortedItems = DataTools.Sort(filteredItems, (item1, item2) => item1.Cost > item2.Cost);
+                    break;
+                case 2:
+                    sortedItems = DataTools.Sort(filteredItems, (item1, item2) => item1.Cost < item2.Cost);
+                    break;
+                default:
+                    sortedItems = DataTools.Sort(filteredItems, (item1, item2) => string.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase) > 0);
+                    break;
+            }
+
+            // Обновляем _displayedItems и ListBox
+            _displayedItems = sortedItems;
+            DisplayItemsList();
+
+            // Восстанавливаем выделение выбранного элемента
+            if (selectedItem != null)
+            {
+                ItemsListBox.SelectedItem = _displayedItems.FirstOrDefault(item => item.Id == selectedItem.Id);
+            }
+        }
+
+        /// <summary>
+        /// Осуществляет изменение выбранного элемента в SortComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateItemsListBox();
+            if (_currentItem != null)
+            {
+                ItemsListBox.SelectedItem = _currentItem;
+            }
 
         }
     }

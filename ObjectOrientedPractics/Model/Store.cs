@@ -13,6 +13,7 @@ namespace ObjectOrientedPractics.Model
         private List<Item> _items;
         private List<Customer> _customers;
         private List<Order> _orders;
+
         private string _itemsFilePath = "items.json";
         private string _customersFilePath = "customers.json";
 
@@ -106,6 +107,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public void SaveItems()
         {
+
             try
             {
                 // Используем TypeNameHandling.All для сохранения информации о типах объектов

@@ -15,10 +15,11 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Customer
     {
+        [JsonInclude]
         /// <summary>
         /// Уникальный идентификатор для объекта класса <see cref="Item"/>. Доступен только для чтения.
         /// </summary>
-        private readonly int _id; [JsonInclude]
+        private readonly int _id; 
 
         /// <summary>
         /// ФИО покупателя для каждого объекта класса <see cref="Item"/>. 
@@ -120,6 +121,7 @@ namespace ObjectOrientedPractics.Model
         }
         public Customer() 
         {
+            _id = IdGenerator.GetNextId();
             Cart = new Cart();
         }
     }
