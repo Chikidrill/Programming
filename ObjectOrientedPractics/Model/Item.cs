@@ -39,8 +39,17 @@ namespace ObjectOrientedPractics.Model
         private double _cost;
 
         /// <summary>
-        /// Возвращает ID. Является полем, доступным только для чтения.
+        /// Событие изменения названия товара.
         /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+        /// <summary>
+        /// Событие изменения описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+        /// <summary>
+        /// Событие изменения стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Возвращает значение ID
@@ -53,7 +62,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
-        /// Вовзращает и задает категорию товара из перечисления Category
+        /// Возвращает и задает категорию товара из перечисления Category
         /// </summary>
         public Category Category { get; set; }
 
@@ -64,9 +73,11 @@ namespace ObjectOrientedPractics.Model
         {
             get { return _name; }
             set 
-            { 
+            {
+                if (_name == value) return;
                 ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
+                NameChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -77,8 +88,10 @@ namespace ObjectOrientedPractics.Model
             get { return _info; }
             set 
             {
+                if (_info == value) return;
                 ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
                 _info = value;
+                InfoChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -89,8 +102,10 @@ namespace ObjectOrientedPractics.Model
             get { return _cost; }
             set 
             {
+                if(_cost == value) return;
                 ValueValidator.AssertValueInRange(value,0,100000, nameof(Cost));
                 _cost = value;
+                CostChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

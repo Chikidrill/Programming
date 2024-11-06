@@ -19,7 +19,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
         private Item _currentItem;
         private string filePath = "items.json";
+        private IdGenerator idGenerator = new IdGenerator();
         private List<Item> _displayedItems = new List<Item>();
+
 
         public ItemsTab()
         {
@@ -29,8 +31,8 @@ namespace ObjectOrientedPractics.View.Tabs
             SortComboBox.SelectedIndex = 0;
             DisplayItemsList();
         }
-        private IdGenerator idGenerator = new IdGenerator();
-
+       
+        public event EventHandler ItemsChanged;
         /// <summary>
         /// Задает и возвращает список _items 
         /// </summary>
@@ -66,6 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 // Обновляем список элементов на форме
                 DisplayItemsList();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
@@ -90,6 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 DisplayItemsList();
                 ClearInputFields();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             else
             {
@@ -133,6 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 string name = NameTextBox.Text;
                 _currentItem.Name = name;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
@@ -157,6 +162,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 string description = DescriptionTextBox.Text;
                 _currentItem.Info = description;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
@@ -183,7 +189,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
 
                 _currentItem.Cost = cost;
-
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
@@ -207,7 +213,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _currentItem.Category = category;
                     DisplayItemsList(); // Обновление списка отображаемых элементов
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
+
             }
             catch (Exception ex)
             {

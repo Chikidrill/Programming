@@ -62,5 +62,10 @@ namespace ObjectOrientedPractics
                 _ordersTab.RefreshData();
             }
         }
+        private void ItemsChanged(object? sender, EventArgs e)
+        {
+            _cartsTab.RefreshData();
+            _ordersTab.RefreshData();
+        }
     }
 }
