@@ -41,6 +41,7 @@ namespace ObjectOrientedPractics
         /// <param name="e"></param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+
             base.OnFormClosing(e);
             _store.SaveData();
         }

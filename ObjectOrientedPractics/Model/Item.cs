@@ -143,6 +143,9 @@ namespace ObjectOrientedPractics.Model
             Cost = cost;
             Category = category;
         }
-        public Item() { }
+        public Item() 
+        {
+            _id = IdGenerator.GetNextId();
+        }
     }
 }
