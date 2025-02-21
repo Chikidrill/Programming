@@ -12,16 +12,20 @@ namespace Contacts.ViewModel
     public class MainVM: INotifyPropertyChanged
     {
         private Contact _contact;
+        private string _errorMessage;
+
         public string Name
         {
             get => _contact.Name;
             set
             {
-                if (_contact.Name != value)
+                var error = ContactValidator.ValidateName(value);
+                if (error == null)
                 {
                     _contact.Name = value;
                     OnPropertyChanged(nameof(Name));
                 }
+                ErrorMessage = error;
             }
         }
 
@@ -30,11 +34,13 @@ namespace Contacts.ViewModel
             get => _contact.PhoneNumber;
             set
             {
-                if (_contact.PhoneNumber != value)
+                var error = ContactValidator.ValidatePhoneNumber(value);
+                if (error == null)
                 {
                     _contact.PhoneNumber = value;
                     OnPropertyChanged(nameof(PhoneNumber));
                 }
+                ErrorMessage = error;
             }
         }
 
@@ -43,11 +49,23 @@ namespace Contacts.ViewModel
             get => _contact.Email;
             set
             {
-                if (_contact.Email != value)
+                var error = ContactValidator.ValidateEmail(value);
+                if (error == null)
                 {
                     _contact.Email = value;
                     OnPropertyChanged(nameof(Email));
                 }
+                ErrorMessage = error;
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            private set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
             }
         }
 

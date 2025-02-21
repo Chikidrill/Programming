@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
-        Title="Contacts" MinHeight="400" MinWidth="500"  Height="400" Width="500" Padding="15">
+        Title="Contacts" MinHeight="400" MinWidth="500" Height="400" Width="500" Padding="15">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -17,12 +17,13 @@
             <StackPanel Margin="3">
                 <TextBlock Text="Name:"/>
                 <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
-
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" FontSize="7" FontWeight="Bold" Margin="3"/>
                 <TextBlock Text="Phone Number:" Margin="3,3,3,0"/>
                 <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
-
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" FontSize="7" FontWeight="Bold" Margin="3"/>
                 <TextBlock Text="Email:" Margin="3,3,3,0"/>
                 <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" FontSize="7" FontWeight="Bold" Margin="3"/>
             </StackPanel>
         </GroupBox>
 
@@ -41,8 +42,7 @@
         </GroupBox>
 
         <!-- Кнопки -->
-        
-        <Button Content="Load" Grid.Column="1" Margin="163,310,3,0" Height="25" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Save" Grid.Column="1" Margin="83,310,83,0" Height="25" VerticalAlignment="Top"  Width="75"/>
+        <Button Content="Load" Command="{Binding LoadCommand}" Grid.Column="1" Margin="163,310,3,0" Height="25" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Save" Command="{Binding SaveCommand}" Grid.Column="1" Margin="83,310,83,0" Height="25" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
