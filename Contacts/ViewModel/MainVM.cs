@@ -1,4 +1,5 @@
 ﻿using Contacts.Model;
+using Contacts.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,26 +7,22 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Contacts.ViewModel
 {
     public class MainVM: INotifyPropertyChanged
     {
         private Contact _contact;
-        private string _errorMessage;
+        private readonly Serializer _serializer;
 
         public string Name
         {
             get => _contact.Name;
             set
             {
-                var error = ContactValidator.ValidateName(value);
-                if (error == null)
-                {
-                    _contact.Name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-                ErrorMessage = error;
+                _contact.Name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -34,13 +31,8 @@ namespace Contacts.ViewModel
             get => _contact.PhoneNumber;
             set
             {
-                var error = ContactValidator.ValidatePhoneNumber(value);
-                if (error == null)
-                {
-                    _contact.PhoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-                ErrorMessage = error;
+                _contact.PhoneNumber = value;
+                OnPropertyChanged(nameof(PhoneNumber));
             }
         }
 
@@ -49,29 +41,27 @@ namespace Contacts.ViewModel
             get => _contact.Email;
             set
             {
-                var error = ContactValidator.ValidateEmail(value);
-                if (error == null)
-                {
-                    _contact.Email = value;
-                    OnPropertyChanged(nameof(Email));
-                }
-                ErrorMessage = error;
+                _contact.Email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
 
-        public string ErrorMessage
-        {
-            get => _errorMessage;
-            private set
-            {
-                _errorMessage = value;
-                OnPropertyChanged(nameof(ErrorMessage));
-            }
-        }
+        public ICommand SaveCommand { get; }
+        public ICommand LoadCommand { get; }
 
         public MainVM()
         {
+            _serializer = new Serializer();
             _contact = new Contact();
+
+            SaveCommand = new SaveCommand(_serializer, () => _contact);
+            LoadCommand = new LoadCommand(_serializer, contact =>
+            {
+                _contact = contact;
+                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(PhoneNumber));
+                OnPropertyChanged(nameof(Email));
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

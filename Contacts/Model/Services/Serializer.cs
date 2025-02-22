@@ -41,7 +41,7 @@ namespace Contacts.Model.Services
             try
             {
                 if (!File.Exists(_filePath))
-                    return new Contact(); // Возвращаем пустой контакт, если файла нет
+                    return new Contact();
 
                 string json = File.ReadAllText(_filePath);
                 return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact();
