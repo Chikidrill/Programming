@@ -8,21 +8,17 @@ using Newtonsoft.Json;
 
 namespace Contacts.Model.Services
 {
+    /// <summary>
+    /// Класс, выполняющий сериализацию и десериализацию контактов в JSON-файл.
+    /// </summary>
     public class Serializer
     {
         private readonly string _filePath;
 
-        public Serializer()
-        {
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string contactsDir = Path.Combine(documentsPath, "Contacts");
-
-            if (!Directory.Exists(contactsDir))
-                Directory.CreateDirectory(contactsDir);
-
-            _filePath = Path.Combine(contactsDir, "contacts.json");
-        }
-
+        /// <summary>
+        /// Сохраняет переданный контакт в JSON-файл.
+        /// </summary>
+        /// <param name="contact">Контакт, который необходимо сохранить.</param>
         public void Save(Contact contact)
         {
             try
@@ -36,6 +32,9 @@ namespace Contacts.Model.Services
             }
         }
 
+        /// <summary>
+        /// Загружает контакт из JSON-файла.
+        /// </summary>
         public Contact Load()
         {
             try
@@ -50,6 +49,21 @@ namespace Contacts.Model.Services
             {
                 throw new Exception("Ошибка при загрузке контакта: " + ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Serializer"/> 
+        /// и задает путь к файлу для хранения контактов.
+        /// </summary>
+        public Serializer()
+        {
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string contactsDir = Path.Combine(documentsPath, "Contacts");
+
+            if (!Directory.Exists(contactsDir))
+                Directory.CreateDirectory(contactsDir);
+
+            _filePath = Path.Combine(contactsDir, "contacts.json");
         }
     }
 }

@@ -16,6 +16,23 @@ namespace Contacts.ViewModel
         private Contact _contact;
         private readonly Serializer _serializer;
 
+        /// <summary>
+        /// Событие, возникающее при изменении значения свойства.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
+        /// </summary>
+        /// <param name="propertyName">Имя свойства, которое изменилось. Если не указано, используется имя вызывающего метода.</param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Получает или задает имя контакта.
+        /// </summary>
         public string Name
         {
             get => _contact.Name;
@@ -26,6 +43,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Получает или задает номер телефона контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get => _contact.PhoneNumber;
@@ -36,6 +56,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Получает или задает электронную почту контакта.
+        /// </summary>
         public string Email
         {
             get => _contact.Email;
@@ -46,9 +69,19 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда для сохранения контакта.
+        /// </summary>
         public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Команда для загрузки контакта.
+        /// </summary>
         public ICommand LoadCommand { get; }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="MainVM"/>.
+        /// </summary>
         public MainVM()
         {
             _serializer = new Serializer();
@@ -64,11 +97,5 @@ namespace Contacts.ViewModel
             });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
