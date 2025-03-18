@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
         Title="Contacts" 
-        MinHeight="420" 
-        MaxHeight="450" 
+        MinHeight="420"  
         MinWidth="550" 
         Height="400" 
         Width="500" 
         Padding="15">
     <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -21,24 +24,23 @@
         <GroupBox 
             Header="Edit Contact" 
             Grid.Column="0" 
-            Margin="3" 
-            Height="302" 
-            VerticalAlignment="Top">
-            <StackPanel>
-                <TextBlock
+            Margin="3">
+            <StackPanel 
+                Margin="3">
+                <TextBlock 
                     Text="Name:"/>
                 <TextBox 
                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                     Margin="3"/>
+
                 <TextBlock 
-                    Text="Phone Number:" 
-                    Margin="3,3,3,0"/>
+                    Text="Phone Number:"/>
                 <TextBox 
                     Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" 
                     Margin="3"/>
+
                 <TextBlock 
-                    Text="Email:" 
-                    Margin="3,3,3,0"/>
+                    Text="Email:"/>
                 <TextBox 
                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
                     Margin="3"/>
@@ -48,10 +50,8 @@
         <GroupBox 
             Header="Read Contact" 
             Grid.Column="1" 
-            Margin="3" 
-            Height="302" 
-            VerticalAlignment="Top">
-            <StackPanel>
+            Margin="3">
+            <StackPanel Margin="3">
                 <TextBlock 
                     Text="Name:"/>
                 <TextBlock 
@@ -60,16 +60,13 @@
                     Margin="3"/>
 
                 <TextBlock 
-                    Text="Phone Number:" 
-                    Margin="3,3,3,0"/>
+                    Text="Phone Number:"/>
                 <TextBlock 
                     Text="{Binding PhoneNumber}" 
                     FontWeight="Bold" 
                     Margin="3"/>
 
-                <TextBlock 
-                    Text="Email:" 
-                    Margin="3,3,3,0"/>
+                <TextBlock Text="Email:"/>
                 <TextBlock 
                     Text="{Binding Email}" 
                     FontWeight="Bold" 
@@ -77,21 +74,19 @@
             </StackPanel>
         </GroupBox>
 
-        <Button 
-            Content="Load" 
-            Command="{Binding LoadCommand}" 
-            Grid.Column="1" 
-            Margin="163,310,3,0" 
-            Height="25" 
-            Width="75" 
-            VerticalAlignment="Top"/>
-        <Button 
-            Content="Save" 
-            Command="{Binding SaveCommand}" 
-            Grid.Column="1" 
-            Margin="83,310,83,0" 
-            Height="25" 
-            Width="75" 
-            VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3">
+            <Button 
+                Content="Save" 
+                Command="{Binding SaveCommand, UpdateSourceTrigger=PropertyChanged}" 
+                Width="75" 
+                Height="25" 
+                Margin="3"/>
+            <Button 
+                Content="Load" 
+                Command="{Binding LoadCommand, UpdateSourceTrigger=PropertyChanged}" 
+                Width="75" 
+                Height="25" 
+                Margin="3"/>
+        </StackPanel>
     </Grid>
 </Window>
