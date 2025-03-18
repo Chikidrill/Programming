@@ -18,7 +18,7 @@ namespace Contacts.Model
 
         /// <summary>
         /// Получает или задает номер телефона.
-        /// </summary
+        /// </summary>
         public string PhoneNumber {  get { return _phoneNumber; } set { _phoneNumber = value; } }
 
         /// <summary>

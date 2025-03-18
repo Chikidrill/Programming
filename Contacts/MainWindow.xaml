@@ -5,41 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
-        Title="Contacts" MinHeight="400" MinWidth="500" Height="400" Width="500" Padding="15">
-    <Grid>
+        Title="Contacts" 
+        MinHeight="420" 
+        MaxHeight="450" 
+        MinWidth="550" 
+        Height="400" 
+        Width="500" 
+        Padding="15">
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Левый блок: редактирование контакта-->
-        <GroupBox Header="Edit Contact" Grid.Column="0" Margin="3,3,3,0" Height="302" VerticalAlignment="Top">
-            <StackPanel Margin="3">
-                <TextBlock Text="Name:"/>
-                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
-                <TextBlock Text="Phone Number:" Margin="3,3,3,0"/>
-                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
-                <TextBlock Text="Email:" Margin="3,3,3,0"/>
-                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+        <GroupBox 
+            Header="Edit Contact" 
+            Grid.Column="0" 
+            Margin="3" 
+            Height="302" 
+            VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock
+                    Text="Name:"/>
+                <TextBox 
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="3"/>
+                <TextBlock 
+                    Text="Phone Number:" 
+                    Margin="3,3,3,0"/>
+                <TextBox 
+                    Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="3"/>
+                <TextBlock 
+                    Text="Email:" 
+                    Margin="3,3,3,0"/>
+                <TextBox 
+                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="3"/>
             </StackPanel>
         </GroupBox>
 
-        <!-- Правый блок: отображение контакта -->
-        <GroupBox Header="Read Contact" Grid.Column="1" Margin="3,3,3,0" Height="302" VerticalAlignment="Top">
-            <StackPanel Margin="3">
-                <TextBlock Text="Name:"/>
-                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="3"/>
+        <GroupBox 
+            Header="Read Contact" 
+            Grid.Column="1" 
+            Margin="3" 
+            Height="302" 
+            VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock 
+                    Text="Name:"/>
+                <TextBlock 
+                    Text="{Binding Name}" 
+                    FontWeight="Bold" 
+                    Margin="3"/>
 
-                <TextBlock Text="Phone Number:" Margin="3,3,3,0"/>
-                <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold" Margin="3"/>
+                <TextBlock 
+                    Text="Phone Number:" 
+                    Margin="3,3,3,0"/>
+                <TextBlock 
+                    Text="{Binding PhoneNumber}" 
+                    FontWeight="Bold" 
+                    Margin="3"/>
 
-                <TextBlock Text="Email:" Margin="3,3,3,0"/>
-                <TextBlock Text="{Binding Email}" FontWeight="Bold" Margin="3"/>
+                <TextBlock 
+                    Text="Email:" 
+                    Margin="3,3,3,0"/>
+                <TextBlock 
+                    Text="{Binding Email}" 
+                    FontWeight="Bold" 
+                    Margin="3"/>
             </StackPanel>
         </GroupBox>
 
-        <!-- Кнопки загрузки и сохранения-->
-        <Button Content="Load" Command="{Binding LoadCommand}" Grid.Column="1" Margin="163,310,3,0" Height="25" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Save" Command="{Binding SaveCommand}" Grid.Column="1" Margin="83,310,83,0" Height="25" VerticalAlignment="Top" Width="75"/>
+        <Button 
+            Content="Load" 
+            Command="{Binding LoadCommand}" 
+            Grid.Column="1" 
+            Margin="163,310,3,0" 
+            Height="25" 
+            Width="75" 
+            VerticalAlignment="Top"/>
+        <Button 
+            Content="Save" 
+            Command="{Binding SaveCommand}" 
+            Grid.Column="1" 
+            Margin="83,310,83,0" 
+            Height="25" 
+            Width="75" 
+            VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -24,7 +24,7 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, которое изменилось. Если не указано, используется имя вызывающего метода.</param>
+        /// <param name="propertyName">Имя свойства, которое изменилось.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
