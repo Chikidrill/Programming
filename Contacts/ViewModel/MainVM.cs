@@ -14,6 +14,7 @@ namespace Contacts.ViewModel
     public class MainVM: INotifyPropertyChanged
     {
         private Contact _contact;
+
         private readonly Serializer _serializer;
 
         /// <summary>

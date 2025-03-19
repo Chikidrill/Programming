@@ -11,7 +11,7 @@ using System.Runtime.Remoting.Contexts;
 
 namespace Contacts.ViewModel
 {
-    public class LoadCommand:ICommand
+    public class LoadCommand : ICommand
     {
         private readonly Serializer _serializer;
         private readonly Contact _contact;

@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
         Title="Contacts" 
-        Icon="C:\Users\dvorn\source\repos\Contacts\contacts_icon.ico"
+        Icon="contacts_icon.ico"
         MinHeight="420"  
         MinWidth="550" 
         Height="400" 
-        Width="500" 
-        Padding="15">
+        Width="500" >
     
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -27,25 +26,24 @@
             Header="Edit Contact" 
             Grid.Column="0" 
             Margin="3">
-            <StackPanel 
-                Margin="3">
+            <StackPanel Margin="3">
                 <TextBlock 
                     Text="Name:"/>
                 <TextBox 
                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="3"/>
+                    Margin="0,3"/>
 
                 <TextBlock 
                     Text="Phone Number:"/>
                 <TextBox 
                     Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="3"/>
+                    Margin="0,3"/>
 
                 <TextBlock 
                     Text="Email:"/>
                 <TextBox 
                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="3"/>
+                    Margin="0,3"/>
             </StackPanel>
         </GroupBox>
 
@@ -59,20 +57,21 @@
                 <TextBlock 
                     Text="{Binding Name}" 
                     FontWeight="Bold" 
-                    Margin="3"/>
+                    Margin="0,3"/>
 
                 <TextBlock 
-                    Text="Phone Number:"/>
+                    Text="Phone Number:" Margin="0,2"/>
+                    
                 <TextBlock 
                     Text="{Binding PhoneNumber}" 
                     FontWeight="Bold" 
-                    Margin="3"/>
+                    Margin="0,2"/>
 
-                <TextBlock Text="Email:"/>
+                <TextBlock Text="Email:" Margin="0,2"/>
                 <TextBlock 
                     Text="{Binding Email}" 
                     FontWeight="Bold" 
-                    Margin="3"/>
+                    Margin="0,5"/>
             </StackPanel>
         </GroupBox>
 
