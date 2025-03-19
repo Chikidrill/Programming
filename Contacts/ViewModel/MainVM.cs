@@ -74,7 +74,7 @@ namespace Contacts.ViewModel
             set
             {
                 _contact = value;
-                OnPropertyChanged(null); // Обновляем все свойства разом
+                OnPropertyChanged(null); 
             }
         }
         /// <summary>

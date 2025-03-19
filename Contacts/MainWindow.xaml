@@ -74,7 +74,12 @@
             </StackPanel>
         </GroupBox>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3">
+        <StackPanel 
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Right" 
+            Margin="3">
             <Button 
                 Content="Save" 
                 Command="{Binding SaveCommand, UpdateSourceTrigger=PropertyChanged}" 
