@@ -1,19 +1,28 @@
 ﻿using Contacts.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Contacts.Model.Services;
 using System.Windows.Input;
 
 namespace Contacts.ViewModel
 {
+    /// <summary>
+    /// Команда для загрузки данных контакта из файла.
+    /// </summary>
     public class LoadCommand : ICommand
     {
+        /// <summary>
+        /// Объект для сериализации и десериализации контактов.
+        /// </summary>
         private readonly Serializer _serializer;
+
+        /// <summary>
+        /// Действие для обновления данных контакта.
+        /// </summary>
         private readonly Action<Contact> _setContact;
 
+        /// <summary>
+        /// Событие, оповещающее об изменении состояния выполнения команды.
+        /// </summary>
         public event EventHandler CanExecuteChanged;
 
         /// <summary>

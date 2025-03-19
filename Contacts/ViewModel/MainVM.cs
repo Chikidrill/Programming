@@ -7,8 +7,14 @@ namespace Contacts.ViewModel
 {
     public class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Текущий контакт.
+        /// </summary>
         private Contact _contact;
 
+        /// <summary>
+        /// Сервис для сериализации и десериализации контактов.
+        /// </summary>
         private readonly Serializer _serializer;
 
         /// <summary>
@@ -17,13 +23,14 @@ namespace Contacts.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
+        /// Команда для сохранения контакта.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, которое изменилось.</param>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Команда для загрузки контакта.
+        /// </summary>
+        public ICommand LoadCommand { get; }
 
         /// <summary>
         /// Получает или задает имя контакта.
@@ -63,16 +70,15 @@ namespace Contacts.ViewModel
                 OnPropertyChanged(nameof(Email));
             }
         }
-
+        
         /// <summary>
-        /// Команда для сохранения контакта.
+        /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
         /// </summary>
-        public ICommand SaveCommand { get; }
-
-        /// <summary>
-        /// Команда для загрузки контакта.
-        /// </summary>
-        public ICommand LoadCommand { get; }
+        /// <param name="propertyName">Имя свойства, которое изменилось.</param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="MainVM"/>.

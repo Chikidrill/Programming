@@ -5,13 +5,24 @@ using System.Windows.Input;
 
 namespace Contacts.ViewModel
 {
+    /// <summary>
+    /// Команда для сохранения контакта в файл.
+    /// </summary>
     public class SaveCommand : ICommand
     {
+        /// <summary>
+        /// Сервис для сериализации и десериализации контактов.
+        /// </summary>
         private readonly Serializer _serializer;
 
+        /// <summary>
+        /// Функция, возвращающая контакт для сохранения.
+        /// </summary>
         private readonly Func<Contact> _getContact;
 
-
+        /// <summary>
+        /// Событие, вызываемое при изменении состояния выполнения команды.
+        /// </summary>
         public event EventHandler CanExecuteChanged;
 
         /// <summary>
