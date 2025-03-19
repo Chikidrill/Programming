@@ -12,9 +12,8 @@ namespace Contacts.ViewModel
     public class SaveCommand:ICommand
     {
         private readonly Serializer _serializer;
-        private readonly Func<Contact> _getContact;
-
-        
+        private readonly Contact _contact;
+        private readonly MainVM _viewModel;
         public event EventHandler CanExecuteChanged;
 
         /// <summary>
@@ -30,18 +29,18 @@ namespace Contacts.ViewModel
         /// <param name="parameter">Параметр команды.</param>
         public void Execute(object parameter)
         {
-            _serializer.Save(_getContact());
+            _serializer.Save(_viewModel.Contact);
         }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="SaveCommand"/>.
         /// </summary>
-        /// <param name="getContact">Контакт, который необходимо сохранить.</param>
+        /// <param name="contact">Контакт, который необходимо сохранить.</param>
         /// <param name="serializer">Функция, возвращающая контакт для сохранения.</param>
-        public SaveCommand(Serializer serializer, Func<Contact> getContact)
+        public SaveCommand(Serializer serializer, MainVM viewModel)
         {
             _serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
-            _getContact = getContact ?? throw new ArgumentNullException(nameof(getContact));
+            _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
         }
     }
 }

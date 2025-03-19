@@ -68,7 +68,15 @@ namespace Contacts.ViewModel
                 OnPropertyChanged(nameof(Email));
             }
         }
-
+        public Contact Contact
+        {
+            get => _contact;
+            set
+            {
+                _contact = value;
+                OnPropertyChanged(null); // Обновляем все свойства разом
+            }
+        }
         /// <summary>
         /// Команда для сохранения контакта.
         /// </summary>
@@ -87,14 +95,8 @@ namespace Contacts.ViewModel
             _serializer = new Serializer();
             _contact = new Contact();
 
-            SaveCommand = new SaveCommand(_serializer, () => _contact);
-            LoadCommand = new LoadCommand(_serializer, contact =>
-            {
-                _contact = contact;
-                OnPropertyChanged(nameof(Name));
-                OnPropertyChanged(nameof(PhoneNumber));
-                OnPropertyChanged(nameof(Email));
-            });
+            SaveCommand = new SaveCommand(_serializer, this);
+            LoadCommand = new LoadCommand(_serializer, this);
         }
 
     }
