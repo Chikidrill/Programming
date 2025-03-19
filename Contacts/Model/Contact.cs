@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contacts.Model
+﻿namespace Contacts.Model
 {
     /// <summary>
     /// Класс, описывающий контакт с именем, номером телефона и электронной почтой.
