@@ -2,62 +2,61 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Contacts.Model.Services
+
+/// <summary>
+/// Класс, выполняющий сериализацию и десериализацию контактов в JSON-файл.
+/// </summary>
+public class Serializer
 {
     /// <summary>
-    /// Класс, выполняющий сериализацию и десериализацию контактов в JSON-файл.
+    /// Путь к JSON-файлу, в котором хранятся контакты.
     /// </summary>
-    public class Serializer
+    private readonly string _filePath = Path.Combine(contactsDir, "contacts.json");
+
+    /// <summary>
+    /// Путь к папке "Мои документы" текущего пользователя.
+    /// </summary>
+    public static string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+    /// <summary>
+    /// Путь к директории, где хранятся файлы контактов.
+    /// </summary>
+    public static string contactsDir = Path.Combine(documentsPath, "Contacts");
+
+    /// <summary>
+    /// Сохраняет переданный контакт в JSON-файл.
+    /// </summary>
+    /// <param name="contact">Контакт, который необходимо сохранить.</param>
+    public void Save(Contact contact)
     {
-        /// <summary>
-        /// Путь к JSON-файлу, в котором хранятся контакты.
-        /// </summary>
-        private readonly string _filePath = Path.Combine(contactsDir, "contacts.json");
-
-        /// <summary>
-        /// Путь к папке "Мои документы" текущего пользователя.
-        /// </summary>
-        public static string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-        /// <summary>
-        /// Путь к директории, где хранятся файлы контактов.
-        /// </summary>
-        public static string contactsDir = Path.Combine(documentsPath, "Contacts");
-
-        /// <summary>
-        /// Сохраняет переданный контакт в JSON-файл.
-        /// </summary>
-        /// <param name="contact">Контакт, который необходимо сохранить.</param>
-        public void Save(Contact contact)
+        try
         {
-            try
-            {
-                string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
-                File.WriteAllText(_filePath, json);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ошибка при сохранении контакта: " + ex.Message);
-            }
+            string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+            File.WriteAllText(_filePath, json);
         }
-
-        /// <summary>
-        /// Загружает контакт из JSON-файла.
-        /// </summary>
-        public Contact Load()
+        catch (Exception ex)
         {
-            try
-            {
-                if (!File.Exists(_filePath))
-                    return new Contact();
+            throw new Exception("Ошибка при сохранении контакта: " + ex.Message);
+        }
+    }
 
-                string json = File.ReadAllText(_filePath);
-                return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ошибка при загрузке контакта: " + ex.Message);
-            }
+    /// <summary>
+    /// Загружает контакт из JSON-файла.
+    /// </summary>
+    public Contact Load()
+    {
+        try
+        {
+            if (!File.Exists(_filePath))
+                return new Contact();
+
+            string json = File.ReadAllText(_filePath);
+            return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Ошибка при загрузке контакта: " + ex.Message);
         }
     }
 }
+
