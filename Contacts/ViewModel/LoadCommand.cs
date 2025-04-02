@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Contacts.Model;
+using Contacts.Model.Services;
+using System;
 using System.Windows.Input;
+
+namespace Contacts.ViewModel;
 
 /// <summary>
 /// Команда для загрузки данных контакта из файла.

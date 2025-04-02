@@ -1,6 +1,8 @@
 ﻿/// <summary>
 /// Класс, описывающий контакт с именем, номером телефона и электронной почтой.
 /// </summary>
+
+namespace Contacts.Model;
 public class Contact
 {
     /// <summary>

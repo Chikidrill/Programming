@@ -1,5 +1,9 @@
-﻿using System.ComponentModel;
+﻿using Contacts.Model;
+using Contacts.Model.Services;
+using System.ComponentModel;
 using System.Windows.Input;
+
+namespace Contacts.ViewModel;
 public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
