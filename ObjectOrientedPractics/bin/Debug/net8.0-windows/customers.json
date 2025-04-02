@@ -1,0 +1,177 @@
+{
+  "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Customer, ObjectOrientedPractics]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "ObjectOrientedPractics.Model.Customer, ObjectOrientedPractics",
+      "IsPriority": false,
+      "Id": 1,
+      "Cart": {
+        "$type": "ObjectOrientedPractics.Model.Cart, ObjectOrientedPractics",
+        "Items": {
+          "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Item, ObjectOrientedPractics]], System.Private.CoreLib",
+          "$values": []
+        },
+        "Amount": 0.0
+      },
+      "Orders": {
+        "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Orders.Order, ObjectOrientedPractics]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "ObjectOrientedPractics.Model.Orders.Order, ObjectOrientedPractics",
+            "Id": 1,
+            "CreationDate": "2025-03-15T18:47:23.9412732+07:00",
+            "DeliveryAddress": {
+              "$type": "ObjectOrientedPractics.Model.Address, ObjectOrientedPractics",
+              "Index": 0,
+              "Country": "",
+              "City": "",
+              "Street": "",
+              "Building": "",
+              "Apartment": ""
+            },
+            "Items": {
+              "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Item, ObjectOrientedPractics]], System.Private.CoreLib",
+              "$values": [
+                {
+                  "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+                  "Id": 5,
+                  "Category": 0,
+                  "Name": "jhjhjhj",
+                  "Info": "",
+                  "Cost": 99123.0
+                }
+              ]
+            },
+            "Status": 1,
+            "TotalCost": 99123.0,
+            "FullName": "213123123",
+            "DiscountAmount": 0.0,
+            "Total": 99123.0
+          },
+          {
+            "$type": "ObjectOrientedPractics.Model.Orders.Order, ObjectOrientedPractics",
+            "Id": 2,
+            "CreationDate": "2025-03-15T18:47:23.9507899+07:00",
+            "DeliveryAddress": {
+              "$type": "ObjectOrientedPractics.Model.Address, ObjectOrientedPractics",
+              "Index": 0,
+              "Country": "",
+              "City": "",
+              "Street": "",
+              "Building": "",
+              "Apartment": ""
+            },
+            "Items": {
+              "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Item, ObjectOrientedPractics]], System.Private.CoreLib",
+              "$values": [
+                {
+                  "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+                  "Id": 6,
+                  "Category": 0,
+                  "Name": "jhjhjhj",
+                  "Info": "",
+                  "Cost": 99123.0
+                }
+              ]
+            },
+            "Status": 1,
+            "TotalCost": 99123.0,
+            "FullName": "213123123",
+            "DiscountAmount": 0.0,
+            "Total": 99123.0
+          }
+        ]
+      },
+      "Discounts": {
+        "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.IDiscount, ObjectOrientedPractics]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "ObjectOrientedPractics.Model.PointsDiscount, ObjectOrientedPractics",
+            "Points": 0,
+            "Info": "Накопительная - 0 баллов"
+          }
+        ]
+      },
+      "FullName": "213",
+      "Address": {
+        "$type": "ObjectOrientedPractics.Model.Address, ObjectOrientedPractics",
+        "Index": 0,
+        "Country": "",
+        "City": "",
+        "Street": "",
+        "Building": "",
+        "Apartment": ""
+      }
+    },
+    {
+      "$type": "ObjectOrientedPractics.Model.Customer, ObjectOrientedPractics",
+      "IsPriority": false,
+      "Id": 2,
+      "Cart": {
+        "$type": "ObjectOrientedPractics.Model.Cart, ObjectOrientedPractics",
+        "Items": {
+          "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Item, ObjectOrientedPractics]], System.Private.CoreLib",
+          "$values": []
+        },
+        "Amount": 0.0
+      },
+      "Orders": {
+        "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Orders.Order, ObjectOrientedPractics]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "ObjectOrientedPractics.Model.Orders.Order, ObjectOrientedPractics",
+            "Id": 3,
+            "CreationDate": "2025-03-15T18:47:23.9572734+07:00",
+            "DeliveryAddress": {
+              "$type": "ObjectOrientedPractics.Model.Address, ObjectOrientedPractics",
+              "Index": 0,
+              "Country": "",
+              "City": "",
+              "Street": "",
+              "Building": "",
+              "Apartment": ""
+            },
+            "Items": {
+              "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Item, ObjectOrientedPractics]], System.Private.CoreLib",
+              "$values": [
+                {
+                  "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+                  "Id": 7,
+                  "Category": 0,
+                  "Name": "бвг",
+                  "Info": "",
+                  "Cost": 12312.0
+                }
+              ]
+            },
+            "Status": 1,
+            "TotalCost": 12312.0,
+            "FullName": "ыфвыфв",
+            "DiscountAmount": 0.0,
+            "Total": 12312.0
+          }
+        ]
+      },
+      "Discounts": {
+        "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.IDiscount, ObjectOrientedPractics]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "ObjectOrientedPractics.Model.PointsDiscount, ObjectOrientedPractics",
+            "Points": 0,
+            "Info": "Накопительная - 0 баллов"
+          }
+        ]
+      },
+      "FullName": "ыфвыфв",
+      "Address": {
+        "$type": "ObjectOrientedPractics.Model.Address, ObjectOrientedPractics",
+        "Index": 0,
+        "Country": "",
+        "City": "",
+        "Street": "",
+        "Building": "",
+        "Apartment": ""
+      }
+    }
+  ]
+}

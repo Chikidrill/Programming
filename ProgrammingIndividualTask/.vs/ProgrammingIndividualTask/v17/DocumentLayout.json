@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|c:\\users\\dvorn\\source\\repos\\programming\\programmingindividualtask\\view\\panels\\songcontrolpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|solutionrelative:view\\panels\\songcontrolpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|c:\\users\\dvorn\\source\\repos\\programming\\programmingindividualtask\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|solutionrelative:model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|c:\\users\\dvorn\\source\\repos\\programming\\programmingindividualtask\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|solutionrelative:model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\view\\panels\\songcontrolpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|solutionrelative:view\\panels\\songcontrolpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|c:\\users\\dvorn\\source\\repos\\programming\\programmingindividualtask\\model\\validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F1B39B2-4DB8-4AE2-97E2-E5C778F1F607}|SongsList.csproj|solutionrelative:model\\validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Genre.cs",
+              "DocumentMoniker": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Model\\Genre.cs",
+              "RelativeDocumentMoniker": "Model\\Genre.cs",
+              "ToolTip": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Model\\Genre.cs",
+              "RelativeToolTip": "Model\\Genre.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T04:22:01.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Validator.cs",
+              "DocumentMoniker": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Model\\Validator.cs",
+              "RelativeDocumentMoniker": "Model\\Validator.cs",
+              "ToolTip": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Model\\Validator.cs",
+              "RelativeToolTip": "Model\\Validator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T16:30:19.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Song.cs",
+              "DocumentMoniker": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Model\\Song.cs",
+              "RelativeDocumentMoniker": "Model\\Song.cs",
+              "ToolTip": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\Model\\Song.cs",
+              "RelativeToolTip": "Model\\Song.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAkwGMAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T16:15:14.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SongControlPanel.cs",
+              "DocumentMoniker": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\View\\Panels\\SongControlPanel.cs",
+              "RelativeDocumentMoniker": "View\\Panels\\SongControlPanel.cs",
+              "ToolTip": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\View\\Panels\\SongControlPanel.cs",
+              "RelativeToolTip": "View\\Panels\\SongControlPanel.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAALcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T18:48:11.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SongControlPanel.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\View\\Panels\\SongControlPanel.cs",
+              "RelativeDocumentMoniker": "View\\Panels\\SongControlPanel.cs",
+              "ToolTip": "C:\\Users\\dvorn\\source\\repos\\Programming\\ProgrammingIndividualTask\\View\\Panels\\SongControlPanel.cs [Design]",
+              "RelativeToolTip": "View\\Panels\\SongControlPanel.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T20:05:35.188Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

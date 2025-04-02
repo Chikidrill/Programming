@@ -1,0 +1,37 @@
+{
+  "$type": "System.Collections.Generic.List`1[[ObjectOrientedPractics.Model.Item, ObjectOrientedPractics]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+      "Id": 1,
+      "Category": 0,
+      "Name": "jhjhjhj",
+      "Info": "",
+      "Cost": 99123.0
+    },
+    {
+      "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+      "Id": 2,
+      "Category": 0,
+      "Name": "бвг",
+      "Info": "",
+      "Cost": 12312.0
+    },
+    {
+      "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+      "Id": 3,
+      "Category": 0,
+      "Name": "абгжж",
+      "Info": "",
+      "Cost": 2133.0
+    },
+    {
+      "$type": "ObjectOrientedPractics.Model.Item, ObjectOrientedPractics",
+      "Id": 4,
+      "Category": 0,
+      "Name": "абв\n",
+      "Info": "",
+      "Cost": 123.0
+    }
+  ]
+}

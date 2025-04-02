@@ -1,0 +1,17 @@
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\bin\Debug\net7.0-windows\ProgrammingIndividualTask.exe
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\bin\Debug\net7.0-windows\ProgrammingIndividualTask.deps.json
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\bin\Debug\net7.0-windows\ProgrammingIndividualTask.runtimeconfig.json
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\bin\Debug\net7.0-windows\ProgrammingIndividualTask.dll
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\bin\Debug\net7.0-windows\ProgrammingIndividualTask.pdb
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.csproj.GenerateResource.cache
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.AssemblyInfoInputs.cache
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.AssemblyInfo.cs
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.csproj.CoreCompileInputs.cache
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.dll
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\refint\ProgrammingIndividualTask.dll
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.pdb
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.genruntimeconfig.cache
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ref\ProgrammingIndividualTask.dll
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.MainForm.resources
+C:\Users\dvorn\source\repos\Programming\ProgrammingIndividualTask\obj\Debug\net7.0-windows\ProgrammingIndividualTask.View.Panels.SongControlPanel.resources
