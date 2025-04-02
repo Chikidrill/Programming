@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts"
+        xmlns:local="clr-namespace:Contacts.Converters"
         mc:Ignorable="d"
         Title="Contacts" 
         Icon="contacts_icon.ico"
@@ -11,6 +11,10 @@
         MinWidth="550" 
         Height="400" 
         Width="500" >
+
+    <Window.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </Window.Resources>
 
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
@@ -151,7 +155,7 @@
                          Command="{Binding ApplyCommand}" 
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Bottom"
-                         Visibility="{Binding ApplyButtonVisibility}"/>
+                         Visibility="{Binding IsDataChanged, Converter={StaticResource BoolToVisConverter}}"/>
                 </StackPanel>
             </Grid>
         </Grid>
