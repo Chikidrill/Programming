@@ -9,11 +9,6 @@ using Newtonsoft.Json;
 public class Serializer
 {
     /// <summary>
-    /// Путь к JSON-файлу, в котором хранятся контакты.
-    /// </summary>
-    private readonly string _filePath = Path.Combine(contactsDir, "contacts.json");
-
-    /// <summary>
     /// Путь к папке "Мои документы" текущего пользователя.
     /// </summary>
     public static string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -22,6 +17,11 @@ public class Serializer
     /// Путь к директории, где хранятся файлы контактов.
     /// </summary>
     public static string contactsDir = Path.Combine(documentsPath, "Contacts");
+
+    /// <summary>
+    /// Путь к JSON-файлу, в котором хранятся контакты.
+    /// </summary>
+    private readonly string _filePath = Path.Combine(contactsDir, "contacts.json");
 
     /// <summary>
     /// Сохраняет переданный контакт в JSON-файл.

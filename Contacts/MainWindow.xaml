@@ -62,7 +62,6 @@
                     Text="{Binding Name}" 
                     FontWeight="Bold" 
                     Margin="0,4"/>
-
                 <TextBlock 
                     Text="Phone Number:" 
                     Margin="0,3"/>
@@ -70,7 +69,6 @@
                     Text="{Binding PhoneNumber}" 
                     FontWeight="Bold" 
                     Margin="0,4"/>
-
                 <TextBlock 
                     Text="Email:" 
                     Margin="0,3"/>

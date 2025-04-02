@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
-
 public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
@@ -93,5 +92,4 @@ public class MainVM : INotifyPropertyChanged
             OnPropertyChanged(nameof(Email));
         });
     }
-
 }
