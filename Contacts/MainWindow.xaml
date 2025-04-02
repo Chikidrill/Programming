@@ -12,91 +12,148 @@
         Height="400" 
         Width="500" >
 
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MinWidth="150"/>
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="3*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox 
-            Header="Edit Contact" 
+        <Grid 
             Grid.Column="0" 
-            Margin="3">
-            <StackPanel Margin="3">
-                <TextBlock 
-                    Text="Name:" 
-                    Margin="0,3"/>
-                <TextBox 
-                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="0,3"/>
+            Background="#f8f8f8" 
+            Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-                <TextBlock 
-                    Text="Phone Number:" 
-                    Margin="0,3"/>
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Content="Find:" 
+                    Margin="3" 
+                    VerticalAlignment="Center"/>
                 <TextBox 
-                    Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="0,3"/>
+                    x:Name="SearchTextBox" 
+                    Grid.Column="1" Margin="3" 
+                    VerticalAlignment="Center"/>
+            </Grid>
 
-                <TextBlock 
-                    Text="Email:" 
-                    Margin="0,3"/>
-                <TextBox 
-                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="0,3"/>
-            </StackPanel>
-        </GroupBox>
+            <ListBox 
+                x:Name="ContactsListBox" 
+                Grid.Row="1" 
+                Margin="8"
+                ItemsSource="{Binding Contacts}"
+                SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-        <GroupBox 
-            Header="Read Contact" 
+            <Grid Grid.Row="2" Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Content="Add" 
+                    Height="25" 
+                    Margin="3"
+                    HorizontalAlignment="Stretch"
+                    Grid.Column="0"
+                    Command="{Binding AddCommand}"
+                    />
+                <Button 
+                    Content="Edit" 
+                    Height="25" 
+                    Margin="3"
+                    Command="{Binding EditCommand}"
+                    Grid.Column="1"
+                    IsEnabled="{Binding IsContactReadOnly}"/>
+                <Button 
+                    Content="Remove" 
+                    Height="25" 
+                    Margin="3"
+                    Command="{Binding RemoveCommand}"
+                    Grid.Column="2"
+                    IsEnabled="{Binding IsContactReadOnly}"/>
+            </Grid>
+        </Grid>
+
+        <GridSplitter 
             Grid.Column="1" 
-            Margin="3">
-            <StackPanel Margin="3">
-                <TextBlock 
-                    Text="Name:" 
-                    Margin="0,3"/>
-                <TextBlock 
-                    Text="{Binding Name}" 
-                    FontWeight="Bold" 
-                    Margin="0,4"/>
-                <TextBlock 
-                    Text="Phone Number:" 
-                    Margin="0,3"/>
-                <TextBlock 
-                    Text="{Binding PhoneNumber}" 
-                    FontWeight="Bold" 
-                    Margin="0,4"/>
-                <TextBlock 
-                    Text="Email:" 
-                    Margin="0,3"/>
-                <TextBlock 
-                    Text="{Binding Email}" 
-                    FontWeight="Bold" 
-                    Margin="0,3"/>
-            </StackPanel>
-        </GroupBox>
+            Width="3" 
+            Background="White" 
+            HorizontalAlignment="Stretch"/>
 
-        <StackPanel 
-            Grid.Row="1" 
-            Grid.ColumnSpan="2" 
-            Orientation="Horizontal" 
-            HorizontalAlignment="Right" 
-            Margin="3">
-            <Button 
-                Content="Save" 
-                Command="{Binding SaveCommand, UpdateSourceTrigger=PropertyChanged}" 
-                Width="75" 
-                Height="25" 
-                Margin="3"/>
-            <Button 
-                Content="Load" 
-                Command="{Binding LoadCommand, UpdateSourceTrigger=PropertyChanged}" 
-                Width="75" 
-                Height="25" 
-                Margin="3"/>
-        </StackPanel>
+        <Grid 
+            Grid.Column="2" 
+            Background="White" 
+            Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image 
+                    Grid.Column="0" 
+                    Width="100" 
+                    Height="100" 
+                    Margin="6,35,5,0" 
+                    VerticalAlignment="Top" 
+                    Source="photo_placeholder.png"/>
+
+                <StackPanel Grid.Column="1">
+                    <Label 
+                        Content="Name:" 
+                        Margin="0,3,0,3" 
+                        HorizontalAlignment="Left"/>
+                    <TextBox 
+                        Text="{Binding SelectedContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Margin="0,3,0,3"
+                        IsReadOnly="{Binding IsContactReadOnly}"/>
+                    <Label 
+                        Content="Phone Number:" 
+                        Margin="0,3,0,3" 
+                        HorizontalAlignment="Left"/>
+                    <TextBox 
+                        Text="{Binding SelectedContact.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Margin="0,3,0,3"
+                        IsReadOnly="{Binding IsContactReadOnly}"/>
+                    <Label 
+                        Content="Email:" 
+                        Margin="0,3,0,3" 
+                        HorizontalAlignment="Left"/>
+                    <TextBox 
+                        Text="{Binding SelectedContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Margin="0,3,0,3"
+                        IsReadOnly="{Binding IsContactReadOnly}"/>
+                    <Button 
+                         Content="Apply" 
+                         Height="25" 
+                         Width="75"
+                         Margin="0,50,0,0"
+                         Command="{Binding ApplyCommand}" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Bottom"
+                         Visibility="{Binding ApplyButtonVisibility}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
