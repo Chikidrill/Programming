@@ -10,6 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="contacts_icon.ico" />
+    <Resource Include="photo_placeholder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -29,6 +32,7 @@
     <Compile Remove="View\Properties\Resources.Designer.cs" />
     <Compile Remove="View\Properties\Settings.Designer.cs" />
     <EmbeddedResource Remove="View\Properties\Resources.resx" />
+    <None Remove="photo_placeholder.png" />
     <Page Remove="View\App.xaml" />
     <Page Remove="View\MainWindow.xaml" />
   </ItemGroup>
