@@ -218,17 +218,13 @@ public class MainVM : INotifyPropertyChanged
     private void AddContact(object parameter)
     {
         IsContactReadOnly = false;
-        IsAddingNewContact = true;
+        _isAddingNewContact = true;
         var newContact = new Contact();
-        SelectedContact = newContact;
-        _clonedContact = new Contact
-        {
-            Name = newContact.Name,
-            PhoneNumber = newContact.PhoneNumber,
-            Email = newContact.Email,
-        };
+        SelectedContact = newContact;  
         UpdateContact(newContact);
+        IsApplyButtonVisible = true;
     }
+
 
     /// <summary>
     /// Разрешает редактирование выбранного контакта.
@@ -237,18 +233,18 @@ public class MainVM : INotifyPropertyChanged
     {
         if (SelectedContact != null)
         {
-            IsContactReadOnly = false;
-            _isEditingContact = true;
-            _indexBeforeEditing = Contacts.IndexOf(SelectedContact);
             _clonedContact = new Contact
             {
                 Name = SelectedContact.Name,
                 PhoneNumber = SelectedContact.PhoneNumber,
                 Email = SelectedContact.Email
             };
-            SelectedContact = _clonedContact;
-            UpdateContact(_clonedContact);
-            IsApplyButtonVisible = true; 
+
+            _isEditingContact = true;
+            _indexBeforeEditing = Contacts.IndexOf(SelectedContact);
+            IsContactReadOnly = false;
+            IsApplyButtonVisible = true;
+            UpdateContact(SelectedContact); 
         }
     }
 
@@ -290,21 +286,24 @@ public class MainVM : INotifyPropertyChanged
         {
             if (_isAddingNewContact)
             {
-                Contacts.Add(SelectedContact);
-                IsAddingNewContact = false;
+                if (!Contacts.Contains(SelectedContact))
+                {
+                    Contacts.Add(SelectedContact);
+                }
+                _isAddingNewContact = false;
             }
-
             if (_isEditingContact)
             {
-                Contacts[_indexBeforeEditing] = SelectedContact;
                 _isEditingContact = false;
             }
             _contactSerializer.Save(Contacts);
             IsDataChanged = false;
             IsContactReadOnly = true;
-            IsApplyButtonVisible = false; 
+            IsApplyButtonVisible = false;
+            _clonedContact = null;
         }
     }
+
 
     /// <summary>
     /// Проверяет, можно ли редактировать или удалить контакт.
