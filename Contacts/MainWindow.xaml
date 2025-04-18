@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Converters"
+        xmlns:controls1="clr-namespace:Contacts.Controls"
         mc:Ignorable="d"
         Title="Contacts" 
         Icon="contacts_icon.ico"
@@ -113,71 +114,20 @@
             Width="3" 
             Background="White" 
             HorizontalAlignment="Stretch"/>
+        <Grid Grid.Column="2" Background="White">
+            <controls1:ContactControl DataContext="{Binding SelectedContact}" />
 
-        <Grid 
-            Grid.Column="2" 
-            Background="White" 
-            Margin="8">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+            <Button 
+                Content="Apply" 
+                Height="25" 
+                Width="75"
+                Margin="119,0,0,156"
+                Command="{Binding ApplyCommand}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom"
+                Visibility="{Binding IsDataChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image 
-                    Grid.Column="0" 
-                    Width="100" 
-                    Height="100" 
-                    Margin="6,35,5,0" 
-                    VerticalAlignment="Top" 
-                    Source="photo_placeholder.png" Grid.RowSpan="2"/>
-
-                <StackPanel Grid.Column="1" Grid.RowSpan="2">
-                    <Label 
-                        Content="Name:" 
-                        Margin="0,3,0,3" 
-                        HorizontalAlignment="Left"/>
-                    <TextBox 
-                        Text="{Binding SelectedContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                        Margin="0,3,0,3"
-                        IsReadOnly="{Binding IsContactReadOnly}"/>
-                    <Label 
-                        Content="Phone Number:" 
-                        Margin="0,3,0,3" 
-                        HorizontalAlignment="Left"/>
-                    <TextBox 
-                        Text="{Binding SelectedContact.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                        Margin="0,3,0,3"
-                        IsReadOnly="{Binding IsContactReadOnly}"/>
-                    <Label 
-                        Content="Email:" 
-                        Margin="0,3,0,3" 
-                        HorizontalAlignment="Left"/>
-                    <TextBox 
-                        Text="{Binding SelectedContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                        Margin="0,3,0,3"
-                        IsReadOnly="{Binding IsContactReadOnly}"/>
-                    <Button 
-                         Content="Apply" 
-                         Height="25" 
-                         Width="75"
-                         Margin="0,50,0,0"
-                         Command="{Binding ApplyCommand}" 
-                         HorizontalAlignment="Left" 
-                         VerticalAlignment="Bottom"
-                         Visibility="{Binding IsDataChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                </StackPanel>
-            </Grid>
         </Grid>
+
     </Grid>
 </Window>

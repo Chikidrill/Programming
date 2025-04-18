@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Contacts.Controls.ContactControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contacts.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+
+    <Grid Background="White" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image 
+             Grid.Column="0" 
+             Width="100" 
+             Height="100" 
+             Margin="6,43,5,0" 
+             VerticalAlignment="Top" 
+             Source="/Controls/photo_placeholder.png"/>
+
+            <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="8">
+                <Label 
+                 Content="Name:" 
+                 Margin="0,3,0,3" 
+                 HorizontalAlignment="Left"/>
+                <TextBox 
+                 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,3,0,3"
+                 IsReadOnly="{Binding IsContactReadOnly}"/>
+                <Label 
+                 Content="Phone Number:" 
+                 Margin="0,3,0,3" 
+                 HorizontalAlignment="Left"/>
+                <TextBox 
+                 Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,3,0,3"
+                 IsReadOnly="{Binding IsContactReadOnly}"/>
+                <Label 
+                 Content="Email:" 
+                 Margin="0,3,0,3" 
+                 HorizontalAlignment="Left"/>
+                <TextBox 
+                 Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,3,0,3"
+                 IsReadOnly="{Binding IsContactReadOnly}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
