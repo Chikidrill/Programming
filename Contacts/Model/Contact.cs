@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 
+namespace Model;
 /// <summary>
 /// Класс, описывающий контакт с именем, номером телефона и электронной почтой.
 /// </summary>

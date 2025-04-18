@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts.Converters"
+        xmlns:local="clr-namespace:Converters"
         mc:Ignorable="d"
         Title="Contacts" 
         Icon="contacts_icon.ico"
@@ -13,7 +13,7 @@
         Width="500" >
 
     <Window.Resources>
-        <local:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
 
     <Grid Margin="0">
@@ -109,6 +109,10 @@
             </Grid.RowDefinitions>
 
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -120,9 +124,9 @@
                     Height="100" 
                     Margin="6,35,5,0" 
                     VerticalAlignment="Top" 
-                    Source="photo_placeholder.png"/>
+                    Source="photo_placeholder.png" Grid.RowSpan="2"/>
 
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" Grid.RowSpan="2">
                     <Label 
                         Content="Name:" 
                         Margin="0,3,0,3" 
@@ -155,7 +159,7 @@
                          Command="{Binding ApplyCommand}" 
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Bottom"
-                         Visibility="{Binding IsDataChanged, Converter={StaticResource BoolToVisConverter}}"/>
+                         Visibility="{Binding IsDataChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </Grid>
         </Grid>

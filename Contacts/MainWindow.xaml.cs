@@ -1,5 +1,6 @@
-﻿using Contacts.ViewModel;
+﻿using ViewModel;
 using System.Windows;
+
 namespace Contacts;
 
 /// <summary>

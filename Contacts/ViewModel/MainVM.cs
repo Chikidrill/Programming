@@ -1,11 +1,12 @@
-﻿using Contacts.Model.Services;
-using Contacts.ViewModel;
+﻿using Services;
+using Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
+namespace ViewModel;
 public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
@@ -38,7 +39,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private bool _isContactReadOnly = true;
 
-    // <summary>
+    /// <summary>
     /// Флаг, указывающий, были ли изменены данные
     /// </summary>
     private bool _isDataChanged;
@@ -83,30 +84,36 @@ public class MainVM : INotifyPropertyChanged
         {
             if (_selectedContact != value)
             {
-                if (_isEditingContact && _clonedContact != null)
+                if (_isAddingNewContact && _selectedContact != null && !Contacts.Contains(_selectedContact))
                 {
-                    _clonedContact.Name = _selectedContact.Name;
-                    _clonedContact.PhoneNumber = _selectedContact.PhoneNumber;
-                    _clonedContact.Email = _selectedContact.Email;
+                    _isAddingNewContact = false;
                 }
+                if (_isEditingContact && _clonedContact != null && _selectedContact != null)
+                {
+                    _selectedContact.Name = _clonedContact.Name;
+                    _selectedContact.PhoneNumber = _clonedContact.PhoneNumber;
+                    _selectedContact.Email = _clonedContact.Email;
+                }
+
+                _selectedContact = value;
+
                 IsDataChanged = false;
                 IsApplyButtonVisible = false;
-                _selectedContact = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsContactSelected));
 
                 if (_selectedContact != null)
                 {
                     IsContactReadOnly = true;
-                    IsApplyButtonVisible = false; 
+                    IsApplyButtonVisible = false;
                 }
-                else
-                {
-                    IsApplyButtonVisible = true; 
-                }
+
+                _isEditingContact = false;
+                _clonedContact = null;
             }
         }
     }
+
 
 
     /// <summary>
@@ -240,13 +247,21 @@ public class MainVM : INotifyPropertyChanged
                 Email = SelectedContact.Email
             };
 
-            _isEditingContact = true;
             _indexBeforeEditing = Contacts.IndexOf(SelectedContact);
+            SelectedContact = new Contact
+            {
+                Name = _clonedContact.Name,
+                PhoneNumber = _clonedContact.PhoneNumber,
+                Email = _clonedContact.Email
+            };
+
+            _isEditingContact = true;
+            UpdateContact(SelectedContact);
             IsContactReadOnly = false;
             IsApplyButtonVisible = true;
-            UpdateContact(SelectedContact); 
         }
     }
+
 
     /// <summary>
     /// Удаляет выбранный контакт из коллекции.
@@ -292,10 +307,16 @@ public class MainVM : INotifyPropertyChanged
                 }
                 _isAddingNewContact = false;
             }
-            if (_isEditingContact)
+            else if (_isEditingContact)
             {
+                var contactToUpdate = Contacts[_indexBeforeEditing];
+                contactToUpdate.Name = SelectedContact.Name;
+                contactToUpdate.PhoneNumber = SelectedContact.PhoneNumber;
+                contactToUpdate.Email = SelectedContact.Email;
+
                 _isEditingContact = false;
             }
+
             _contactSerializer.Save(Contacts);
             IsDataChanged = false;
             IsContactReadOnly = true;
@@ -303,6 +324,7 @@ public class MainVM : INotifyPropertyChanged
             _clonedContact = null;
         }
     }
+
 
 
     /// <summary>
