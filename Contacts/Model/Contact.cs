@@ -8,25 +8,29 @@ namespace Model;
 /// </summary>
 public class Contact : INotifyPropertyChanged, IDataErrorInfo
 {
-    #region События
 
     /// <summary>
     /// Событие, которое вызывается при изменении свойства.
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
-    #endregion
-
-    #region Поля
-
+    /// <summary>
+    /// Имя контакта
+    /// </summary>
     private string _name;
-    private string _phoneNumber;
+
+    /// <summary>
+    /// Номер телефона контакта
+    /// </summary>
+    private string _number;
+
+    /// <summary>
+    /// Электронная почта контакта
+    /// </summary>
     private string _email;
+
     private readonly Dictionary<string, string> _errors = new Dictionary<string, string>();
 
-    #endregion
-
-    #region Свойства
 
     /// <summary>
     /// Максимальная длина имени контакта.
@@ -80,16 +84,16 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     /// <summary>
     /// Получает или задает номер телефона контакта.
     /// </summary>
-    public string PhoneNumber
+    public string Number
     {
-        get => _phoneNumber;
+        get => _number;
         set
         {
-            if (_phoneNumber != value)
+            if (_number != value)
             {
-                _phoneNumber = value;
-                ValidateProperty(nameof(_phoneNumber), value);
-                OnPropertyChanged(nameof(_phoneNumber));
+                _number = value;
+                ValidateProperty(nameof(_number), value);
+                OnPropertyChanged(nameof(_number));
             }
         }
     }
@@ -116,9 +120,6 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     /// </summary>
     public string Error => string.Join("\n", _errors.Values);
 
-    #endregion
-
-    #region Индексаторы
 
     /// <summary>
     /// Получает сообщение об ошибке для указанного свойства.
@@ -127,9 +128,6 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     /// <returns>Сообщение об ошибке или null, если ошибок нет.</returns>
     public string this[string columnName] => _errors.TryGetValue(columnName, out var error) ? error : null;
 
-    #endregion
-
-    #region Методы
 
     /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
@@ -158,7 +156,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
                     error = "Имя не должно превышать 100 символов.";
                 break;
 
-            case nameof(_phoneNumber):
+            case nameof(_number):
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     error = "Номер телефона не может быть пустым.";
@@ -195,9 +193,6 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
             _errors.Remove(propertyName);
     }
 
-    #endregion
-
-    #region Конструкторы
 
     /// <summary>
     /// Инициализирует новый экземпляр класса <see cref="Contact"/> с указанными именем,
@@ -209,7 +204,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     public Contact(string name, string number, string email)
     {
         Name = name;
-        _phoneNumber = number;
+        _number = number;
         Email = email;
     }
 
@@ -217,7 +212,5 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     /// Инициализирует новый экземпляр класса <see cref="Contact"/> без параметров.
     /// </summary>
     public Contact() { }
-
-    #endregion
 }
 

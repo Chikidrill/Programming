@@ -86,22 +86,29 @@ public class MainVM : INotifyPropertyChanged
         {
             if (_selectedContact != value)
             {
-                if (_selectedContact != null)
-                    _selectedContact.PropertyChanged -= OnContactPropertyChanged;
+                if (_isAddingNewContact && _selectedContact != null && !Contacts.Contains(_selectedContact))
+                {
+                    _isAddingNewContact = false;
+                }
+                if (_isEditingContact && _clonedContact != null && _selectedContact != null)
+                {
+                    _selectedContact.Name = _clonedContact.Name;
+                    _selectedContact.Number = _clonedContact.Number;
+                    _selectedContact.Email = _clonedContact.Email;
+                }
 
                 _selectedContact = value;
 
+                IsDataChanged = false;
+                IsApplyButtonVisible = false;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsContactSelected));
+
                 if (_selectedContact != null)
                 {
-                    _selectedContact.PropertyChanged += OnContactPropertyChanged;
-                    IsSelectedContactValid = IsContactValid(_selectedContact);
                     IsContactReadOnly = true;
                     IsApplyButtonVisible = false;
                 }
-
-                IsDataChanged = false;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsContactSelected));
 
                 _isEditingContact = false;
                 _clonedContact = null;
@@ -257,7 +264,7 @@ public class MainVM : INotifyPropertyChanged
             _clonedContact = new Contact
             {
                 Name = SelectedContact.Name,
-                PhoneNumber = SelectedContact.PhoneNumber,
+                Number = SelectedContact.Number,
                 Email = SelectedContact.Email
             };
 
@@ -265,7 +272,7 @@ public class MainVM : INotifyPropertyChanged
             SelectedContact = new Contact
             {
                 Name = _clonedContact.Name,
-                PhoneNumber = _clonedContact.PhoneNumber,
+                Number = _clonedContact.Number,
                 Email = _clonedContact.Email
             };
 
@@ -325,7 +332,7 @@ public class MainVM : INotifyPropertyChanged
             {
                 var contactToUpdate = Contacts[_indexBeforeEditing];
                 contactToUpdate.Name = SelectedContact.Name;
-                contactToUpdate.PhoneNumber = SelectedContact.PhoneNumber;
+                contactToUpdate.Number = SelectedContact.Number;
                 contactToUpdate.Email = SelectedContact.Email;
 
                 _isEditingContact = false;
@@ -342,7 +349,7 @@ public class MainVM : INotifyPropertyChanged
     private bool IsContactValid(Contact contact)
     {
         return string.IsNullOrEmpty(contact[nameof(Contact.Name)]) &&
-               string.IsNullOrEmpty(contact[nameof(Contact.PhoneNumber)]) &&
+               string.IsNullOrEmpty(contact[nameof(Contact.Number)]) &&
                string.IsNullOrEmpty(contact[nameof(Contact.Email)]);
     }
 

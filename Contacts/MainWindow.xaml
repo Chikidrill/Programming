@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Converters"
-        xmlns:controls1="clr-namespace:Contacts.Controls"
+        xmlns:controls="clr-namespace:Contacts.Controls"
         mc:Ignorable="d"
         Title="Contacts" 
         Icon="contacts_icon.ico"
@@ -71,7 +71,7 @@
                                     Text="{Binding Name}"/>
                                 <TextBlock
                                     FontSize="10"
-                                    Text="{Binding PhoneNumber}"/>
+                                    Text="{Binding Number}"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
@@ -115,7 +115,10 @@
             Background="White" 
             HorizontalAlignment="Stretch"/>
         <Grid Grid.Column="2" Background="White">
-            <controls1:ContactControl DataContext="{Binding SelectedContact}" />
+            <controls:ContactControl 
+                DataContext="{Binding SelectedContact}" 
+                IsReadOnly="{Binding DataContext.IsContactReadOnly, RelativeSource={RelativeSource AncestorType=Window}}"/>
+
 
             <Button 
                 Content="Apply" 

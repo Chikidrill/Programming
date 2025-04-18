@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Contacts.Controls" 
-xmlns:viewmodel="clr-namespace:ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="400">
 
@@ -14,7 +12,7 @@ xmlns:viewmodel="clr-namespace:ViewModel" d:DataContext="{d:DesignInstance Type=
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip"
                         Value="{Binding RelativeSource={RelativeSource Self},
-                                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -47,15 +45,15 @@ xmlns:viewmodel="clr-namespace:ViewModel" d:DataContext="{d:DesignInstance Type=
                 <TextBox 
                  Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Margin="0,3,0,3"
-                 IsReadOnly="{Binding IsContactReadOnly}"/>
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                 <Label 
                  Content="Phone Number:" 
                  Margin="0,3,0,3" 
                  HorizontalAlignment="Left"/>
                 <TextBox 
-                 Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                 Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Margin="0,3,0,3"
-                 IsReadOnly="{Binding IsContactReadOnly}"
+                IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  PreviewTextInput="PhoneNumber_PreviewTextInput"
                  DataObject.Pasting="PhoneNumber_Pasting"/>
                 <Label 
@@ -65,7 +63,7 @@ xmlns:viewmodel="clr-namespace:ViewModel" d:DataContext="{d:DesignInstance Type=
                 <TextBox 
                  Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Margin="0,3,0,3"
-                 IsReadOnly="{Binding IsContactReadOnly}"/>
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
             </StackPanel>
         </Grid>
     </Grid>
