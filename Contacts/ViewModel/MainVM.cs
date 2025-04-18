@@ -49,6 +49,8 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private bool _isAddingNewContact;
 
+    private bool _isSelectedContactValid = true;
+
     /// <summary>
     /// Флаг, показывающий, был ли активирован режим редактирования контакта
     /// </summary>
@@ -84,37 +86,49 @@ public class MainVM : INotifyPropertyChanged
         {
             if (_selectedContact != value)
             {
-                if (_isAddingNewContact && _selectedContact != null && !Contacts.Contains(_selectedContact))
-                {
-                    _isAddingNewContact = false;
-                }
-                if (_isEditingContact && _clonedContact != null && _selectedContact != null)
-                {
-                    _selectedContact.Name = _clonedContact.Name;
-                    _selectedContact.PhoneNumber = _clonedContact.PhoneNumber;
-                    _selectedContact.Email = _clonedContact.Email;
-                }
+                if (_selectedContact != null)
+                    _selectedContact.PropertyChanged -= OnContactPropertyChanged;
 
                 _selectedContact = value;
 
-                IsDataChanged = false;
-                IsApplyButtonVisible = false;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsContactSelected));
-
                 if (_selectedContact != null)
                 {
+                    _selectedContact.PropertyChanged += OnContactPropertyChanged;
+                    IsSelectedContactValid = IsContactValid(_selectedContact);
                     IsContactReadOnly = true;
                     IsApplyButtonVisible = false;
                 }
+
+                IsDataChanged = false;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsContactSelected));
 
                 _isEditingContact = false;
                 _clonedContact = null;
             }
         }
     }
+    private void OnContactPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (sender is Contact contact)
+        {
+            IsSelectedContactValid = IsContactValid(contact);
+        }
+    }
 
 
+    public bool IsSelectedContactValid
+    {
+        get => _isSelectedContactValid;
+        set
+        {
+            if (_isSelectedContactValid != value)
+            {
+                _isSelectedContactValid = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     /// <summary>
     /// Видимость кнопки "Применить", которая зависит от того, были ли изменения в данных.
@@ -325,6 +339,12 @@ public class MainVM : INotifyPropertyChanged
         }
     }
 
+    private bool IsContactValid(Contact contact)
+    {
+        return string.IsNullOrEmpty(contact[nameof(Contact.Name)]) &&
+               string.IsNullOrEmpty(contact[nameof(Contact.PhoneNumber)]) &&
+               string.IsNullOrEmpty(contact[nameof(Contact.Email)]);
+    }
 
 
     /// <summary>
