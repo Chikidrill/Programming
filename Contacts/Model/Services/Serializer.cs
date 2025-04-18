@@ -1,7 +1,10 @@
 ﻿using System;
+using Model;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
+namespace Services;
 
 /// <summary>
 /// Класс, выполняющий сериализацию и десериализацию контактов в JSON-файл.
@@ -27,35 +30,42 @@ public class Serializer
     /// Сохраняет переданный контакт в JSON-файл.
     /// </summary>
     /// <param name="contact">Контакт, который необходимо сохранить.</param>
-    public void Save(Contact contact)
+    public void Save(IEnumerable<Contact> contacts)
     {
         try
         {
-            string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+            if (!Directory.Exists(contactsDir))
+            {
+                Directory.CreateDirectory(contactsDir);
+            }
+            string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
             File.WriteAllText(_filePath, json);
         }
         catch (Exception ex)
         {
-            throw new Exception("Ошибка при сохранении контакта: " + ex.Message);
+            throw new Exception("Ошибка при сохранении контактов: " + ex.Message);
         }
     }
 
     /// <summary>
     /// Загружает контакт из JSON-файла.
     /// </summary>
-    public Contact Load()
+    public List<Contact> Load()
     {
         try
         {
             if (!File.Exists(_filePath))
-                return new Contact();
+            {
+                return new List<Contact>();
+            }
 
             string json = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact();
+            List<Contact> contacts = JsonConvert.DeserializeObject<List<Contact>>(json) ?? new List<Contact>();
+            return contacts;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            throw new Exception("Ошибка при загрузке контакта: " + ex.Message);
+            return new List<Contact>();
         }
     }
 }
