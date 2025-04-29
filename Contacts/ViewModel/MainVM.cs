@@ -49,6 +49,9 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private bool _isAddingNewContact;
 
+    /// <summary>
+    ///  Флаг, показывающий, является ли выбранный контакт валидным
+    /// </summary>
     private bool _isSelectedContactValid = true;
 
     /// <summary>
@@ -77,6 +80,11 @@ public class MainVM : INotifyPropertyChanged
     public bool IsContactSelected => SelectedContact != null;
 
     /// <summary>
+    ///  Проверяет, могут ли быть применены изменения 
+    /// </summary>
+    public bool CanApply => IsDataChanged && IsSelectedContactValid;
+
+    /// <summary>
     /// Выбранный контакт.
     /// </summary>
     public Contact SelectedContact
@@ -97,7 +105,13 @@ public class MainVM : INotifyPropertyChanged
                     _selectedContact.Email = _clonedContact.Email;
                 }
 
+                if (_selectedContact != null)
+                    _selectedContact.PropertyChanged -= OnContactPropertyChanged;
+
                 _selectedContact = value;
+
+                if (_selectedContact != null)
+                    _selectedContact.PropertyChanged += OnContactPropertyChanged;
 
                 IsDataChanged = false;
                 IsApplyButtonVisible = false;
@@ -112,27 +126,7 @@ public class MainVM : INotifyPropertyChanged
 
                 _isEditingContact = false;
                 _clonedContact = null;
-            }
-        }
-    }
-    private void OnContactPropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        if (sender is Contact contact)
-        {
-            IsSelectedContactValid = IsContactValid(contact);
-        }
-    }
-
-
-    public bool IsSelectedContactValid
-    {
-        get => _isSelectedContactValid;
-        set
-        {
-            if (_isSelectedContactValid != value)
-            {
-                _isSelectedContactValid = value;
-                OnPropertyChanged();
+                ValidateCurrentContact();
             }
         }
     }
@@ -181,7 +175,7 @@ public class MainVM : INotifyPropertyChanged
             {
                 _isDataChanged = value;
                 OnPropertyChanged();
-                IsApplyButtonVisible = _isDataChanged; 
+                OnPropertyChanged(nameof(CanApply));
             }
         }
     }
@@ -205,22 +199,22 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Команда для добавления нового контакта.
     /// </summary>
-    public ICommand AddCommand { get; }
+    public RelayCommand AddCommand { get; }
 
     /// <summary>
     /// Команда для редактирования выбранного контакта.
     /// </summary>
-    public ICommand EditCommand { get; }
+    public RelayCommand EditCommand { get; }
 
     /// <summary>
     /// Команда для удаления выбранного контакта.
     /// </summary>
-    public ICommand RemoveCommand { get; }
+    public RelayCommand RemoveCommand { get; }
 
     /// <summary>
     /// Команда для применения изменений контакта.
     /// </summary>
-    public ICommand ApplyCommand { get; }
+    public RelayCommand ApplyCommand { get; }
 
     /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
@@ -248,11 +242,10 @@ public class MainVM : INotifyPropertyChanged
         IsContactReadOnly = false;
         _isAddingNewContact = true;
         var newContact = new Contact();
-        SelectedContact = newContact;  
+        SelectedContact = newContact;
         UpdateContact(newContact);
         IsApplyButtonVisible = true;
     }
-
 
     /// <summary>
     /// Разрешает редактирование выбранного контакта.
@@ -318,7 +311,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private void ApplyChanges(object parameter)
     {
-        if (SelectedContact != null)
+        if (SelectedContact != null && CanApply)
         {
             if (_isAddingNewContact)
             {
@@ -346,13 +339,13 @@ public class MainVM : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Проверяет валидность контакта
+    /// </summary>
     private bool IsContactValid(Contact contact)
     {
-        return string.IsNullOrEmpty(contact[nameof(Contact.Name)]) &&
-               string.IsNullOrEmpty(contact[nameof(Contact.Number)]) &&
-               string.IsNullOrEmpty(contact[nameof(Contact.Email)]);
+        return contact?.Error == string.Empty;
     }
-
 
     /// <summary>
     /// Проверяет, можно ли редактировать или удалить контакт.
@@ -371,6 +364,42 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Получает или задаёт значение, указывающее, является ли выбранный контакт валидным.
+    /// </summary>
+    public bool IsSelectedContactValid
+    {
+        get => _isSelectedContactValid;
+        set
+        {
+            if (_isSelectedContactValid != value)
+            {
+                _isSelectedContactValid = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CanApply));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Выполняет проверку текущего контакта и обновляет флаг IsSelectedContactValid.
+    /// </summary>
+    private void ValidateCurrentContact()
+    {
+        IsSelectedContactValid = IsContactValid(_selectedContact);
+    }
+
+    /// <summary>
+    /// Обработчик события изменения свойства контакта.
+    /// Выполняет валидацию текущего контакта при изменении его свойств.
+    /// </summary>
+    /// <param name="sender">Объект, который вызвал событие.</param>
+    /// <param name="e">Событие, содержащее информацию о изменённом свойстве.</param>
+    private void OnContactPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        ValidateCurrentContact();
+    }
+
+    /// <summary>
     /// Инициализирует ViewModel и загружает контакты с помощью сериализатора.
     /// </summary>
     public MainVM()
@@ -381,6 +410,6 @@ public class MainVM : INotifyPropertyChanged
         AddCommand = new RelayCommand(AddContact);
         EditCommand = new RelayCommand(EditContact, CanEditOrRemoveContact);
         RemoveCommand = new RelayCommand(RemoveContact, CanEditOrRemoveContact);
-        ApplyCommand = new RelayCommand(ApplyChanges);
+        ApplyCommand = new RelayCommand(ApplyChanges, _ => CanApply);
     }
 }

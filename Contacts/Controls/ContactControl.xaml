@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
+             d:DesignHeight="420" d:DesignWidth="400">
 
     <UserControl.Resources>
         <Style TargetType="TextBox">
@@ -29,13 +29,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image 
-             Grid.Column="0" 
-             Width="100" 
-             Height="100" 
-             Margin="6,43,5,0" 
-             VerticalAlignment="Top" 
-             Source="/Controls/photo_placeholder.png"/>
+            <StackPanel Grid.Column="0" Margin="6,43,5,0">
+                <Image 
+            Width="100" 
+            Height="100" 
+            Source="/Controls/photo_placeholder.png"/>
+            </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="8">
                 <Label 
