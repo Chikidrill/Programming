@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Converters;
+namespace Contacts.View.Converters;
 /// <summary>
 /// Класс конвертера значений. Преобразует значение типа <see cref="bool"/> в значение <see cref="Visibility"/>.
 /// </summary>

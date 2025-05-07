@@ -1,7 +1,7 @@
 ﻿using ViewModel;
 using System.Windows;
 
-namespace Contacts;
+namespace Contacts.View;
 
 /// <summary>
 /// Логика взаимодействия для MainWindow.xaml

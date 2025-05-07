@@ -7,6 +7,7 @@
 	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	  <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="contacts_icon.ico" />
@@ -40,6 +41,7 @@
     <Page Remove="View\MainWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Contacts.Model\Model.csproj" />
     <ProjectReference Include="Contacts.ViewModel\ViewModel.csproj" />
   </ItemGroup>
 </Project>

@@ -96,6 +96,10 @@ public partial class MainVM : ObservableObject
         IsApplyButtonVisible = false;
         OnPropertyChanged(nameof(IsContactSelected));
 
+        // Уведомляем команды о необходимости перепроверить CanExecute
+        EditContactCommand.NotifyCanExecuteChanged();
+        RemoveContactCommand.NotifyCanExecuteChanged();
+
         _isEditingContact = false;
         _clonedContact = null;
         ValidateCurrentContact();

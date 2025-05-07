@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 
-namespace Contacts.Controls;
+namespace Contacts.View.Controls;
 
 /// <summary>
 /// Логика взаимодействия для ContactControl.xaml

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Contacts.Controls.ContactControl"
+﻿<UserControl x:Class="Contacts.View.Controls.ContactControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -44,7 +44,7 @@
                 <TextBox 
                  Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Margin="0,3,0,3"
-                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl},Mode=OneWay}"/>
                 <Label 
                  Content="Phone Number:" 
                  Margin="0,3,0,3" 
@@ -52,7 +52,7 @@
                 <TextBox 
                  Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Margin="0,3,0,3"
-                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl},Mode=OneWay}"
                  PreviewTextInput="PhoneNumber_PreviewTextInput"
                  DataObject.Pasting="PhoneNumber_Pasting"/>
                 <Label 
