@@ -76,6 +76,11 @@ public partial class MainVM : ObservableObject
     /// </summary>
     private bool _isEditingContact;
 
+    /// <summary>
+    /// Обработчик изменения выбранного контакта.
+    /// Вызывается автоматически при изменении свойства SelectedContact.
+    /// </summary>
+    /// <param name="value">Новое значение выбранного контакта</param>
     partial void OnSelectedContactChanged(Contact value)
     {
         if (value != null)
@@ -127,8 +132,9 @@ public partial class MainVM : ObservableObject
     {
         if (SelectedContact != null)
         {
-            _clonedContact = new Contact(SelectedContact);
+            _clonedContact = SelectedContact; 
             _indexBeforeEditing = Contacts.IndexOf(SelectedContact);
+
             SelectedContact = new Contact(_clonedContact);
 
             _isEditingContact = true;
@@ -179,11 +185,7 @@ public partial class MainVM : ObservableObject
             }
             else if (_isEditingContact)
             {
-                var contactToUpdate = Contacts[_indexBeforeEditing];
-                contactToUpdate.Name = SelectedContact.Name;
-                contactToUpdate.Number = SelectedContact.Number;
-                contactToUpdate.Email = SelectedContact.Email;
-
+                Contacts[_indexBeforeEditing] = SelectedContact;
                 _isEditingContact = false;
             }
 
@@ -192,6 +194,8 @@ public partial class MainVM : ObservableObject
             IsContactReadOnly = true;
             IsApplyButtonVisible = false;
             _clonedContact = null;
+
+            OnPropertyChanged(nameof(Contacts));
         }
     }
 
