@@ -29,6 +29,9 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     /// </summary>
     private string _email;
 
+    /// <summary>
+    /// Словарь ошибок
+    /// </summary>
     private readonly Dictionary<string, string> _errors = new Dictionary<string, string>();
 
 
@@ -92,8 +95,8 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
             if (_number != value)
             {
                 _number = value;
-                ValidateProperty(nameof(_number), value);
-                OnPropertyChanged(nameof(_number));
+                ValidateProperty(nameof(Number), value);
+                OnPropertyChanged(nameof(Number));
             }
         }
     }
@@ -204,7 +207,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     public Contact(string name, string number, string email)
     {
         Name = name;
-        _number = number;
+        Number = number;
         Email = email;
     }
 
@@ -212,5 +215,12 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
     /// Инициализирует новый экземпляр класса <see cref="Contact"/> без параметров.
     /// </summary>
     public Contact() { }
+
+    public Contact(Contact contact)
+    {
+        Name = contact.Name;
+        Number = contact.Number;
+        Email = contact.Email;
+    }
 }
 

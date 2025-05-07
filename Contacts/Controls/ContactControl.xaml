@@ -18,7 +18,7 @@
         </Style>
     </UserControl.Resources>
     
-    <Grid Background="White" >
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -52,7 +52,7 @@
                 <TextBox 
                  Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Margin="0,3,0,3"
-                IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  PreviewTextInput="PhoneNumber_PreviewTextInput"
                  DataObject.Pasting="PhoneNumber_Pasting"/>
                 <Label 

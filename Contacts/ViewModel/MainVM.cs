@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace ViewModel;
+
+/// <summary>
+/// ViewModel главного окна приложения для работы с контактами
+/// </summary>
 public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
@@ -100,9 +103,7 @@ public class MainVM : INotifyPropertyChanged
                 }
                 if (_isEditingContact && _clonedContact != null && _selectedContact != null)
                 {
-                    _selectedContact.Name = _clonedContact.Name;
-                    _selectedContact.Number = _clonedContact.Number;
-                    _selectedContact.Email = _clonedContact.Email;
+                    _selectedContact = new Contact(_clonedContact);
                 }
 
                 if (_selectedContact != null)
@@ -217,6 +218,23 @@ public class MainVM : INotifyPropertyChanged
     public RelayCommand ApplyCommand { get; }
 
     /// <summary>
+    /// Получает или задаёт значение, указывающее, является ли выбранный контакт валидным.
+    /// </summary>
+    public bool IsSelectedContactValid
+    {
+        get => _isSelectedContactValid;
+        set
+        {
+            if (_isSelectedContactValid != value)
+            {
+                _isSelectedContactValid = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CanApply));
+            }
+        }
+    }
+
+    /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для указанного свойства.
     /// </summary>
     /// <param name="propertyName">Имя свойства, которое изменилось.</param>
@@ -254,20 +272,10 @@ public class MainVM : INotifyPropertyChanged
     {
         if (SelectedContact != null)
         {
-            _clonedContact = new Contact
-            {
-                Name = SelectedContact.Name,
-                Number = SelectedContact.Number,
-                Email = SelectedContact.Email
-            };
+            _clonedContact = new Contact(SelectedContact);
 
             _indexBeforeEditing = Contacts.IndexOf(SelectedContact);
-            SelectedContact = new Contact
-            {
-                Name = _clonedContact.Name,
-                Number = _clonedContact.Number,
-                Email = _clonedContact.Email
-            };
+            SelectedContact = new Contact(_clonedContact);
 
             _isEditingContact = true;
             UpdateContact(SelectedContact);
@@ -342,7 +350,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Проверяет валидность контакта
     /// </summary>
-    private bool IsContactValid(Contact contact)
+    public bool IsContactValid(Contact contact)
     {
         return contact?.Error == string.Empty;
     }
@@ -350,7 +358,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Проверяет, можно ли редактировать или удалить контакт.
     /// </summary>
-    private bool CanEditOrRemoveContact(object parameter)
+    public bool CanEditOrRemoveContact(object parameter)
     {
         return SelectedContact != null && Contacts.Count > 0;
     }
@@ -364,26 +372,9 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Получает или задаёт значение, указывающее, является ли выбранный контакт валидным.
-    /// </summary>
-    public bool IsSelectedContactValid
-    {
-        get => _isSelectedContactValid;
-        set
-        {
-            if (_isSelectedContactValid != value)
-            {
-                _isSelectedContactValid = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(CanApply));
-            }
-        }
-    }
-
-    /// <summary>
     /// Выполняет проверку текущего контакта и обновляет флаг IsSelectedContactValid.
     /// </summary>
-    private void ValidateCurrentContact()
+    public void ValidateCurrentContact()
     {
         IsSelectedContactValid = IsContactValid(_selectedContact);
     }
@@ -394,7 +385,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     /// <param name="sender">Объект, который вызвал событие.</param>
     /// <param name="e">Событие, содержащее информацию о изменённом свойстве.</param>
-    private void OnContactPropertyChanged(object sender, PropertyChangedEventArgs e)
+    public void OnContactPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         ValidateCurrentContact();
     }
