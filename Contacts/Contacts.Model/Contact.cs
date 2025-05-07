@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace Model;
+namespace Contacts.Model;
 /// <summary>
 /// Класс, описывающий контакт с именем, номером телефона и электронной почтой.
 /// </summary>
-public class Contact : INotifyPropertyChanged, IDataErrorInfo
+public class Contact : ObservableObject, IDataErrorInfo
 {
 
     /// <summary>
@@ -223,4 +223,5 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo
         Email = contact.Email;
     }
 }
+
 

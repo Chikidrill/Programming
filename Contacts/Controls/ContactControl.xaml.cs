@@ -1,4 +1,4 @@
-﻿using Model;
+﻿using Contacts.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

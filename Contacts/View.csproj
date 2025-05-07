@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Contacts</RootNamespace>
     <AssemblyName>Contacts</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
@@ -16,6 +16,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
@@ -37,5 +38,8 @@
     <None Remove="photo_placeholder.png" />
     <Page Remove="View\App.xaml" />
     <Page Remove="View\MainWindow.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Contacts.ViewModel\ViewModel.csproj" />
   </ItemGroup>
 </Project>

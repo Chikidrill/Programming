@@ -1,10 +1,7 @@
-﻿using System;
-using Model;
-using System.Collections.Generic;
-using System.IO;
+﻿using Contacts.Model;
 using Newtonsoft.Json;
 
-namespace Services;
+namespace Contacts.Model.Services;
 
 /// <summary>
 /// Класс, выполняющий сериализацию и десериализацию контактов в JSON-файл.
