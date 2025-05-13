@@ -12,9 +12,67 @@ namespace ViewModel;
 /// </summary>
 public partial class MainVM : ObservableObject
 {
+    /// <summary>
+    /// Объект сериализации, используемый для загрузки и сохранения контактов.
+    /// </summary>
     private readonly Serializer _contactSerializer;
+
+    /// <summary>
+    /// Клонированный экземпляр контакта, необходимый для отката изменений при редактировании.
+    /// </summary>
     private Contact _clonedContact;
+
+    /// <summary>
+    /// Индекс выбранного контакта в коллекции до начала редактирования.
+    /// Используется для корректной замены контакта после применения изменений.
+    /// </summary>
     private int _indexBeforeEditing;
+
+
+    /// <summary>
+    /// Сериализатор контактов.
+    /// </summary>
+    [ObservableProperty]
+    private Contact _selectedContact;
+
+    /// <summary>
+    /// Видимость кнопки применения изменений.
+    /// </summary>
+    [ObservableProperty]
+    private bool _isApplyButtonVisible;
+
+    /// <summary>
+    /// Флаг, указывающий, является ли контакт доступным только для чтения. По умолчанию "true".
+    /// </summary>
+    [ObservableProperty]
+    private bool _isContactReadOnly = true;
+
+    /// <summary>
+    /// Флаг, указывающий, были ли изменены данные.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CanApply))]
+    [NotifyCanExecuteChangedFor(nameof(ApplyChangesCommand))]
+    private bool _isDataChanged;
+
+    /// <summary>
+    /// Флаг, показывающий, был ли активирован или нет режим создания нового контакта.
+    /// </summary>
+    [ObservableProperty]
+    private bool _isAddingNewContact;
+
+    /// <summary>
+    /// Флаг, показывающий, является ли выбранный контакт валидным.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CanApply))]
+    [NotifyCanExecuteChangedFor(nameof(ApplyChangesCommand))]
+    private bool _isSelectedContactValid = true;
+
+    /// <summary>
+    /// Флаг, показывающий, был ли активирован режим редактирования контакта.
+    /// </summary>
+    private bool _isEditingContact;
 
     /// <summary>
     /// Коллекция контактов, которые управляются в приложении.
@@ -30,51 +88,6 @@ public partial class MainVM : ObservableObject
     /// Проверяет, могут ли быть применены изменения.
     /// </summary>
     public bool CanApply => IsDataChanged && IsSelectedContactValid;
-
-    /// <summary>
-    /// Сериализатор контактов.
-    /// </summary>
-    [ObservableProperty]
-    private Contact selectedContact;
-
-    /// <summary>
-    /// Видимость кнопки применения изменений.
-    /// </summary>
-    [ObservableProperty]
-    private bool isApplyButtonVisible;
-
-    /// <summary>
-    /// Флаг, указывающий, является ли контакт доступным только для чтения. По умолчанию "true".
-    /// </summary>
-    [ObservableProperty]
-    private bool isContactReadOnly = true;
-
-    /// <summary>
-    /// Флаг, указывающий, были ли изменены данные.
-    /// </summary>
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CanApply))]
-    [NotifyCanExecuteChangedFor(nameof(ApplyChangesCommand))]
-    private bool isDataChanged;
-
-    /// <summary>
-    /// Флаг, показывающий, был ли активирован или нет режим создания нового контакта.
-    /// </summary>
-    [ObservableProperty]
-    private bool isAddingNewContact;
-
-    /// <summary>
-    /// Флаг, показывающий, является ли выбранный контакт валидным.
-    /// </summary>
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CanApply))]
-    [NotifyCanExecuteChangedFor(nameof(ApplyChangesCommand))]
-    private bool isSelectedContactValid = true;
-
-    /// <summary>
-    /// Флаг, показывающий, был ли активирован режим редактирования контакта.
-    /// </summary>
-    private bool _isEditingContact;
 
     /// <summary>
     /// Обработчик изменения выбранного контакта.
@@ -101,7 +114,6 @@ public partial class MainVM : ObservableObject
         IsApplyButtonVisible = false;
         OnPropertyChanged(nameof(IsContactSelected));
 
-        // Уведомляем команды о необходимости перепроверить CanExecute
         EditContactCommand.NotifyCanExecuteChanged();
         RemoveContactCommand.NotifyCanExecuteChanged();
 
